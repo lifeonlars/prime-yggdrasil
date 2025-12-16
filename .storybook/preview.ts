@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/react-vite'
 import 'primereact/resources/themes/lara-light-blue/theme.css'
 import 'primeicons/primeicons.css'
+import 'primeflex/primeflex.css'
 import '../src/styles/app.css'
 
 const preview: Preview = {

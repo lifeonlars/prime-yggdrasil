@@ -5,9 +5,9 @@ A minimal, clean React design system built with Vite, PrimeReact, and Storybook.
 ## Stack
 
 - **React 19** + **TypeScript** + **Vite** - Fast development environment
-- **PrimeReact** - Comprehensive component library
+- **PrimeReact** (styled mode) - Comprehensive component library with PrimeOne theming
 - **PrimeIcons** - Icon library
-- **Tailwind CSS** - Utility-first CSS (constrained usage for layout only)
+- **PrimeFlex** - Layout utility framework (constrained usage for scaffolding only)
 - **Storybook** - Component development and documentation
 - **Chromatic** - Visual testing and publishing
 
@@ -54,7 +54,7 @@ src/
 │   ├── DataTable.stories.tsx
 │   └── Card.stories.tsx            # Blocks
 └── styles/
-    └── app.css                      # Tailwind imports + minimal custom styles
+    └── app.css                      # Minimal custom styles
 ```
 
 ## Theme Configuration
@@ -98,46 +98,48 @@ To publish to Chromatic:
 
 ## Architecture & Styling Policy
 
-This project follows a **design-system-first, component-driven architecture**. See [agentic_ui_architecture_tailwind_policy.md](agentic_ui_architecture_tailwind_policy.md) for full details.
+This project follows a **design-system-first, component-driven architecture** optimized for LLM-assisted development. See [agentic_ui_architecture_prime_flex_policy.md](agentic_ui_architecture_prime_flex_policy.md) for full details.
 
 ### Key Principles
 
-1. **Primitives (PrimeReact)** - Base UI components (buttons, inputs, tables, etc.)
+1. **Primitives (PrimeReact)** - Base UI components (buttons, inputs, tables, etc.) in styled mode
 2. **Blocks** - Reusable UI compositions built on primitives
-3. **Views** - Screens that compose blocks with minimal styling
+3. **Views** - Screens that compose blocks with minimal styling logic
 
-### Tailwind Usage Policy
+### PrimeFlex Usage Policy
 
-**Tailwind is allowed ONLY for layout in views**, not visual styling:
+**PrimeFlex is allowed ONLY for page scaffolding in views**, not visual styling.
 
-**Allowed in views:**
-- Layout: `flex`, `grid`, `gap-*`, `grid-cols-*`
-- Alignment: `items-*`, `justify-*`
-- Responsiveness: `sm:*`, `md:*`, `lg:*`
-- Sizing: `w-full`, `min-h-*`, `max-w-*`
-- Page padding: `p-3`, `p-4` (outer page spacing only)
+**Allowed in views (whitelist):**
+- **Grid scaffolding**: `grid`, `col-*`, responsive variants (`md:col-6`, `lg:col-4`)
+- **Flex scaffolding**: `flex`, `flex-wrap`, responsive variants
+- **Spacing between regions**: `gap-*` and responsive variants
+- **Alignment**: `align-items-*`, `justify-content-*` and responsive variants
+- **Outer page padding only**: Single wrapper with `p-*` or `px-*`/`py-*` (e.g., `p-3 md:p-4`)
 
-**Forbidden in views:**
-- Colors: `bg-*`, `text-*`, `border-*`
-- Typography: `text-sm`, `font-*`, `leading-*`
-- Visual styling: `rounded-*`, `shadow-*`, `ring-*`
-- Ad-hoc spacing: `px-*`, `py-*`, `mt-*`, `mb-*` (belongs in blocks)
-- Arbitrary values: `w-[123px]`, `text-[#abc]`
+**Forbidden in views (blacklist):**
+- Colors, borders, shadows (visual identity)
+- Typography (font sizing/weights)
+- Ad-hoc spacing: `m-*`, `mx-*`, `my-*`, `mt-*`, `mb-*`, `ml-*`, `mr-*`
+- Extra padding beyond the outer wrapper
+- Positioning hacks (absolute, z-index, negative margins)
 
 **Visual styling belongs in:**
 - PrimeReact components and their props
-- Block components (in `src/components/blocks/`)
-- PrimeReact theme configuration
+- Block components (in [src/components/blocks/](src/components/blocks/))
+- PrimeReact theme configuration (PrimeOne theming)
 
 ### Example: Correct Usage
 
 ```tsx
-// View - Layout only
+// View - Layout scaffolding only
 export function MyView() {
   return (
-    <div className="p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card>Content</Card>
+    <div className="p-3 md:p-4">
+      <div className="grid">
+        <div className="col-12 md:col-6 lg:col-4">
+          <Card>Content</Card>
+        </div>
       </div>
     </div>
   )

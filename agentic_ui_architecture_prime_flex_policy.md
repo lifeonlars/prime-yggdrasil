@@ -1,4 +1,4 @@
-# Agentic UI Architecture & Tailwind Policy
+# Agentic UI Architecture & PrimeFlex Policy
 
 ## Purpose
 
@@ -8,16 +8,16 @@ This document defines the **UI architecture and styling approach**, with a speci
 
 ## Core Principles
 
-1. **Design-system-first, not utility-first**\
+1. **Design-system-first, not utility-first**  \
    Utilities are implementation details, not the design language. UI should be composed from approved components and patterns, not invented ad hoc.
 
-2. **Composition over invention**\
+2. **Composition over invention**  \
    Both humans and LLMs should assemble interfaces from existing primitives and blocks rather than creating bespoke layouts or styles in each view.
 
-3. **Guardrails enable speed**\
+3. **Guardrails enable speed**  \
    Constraints are intentional. By limiting where and how styling decisions can be made, we reduce cognitive load, rework, and visual inconsistency.
 
-4. **Storybook is the contract**\
+4. **Storybook is the contract**  \
    If a component or pattern is not represented in Storybook, it should not be created implicitly in a product view.
 
 ---
@@ -28,9 +28,10 @@ This document defines the **UI architecture and styling approach**, with a speci
 
 - PrimeReact provides the **base UI primitives**: buttons, inputs, dropdowns, tables, dialogs, tags, etc.
 - Visual consistency is primarily achieved through:
-  - Prime theming (themed PrimeOne or equivalent)
+  - PrimeOne theming
   - PrimeReact props and configuration
   - PassThrough (PT) configuration where needed
+- PrimeReact is used in **styled mode**. Unstyled mode is explicitly avoided.
 - Custom styling of primitives should be avoided unless there is a clear, documented gap.
 
 ---
@@ -51,13 +52,13 @@ Examples:
 
 Rules:
 
-- Tailwind **is allowed** in blocks
+- **PrimeFlex is allowed inside blocks**
 - Blocks own visual styling and spacing
 - Blocks are documented in Storybook and treated as approved building units
 
 ---
 
-### 3. Layout Blocks (optional but encouraged)
+### 3. Layout Blocks (strongly encouraged)
 
 Layout blocks are **non-visual structural components** that define responsive page scaffolding.
 
@@ -69,8 +70,7 @@ Examples:
 - MasterDetailLayout
 - DrawerLayout
 
-These exist to prevent layout logic from being reimplemented inconsistently across views. PrimeBlocks can be used as reference and inspiration to create more layout blocks and compositions. \
-https\://primeblocks.org/
+These exist to prevent layout logic from being reimplemented inconsistently across views. PrimeBlocks may be used purely as **visual and structural inspiration**, not as a dependency.
 
 ---
 
@@ -86,50 +86,72 @@ Views should contain **minimal styling logic**.
 
 ---
 
-## Tailwind Usage Policy
+## PrimeFlex Usage Policy
 
-Tailwind is used for **pragmatic reasons** (PrimeBlocks compatibility, PrimeFlex sunset, agent productivity), but its usage is intentionally constrained.
+PrimeFlex is the **layout utility layer** alongside PrimeReact + PrimeOne (styled mode). Its job is *structural scaffolding*, not visual styling.
 
-### Allowed Tailwind usage in views
+To keep agentic development predictable and prevent drift, we use a **strict whitelist** of PrimeFlex utilities that are allowed inside **Views**.
 
-Tailwind classes in views are limited to **high-level structural layout only**:
+### View whitelist (allowed PrimeFlex classes)
 
-- Layout:
-  - `flex`, `grid`
-  - `gap-*`
-  - `grid-cols-*`
-- Alignment:
-  - `items-*`, `justify-*`
-- Responsiveness:
-  - `sm:*`, `md:*`, `lg:*`, `xl:*`
-  - `hidden`, `block` (with breakpoints)
-- Sizing (from approved scale only):
-  - `w-full`, `min-h-*`, `max-w-*`
-- Optional, limited page padding:
-  - e.g. `p-3`, `p-4`, `md:p-4` (strictly for outer page spacing)
+Views may use PrimeFlex **only** for page scaffolding, using **only** the following families:
 
-These classes define **page scaffolding**, not visual identity.
+1) **Grid scaffolding (preferred)**
+- `grid`
+- `col-*` (e.g. `col-12`, `col-6`, `col-3`)
+- Responsive variants of `col-*` (e.g. `md:col-6`, `lg:col-4`, `xl:col-3`)
 
----
+2) **Flex scaffolding (allowed, but secondary)**
+- `flex`
+- `flex-wrap`
+- Responsive variants (e.g. `md:flex`)
 
-### Forbidden Tailwind usage in views
+3) **Spacing between layout regions**
+- `gap-*` and responsive variants (e.g. `gap-3`, `md:gap-4`)
 
-The following must **not** appear in views:
+4) **Alignment for structural layout**
+- `align-items-*` (e.g. `align-items-start|center|end|stretch`) + responsive variants
+- `justify-content-*` (e.g. `justify-content-start|center|end|between|around|evenly`) + responsive variants
 
-- Colours:
-  - `bg-*`, `text-*`, `border-*`
-- Typography:
-  - `text-sm`, `font-*`, `leading-*`
-- Visual styling:
-  - `rounded-*`, `shadow-*`, `ring-*`
-- Ad-hoc spacing for visual styling:
-  - `px-*`, `py-*`, `mt-*`, `mb-*` (outside the limited page padding exception)
-- Positioning hacks:
-  - `absolute`, negative margins, z-index manipulation (unless inside a block)
-- Arbitrary values:
-  - `w-[123px]`, `mt-[7px]`, `text-[#123456]`
+5) **Outer page padding only** (single wrapper)
+- Exactly one outer wrapper may use:
+  - `p-*` **or** `px-*`/`py-*`
+  - Optional responsive variants (e.g. `p-3 md:p-4`)
 
-If a view needs any of the above, the logic belongs in a **Block or Layout Block**, not the view.
+That’s it.
+
+### View blacklist (explicitly forbidden)
+
+Views must **not** use PrimeFlex for:
+
+- **Colours / visual identity** (anything that changes colours, borders, shadows)
+- **Typography** (font sizing/weights/line-height)
+- **Radius, shadows, effects**
+- **Ad-hoc spacing for visual tuning**
+  - No `m-*`, `mx-*`, `my-*`, `mt-*`, `mb-*`, `ml-*`, `mr-*`
+  - No extra `p-*` beyond the single outer wrapper
+- **One-off layout hacks** (absolute positioning, z-index games, negative margins)
+
+If you feel tempted: you don’t need more PrimeFlex — you need a **Block**.
+
+### Canonical view patterns (examples)
+
+**Page scaffold (grid-first):**
+- Outer wrapper: `p-3 md:p-4`
+- Main layout: `grid`
+- Spacing: `gap-3 md:gap-4`
+- Columns: `col-12 md:col-8` + `col-12 md:col-4`
+
+**Header row (structural flex):**
+- `flex align-items-center justify-content-between`
+
+### Block and Layout Block rules (where styling lives)
+
+- Blocks/Layout Blocks may use PrimeFlex *freely* for internal spacing and composition.
+- Blocks/Layout Blocks may own any additional styling decisions (component props, PT config, custom CSS where justified).
+- Any repeated pattern found in multiple views should be promoted into a Block/Layout Block and documented in Storybook.
+
+This keeps views thin, predictable, and safe for LLM-assisted iteration.
 
 ---
 
@@ -143,7 +165,7 @@ Storybook serves as:
 - The reference for both human developers and LLM agents
 - A safe environment to explore states (loading, empty, error, dense, edge cases)
 
-Structure recommendation:
+Suggested structure:
 
 - `Foundations/`
 - `Primitives/`
@@ -167,7 +189,7 @@ Visual diffs are treated as **intentional review points**, not noise.
 
 - Use **PrimeReact primitives** for all basic UI elements
 - Prefer **existing Blocks and Layout Blocks** over new custom layouts
-- Do not introduce new Tailwind styling in views
+- Do not introduce new PrimeFlex styling in views beyond the allowed set
 - If a new pattern is required:
   1. Create or extend a Block
   2. Add it to Storybook
@@ -179,3 +201,4 @@ Visual diffs are treated as **intentional review points**, not noise.
 ## Intent
 
 This architecture is designed to let **LLMs act as force multipliers**, not uncontrolled designers. By clearly separating responsibilities and constraining where styling decisions can be made, development can move fast without creating long-term UI debt.
+
