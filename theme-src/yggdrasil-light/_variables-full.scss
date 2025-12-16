@@ -13,17 +13,17 @@ $colors: (
 	"primary": $primaryColor
 );
 
-//reused color variables
-$shade000: #ffffff !default; //surface
-$shade100: #f9fafb !default; //header background
-$shade200: #f3f4f6 !default; //hover background
-$shade300: #e5e7eb !default; //border, divider
-$shade400: #d1d5db !default; //input border
-$shade500: #9ca3af !default; //input icon
-$shade600: #6b7280 !default; //text secondary color
-$shade700: #4b5563 !default; //text color
-$shade800: #374151 !default; //unused
-$shade900: #1f2937 !default; //unused
+//reused color variables - mapped to Yggdrasil Rock palette
+$shade000: #ffffff !default; //surface (white)
+$shade100: #FCFCFC !default; //Rock 050 - header background
+$shade200: #F1F0F1 !default; //Rock 100 - hover background
+$shade300: #E4E3E5 !default; //Rock 200 - border, divider
+$shade400: #C8C6C9 !default; //Rock 300 - input border
+$shade500: #8A858E !default; //Rock 500 - input icon
+$shade600: #6E6872 !default; //Rock 600 - text secondary color
+$shade700: #001F4A !default; //Sky 700 (primary brand) - default text color
+$shade800: #38343C !default; //Rock 800
+$shade900: #221F24 !default; //Rock 900
 
 //global
 $fontFamily: "Roboto", sans-serif !default;
@@ -31,7 +31,7 @@ $fontSize: 1rem !default;
 $fontWeight: normal !default;
 $textColor: $shade700 !default;
 $textSecondaryColor: $shade600 !default;
-$borderRadius: 8px !default;
+$borderRadius: 12px !default;
 $transitionDuration: 0.2s !default;
 $formElementTransition: background-color $transitionDuration,
 	color $transitionDuration, border-color $transitionDuration,
@@ -450,8 +450,7 @@ $cardSubTitleFontWeight: 400 !default;
 $cardSubTitleColor: $shade600 !default;
 $cardContentPadding: 1.25rem 0 !default;
 $cardFooterPadding: 1.25rem 0 0 0 !default;
-$cardShadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-	0 1px 3px 0 rgba(0, 0, 0, 0.12) !default;
+$cardShadow: 0px 4px 10px rgba(0, 0, 0, 0.03), 0px 0px 2px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.12) !default;
 
 //editor
 $editorToolbarBg: $panelHeaderBg !default;
@@ -873,16 +872,16 @@ $imagePreviewActionIconBorderRadius: 50% !default;
 	--primary-color: #{$primaryColor};
 	--primary-color-text: #{$primaryTextColor};
 	--surface-0: #ffffff;
-	--surface-50: #f9fafb;
-	--surface-100: #f3f4f6;
-	--surface-200: #e5e7eb;
-	--surface-300: #d1d5db;
-	--surface-400: #9ca3af;
-	--surface-500: #6b7280;
-	--surface-600: #4b5563;
-	--surface-700: #374151;
-	--surface-800: #1f2937;
-	--surface-900: #111827;
+	--surface-50: #FCFCFC;
+	--surface-100: #F1F0F1;
+	--surface-200: #E4E3E5;
+	--surface-300: #C8C6C9;
+	--surface-400: #A8A6AA;
+	--surface-500: #8A858E;
+	--surface-600: #6E6872;
+	--surface-700: #524D56;
+	--surface-800: #38343C;
+	--surface-900: #221F24;
 	--gray-50: #f9fafb;
 	--gray-100: #f3f4f6;
 	--gray-200: #e5e7eb;
@@ -896,15 +895,27 @@ $imagePreviewActionIconBorderRadius: 50% !default;
 	--content-padding: #{$panelContentPadding};
 	--inline-spacing: #{$inlineSpacing};
 	--border-radius: #{$borderRadius};
-	--surface-ground: #f9fafb;
-	--surface-section: #ffffff;
+	--surface-ground: #F8F8F8;
+	--surface-section: #F2F1F2;
 	--surface-card: #ffffff;
-	--surface-overlay: #ffffff;
-	--surface-border: #dfe7ef;
-	--surface-hover: #f6f9fc;
+	--surface-overlay: rgba(0,0,0,0.1);
+	--surface-border: #C4E2C5;
+	--surface-hover: #F0F4F9;
 	--focus-ring: #{$focusShadow};
 	--maskbg: #{$maskBg};
 	--highlight-bg: #{$highlightBg};
 	--highlight-text-color: #{$highlightTextColor};
+	--p-content-border-radius: #{$borderRadius};
+	--p-surface-0: #ffffff;
+	--p-surface-50: #FCFCFC;
+	--p-surface-100: #F1F0F1;
+	--p-surface-200: #E4E3E5;
+	--p-surface-300: #C8C6C9;
+	--p-surface-400: #A8A6AA;
+	--p-surface-500: #8A858E;
+	--p-surface-600: #6E6872;
+	--p-surface-700: #524D56;
+	--p-surface-800: #38343C;
+	--p-surface-900: #221F24;
 	color-scheme: light;
 }

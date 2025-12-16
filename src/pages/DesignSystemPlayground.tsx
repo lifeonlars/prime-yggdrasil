@@ -93,7 +93,7 @@ export default function DesignSystemPlayground() {
   }
 
   return (
-    <div className="p-3 md:p-4">
+    <div className="p-3 md:p-4" style={{ minHeight: '100vh', backgroundColor: 'var(--surface-ground)' }}>
       <Toast ref={toast} />
       <PageHeader
         title="Design System Playground"
