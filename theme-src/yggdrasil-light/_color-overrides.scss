@@ -1,0 +1,106 @@
+// Yggdrasil Color Overrides
+// Map Yggdrasil context colors to PrimeReact semantic colors
+
+// Update the colors map with Yggdrasil values
+$colors: (
+	"blue": #001F4A,     // Sky 700 (primary)
+	"green": #7A9652,    // Forest 500 (success)
+	"yellow": #D39327,   // Sand 500 (warning)
+	"cyan": #649EB3,     // Sea 500 (info/signal)
+	"pink": #FF8186,     // Berries 400
+	"indigo": #648CC3,   // Sky 400
+	"teal": #477E92,     // Sea 600
+	"orange": #E2AC5D,   // Sand 400
+	"bluegray": #8A858E, // Rock 500
+	"purple": #9DB7D6,   // Sky 300
+	"red": #EA5E68,      // Berries 500 (danger)
+	"primary": $primaryColor
+);
+
+// Success colors (Forest)
+$successButtonBg: #7A9652 !default;
+$successButtonTextColor: #ffffff !default;
+$successButtonBorder: 1px solid #7A9652 !default;
+$successButtonHoverBg: #5D7235 !default;
+$successButtonTextHoverColor: #ffffff !default;
+$successButtonHoverBorderColor: #5D7235 !default;
+$successButtonActiveBg: #485E1D !default;
+$successButtonTextActiveColor: #ffffff !default;
+$successButtonActiveBorderColor: #485E1D !default;
+$successButtonFocusShadow: 0 0 0 0.2rem rgba(#7A9652, 0.5) !default;
+
+// Info colors (Sea)
+$infoButtonBg: #649EB3 !default;
+$infoButtonTextColor: #ffffff !default;
+$infoButtonBorder: 1px solid #649EB3 !default;
+$infoButtonHoverBg: #477E92 !default;
+$infoButtonTextHoverColor: #ffffff !default;
+$infoButtonHoverBorderColor: #477E92 !default;
+$infoButtonActiveBg: #336174 !default;
+$infoButtonTextActiveColor: #ffffff !default;
+$infoButtonActiveBorderColor: #336174 !default;
+$infoButtonFocusShadow: 0 0 0 0.2rem rgba(#649EB3, 0.5) !default;
+
+// Warning colors (Sand)
+$warningButtonBg: #D39327 !default;
+$warningButtonTextColor: #ffffff !default;
+$warningButtonBorder: 1px solid #D39327 !default;
+$warningButtonHoverBg: #C17B16 !default;
+$warningButtonTextHoverColor: #ffffff !default;
+$warningButtonHoverBorderColor: #C17B16 !default;
+$warningButtonActiveBg: #AA6509 !default;
+$warningButtonTextActiveColor: #ffffff !default;
+$warningButtonActiveBorderColor: #AA6509 !default;
+$warningButtonFocusShadow: 0 0 0 0.2rem rgba(#D39327, 0.5) !default;
+
+// Danger colors (Berries)
+$dangerButtonBg: #EA5E68 !default;
+$dangerButtonTextColor: #ffffff !default;
+$dangerButtonBorder: 1px solid #EA5E68 !default;
+$dangerButtonHoverBg: #D64949 !default;
+$dangerButtonTextHoverColor: #ffffff !default;
+$dangerButtonHoverBorderColor: #D64949 !default;
+$dangerButtonActiveBg: #BC3939 !default;
+$dangerButtonTextActiveColor: #ffffff !default;
+$dangerButtonActiveBorderColor: #BC3939 !default;
+$dangerButtonFocusShadow: 0 0 0 0.2rem rgba(#EA5E68, 0.5) !default;
+
+// Tag/Badge colors
+$tagSuccessBg: #C7D3B2 !default;       // Forest 200
+$tagSuccessTextColor: #485E1D !default; // Forest 700
+
+$tagInfoBg: #BEDCDD !default;          // Sea 200
+$tagInfoTextColor: #244655 !default;   // Sea 800
+
+$tagWarningBg: #F4DAB8 !default;       // Sand 200
+$tagWarningTextColor: #7B4E0F !default; // Sand 800
+
+$tagDangerBg: #F9BBC3 !default;        // Berries 200
+$tagDangerTextColor: #BC3939 !default; // Berries 700
+
+// Badge colors
+$badgeSuccessBg: #7A9652 !default;     // Forest 500
+$badgeInfoBg: #649EB3 !default;        // Sea 500
+$badgeWarningBg: #D39327 !default;     // Sand 500
+$badgeDangerBg: #EA5E68 !default;      // Berries 500
+
+// Message/Toast colors (using Yggdrasil semantic surfaces)
+$infoMessageBg: #BEDCDD !default;       // Sea 200
+$infoMessageBorder: solid #649EB3 !default; // Sea 500
+$infoMessageTextColor: #244655 !default; // Sea 800
+$infoMessageIconColor: #244655 !default;
+
+$successMessageBg: #C7D3B2 !default;    // Forest 200
+$successMessageBorder: solid #7A9652 !default; // Forest 500
+$successMessageTextColor: #485E1D !default; // Forest 700
+$successMessageIconColor: #485E1D !default;
+
+$warningMessageBg: #F4DAB8 !default;    // Sand 200
+$warningMessageBorder: solid #D39327 !default; // Sand 500
+$warningMessageTextColor: #7B4E0F !default; // Sand 800
+$warningMessageIconColor: #7B4E0F !default;
+
+$errorMessageBg: #F9BBC3 !default;      // Berries 200
+$errorMessageBorder: solid #EA5E68 !default; // Berries 500
+$errorMessageTextColor: #BC3939 !default; // Berries 700
+$errorMessageIconColor: #BC3939 !default;

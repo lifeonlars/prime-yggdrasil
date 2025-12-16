@@ -11,11 +11,21 @@ const meta = {
   argTypes: {
     severity: {
       control: 'select',
-      options: ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help', 'contrast'],
+      options: ['primary', 'danger'],
+      description: 'Severity level of the button',
     },
     size: {
       control: 'select',
-      options: ['small', 'large'],
+      options: ['small', 'normal', 'large'],
+      description: 'Size of the button',
+    },
+    outlined: {
+      control: 'boolean',
+      description: 'Outlined button style',
+    },
+    text: {
+      control: 'boolean',
+      description: 'Text-only button style',
     },
   },
 } satisfies Meta<typeof Button>
@@ -25,21 +35,14 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
-    label: 'Primary Button',
+    label: 'Primary',
   },
 }
 
-export const Secondary: Story = {
+export const Danger: Story = {
   args: {
-    label: 'Secondary Button',
-    severity: 'secondary',
-  },
-}
-
-export const Success: Story = {
-  args: {
-    label: 'Success Button',
-    severity: 'success',
+    label: 'Danger',
+    severity: 'danger',
   },
 }
 
@@ -53,7 +56,6 @@ export const WithIcon: Story = {
 export const IconOnly: Story = {
   args: {
     icon: 'pi pi-check',
-    rounded: true,
   },
 }
 
@@ -64,9 +66,47 @@ export const Outlined: Story = {
   },
 }
 
+export const OutlinedDanger: Story = {
+  args: {
+    label: 'Outlined Danger',
+    outlined: true,
+    severity: 'danger',
+  },
+}
+
 export const Text: Story = {
   args: {
     label: 'Text',
     text: true,
+  },
+}
+
+export const Large: Story = {
+  args: {
+    label: 'Large',
+    size: 'large',
+  },
+}
+
+export const LargeWithIcon: Story = {
+  args: {
+    label: 'Large',
+    icon: 'pi pi-check',
+    size: 'large',
+  },
+}
+
+export const Small: Story = {
+  args: {
+    label: 'Small',
+    size: 'small',
+  },
+}
+
+export const SmallWithIcon: Story = {
+  args: {
+    label: 'Small',
+    icon: 'pi pi-check',
+    size: 'small',
   },
 }

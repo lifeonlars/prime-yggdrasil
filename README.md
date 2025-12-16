@@ -1,6 +1,6 @@
-# PrimeReact Design System
+# PrimeReact Design System with Yggdrasil Theme
 
-A minimal, clean React design system built with Vite, PrimeReact, and Storybook.
+A minimal, clean React design system built with Vite, PrimeReact, and Storybook, featuring a custom Yggdrasil theme with light and dark mode support.
 
 ## Stack
 
@@ -53,20 +53,38 @@ src/
 │   ├── Dialog.stories.tsx
 │   ├── DataTable.stories.tsx
 │   └── Card.stories.tsx            # Blocks
-└── styles/
-    └── app.css                      # Minimal custom styles
+├── styles/
+│   └── app.css                      # Minimal custom styles
+└── themes/
+    ├── yggdrasil-light.css         # Yggdrasil light mode theme
+    └── yggdrasil-dark.css          # Yggdrasil dark mode theme
 ```
 
 ## Theme Configuration
 
-The project uses the **Lara Light Blue** theme from PrimeReact. Theme imports are centralized in:
+The project uses a custom **Yggdrasil theme** that maps Yggdrasil design tokens to PrimeReact. Theme imports are centralized in:
 - [src/main.tsx](src/main.tsx) - For the app
 - [.storybook/preview.ts](.storybook/preview.ts) - For Storybook
 
-To change themes, update the theme import in both files:
+### Current Theme: Yggdrasil Light Mode
 ```typescript
-import 'primereact/resources/themes/lara-light-blue/theme.css'
+import './themes/yggdrasil-light.css'
 ```
+
+### Switching to Dark Mode
+Update both files to:
+```typescript
+import './themes/yggdrasil-dark.css'
+```
+
+### Theme Features
+- ✅ **Colors**: Complete Yggdrasil color palette (Sky, Sea, Forest, Sand, Berries, Rock)
+- ✅ **Typography**: Roboto font family (all weights preserved)
+- ✅ **Border Radius**: 8px (4px grid alignment)
+- ✅ **Light/Dark Modes**: Full support for both modes
+- ✅ **Component Compatibility**: Works with all PrimeReact components
+
+See [YGGDRASIL_THEME.md](YGGDRASIL_THEME.md) for complete documentation, including implementation details and limitations.
 
 ## Sample Components
 

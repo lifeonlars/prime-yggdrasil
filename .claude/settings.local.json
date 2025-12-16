@@ -12,7 +12,12 @@
       "Bash(npm uninstall:*)",
       "Bash(npx tailwindcss:*)",
       "Bash(npx tailwindcss@latest init:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(git clone:*)",
+      "Bash(npx sass:*)",
+      "Bash(npm run storybook:*)",
+      "Bash(npx storybook:*)",
+      "Bash(find:*)"
     ]
   }
 }

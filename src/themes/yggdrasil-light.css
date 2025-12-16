@@ -1,0 +1,221 @@
+/**
+ * Yggdrasil Light Theme for PrimeReact
+ *
+ * This theme maps Yggdrasil design tokens to PrimeReact CSS variables.
+ * Based on the Lara theme architecture with custom Yggdrasil colors.
+ */
+
+/* Import Roboto font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Import base Lara Light Blue theme for structure and component styles */
+@import 'primereact/resources/themes/lara-light-blue/theme.css';
+
+/* Yggdrasil Foundation Colors - defined first so they can be referenced */
+:root {
+  /* Foundation - Sky (Primary/Brand) */
+  --foundation-sky-050: #F0F4F9;
+  --foundation-sky-100: #DDE0EA;
+  --foundation-sky-200: #BCCEE2;
+  --foundation-sky-300: #9DB7D6;
+  --foundation-sky-400: #648CC3;
+  --foundation-sky-500: #2E598F;
+  --foundation-sky-600: #183B60;
+  --foundation-sky-700: #001F4A;
+  --foundation-sky-800: #001129;
+  --foundation-sky-900: #000712;
+  --foundation-sky-950: #000409;
+
+  /* Foundation - Sea (Secondary/Info) */
+  --foundation-sea-100: #D9E4E1;
+  --foundation-sea-200: #BEDCDD;
+  --foundation-sea-300: #98C5D3;
+  --foundation-sea-400: #7BB8D1;
+  --foundation-sea-500: #649EB3;
+  --foundation-sea-600: #477E92;
+  --foundation-sea-700: #336174;
+  --foundation-sea-800: #244655;
+
+  /* Foundation - Forest (Success) */
+  --foundation-forest-100: #DFE3D9;
+  --foundation-forest-200: #C7D3B2;
+  --foundation-forest-300: #B0C18E;
+  --foundation-forest-400: #9AB56B;
+  --foundation-forest-500: #7A9652;
+  --foundation-forest-600: #5D7235;
+  --foundation-forest-700: #485E1D;
+
+  /* Foundation - Sand (Warning) */
+  --foundation-sand-100: #EFE7DB;
+  --foundation-sand-200: #F4DAB8;
+  --foundation-sand-300: #F2C77F;
+  --foundation-sand-400: #E2AC5D;
+  --foundation-sand-500: #D39327;
+  --foundation-sand-600: #C17B16;
+  --foundation-sand-700: #AA6509;
+  --foundation-sand-800: #7B4E0F;
+
+  /* Foundation - Berries (Danger) */
+  --foundation-berries-100: #F4DFDF;
+  --foundation-berries-200: #F9BBC3;
+  --foundation-berries-300: #FCA4AB;
+  --foundation-berries-400: #FF8186;
+  --foundation-berries-500: #EA5E68;
+  --foundation-berries-600: #D64949;
+  --foundation-berries-700: #BC3939;
+
+  /* Foundation - Rock (Neutrals) */
+  --foundation-rock-050: #F8F8F8;
+  --foundation-rock-100: #F2F1F2;
+  --foundation-rock-200: #E4E4E4;
+  --foundation-rock-300: #C4C2C5;
+  --foundation-rock-400: #A39FA7;
+  --foundation-rock-500: #8A858E;
+  --foundation-rock-600: #716C75;
+  --foundation-rock-700: #58525D;
+  --foundation-rock-800: #2E2734;
+  --foundation-rock-900: #201C25;
+  --foundation-rock-950: #131116;
+
+  /* Foundation - White/Black */
+  --foundation-white: #FFFFFF;
+  --foundation-black: #000000;
+
+  /* Foundation - Darker overlays (with opacity) */
+  --foundation-darker-050: #000F260C;
+  --foundation-darker-100: #000F2619;
+  --foundation-darker-200: #000F2633;
+  --foundation-darker-300: #000F264C;
+
+  /* Foundation - Lighter overlays (with opacity) */
+  --foundation-lighter-200: #FFFFFF33;
+  --foundation-lighter-300: #FFFFFF4C;
+}
+
+/* Override PrimeReact theme variables with Yggdrasil colors - MUST come after import */
+:root {
+  /* Font Family - Roboto (override Inter) */
+  font-family: 'Roboto', sans-serif !important;
+  --font-family: 'Roboto', sans-serif !important;
+
+  /* Border Radius - 4px grid (8px instead of 6px) */
+  --border-radius: 8px !important;
+
+  /* Primary Brand Color (Sky) - CRITICAL OVERRIDE */
+  --primary-color: #001F4A !important;
+  --primary-color-text: #FFFFFF !important;
+
+  /* Surface Colors (Neutral backgrounds) */
+  --surface-a: #FFFFFF !important;
+  --surface-b: #F8F8F8 !important;
+  --surface-c: #F2F1F2 !important;
+  --surface-d: #E4E4E4 !important;
+  --surface-e: #FFFFFF !important;
+  --surface-f: #FFFFFF !important;
+
+  --surface-0: #FFFFFF !important;
+  --surface-50: #F8F8F8 !important;
+  --surface-100: #F2F1F2 !important;
+  --surface-200: #E4E4E4 !important;
+  --surface-300: #C4C2C5 !important;
+  --surface-400: #A39FA7 !important;
+  --surface-500: #8A858E !important;
+  --surface-600: #716C75 !important;
+  --surface-700: #58525D !important;
+  --surface-800: #2E2734 !important;
+  --surface-900: #201C25 !important;
+
+  --surface-ground: #F8F8F8 !important;
+  --surface-section: #FFFFFF !important;
+  --surface-card: #FFFFFF !important;
+  --surface-overlay: #FFFFFF !important;
+  --surface-border: #C4C2C5 !important;
+  --surface-hover: #000F260C !important;
+
+  /* Text Colors */
+  --text-color: #001F4A !important;
+  --text-color-secondary: #716C75 !important;
+
+  /* Gray Scale (using Rock foundation) */
+  --gray-50: #F8F8F8 !important;
+  --gray-100: #F2F1F2 !important;
+  --gray-200: #E4E4E4 !important;
+  --gray-300: #C4C2C5 !important;
+  --gray-400: #A39FA7 !important;
+  --gray-500: #8A858E !important;
+  --gray-600: #716C75 !important;
+  --gray-700: #58525D !important;
+  --gray-800: #2E2734 !important;
+  --gray-900: #201C25 !important;
+
+  /* Blue Scale (using Sky foundation for primary) */
+  --blue-50: #F0F4F9 !important;
+  --blue-100: #DDE0EA !important;
+  --blue-200: #BCCEE2 !important;
+  --blue-300: #9DB7D6 !important;
+  --blue-400: #648CC3 !important;
+  --blue-500: #2E598F !important;
+  --blue-600: #183B60 !important;
+  --blue-700: #001F4A !important;
+  --blue-800: #001129 !important;
+  --blue-900: #000712 !important;
+
+  /* Green Scale (using Forest foundation for success) */
+  --green-50: #F4FCF7 !important;
+  --green-100: #DFE3D9 !important;
+  --green-200: #C7D3B2 !important;
+  --green-300: #B0C18E !important;
+  --green-400: #9AB56B !important;
+  --green-500: #7A9652 !important;
+  --green-600: #5D7235 !important;
+  --green-700: #485E1D !important;
+  --green-800: #3B4D1A !important;
+  --green-900: #2A3712 !important;
+
+  /* Yellow Scale (using Sand foundation for warning) */
+  --yellow-50: #FEFBF3 !important;
+  --yellow-100: #EFE7DB !important;
+  --yellow-200: #F4DAB8 !important;
+  --yellow-300: #F2C77F !important;
+  --yellow-400: #E2AC5D !important;
+  --yellow-500: #D39327 !important;
+  --yellow-600: #C17B16 !important;
+  --yellow-700: #AA6509 !important;
+  --yellow-800: #7B4E0F !important;
+  --yellow-900: #5E3A0A !important;
+
+  /* Red Scale (using Berries foundation for danger) */
+  --red-50: #FEF6F6 !important;
+  --red-100: #F4DFDF !important;
+  --red-200: #F9BBC3 !important;
+  --red-300: #FCA4AB !important;
+  --red-400: #FF8186 !important;
+  --red-500: #EA5E68 !important;
+  --red-600: #D64949 !important;
+  --red-700: #BC3939 !important;
+  --red-800: #9E2E2E !important;
+  --red-900: #712121 !important;
+
+  /* Cyan Scale (using Sea foundation for info/secondary) */
+  --cyan-50: #F3FBFD !important;
+  --cyan-100: #D9E4E1 !important;
+  --cyan-200: #BEDCDD !important;
+  --cyan-300: #98C5D3 !important;
+  --cyan-400: #7BB8D1 !important;
+  --cyan-500: #649EB3 !important;
+  --cyan-600: #477E92 !important;
+  --cyan-700: #336174 !important;
+  --cyan-800: #244655 !important;
+  --cyan-900: #1A3340 !important;
+
+  /* Focus and Highlight */
+  --focus-ring: 0 0 0 0.2rem #BCCEE2 !important;
+  --highlight-bg: #F0F4F9 !important;
+  --highlight-text-color: #001F4A !important;
+
+  /* Mask Background */
+  --maskbg: #000F264C !important;
+
+  /* Color Scheme */
+  color-scheme: light;
+}

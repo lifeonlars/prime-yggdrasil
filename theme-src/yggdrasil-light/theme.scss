@@ -1,0 +1,19 @@
+// Yggdrasil Light Theme for PrimeReact
+// Based on Lara Light theme with Yggdrasil design tokens
+
+// Primary Color - Sky 700
+$primaryColor: #001F4A !default;
+$primaryLightColor: #BCCEE2 !default;
+$primaryDarkColor: #183B60 !default;
+$primaryDarkerColor: #001129 !default;
+$primaryTextColor: #ffffff !default;
+
+$highlightBg: #F0F4F9 !default;
+$highlightTextColor: $primaryDarkerColor !default;
+$highlightFocusBg: rgba($primaryColor, 0.24) !default;
+
+@import "./_color-overrides";
+@import "./_variables-full";
+@import "./_fonts";
+@import "../../temp-theme/theme-base/_components";
+@import "./_extensions";
