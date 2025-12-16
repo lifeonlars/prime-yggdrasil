@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Card } from '../components/blocks/Card'
+import { Card } from '../blocks/Card'
 
 const meta = {
   title: 'Blocks/Card',
@@ -26,8 +26,29 @@ export const WithContent: Story = {
         <h3 className="text-900 font-bold mb-2">Card Title</h3>
         <p className="text-600 mb-0">
           This card demonstrates how visual styling is handled by PrimeReact classes
-          while layout composition uses Tailwind.
+          while layout composition uses PrimeFlex.
         </p>
+      </div>
+    ),
+  },
+}
+
+export const Loading: Story = {
+  args: {
+    children: (
+      <div className="flex align-items-center justify-content-center" style={{ minHeight: '120px' }}>
+        <i className="pi pi-spin pi-spinner text-4xl text-primary"></i>
+      </div>
+    ),
+  },
+}
+
+export const Empty: Story = {
+  args: {
+    children: (
+      <div className="text-center p-4 text-600">
+        <i className="pi pi-inbox text-4xl mb-3 block"></i>
+        <p className="mb-0">No content available</p>
       </div>
     ),
   },

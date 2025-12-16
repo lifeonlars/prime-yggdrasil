@@ -1,8 +1,8 @@
 import type { Preview } from '@storybook/react-vite'
-import '../src/themes/yggdrasil-light-compiled.css'
+// Import theme in the same order consumers will use
+import '../src/theme/index.css'
 import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css'
-import '../src/styles/app.css'
 
 const preview: Preview = {
   parameters: {

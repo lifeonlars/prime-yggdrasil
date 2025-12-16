@@ -17,7 +17,11 @@
       "Bash(npx sass:*)",
       "Bash(npm run storybook:*)",
       "Bash(npx storybook:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(npx tsc:*)",
+      "Bash(if [ -f .gitignore ])",
+      "Bash(then cat .gitignore)",
+      "Bash(fi)"
     ]
   }
 }

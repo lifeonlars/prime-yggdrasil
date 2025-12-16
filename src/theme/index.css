@@ -1,0 +1,164 @@
+/**
+ * Yggdrasil Theme
+ *
+ * This is the main theme file for the prime-yggdrasil design system.
+ * Import this in your consuming app: import 'prime-yggdrasil/theme.css'
+ *
+ * Order matters:
+ * 1. Base PrimeReact theme (Lara Light Blue)
+ * 2. Yggdrasil custom tokens and overrides
+ */
+
+/* Import Roboto font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Import base Lara Light Blue theme for structure and component styles */
+@import 'primereact/resources/themes/lara-light-blue/theme.css';
+
+/* Yggdrasil Foundation Colors - defined first so they can be referenced */
+:root {
+  /* Foundation - Sky (Primary/Brand) */
+  --foundation-sky-050: #F0F4F9;
+  --foundation-sky-100: #DDE0EA;
+  --foundation-sky-200: #BCCEE2;
+  --foundation-sky-300: #9DB7D6;
+  --foundation-sky-400: #648CC3;
+  --foundation-sky-500: #2E598F;
+  --foundation-sky-600: #183B60;
+  --foundation-sky-700: #001F4A;
+  --foundation-sky-800: #001129;
+  --foundation-sky-900: #000712;
+  --foundation-sky-950: #000409;
+
+  /* Foundation - Sea (Secondary/Info) */
+  --foundation-sea-100: #D9E4E1;
+  --foundation-sea-200: #BEDCDD;
+  --foundation-sea-300: #98C5D3;
+  --foundation-sea-400: #7BB8D1;
+  --foundation-sea-500: #649EB3;
+  --foundation-sea-600: #477E92;
+  --foundation-sea-700: #336174;
+  --foundation-sea-800: #244655;
+
+  /* Foundation - Forest (Success) */
+  --foundation-forest-100: #DFE3D9;
+  --foundation-forest-200: #C7D3B2;
+  --foundation-forest-300: #B0C18E;
+  --foundation-forest-400: #9AB56B;
+  --foundation-forest-500: #7A9652;
+  --foundation-forest-600: #5D7235;
+  --foundation-forest-700: #485E1D;
+
+  /* Foundation - Sand (Warning) */
+  --foundation-sand-100: #EFE7DB;
+  --foundation-sand-200: #F4DAB8;
+  --foundation-sand-300: #EFCE94;
+  --foundation-sand-400: #DCAB54;
+  --foundation-sand-500: #C48E2F;
+  --foundation-sand-600: #9B6E1B;
+  --foundation-sand-700: #6E4A0A;
+
+  /* Foundation - Clay (Error/Danger) */
+  --foundation-clay-100: #E8D5D3;
+  --foundation-clay-200: #E3BDB3;
+  --foundation-clay-300: #D89785;
+  --foundation-clay-400: #CD7459;
+  --foundation-clay-500: #B45431;
+  --foundation-clay-600: #923917;
+  --foundation-clay-700: #6E2509;
+
+  /* Foundation - Slate (Neutral) */
+  --foundation-slate-000: #FFFFFF;
+  --foundation-slate-050: #F9FAFB;
+  --foundation-slate-100: #F3F4F6;
+  --foundation-slate-200: #E5E7EB;
+  --foundation-slate-300: #D1D5DB;
+  --foundation-slate-400: #9CA3AF;
+  --foundation-slate-500: #6B7280;
+  --foundation-slate-600: #4B5563;
+  --foundation-slate-700: #374151;
+  --foundation-slate-800: #1F2937;
+  --foundation-slate-900: #111827;
+  --foundation-slate-950: #030712;
+
+  /* PrimeReact Theme Overrides - Map Yggdrasil tokens to PrimeReact variables */
+
+  /* Primary Color (Sky) */
+  --primary-50: var(--foundation-sky-050);
+  --primary-100: var(--foundation-sky-100);
+  --primary-200: var(--foundation-sky-200);
+  --primary-300: var(--foundation-sky-300);
+  --primary-400: var(--foundation-sky-400);
+  --primary-500: var(--foundation-sky-500);
+  --primary-600: var(--foundation-sky-600);
+  --primary-700: var(--foundation-sky-700);
+  --primary-800: var(--foundation-sky-800);
+  --primary-900: var(--foundation-sky-900);
+
+  /* Success Color (Forest) */
+  --green-100: var(--foundation-forest-100);
+  --green-200: var(--foundation-forest-200);
+  --green-300: var(--foundation-forest-300);
+  --green-400: var(--foundation-forest-400);
+  --green-500: var(--foundation-forest-500);
+  --green-600: var(--foundation-forest-600);
+  --green-700: var(--foundation-forest-700);
+
+  /* Warning Color (Sand) */
+  --yellow-100: var(--foundation-sand-100);
+  --yellow-200: var(--foundation-sand-200);
+  --yellow-300: var(--foundation-sand-300);
+  --yellow-400: var(--foundation-sand-400);
+  --yellow-500: var(--foundation-sand-500);
+  --yellow-600: var(--foundation-sand-600);
+  --yellow-700: var(--foundation-sand-700);
+
+  /* Error/Danger Color (Clay) */
+  --red-100: var(--foundation-clay-100);
+  --red-200: var(--foundation-clay-200);
+  --red-300: var(--foundation-clay-300);
+  --red-400: var(--foundation-clay-400);
+  --red-500: var(--foundation-clay-500);
+  --red-600: var(--foundation-clay-600);
+  --red-700: var(--foundation-clay-700);
+
+  /* Info Color (Sea) */
+  --blue-100: var(--foundation-sea-100);
+  --blue-200: var(--foundation-sea-200);
+  --blue-300: var(--foundation-sea-300);
+  --blue-400: var(--foundation-sea-400);
+  --blue-500: var(--foundation-sea-500);
+  --blue-600: var(--foundation-sea-600);
+  --blue-700: var(--foundation-sea-700);
+  --blue-800: var(--foundation-sea-800);
+
+  /* Surface/Neutral Colors (Slate) */
+  --surface-0: var(--foundation-slate-000);
+  --surface-50: var(--foundation-slate-050);
+  --surface-100: var(--foundation-slate-100);
+  --surface-200: var(--foundation-slate-200);
+  --surface-300: var(--foundation-slate-300);
+  --surface-400: var(--foundation-slate-400);
+  --surface-500: var(--foundation-slate-500);
+  --surface-600: var(--foundation-slate-600);
+  --surface-700: var(--foundation-slate-700);
+  --surface-800: var(--foundation-slate-800);
+  --surface-900: var(--foundation-slate-900);
+
+  /* Text Colors */
+  --text-color: var(--foundation-slate-900);
+  --text-color-secondary: var(--foundation-slate-600);
+
+  /* Surface Variants */
+  --surface-ground: var(--foundation-slate-050);
+  --surface-section: var(--foundation-slate-000);
+  --surface-card: var(--foundation-slate-000);
+  --surface-overlay: var(--foundation-slate-000);
+  --surface-border: var(--foundation-slate-300);
+  --surface-hover: var(--foundation-slate-100);
+
+  /* Typography */
+  --font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+/* Additional component customizations can be added here */

@@ -1,174 +1,269 @@
-# PrimeReact Design System with Yggdrasil Theme
+# Prime Yggdrasil
 
-A minimal, clean React design system built with Vite, PrimeReact, and Storybook, featuring a custom Yggdrasil theme with light and dark mode support.
+A PrimeReact-based design system for React + Vite projects, built with a 3-tier architecture optimized for LLM-assisted development.
 
-## Stack
+## Overview
 
-- **React 19** + **TypeScript** + **Vite** - Fast development environment
-- **PrimeReact** (styled mode) - Comprehensive component library with PrimeOne theming
-- **PrimeIcons** - Icon library
-- **PrimeFlex** - Layout utility framework (constrained usage for scaffolding only)
-- **Storybook** - Component development and documentation
-- **Chromatic** - Visual testing and publishing
+`prime-yggdrasil` is a **Tier 1 Global Design System** package that provides:
 
-## Getting Started
+- PrimeReact primitives with styled mode (PrimeOne-based theme)
+- Shared Blocks and Layout Blocks
+- Yggdrasil theme with custom design tokens
+- Storybook documentation and visual regression testing
+- Clear patterns for consuming apps (Tier 2 local blocks, Tier 3 views)
+
+## Installation
 
 ```bash
-# Install dependencies
-npm install
+npm install prime-yggdrasil
+```
 
-# Run the app
-npm run dev
+This package requires peer dependencies:
 
-# Run Storybook
-npm run storybook
+```bash
+npm install react react-dom primereact primeicons primeflex
+```
 
-# Build for production
+## Usage
+
+### 1. Import the theme CSS
+
+In your app's entry point (e.g., `main.tsx` or `App.tsx`):
+
+```tsx
+// Import theme CSS in this order
+import 'prime-yggdrasil/theme.css';
+import 'primeicons/primeicons.css';
+import 'primeflex/primeflex.css';
+```
+
+### 2. Wrap your app with YggdrasilProvider
+
+```tsx
+import { YggdrasilProvider } from 'prime-yggdrasil';
+import 'prime-yggdrasil/theme.css';
+import 'primeicons/primeicons.css';
+import 'primeflex/primeflex.css';
+
+function App() {
+  return (
+    <YggdrasilProvider>
+      <YourApp />
+    </YggdrasilProvider>
+  );
+}
+```
+
+### 3. Use Blocks in your views
+
+```tsx
+import { Card, PageHeader, FormField } from 'prime-yggdrasil';
+import { InputText } from 'primereact/inputtext';
+
+export function MyView() {
+  return (
+    <div className="p-3 md:p-4">
+      <PageHeader
+        title="Dashboard"
+        description="Welcome to your dashboard"
+      />
+
+      <div className="grid gap-3">
+        <div className="col-12 md:col-6">
+          <Card>
+            <FormField label="Email" htmlFor="email">
+              <InputText id="email" type="email" />
+            </FormField>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+## Architecture
+
+This package implements **Tier 1** of a 3-tier architecture:
+
+### Tier 1: Global Design System (this package)
+- PrimeReact primitives (styled mode, PrimeOne-based theme)
+- Shared Blocks and Layout Blocks
+- Theme CSS and Provider setup
+- Storybook (canonical reference, read-only for consumers)
+- Chromatic visual regression
+
+### Tier 2: Local Blocks (in consuming apps)
+- App-specific blocks built from Tier 1 primitives
+- Can use PrimeFlex for layout (same rules as Views)
+- Promotion candidates when patterns are reused
+
+### Tier 3: Views (in consuming apps)
+- Screens that compose blocks
+- Minimal layout scaffolding only
+- **Strictly limited PrimeFlex usage** (see below)
+
+## PrimeFlex Usage Policy
+
+PrimeFlex is the layout utility system alongside PrimeReact. It's for **structural scaffolding**, not visual styling.
+
+### ✅ Allowed in Views (whitelist)
+
+**Grid scaffolding (preferred):**
+- `grid`, `col-*` (e.g., `col-12`, `col-6`, `col-3`)
+- Responsive variants (e.g., `md:col-6`, `lg:col-4`)
+
+**Flex scaffolding (secondary):**
+- `flex`, `flex-wrap`
+- Responsive variants (e.g., `md:flex`)
+
+**Spacing between layout regions:**
+- `gap-*` and responsive variants (e.g., `gap-3`, `md:gap-4`)
+
+**Alignment for structural layout:**
+- `align-items-*` (e.g., `align-items-start`, `align-items-center`)
+- `justify-content-*` (e.g., `justify-content-between`, `justify-content-center`)
+- Responsive variants
+
+**Outer page padding only (single wrapper):**
+- `p-*` or `px-*`/`py-*`
+- Responsive variants (e.g., `p-3 md:p-4`)
+
+### ❌ Forbidden in Views (blacklist)
+
+- **Colors / visual identity** (anything that changes colours, borders, shadows)
+- **Typography** (font sizing/weights/line-height)
+- **Radius, shadows, effects**
+- **Ad-hoc spacing for visual tuning:**
+  - No `m-*`, `mx-*`, `my-*`, `mt-*`, `mb-*`, `ml-*`, `mr-*`
+  - No extra `p-*` beyond the single outer wrapper
+- **One-off layout hacks** (absolute positioning, z-index, negative margins)
+
+**If you need more than the whitelist: you need a Block, not more PrimeFlex.**
+
+### Canonical view patterns
+
+**Page scaffold (grid-first):**
+```tsx
+<div className="p-3 md:p-4">
+  <div className="grid gap-3 md:gap-4">
+    <div className="col-12 md:col-8">
+      <Card>Main content</Card>
+    </div>
+    <div className="col-12 md:col-4">
+      <Card>Sidebar</Card>
+    </div>
+  </div>
+</div>
+```
+
+**Header row (structural flex):**
+```tsx
+<div className="flex align-items-center justify-content-between">
+  <h1>Title</h1>
+  <Button label="Action" />
+</div>
+```
+
+## Exported API
+
+### Components
+
+- `YggdrasilProvider` - Wraps PrimeReactProvider with sensible defaults
+- `Card` - Surface container with consistent elevation
+- `PageHeader` - Page title and description block
+- `FormField` - Label + input wrapper
+- `SectionTitle` - Section heading
+
+### Theme
+
+Import via:
+```tsx
+import 'prime-yggdrasil/theme.css';
+```
+
+The theme includes:
+- Yggdrasil design tokens (Sky, Sea, Forest, Sand, Clay, Slate)
+- PrimeReact Lara Light Blue base theme
+- Roboto font family
+- Custom color mappings to PrimeReact variables
+
+## Development
+
+This repo contains:
+
+### Scripts
+
+```bash
+# Build the library
 npm run build
 
-# Build Storybook
+# Run Storybook (canonical reference)
+npm run storybook
+
+# Build Storybook for deployment
 npm run build-storybook
 
 # Publish to Chromatic
 npm run chromatic
 ```
 
-## Project Structure
+### Project Structure
 
 ```
 src/
-├── components/
-│   └── blocks/                      # Reusable UI blocks
-│       ├── Card.tsx
-│       ├── PageHeader.tsx
-│       ├── SectionTitle.tsx
-│       └── FormField.tsx
-├── pages/
-│   └── DesignSystemPlayground.tsx  # Main demo page
-├── stories/                         # Storybook stories
-│   ├── Button.stories.tsx          # Primitives
-│   ├── InputText.stories.tsx
-│   ├── Dropdown.stories.tsx
-│   ├── Tag.stories.tsx
-│   ├── Dialog.stories.tsx
-│   ├── DataTable.stories.tsx
-│   └── Card.stories.tsx            # Blocks
-├── styles/
-│   └── app.css                      # Minimal custom styles
-└── themes/
-    ├── yggdrasil-light.css         # Yggdrasil light mode theme
-    └── yggdrasil-dark.css          # Yggdrasil dark mode theme
+├── index.ts              # Public API exports
+├── provider/
+│   └── YggdrasilProvider.tsx
+├── theme/
+│   └── index.css         # Consolidated theme
+├── blocks/               # Exported blocks
+│   ├── Card.tsx
+│   ├── PageHeader.tsx
+│   ├── FormField.tsx
+│   └── SectionTitle.tsx
+├── layouts/              # Layout blocks (future)
+├── primitives/           # Wrappers (minimal, avoid)
+└── stories/              # Storybook documentation
+    ├── Card.stories.tsx
+    ├── Card.docs.mdx
+    └── ...
 ```
 
-## Theme Configuration
+## Storybook
 
-The project uses a custom **Yggdrasil theme** that maps Yggdrasil design tokens to PrimeReact. Theme imports are centralized in:
-- [src/main.tsx](src/main.tsx) - For the app
-- [.storybook/preview.ts](.storybook/preview.ts) - For Storybook
+Storybook serves as:
+- Executable documentation of approved primitives and blocks
+- Reference for both human developers and LLM agents
+- Canonical examples and edge cases
 
-### Current Theme: Yggdrasil Light Mode
-```typescript
-import './themes/yggdrasil-light.css'
-```
+**Storybook is read-only for consuming apps** - it lives in this repo only.
 
-### Switching to Dark Mode
-Update both files to:
-```typescript
-import './themes/yggdrasil-dark.css'
-```
+View the published Storybook at: [Your Chromatic URL]
 
-### Theme Features
-- ✅ **Colors**: Complete Yggdrasil color palette (Sky, Sea, Forest, Sand, Berries, Rock)
-- ✅ **Typography**: Roboto font family (all weights preserved)
-- ✅ **Border Radius**: 8px (4px grid alignment)
-- ✅ **Light/Dark Modes**: Full support for both modes
-- ✅ **Component Compatibility**: Works with all PrimeReact components
+## Rules for Consuming Apps
 
-See [YGGDRASIL_THEME.md](YGGDRASIL_THEME.md) for complete documentation, including implementation details and limitations.
+1. **No local primitives** - Use PrimeReact components directly
+2. **Local blocks allowed** - Build app-specific blocks from Tier 1 primitives
+3. **PrimeFlex whitelist only** - Follow the strict usage policy above
+4. **Promote when reused** - If a local block is used in multiple views, promote it to this package
+5. **Storybook is the contract** - If it's not in Storybook, don't assume it exists
 
-## Sample Components
+## LLM Agent Guidelines
 
-The playground includes examples of:
-- **Button** - Various button styles and severities
-- **InputText** - Text input with validation states
-- **Dropdown** - Select component with options
-- **Tag** - Status tags and chips
-- **Dialog** - Modal dialogs
-- **DataTable** - Data tables with sorting and pagination
+When building UI:
+1. Use **PrimeReact primitives** for all basic UI elements
+2. Prefer **existing Blocks** from this package over custom layouts
+3. Follow **PrimeFlex whitelist** strictly in views
+4. If a new pattern is required:
+   - Create a local Block in your app (Tier 2)
+   - Add it to Storybook if it becomes reusable
+   - Promote to this package when used across multiple projects
 
-## Scripts
+## Architecture Reference
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run storybook` - Start Storybook dev server
-- `npm run build-storybook` - Build Storybook for deployment
-- `npm run chromatic` - Publish Storybook to Chromatic
+See [agentic_policy.md](./agentic_policy.md) for the full architecture specification and LLM development guidelines.
 
-## Chromatic Setup
+## License
 
-To publish to Chromatic:
-
-1. Sign up at [chromatic.com](https://www.chromatic.com/)
-2. Create a new project and get your project token
-3. Run: `npm run chromatic -- --project-token=<your-token>`
-
-## Architecture & Styling Policy
-
-This project follows a **design-system-first, component-driven architecture** optimized for LLM-assisted development. See [agentic_ui_architecture_prime_flex_policy.md](agentic_ui_architecture_prime_flex_policy.md) for full details.
-
-### Key Principles
-
-1. **Primitives (PrimeReact)** - Base UI components (buttons, inputs, tables, etc.) in styled mode
-2. **Blocks** - Reusable UI compositions built on primitives
-3. **Views** - Screens that compose blocks with minimal styling logic
-
-### PrimeFlex Usage Policy
-
-**PrimeFlex is allowed ONLY for page scaffolding in views**, not visual styling.
-
-**Allowed in views (whitelist):**
-- **Grid scaffolding**: `grid`, `col-*`, responsive variants (`md:col-6`, `lg:col-4`)
-- **Flex scaffolding**: `flex`, `flex-wrap`, responsive variants
-- **Spacing between regions**: `gap-*` and responsive variants
-- **Alignment**: `align-items-*`, `justify-content-*` and responsive variants
-- **Outer page padding only**: Single wrapper with `p-*` or `px-*`/`py-*` (e.g., `p-3 md:p-4`)
-
-**Forbidden in views (blacklist):**
-- Colors, borders, shadows (visual identity)
-- Typography (font sizing/weights)
-- Ad-hoc spacing: `m-*`, `mx-*`, `my-*`, `mt-*`, `mb-*`, `ml-*`, `mr-*`
-- Extra padding beyond the outer wrapper
-- Positioning hacks (absolute, z-index, negative margins)
-
-**Visual styling belongs in:**
-- PrimeReact components and their props
-- Block components (in [src/components/blocks/](src/components/blocks/))
-- PrimeReact theme configuration (PrimeOne theming)
-
-### Example: Correct Usage
-
-```tsx
-// View - Layout scaffolding only
-export function MyView() {
-  return (
-    <div className="p-3 md:p-4">
-      <div className="grid">
-        <div className="col-12 md:col-6 lg:col-4">
-          <Card>Content</Card>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-// Block - Visual styling allowed
-export function Card({ children }: CardProps) {
-  return (
-    <div className="surface-card p-4 shadow-2 border-round">
-      {children}
-    </div>
-  )
-}
-```
+[Your License]
