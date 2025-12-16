@@ -24,69 +24,81 @@ This document defines the **UI architecture and styling approach**, with a speci
 
 ## High-Level Architecture
 
-### 1. Primitives (PrimeReact)
-
-- PrimeReact provides the **base UI primitives**: buttons, inputs, dropdowns, tables, dialogs, tags, etc.
-- Visual consistency is primarily achieved through:
-  - PrimeOne theming
-  - PrimeReact props and configuration
-  - PassThrough (PT) configuration where needed
-- PrimeReact is used in **styled mode**. Unstyled mode is explicitly avoided.
-- Custom styling of primitives should be avoided unless there is a clear, documented gap.
+The UI system is organised into **three explicit tiers**. This structure is intentional and exists to balance speed, flexibility, and long-term consistency — especially in an agent-assisted workflow.
 
 ---
 
-### 2. Blocks
+### Tier 1: Global Design System (`prime-yggdrasil`)
 
-Blocks are **reusable UI compositions** built on top of PrimeReact primitives.
+This is the **authoritative UI layer** shared across projects.
 
-Examples:
-
-- App shell (navigation + content area)
-- Page header (title + actions + metadata)
-- Filter bar (search, dropdowns, chips)
-- Data table wrapper (density, empty/loading states, row actions)
-- Side panel / detail panel layout
-- Status chip sets (Now / Next / Later, priority, risk)
-- Empty and error states
+Includes:
+- PrimeReact primitives (styled mode, PrimeOne-based theme)
+- Shared Blocks
+- Shared Layout Blocks
+- Theme CSS and Provider setup
+- Storybook (stories + MDX docs)
+- Chromatic visual regression
 
 Rules:
+- This tier defines the visual and interaction language
+- Storybook here is the **single source of truth**
+- Components in this tier are stable, documented, and versioned
+- Changes require intent and review (visual diffs are expected and reviewed)
 
-- **PrimeFlex is allowed inside blocks**
-- Blocks own visual styling and spacing
-- Blocks are documented in Storybook and treated as approved building units
+Storybook’s role:
+- Executable documentation
+- Usage guidelines for humans and LLMs
+- Canonical examples and edge cases
 
----
-
-### 3. Layout Blocks (strongly encouraged)
-
-Layout blocks are **non-visual structural components** that define responsive page scaffolding.
-
-Examples:
-
-- AppShell
-- PageLayout
-- TwoColumnResponsive
-- MasterDetailLayout
-- DrawerLayout
-
-These exist to prevent layout logic from being reimplemented inconsistently across views. PrimeBlocks may be used purely as **visual and structural inspiration**, not as a dependency.
+Storybook is **read-only reference** for consuming apps. It does not run inside them.
 
 ---
 
-### 4. Views (Screens)
+### Tier 2: Local Blocks (inside consuming apps)
+
+Local Blocks are **allowed and encouraged** for speed and experimentation.
+
+Includes:
+- App-specific Blocks and Layout Blocks
+- Composition of:
+  - Global Blocks
+  - PrimeReact primitives
+  - PrimeFlex (layout-only)
+
+Rules:
+- No local primitives
+- No new visual language
+- No new tokens, colours, or elevation systems
+- PrimeFlex usage follows the same whitelist as Views
+- If a pattern is reused or proven useful, it becomes a **promotion candidate** to the global design system
+
+Local Blocks are intentionally second-class:
+- Faster to create
+- Allowed to be imperfect
+- Expected to evolve or be deleted
+
+---
+
+### Tier 3: Views (Screens)
 
 Views are responsible for:
+- Data fetching
+- State management
+- Wiring interactions
+- Composing Blocks and Layout Blocks
 
-- Data fetching and state management
-- Wiring interactions and handlers
-- Composing blocks and layouts into a screen
+Rules:
+- No visual styling
+- Minimal layout only
+- PrimeFlex allowed strictly for page scaffolding
 
-Views should contain **minimal styling logic**.
+Views should never invent UI patterns.
 
 ---
 
 ## PrimeFlex Usage Policy
+
 
 PrimeFlex is the **layout utility layer** alongside PrimeReact + PrimeOne (styled mode). Its job is *structural scaffolding*, not visual styling.
 
