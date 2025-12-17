@@ -31,11 +31,17 @@ npm install react react-dom primereact primeicons primeflex
 In your app's entry point (e.g., `main.tsx` or `App.tsx`):
 
 ```tsx
-// Import theme CSS in this order
-import 'prime-yggdrasil/theme.css';
+// Import Yggdrasil standalone theme (choose light or dark)
+import 'prime-yggdrasil/theme.css';        // Light mode
+// OR
+// import 'prime-yggdrasil/theme-dark.css';  // Dark mode
+
+// Then import icons and utilities
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 ```
+
+**Note:** The Yggdrasil theme is **standalone** - it includes all PrimeReact component styles with Yggdrasil colors. You do NOT need to import a separate PrimeReact theme.
 
 ### 2. Wrap your app with YggdrasilProvider
 
@@ -177,16 +183,20 @@ PrimeFlex is the layout utility system alongside PrimeReact. It's for **structur
 
 ### Theme
 
-Import via:
+Import the standalone Yggdrasil theme:
 ```tsx
-import 'prime-yggdrasil/theme.css';
+import 'prime-yggdrasil/theme.css';        // Light mode
+// OR
+import 'prime-yggdrasil/theme-dark.css';   // Dark mode
 ```
 
-The theme includes:
+The Yggdrasil themes are **standalone** and include:
+- Complete PrimeReact component styles (based on Lara)
 - Yggdrasil design tokens (Sky, Sea, Forest, Sand, Clay, Slate)
-- PrimeReact Lara Light Blue base theme
 - Roboto font family
-- Custom color mappings to PrimeReact variables
+- All color mappings built-in
+
+**No separate PrimeReact theme import needed!**
 
 ## Development
 

@@ -11,7 +11,9 @@
  * Usage:
  * ```tsx
  * import { YggdrasilProvider } from 'prime-yggdrasil';
- * import 'prime-yggdrasil/theme.css';
+ * // Import Yggdrasil standalone theme
+ * import 'prime-yggdrasil/theme.css';        // Light mode
+ * // OR import 'prime-yggdrasil/theme-dark.css';  // Dark mode
  * import 'primeicons/primeicons.css';
  * import 'primeflex/primeflex.css';
  *
@@ -27,6 +29,7 @@
 
 // Import theme CSS to be bundled with library
 import './theme/index.css';
+import './blocks/blocks.css';
 
 // Provider
 export { YggdrasilProvider } from './provider/YggdrasilProvider';

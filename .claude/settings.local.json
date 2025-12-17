@@ -21,7 +21,15 @@
       "Bash(npx tsc:*)",
       "Bash(if [ -f .gitignore ])",
       "Bash(then cat .gitignore)",
-      "Bash(fi)"
+      "Bash(fi)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(node scripts/build-yggdrasil-themes.js:*)",
+      "Bash(node scripts/build-yggdrasil-themes.cjs:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(node scripts/replace-hardcoded-colors.cjs:*)",
+      "Bash(taskkill /F /PID 21316)"
     ]
   }
 }
