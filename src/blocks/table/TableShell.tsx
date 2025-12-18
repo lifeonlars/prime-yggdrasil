@@ -19,8 +19,8 @@ export function TableShell({ title, description, actions, filters, loading, empt
     <section className="surface-card p-4 border-round shadow-2">
       <header className="flex align-items-start justify-content-between gap-3 mb-3">
         <div>
-          <h2 className="m-0 text-900 text-xl">{title}</h2>
-          {description && <p className="m-0 mt-1 text-600">{description}</p>}
+          <h2 className="m-0 text-color text-xl">{title}</h2>
+          {description && <p className="m-0 mt-1 text-color-secondary">{description}</p>}
         </div>
         {actions && <div className="flex align-items-center gap-2">{actions}</div>}
       </header>
@@ -34,7 +34,7 @@ export function TableShell({ title, description, actions, filters, loading, empt
           <Skeleton height="2.5rem" />
         </div>
       ) : empty ? (
-        <div className="p-4 border-1 border-dashed border-200 text-center text-600">{empty}</div>
+        <div className="p-4 border-1 border-dashed border-200 text-center text-color-secondary">{empty}</div>
       ) : (
         children
       )}

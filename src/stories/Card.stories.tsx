@@ -22,8 +22,8 @@ export const WithContent: Story = {
   args: {
     children: (
       <div>
-        <h3 className="text-900 font-bold mb-2">Card Title</h3>
-        <p className="text-600 mb-0">
+        <h3 className="text-color font-bold mb-2">Card Title</h3>
+        <p className="text-color-secondary mb-0">
           This card demonstrates how visual styling is handled by PrimeReact classes
           while layout composition uses PrimeFlex.
         </p>
@@ -45,7 +45,7 @@ export const Loading: Story = {
 export const Empty: Story = {
   args: {
     children: (
-      <div className="text-center p-4 text-600">
+      <div className="text-center p-4 text-color-secondary">
         <i className="pi pi-inbox text-4xl mb-3 block"></i>
         <p className="mb-0">No content available</p>
       </div>

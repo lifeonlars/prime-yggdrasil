@@ -9,7 +9,7 @@ interface FormFieldProps {
 export function FormField({ label, htmlFor, children }: FormFieldProps) {
   return (
     <div>
-      <label htmlFor={htmlFor} className="block text-900 font-medium mb-2">
+      <label htmlFor={htmlFor} className="block text-color font-medium mb-2">
         {label}
       </label>
       {children}

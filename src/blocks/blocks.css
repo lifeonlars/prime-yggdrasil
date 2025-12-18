@@ -8,16 +8,6 @@
 /* Ensure surface-card works in both themes */
 .surface-card {
   background-color: var(--surface-card) !important;
-  color: var(--text-color) !important;
-}
-
-/* Text color utilities that respect theme */
-.text-900 {
-  color: var(--text-color) !important;
-}
-
-.text-600 {
-  color: var(--text-color-secondary) !important;
 }
 
 /* Ensure proper border colors */

@@ -123,7 +123,7 @@ function EntityTableStory({ loading, empty }: EntityTableStoryProps) {
       filters={filtersBar}
       loading={loading}
       empty={emptyContent}
-      actions={<span className="text-sm text-600">Selection: {selection.length}</span>}
+      actions={<span className="text-sm text-color-secondary">Selection: {selection.length}</span>}
     >
       <DataTable
         value={data}
@@ -169,7 +169,7 @@ export const Selectable: Story = {
       <TableShell
         title="Selectable rows"
         description="Controlled checkbox selection via selectableRowsPreset and selectionColumn."
-        actions={<span className="text-sm text-600">Selected: {selection.length}</span>}
+        actions={<span className="text-sm text-color-secondary">Selected: {selection.length}</span>}
       >
         <DataTable
           value={exampleEntityRows.slice(0, 6)}

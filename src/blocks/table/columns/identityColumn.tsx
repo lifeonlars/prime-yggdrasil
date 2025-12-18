@@ -35,8 +35,8 @@ export function identityColumn<TValue extends TableValueArray>(
           shape="circle"
         />
         <div className="flex flex-column gap-1">
-          <span className="text-900 font-semibold">{primary as ReactNode}</span>
-          {secondary && <span className="text-600 text-sm">{secondary as ReactNode}</span>}
+          <span className="text-color font-semibold">{primary as ReactNode}</span>
+          {secondary && <span className="text-color-secondary text-sm">{secondary as ReactNode}</span>}
         </div>
       </div>
     )

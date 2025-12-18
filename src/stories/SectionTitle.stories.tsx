@@ -23,7 +23,7 @@ export const InContext: Story = {
   render: () => (
     <div>
       <SectionTitle>Personal Information</SectionTitle>
-      <p className="text-600 mb-0">
+      <p className="text-color-secondary mb-0">
         This section demonstrates how SectionTitle divides content into logical groups.
       </p>
     </div>

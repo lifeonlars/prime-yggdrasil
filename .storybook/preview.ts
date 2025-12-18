@@ -14,13 +14,10 @@ import '../src/blocks/blocks.css';
 // Note: We DON'T import a theme here - it's injected by the theme manager below
 
 // Global theme management - runs once, not per story
-let currentTheme: 'light' | 'dark' = 'light';
+let currentTheme: 'light' | 'dark' | null = null;
 let isInitialized = false;
 
 function applyTheme(theme: 'light' | 'dark') {
-  if (currentTheme === theme) return; // Skip if already applied
-  currentTheme = theme;
-
   const isDark = theme === 'dark';
 
   // Update theme link
@@ -29,7 +26,11 @@ function applyTheme(theme: 'light' | 'dark') {
     ? '../src/theme/yggdrasil-dark.css'
     : '../src/theme/yggdrasil-light.css';
 
-  if (!currentThemeLink || !currentThemeLink.href.includes(theme)) {
+  const hasMatchingTheme = Boolean(currentThemeLink && currentThemeLink.href.includes(theme));
+  if (currentTheme === theme && hasMatchingTheme) return; // Skip if already applied
+  currentTheme = theme;
+
+  if (!hasMatchingTheme) {
     // Remove existing theme links
     document.querySelectorAll('link[href*="yggdrasil"]').forEach(link => link.remove());
 
@@ -45,26 +46,15 @@ function applyTheme(theme: 'light' | 'dark') {
   document.documentElement.style.colorScheme = theme;
   document.documentElement.setAttribute('data-theme', theme);
 
-  // Define theme colors
-  const darkColors = {
-    bg: '#000D20',
-    bgSecondary: '#001129',
-    text: '#F8F8F8',
-    textSecondary: '#A39FA7',
-    border: '#38343C',
-    link: '#BCCEE2',
+  // Theme values are resolved from the active CSS variables.
+  const colors = {
+    bg: 'var(--surface-ground)',
+    bgSecondary: 'var(--surface-section)',
+    text: 'var(--text-color)',
+    textSecondary: 'var(--text-color-secondary)',
+    border: 'var(--surface-border)',
+    link: 'var(--primary-color)',
   };
-
-  const lightColors = {
-    bg: '#F8F8F8',
-    bgSecondary: '#FFFFFF',
-    text: '#001F4A',
-    textSecondary: '#716C75',
-    border: '#E4E3E5',
-    link: '#183B60',
-  };
-
-  const colors = isDark ? darkColors : lightColors;
 
   // Apply theme to body and html
   document.documentElement.style.backgroundColor = colors.bg;
@@ -85,65 +75,58 @@ function applyTheme(theme: 'light' | 'dark') {
     html, body, #storybook-root, #storybook-docs, #root,
     .sb-show-main, .sb-main-padded, .sb-main-fullscreen {
       background-color: ${colors.bg} !important;
-      color: ${colors.text} !important;
-      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+      color: ${colors.text};
+      font-family: var(--font-family);
     }
 
-    .sbdocs, .sbdocs-wrapper, .sbdocs-content, .docs-story,
+    .sbdocs, .sbdocs-wrapper, .sbdocs-content,
     div[class*="DocsWrapper"], div[class*="DocsContent"] {
       background-color: ${colors.bg} !important;
-      color: ${colors.text} !important;
-      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif !important;
-    }
-
-    .sbdocs > *, .sbdocs-content > * {
-      color: ${colors.text} !important;
-      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+      color: ${colors.text};
+      font-family: var(--font-family);
     }
 
     .sbdocs h1, .sbdocs h2, .sbdocs h3, .sbdocs h4, .sbdocs h5, .sbdocs h6,
     .sbdocs-h1, .sbdocs-h2, .sbdocs-h3, .sbdocs-title,
     div[class*="Title"], div[class*="Heading"] {
-      color: ${colors.text} !important;
-      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+      color: ${colors.text};
+      font-family: var(--font-family);
     }
 
-    .sbdocs p, .sbdocs li, .sbdocs td, .sbdocs th, .sbdocs span,
-    .sbdocs div, .sbdocs label, .sbdocs-p, .sbdocs-li,
+    .sbdocs p, .sbdocs li, .sbdocs td, .sbdocs th,
+    .sbdocs-p, .sbdocs-li,
     div[class*="Description"], div[class*="Paragraph"] {
-      color: ${colors.text} !important;
-      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+      color: ${colors.text};
+      font-family: var(--font-family);
     }
 
     .sbdocs a, .sbdocs a:visited {
-      color: ${colors.link} !important;
+      color: ${colors.link};
     }
 
     .sbdocs pre, .sbdocs code, .sbdocs-pre, .sbdocs-code {
       background-color: ${colors.bgSecondary} !important;
-      color: ${colors.text} !important;
+      color: ${colors.text};
       border-color: ${colors.border} !important;
     }
 
     .sbdocs table {
       border-color: ${colors.border} !important;
-      color: ${colors.text} !important;
+      color: ${colors.text};
     }
 
     .sbdocs table td, .sbdocs table th {
       border-color: ${colors.border} !important;
       background-color: ${colors.bgSecondary} !important;
-      color: ${colors.text} !important;
+      color: ${colors.text};
     }
 
     .docblock-argstable, .docblock-argstable-body, .docblock-argstable-head,
     div[class*="ArgsTable"] {
-      color: ${colors.text} !important;
       background-color: ${colors.bg} !important;
     }
 
     .docblock-argstable td, .docblock-argstable th {
-      color: ${colors.text} !important;
       border-color: ${colors.border} !important;
     }
 
@@ -159,7 +142,7 @@ function applyTheme(theme: 'light' | 'dark') {
 
     article, article > div {
       background-color: ${colors.bg} !important;
-      color: ${colors.text} !important;
+      color: ${colors.text};
     }
 
     div[class*="Canvas"], div[class*="Preview"] {
@@ -173,23 +156,23 @@ function applyTheme(theme: 'light' | 'dark') {
 
     div[class*="Source"] pre, div[class*="Source"] code {
       background-color: ${colors.bgSecondary} !important;
-      color: ${colors.text} !important;
+      color: ${colors.text};
     }
 
     div[class*="ColorPalette"], div[class*="ColorItem"], div[class*="Swatch"] {
       background-color: ${colors.bg} !important;
-      color: ${colors.text} !important;
+      color: ${colors.text};
     }
 
     div[class*="ColorItem"] [class*="Title"],
     div[class*="ColorItem"] [class*="Subtitle"],
     div[class*="ColorItem"] span, div[class*="ColorItem"] div {
-      color: ${colors.text} !important;
+      color: ${colors.text};
     }
 
     div[class*="IconGallery"], div[class*="IconItem"] {
       background-color: ${colors.bg} !important;
-      color: ${colors.text} !important;
+      color: ${colors.text};
     }
 
     div[class*="IconItem"] {
@@ -198,23 +181,18 @@ function applyTheme(theme: 'light' | 'dark') {
     }
 
     div[class*="IconItem"] span, div[class*="IconItem"] div {
-      color: ${colors.text} !important;
-    }
-
-    .pi {
-      color: ${colors.text} !important;
+      color: ${colors.text};
     }
 
     .sbdocs code:not(pre code) {
       background-color: ${colors.bgSecondary} !important;
-      color: ${colors.text} !important;
+      color: ${colors.text};
       padding: 2px 6px;
       border-radius: 3px;
     }
 
     .sbdocs [class*="wrapper"], .sbdocs [class*="container"], .sbdocs [class*="docblock"] {
       background-color: ${colors.bg} !important;
-      color: ${colors.text} !important;
     }
 
     .sbdocs strong, .sbdocs b, .sbdocs em {
@@ -222,7 +200,7 @@ function applyTheme(theme: 'light' | 'dark') {
     }
 
     .sbdocs ul, .sbdocs ol {
-      color: ${colors.text} !important;
+      color: ${colors.text};
     }
 
     .sbdocs *[class*="border"], .sbdocs hr {
