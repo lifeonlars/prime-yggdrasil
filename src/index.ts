@@ -40,6 +40,20 @@ export { Card } from './blocks/Card';
 export { PageHeader } from './blocks/PageHeader';
 export { FormField } from './blocks/FormField';
 export { SectionTitle } from './blocks/SectionTitle';
+export {
+  TableShell,
+  identityColumn,
+  selectionColumn,
+  statusColumn,
+  actionsColumn,
+  textColumn,
+  standardTablePreset,
+  selectableRowsPreset,
+  expandableRowsPreset,
+  editableRowsPreset,
+  draggableRowsPreset,
+} from './blocks/table';
+export type { TableRow, TableValueArray, TableShellProps } from './blocks/table';
 
 // Theme CSS is exported via package.json exports field:
 // import 'prime-yggdrasil/theme.css'
