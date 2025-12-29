@@ -39,7 +39,8 @@
       "Bash(npx vitest:*)",
       "Bash(npx tsx:*)",
       "Bash(node --loader ts-node/esm:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(wc:*)"
     ]
   }
 }
