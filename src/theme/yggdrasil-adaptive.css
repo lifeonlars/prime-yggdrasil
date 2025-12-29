@@ -1,0 +1,731 @@
+/**
+ * Yggdrasil Adaptive Theme
+ *
+ * Runtime theme switching via data-theme attribute.
+ *
+ * Usage: document.documentElement.dataset.theme = "dark" | "light"
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "./foundations.css";
+
+/* Light Theme (Default) */
+:root,
+:root[data-theme="light"] {
+  /* === Prime palette aliases -> Yggdrasil foundations === */
+  /* Prime "blue" family -> Yggdrasil Sky */
+  --blue-50:  var(--foundation-sky-050);
+  --blue-100: var(--foundation-sky-100);
+  --blue-200: var(--foundation-sky-200);
+  --blue-300: var(--foundation-sky-300);
+  --blue-400: var(--foundation-sky-400);
+  --blue-500: var(--foundation-sky-500);
+  --blue-600: var(--foundation-sky-600);
+  --blue-700: var(--foundation-sky-700);
+  --blue-800: var(--foundation-sky-800);
+  --blue-900: var(--foundation-sky-900);
+  /* Prime "cyan" family -> Yggdrasil Sea (Prime often uses cyan for info accents) */
+  --cyan-50:  var(--foundation-sea-100); /* no sea-050 in your set; start at 100 */
+  --cyan-100: var(--foundation-sea-100);
+  --cyan-200: var(--foundation-sea-200);
+  --cyan-300: var(--foundation-sea-300);
+  --cyan-400: var(--foundation-sea-400);
+  --cyan-500: var(--foundation-sea-500);
+  --cyan-600: var(--foundation-sea-600);
+  --cyan-700: var(--foundation-sea-700);
+  --cyan-800: var(--foundation-sea-800);
+  --cyan-900: var(--foundation-sea-800); /* clamp; you don’t currently have sea-900 */
+  /* Prime "teal" family -> also Sea (or Forest, but Sea fits your scheme better) */
+  --teal-50:  var(--foundation-sea-100);
+  --teal-100: var(--foundation-sea-100);
+  --teal-200: var(--foundation-sea-200);
+  --teal-300: var(--foundation-sea-300);
+  --teal-400: var(--foundation-sea-400);
+  --teal-500: var(--foundation-sea-500);
+  --teal-600: var(--foundation-sea-600);
+  --teal-700: var(--foundation-sea-700);
+  --teal-800: var(--foundation-sea-800);
+  --teal-900: var(--foundation-sea-800);
+  /* Prime "green" family -> Yggdrasil Forest */
+  --green-50:  var(--foundation-forest-100);
+  --green-100: var(--foundation-forest-100);
+  --green-200: var(--foundation-forest-200);
+  --green-300: var(--foundation-forest-300);
+  --green-400: var(--foundation-forest-400);
+  --green-500: var(--foundation-forest-500);
+  --green-600: var(--foundation-forest-600);
+  --green-700: var(--foundation-forest-700);
+  --green-800: var(--foundation-forest-700); /* clamp */
+  --green-900: var(--foundation-forest-700); /* clamp */
+  /* Prime "yellow" family -> Yggdrasil Sand */
+  --yellow-50:  var(--foundation-sand-100);
+  --yellow-100: var(--foundation-sand-100);
+  --yellow-200: var(--foundation-sand-200);
+  --yellow-300: var(--foundation-sand-300);
+  --yellow-400: var(--foundation-sand-400);
+  --yellow-500: var(--foundation-sand-500);
+  --yellow-600: var(--foundation-sand-600);
+  --yellow-700: var(--foundation-sand-700);
+  --yellow-800: var(--foundation-sand-800);
+  --yellow-900: var(--foundation-sand-800); /* clamp */
+  /* Prime "orange" family -> also Sand (Prime sometimes uses orange separately) */
+  --orange-50:  var(--foundation-sand-100);
+  --orange-100: var(--foundation-sand-100);
+  --orange-200: var(--foundation-sand-200);
+  --orange-300: var(--foundation-sand-300);
+  --orange-400: var(--foundation-sand-400);
+  --orange-500: var(--foundation-sand-500);
+  --orange-600: var(--foundation-sand-600);
+  --orange-700: var(--foundation-sand-700);
+  --orange-800: var(--foundation-sand-800);
+  --orange-900: var(--foundation-sand-800);
+  /* Prime "red" / "pink" -> Yggdrasil Berries */
+  --red-50:  var(--foundation-berries-100);
+  --red-100: var(--foundation-berries-100);
+  --red-200: var(--foundation-berries-200);
+  --red-300: var(--foundation-berries-300);
+  --red-400: var(--foundation-berries-400);
+  --red-500: var(--foundation-berries-500);
+  --red-600: var(--foundation-berries-600);
+  --red-700: var(--foundation-berries-700);
+  --red-800: var(--foundation-berries-700); /* clamp */
+  --red-900: var(--foundation-berries-700);
+  --pink-50:  var(--foundation-berries-100);
+  --pink-100: var(--foundation-berries-100);
+  --pink-200: var(--foundation-berries-200);
+  --pink-300: var(--foundation-berries-300);
+  --pink-400: var(--foundation-berries-400);
+  --pink-500: var(--foundation-berries-500);
+  --pink-600: var(--foundation-berries-600);
+  --pink-700: var(--foundation-berries-700);
+  --pink-800: var(--foundation-berries-700);
+  --pink-900: var(--foundation-berries-700);
+  /* Prime neutrals -> Yggdrasil Rock */
+  --bluegray-50:  var(--foundation-rock-050);
+  --bluegray-100: var(--foundation-rock-100);
+  --bluegray-200: var(--foundation-rock-200);
+  --bluegray-300: var(--foundation-rock-300);
+  --bluegray-400: var(--foundation-rock-400);
+  --bluegray-500: var(--foundation-rock-500);
+  --bluegray-600: var(--foundation-rock-600);
+  --bluegray-700: var(--foundation-rock-700);
+  --bluegray-800: var(--foundation-rock-800);
+  --bluegray-900: var(--foundation-rock-900);
+  /* Prime "primary-*" ramp (used heavily in component CSS) -> Sky ramp */
+  --primary-50:  var(--foundation-sky-050);
+  --primary-100: var(--foundation-sky-100);
+  --primary-200: var(--foundation-sky-200);
+  --primary-300: var(--foundation-sky-300);
+  --primary-400: var(--foundation-sky-400);
+  --primary-500: var(--foundation-sky-500);
+  --primary-600: var(--foundation-sky-600);
+  --primary-700: var(--foundation-sky-700);
+  --primary-800: var(--foundation-sky-800);
+  --primary-900: var(--foundation-sky-900);
+  /* === PrimeFlex --p- variables === */
+  /* PrimeFlex text utilities */
+  --p-text-color: var(--text-color);
+  --p-text-muted-color: var(--text-color-secondary);
+  /* Surface scale (for PrimeFlex utilities like .text-900, .bg-surface-0, etc.) */
+  --p-surface-0: var(--foundation-white);
+  --p-surface-50: var(--foundation-rock-050);
+  --p-surface-100: var(--foundation-rock-100);
+  --p-surface-200: var(--foundation-rock-200);
+  --p-surface-300: var(--foundation-rock-300);
+  --p-surface-400: var(--foundation-rock-400);
+  --p-surface-500: var(--foundation-rock-500);
+  --p-surface-600: var(--foundation-rock-600);
+  --p-surface-700: var(--foundation-rock-700);
+  --p-surface-800: var(--foundation-rock-800);
+  --p-surface-900: var(--foundation-rock-900);
+  --p-surface-950: var(--foundation-rock-950);
+  /* Color scales for PrimeFlex color utilities */
+  --p-blue-50: var(--foundation-sky-050);
+  --p-blue-100: var(--foundation-sky-100);
+  --p-blue-200: var(--foundation-sky-200);
+  --p-blue-300: var(--foundation-sky-300);
+  --p-blue-400: var(--foundation-sky-400);
+  --p-blue-500: var(--foundation-sky-500);
+  --p-blue-600: var(--foundation-sky-600);
+  --p-blue-700: var(--foundation-sky-700);
+  --p-blue-800: var(--foundation-sky-800);
+  --p-blue-900: var(--foundation-sky-900);
+  --p-cyan-50: var(--foundation-sea-100);
+  --p-cyan-100: var(--foundation-sea-100);
+  --p-cyan-200: var(--foundation-sea-200);
+  --p-cyan-300: var(--foundation-sea-300);
+  --p-cyan-400: var(--foundation-sea-400);
+  --p-cyan-500: var(--foundation-sea-500);
+  --p-cyan-600: var(--foundation-sea-600);
+  --p-cyan-700: var(--foundation-sea-700);
+  --p-cyan-800: var(--foundation-sea-800);
+  --p-cyan-900: var(--foundation-sea-800);
+  --p-green-50: var(--foundation-forest-100);
+  --p-green-100: var(--foundation-forest-100);
+  --p-green-200: var(--foundation-forest-200);
+  --p-green-300: var(--foundation-forest-300);
+  --p-green-400: var(--foundation-forest-400);
+  --p-green-500: var(--foundation-forest-500);
+  --p-green-600: var(--foundation-forest-600);
+  --p-green-700: var(--foundation-forest-700);
+  --p-green-800: var(--foundation-forest-700);
+  --p-green-900: var(--foundation-forest-700);
+  --p-yellow-50: var(--foundation-sand-100);
+  --p-yellow-100: var(--foundation-sand-100);
+  --p-yellow-200: var(--foundation-sand-200);
+  --p-yellow-300: var(--foundation-sand-300);
+  --p-yellow-400: var(--foundation-sand-400);
+  --p-yellow-500: var(--foundation-sand-500);
+  --p-yellow-600: var(--foundation-sand-600);
+  --p-yellow-700: var(--foundation-sand-700);
+  --p-yellow-800: var(--foundation-sand-800);
+  --p-yellow-900: var(--foundation-sand-800);
+  --p-red-50: var(--foundation-berries-100);
+  --p-red-100: var(--foundation-berries-100);
+  --p-red-200: var(--foundation-berries-200);
+  --p-red-300: var(--foundation-berries-300);
+  --p-red-400: var(--foundation-berries-400);
+  --p-red-500: var(--foundation-berries-500);
+  --p-red-600: var(--foundation-berries-600);
+  --p-red-700: var(--foundation-berries-700);
+  --p-red-800: var(--foundation-berries-700);
+  --p-red-900: var(--foundation-berries-700);
+  --p-gray-50: var(--foundation-rock-050);
+  --p-gray-100: var(--foundation-rock-100);
+  --p-gray-200: var(--foundation-rock-200);
+  --p-gray-300: var(--foundation-rock-300);
+  --p-gray-400: var(--foundation-rock-400);
+  --p-gray-500: var(--foundation-rock-500);
+  --p-gray-600: var(--foundation-rock-600);
+  --p-gray-700: var(--foundation-rock-700);
+  --p-gray-800: var(--foundation-rock-800);
+  --p-gray-900: var(--foundation-rock-900);
+  --p-indigo-50: var(--foundation-sky-050);
+  --p-indigo-100: var(--foundation-sky-100);
+  --p-indigo-200: var(--foundation-sky-200);
+  --p-indigo-300: var(--foundation-sky-300);
+  --p-indigo-400: var(--foundation-sky-400);
+  --p-indigo-500: var(--foundation-sky-500);
+  --p-indigo-600: var(--foundation-sky-600);
+  --p-indigo-700: var(--foundation-sky-700);
+  --p-indigo-800: var(--foundation-sky-800);
+  --p-indigo-900: var(--foundation-sky-900);
+  --p-orange-50: var(--foundation-sand-100);
+  --p-orange-100: var(--foundation-sand-100);
+  --p-orange-200: var(--foundation-sand-200);
+  --p-orange-300: var(--foundation-sand-300);
+  --p-orange-400: var(--foundation-sand-400);
+  --p-orange-500: var(--foundation-sand-500);
+  --p-orange-600: var(--foundation-sand-600);
+  --p-orange-700: var(--foundation-sand-700);
+  --p-orange-800: var(--foundation-sand-800);
+  --p-orange-900: var(--foundation-sand-800);
+  --p-pink-50: var(--foundation-berries-100);
+  --p-pink-100: var(--foundation-berries-100);
+  --p-pink-200: var(--foundation-berries-200);
+  --p-pink-300: var(--foundation-berries-300);
+  --p-pink-400: var(--foundation-berries-400);
+  --p-pink-500: var(--foundation-berries-500);
+  --p-pink-600: var(--foundation-berries-600);
+  --p-pink-700: var(--foundation-berries-700);
+  --p-pink-800: var(--foundation-berries-700);
+  --p-pink-900: var(--foundation-berries-700);
+  --p-teal-50: var(--foundation-sea-100);
+  --p-teal-100: var(--foundation-sea-100);
+  --p-teal-200: var(--foundation-sea-200);
+  --p-teal-300: var(--foundation-sea-300);
+  --p-teal-400: var(--foundation-sea-400);
+  --p-teal-500: var(--foundation-sea-500);
+  --p-teal-600: var(--foundation-sea-600);
+  --p-teal-700: var(--foundation-sea-700);
+  --p-teal-800: var(--foundation-sea-800);
+  --p-teal-900: var(--foundation-sea-800);
+  --p-purple-50: var(--foundation-sky-100);
+  --p-purple-100: var(--foundation-sky-100);
+  --p-purple-200: var(--foundation-sky-200);
+  --p-purple-300: var(--foundation-sky-300);
+  --p-purple-400: var(--foundation-sky-400);
+  --p-purple-500: var(--foundation-sky-500);
+  --p-purple-600: var(--foundation-sky-600);
+  --p-purple-700: var(--foundation-sky-700);
+  --p-purple-800: var(--foundation-sky-800);
+  --p-purple-900: var(--foundation-sky-900);
+  --p-bluegray-50: var(--foundation-rock-050);
+  --p-bluegray-100: var(--foundation-rock-100);
+  --p-bluegray-200: var(--foundation-rock-200);
+  --p-bluegray-300: var(--foundation-rock-300);
+  --p-bluegray-400: var(--foundation-rock-400);
+  --p-bluegray-500: var(--foundation-rock-500);
+  --p-bluegray-600: var(--foundation-rock-600);
+  --p-bluegray-700: var(--foundation-rock-700);
+  --p-bluegray-800: var(--foundation-rock-800);
+  --p-bluegray-900: var(--foundation-rock-900);
+  /* Border radius */
+  --p-content-border-radius: 6px;
+}
+/* === Global Base Styles === */
+html,
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+}
+.p-editor-container .p-editor-toolbar {
+  background: #f9fafb;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.p-editor-container .p-editor-toolbar.ql-snow {
+  border: 1px solid #e5e7eb;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-stroke {
+  stroke: #6b7280;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-fill {
+  fill: #6b7280;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label {
+  border: 0 none;
+  color: #6b7280;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label:hover {
+  color: #4b5563;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label:hover .ql-stroke {
+  stroke: #4b5563;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label:hover .ql-fill {
+  fill: #4b5563;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label {
+  color: #4b5563;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-stroke {
+  stroke: #4b5563;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-fill {
+  fill: #4b5563;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
+  background: #ffffff;
+  border: 0 none;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  padding: 0.75rem 0;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options .ql-picker-item {
+  color: #4b5563;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options .ql-picker-item:hover {
+  color: #4b5563;
+  background: #f3f4f6;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded:not(.ql-icon-picker) .ql-picker-item {
+  padding: 0.75rem 1.25rem;
+}
+.p-editor-container .p-editor-content {
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.p-editor-container .p-editor-content.ql-snow {
+  border: 1px solid #e5e7eb;
+}
+.p-editor-container .p-editor-content .ql-editor {
+  background: #ffffff;
+  color: #4b5563;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.p-editor-container .ql-snow.ql-toolbar button:hover,
+.p-editor-container .ql-snow.ql-toolbar button:focus {
+  color: #4b5563;
+}
+.p-editor-container .ql-snow.ql-toolbar button:hover .ql-stroke,
+.p-editor-container .ql-snow.ql-toolbar button:focus .ql-stroke {
+  stroke: #4b5563;
+}
+.p-editor-container .ql-snow.ql-toolbar button:hover .ql-fill,
+.p-editor-container .ql-snow.ql-toolbar button:focus .ql-fill {
+  fill: #4b5563;
+}
+.p-editor-container .ql-snow.ql-toolbar button.ql-active,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected {
+  color: var(--foundation-sky-700);
+}
+.p-editor-container .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke {
+  stroke: var(--foundation-sky-700);
+}
+.p-editor-container .ql-snow.ql-toolbar button.ql-active .ql-fill,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-fill,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-fill {
+  fill: var(--foundation-sky-700);
+}
+.p-editor-container .ql-snow.ql-toolbar button.ql-active .ql-picker-label,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-picker-label,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-picker-label {
+  color: var(--foundation-sky-700);
+}
+@layer primereact {
+  * {
+    box-sizing: border-box;
+  color-scheme: light;
+}
+
+/* Dark Theme */
+:root[data-theme="dark"] {
+  /* Prime "blue" family -> Yggdrasil Sky */
+  --blue-50:  var(--foundation-sky-050);
+  --blue-100: var(--foundation-sky-100);
+  --blue-200: var(--foundation-sky-200);
+  --blue-300: var(--foundation-sky-300);
+  --blue-400: var(--foundation-sky-400);
+  --blue-500: var(--foundation-sky-500);
+  --blue-600: var(--foundation-sky-600);
+  --blue-700: var(--foundation-sky-700);
+  --blue-800: var(--foundation-sky-800);
+  --blue-900: var(--foundation-sky-900);
+  --cyan-50:  var(--foundation-sea-100);
+  --cyan-100: var(--foundation-sea-100);
+  --cyan-200: var(--foundation-sea-200);
+  --cyan-300: var(--foundation-sea-300);
+  --cyan-400: var(--foundation-sea-400);
+  --cyan-500: var(--foundation-sea-500);
+  --cyan-600: var(--foundation-sea-600);
+  --cyan-700: var(--foundation-sea-700);
+  --cyan-800: var(--foundation-sea-800);
+  --cyan-900: var(--foundation-sea-800);
+  --teal-50:  var(--foundation-sea-100);
+  --teal-100: var(--foundation-sea-100);
+  --teal-200: var(--foundation-sea-200);
+  --teal-300: var(--foundation-sea-300);
+  --teal-400: var(--foundation-sea-400);
+  --teal-500: var(--foundation-sea-500);
+  --teal-600: var(--foundation-sea-600);
+  --teal-700: var(--foundation-sea-700);
+  --teal-800: var(--foundation-sea-800);
+  --teal-900: var(--foundation-sea-800);
+  --green-50:  var(--foundation-forest-100);
+  --green-100: var(--foundation-forest-100);
+  --green-200: var(--foundation-forest-200);
+  --green-300: var(--foundation-forest-300);
+  --green-400: var(--foundation-forest-400);
+  --green-500: var(--foundation-forest-500);
+  --green-600: var(--foundation-forest-600);
+  --green-700: var(--foundation-forest-700);
+  --green-800: var(--foundation-forest-700);
+  --green-900: var(--foundation-forest-700);
+  --yellow-50:  var(--foundation-sand-100);
+  --yellow-100: var(--foundation-sand-100);
+  --yellow-200: var(--foundation-sand-200);
+  --yellow-300: var(--foundation-sand-300);
+  --yellow-400: var(--foundation-sand-400);
+  --yellow-500: var(--foundation-sand-500);
+  --yellow-600: var(--foundation-sand-600);
+  --yellow-700: var(--foundation-sand-700);
+  --yellow-800: var(--foundation-sand-800);
+  --yellow-900: var(--foundation-sand-800);
+  --orange-50:  var(--foundation-sand-100);
+  --orange-100: var(--foundation-sand-100);
+  --orange-200: var(--foundation-sand-200);
+  --orange-300: var(--foundation-sand-300);
+  --orange-400: var(--foundation-sand-400);
+  --orange-500: var(--foundation-sand-500);
+  --orange-600: var(--foundation-sand-600);
+  --orange-700: var(--foundation-sand-700);
+  --orange-800: var(--foundation-sand-800);
+  --orange-900: var(--foundation-sand-800);
+  --red-50:  var(--foundation-berries-100);
+  --red-100: var(--foundation-berries-100);
+  --red-200: var(--foundation-berries-200);
+  --red-300: var(--foundation-berries-300);
+  --red-400: var(--foundation-berries-400);
+  --red-500: var(--foundation-berries-500);
+  --red-600: var(--foundation-berries-600);
+  --red-700: var(--foundation-berries-700);
+  --red-800: var(--foundation-berries-700);
+  --red-900: var(--foundation-berries-700);
+  --pink-50:  var(--foundation-berries-100);
+  --pink-100: var(--foundation-berries-100);
+  --pink-200: var(--foundation-berries-200);
+  --pink-300: var(--foundation-berries-300);
+  --pink-400: var(--foundation-berries-400);
+  --pink-500: var(--foundation-berries-500);
+  --pink-600: var(--foundation-berries-600);
+  --pink-700: var(--foundation-berries-700);
+  --pink-800: var(--foundation-berries-700);
+  --pink-900: var(--foundation-berries-700);
+  --bluegray-50:  var(--foundation-rock-050);
+  --bluegray-100: var(--foundation-rock-100);
+  --bluegray-200: var(--foundation-rock-200);
+  --bluegray-300: var(--foundation-rock-300);
+  --bluegray-400: var(--foundation-rock-400);
+  --bluegray-500: var(--foundation-rock-500);
+  --bluegray-600: var(--foundation-rock-600);
+  --bluegray-700: var(--foundation-rock-700);
+  --bluegray-800: var(--foundation-rock-800);
+  --bluegray-900: var(--foundation-rock-900);
+  --primary-50:  var(--foundation-sky-050);
+  --primary-100: var(--foundation-sky-100);
+  --primary-200: var(--foundation-sky-200);
+  --primary-300: var(--foundation-sky-300);
+  --primary-400: var(--foundation-sky-400);
+  --primary-500: var(--foundation-sky-500);
+  --primary-600: var(--foundation-sky-600);
+  --primary-700: var(--foundation-sky-700);
+  --primary-800: var(--foundation-sky-800);
+  --primary-900: var(--foundation-sky-900);
+  /* === PrimeFlex --p- variables === */
+  /* PrimeFlex text utilities */
+  --p-text-color: var(--text-color);
+  --p-text-muted-color: var(--text-color-secondary);
+  /* Surface scale (for dark theme, inverted) */
+  --p-surface-0: var(--foundation-rock-950);
+  --p-surface-50: var(--foundation-rock-900);
+  --p-surface-100: var(--foundation-rock-800);
+  --p-surface-200: var(--foundation-rock-700);
+  --p-surface-300: var(--foundation-rock-600);
+  --p-surface-400: var(--foundation-rock-500);
+  --p-surface-500: var(--foundation-rock-400);
+  --p-surface-600: var(--foundation-rock-300);
+  --p-surface-700: var(--foundation-rock-200);
+  --p-surface-800: var(--foundation-rock-100);
+  --p-surface-900: var(--foundation-rock-050);
+  --p-surface-950: var(--foundation-white);
+  /* Color scales for PrimeFlex utilities */
+  --p-blue-50: var(--foundation-sky-050);
+  --p-blue-100: var(--foundation-sky-100);
+  --p-blue-200: var(--foundation-sky-200);
+  --p-blue-300: var(--foundation-sky-300);
+  --p-blue-400: var(--foundation-sky-400);
+  --p-blue-500: var(--foundation-sky-500);
+  --p-blue-600: var(--foundation-sky-600);
+  --p-blue-700: var(--foundation-sky-700);
+  --p-blue-800: var(--foundation-sky-800);
+  --p-blue-900: var(--foundation-sky-900);
+  --p-cyan-50: var(--foundation-sea-100);
+  --p-cyan-100: var(--foundation-sea-100);
+  --p-cyan-200: var(--foundation-sea-200);
+  --p-cyan-300: var(--foundation-sea-300);
+  --p-cyan-400: var(--foundation-sea-400);
+  --p-cyan-500: var(--foundation-sea-500);
+  --p-cyan-600: var(--foundation-sea-600);
+  --p-cyan-700: var(--foundation-sea-700);
+  --p-cyan-800: var(--foundation-sea-800);
+  --p-cyan-900: var(--foundation-sea-800);
+  --p-green-50: var(--foundation-forest-100);
+  --p-green-100: var(--foundation-forest-100);
+  --p-green-200: var(--foundation-forest-200);
+  --p-green-300: var(--foundation-forest-300);
+  --p-green-400: var(--foundation-forest-400);
+  --p-green-500: var(--foundation-forest-500);
+  --p-green-600: var(--foundation-forest-600);
+  --p-green-700: var(--foundation-forest-700);
+  --p-green-800: var(--foundation-forest-700);
+  --p-green-900: var(--foundation-forest-700);
+  --p-yellow-50: var(--foundation-sand-100);
+  --p-yellow-100: var(--foundation-sand-100);
+  --p-yellow-200: var(--foundation-sand-200);
+  --p-yellow-300: var(--foundation-sand-300);
+  --p-yellow-400: var(--foundation-sand-400);
+  --p-yellow-500: var(--foundation-sand-500);
+  --p-yellow-600: var(--foundation-sand-600);
+  --p-yellow-700: var(--foundation-sand-700);
+  --p-yellow-800: var(--foundation-sand-800);
+  --p-yellow-900: var(--foundation-sand-800);
+  --p-red-50: var(--foundation-berries-100);
+  --p-red-100: var(--foundation-berries-100);
+  --p-red-200: var(--foundation-berries-200);
+  --p-red-300: var(--foundation-berries-300);
+  --p-red-400: var(--foundation-berries-400);
+  --p-red-500: var(--foundation-berries-500);
+  --p-red-600: var(--foundation-berries-600);
+  --p-red-700: var(--foundation-berries-700);
+  --p-red-800: var(--foundation-berries-700);
+  --p-red-900: var(--foundation-berries-700);
+  --p-gray-50: var(--foundation-rock-050);
+  --p-gray-100: var(--foundation-rock-100);
+  --p-gray-200: var(--foundation-rock-200);
+  --p-gray-300: var(--foundation-rock-300);
+  --p-gray-400: var(--foundation-rock-400);
+  --p-gray-500: var(--foundation-rock-500);
+  --p-gray-600: var(--foundation-rock-600);
+  --p-gray-700: var(--foundation-rock-700);
+  --p-gray-800: var(--foundation-rock-800);
+  --p-gray-900: var(--foundation-rock-900);
+  --p-indigo-50: var(--foundation-sky-050);
+  --p-indigo-100: var(--foundation-sky-100);
+  --p-indigo-200: var(--foundation-sky-200);
+  --p-indigo-300: var(--foundation-sky-300);
+  --p-indigo-400: var(--foundation-sky-400);
+  --p-indigo-500: var(--foundation-sky-500);
+  --p-indigo-600: var(--foundation-sky-600);
+  --p-indigo-700: var(--foundation-sky-700);
+  --p-indigo-800: var(--foundation-sky-800);
+  --p-indigo-900: var(--foundation-sky-900);
+  --p-orange-50: var(--foundation-sand-100);
+  --p-orange-100: var(--foundation-sand-100);
+  --p-orange-200: var(--foundation-sand-200);
+  --p-orange-300: var(--foundation-sand-300);
+  --p-orange-400: var(--foundation-sand-400);
+  --p-orange-500: var(--foundation-sand-500);
+  --p-orange-600: var(--foundation-sand-600);
+  --p-orange-700: var(--foundation-sand-700);
+  --p-orange-800: var(--foundation-sand-800);
+  --p-orange-900: var(--foundation-sand-800);
+  --p-pink-50: var(--foundation-berries-100);
+  --p-pink-100: var(--foundation-berries-100);
+  --p-pink-200: var(--foundation-berries-200);
+  --p-pink-300: var(--foundation-berries-300);
+  --p-pink-400: var(--foundation-berries-400);
+  --p-pink-500: var(--foundation-berries-500);
+  --p-pink-600: var(--foundation-berries-600);
+  --p-pink-700: var(--foundation-berries-700);
+  --p-pink-800: var(--foundation-berries-700);
+  --p-pink-900: var(--foundation-berries-700);
+  --p-teal-50: var(--foundation-sea-100);
+  --p-teal-100: var(--foundation-sea-100);
+  --p-teal-200: var(--foundation-sea-200);
+  --p-teal-300: var(--foundation-sea-300);
+  --p-teal-400: var(--foundation-sea-400);
+  --p-teal-500: var(--foundation-sea-500);
+  --p-teal-600: var(--foundation-sea-600);
+  --p-teal-700: var(--foundation-sea-700);
+  --p-teal-800: var(--foundation-sea-800);
+  --p-teal-900: var(--foundation-sea-800);
+  --p-purple-50: var(--foundation-sky-100);
+  --p-purple-100: var(--foundation-sky-100);
+  --p-purple-200: var(--foundation-sky-200);
+  --p-purple-300: var(--foundation-sky-300);
+  --p-purple-400: var(--foundation-sky-400);
+  --p-purple-500: var(--foundation-sky-500);
+  --p-purple-600: var(--foundation-sky-600);
+  --p-purple-700: var(--foundation-sky-700);
+  --p-purple-800: var(--foundation-sky-800);
+  --p-purple-900: var(--foundation-sky-900);
+  --p-bluegray-50: var(--foundation-rock-050);
+  --p-bluegray-100: var(--foundation-rock-100);
+  --p-bluegray-200: var(--foundation-rock-200);
+  --p-bluegray-300: var(--foundation-rock-300);
+  --p-bluegray-400: var(--foundation-rock-400);
+  --p-bluegray-500: var(--foundation-rock-500);
+  --p-bluegray-600: var(--foundation-rock-600);
+  --p-bluegray-700: var(--foundation-rock-700);
+  --p-bluegray-800: var(--foundation-rock-800);
+  --p-bluegray-900: var(--foundation-rock-900);
+  /* Border radius */
+  --p-content-border-radius: 6px;
+}
+/* === Global Base Styles === */
+html,
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--surface-ground);
+}
+.p-editor-container .p-editor-toolbar {
+  background: #1f2937;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.p-editor-container .p-editor-toolbar.ql-snow {
+  border: 1px solid #424b57;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-stroke {
+  stroke: rgba(255, 255, 255, 0.6);
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-fill {
+  fill: rgba(255, 255, 255, 0.6);
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label {
+  border: 0 none;
+  color: rgba(255, 255, 255, 0.6);
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label:hover {
+  color: rgba(255, 255, 255, 0.87);
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label:hover .ql-stroke {
+  stroke: rgba(255, 255, 255, 0.87);
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label:hover .ql-fill {
+  fill: rgba(255, 255, 255, 0.87);
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label {
+  color: rgba(255, 255, 255, 0.87);
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-stroke {
+  stroke: rgba(255, 255, 255, 0.87);
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-fill {
+  fill: rgba(255, 255, 255, 0.87);
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
+  background: #1f2937;
+  border: 1px solid #424b57;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  padding: 0.75rem 0;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options .ql-picker-item {
+  color: rgba(255, 255, 255, 0.87);
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options .ql-picker-item:hover {
+  color: rgba(255, 255, 255, 0.87);
+  background: rgba(255, 255, 255, 0.03);
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded:not(.ql-icon-picker) .ql-picker-item {
+  padding: 0.75rem 1.25rem;
+}
+.p-editor-container .p-editor-content {
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.p-editor-container .p-editor-content.ql-snow {
+  border: 1px solid #424b57;
+}
+.p-editor-container .p-editor-content .ql-editor {
+  background: #111827;
+  color: rgba(255, 255, 255, 0.87);
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.p-editor-container .ql-snow.ql-toolbar button:hover,
+.p-editor-container .ql-snow.ql-toolbar button:focus {
+  color: rgba(255, 255, 255, 0.87);
+}
+.p-editor-container .ql-snow.ql-toolbar button:hover .ql-stroke,
+.p-editor-container .ql-snow.ql-toolbar button:focus .ql-stroke {
+  stroke: rgba(255, 255, 255, 0.87);
+}
+.p-editor-container .ql-snow.ql-toolbar button:hover .ql-fill,
+.p-editor-container .ql-snow.ql-toolbar button:focus .ql-fill {
+  fill: rgba(255, 255, 255, 0.87);
+}
+.p-editor-container .ql-snow.ql-toolbar button.ql-active,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected {
+  color: #60a5fa;
+}
+.p-editor-container .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke {
+  stroke: #60a5fa;
+}
+.p-editor-container .ql-snow.ql-toolbar button.ql-active .ql-fill,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-fill,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-fill {
+  fill: #60a5fa;
+}
+.p-editor-container .ql-snow.ql-toolbar button.ql-active .ql-picker-label,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-picker-label,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-picker-label {
+  color: #60a5fa;
+}
+@layer primereact {
+  * {
+    box-sizing: border-box;
+  color-scheme: dark;
+}
+
+@import "./components.css";

@@ -1,0 +1,269 @@
+/**
+ * Yggdrasil Light - Semantic Tokens
+ */
+
+@import "./foundations.css";
+
+/* ==================== Semantic Tokens (Light Theme) ==================== */
+:root {
+  /* Brand / Primary (Sky) */
+  --surface-brand-primary: var(--foundation-sky-700);        /* #001F4A */
+  --surface-brand-secondary: var(--foundation-sky-600);      /* #183B60 */
+  --surface-brand-tertiary: var(--foundation-sky-500);       /* #2E598F */
+  --surface-brand-hover: var(--foundation-sky-600);          /* #183B60 */
+  --surface-brand-subtle: var(--foundation-sky-100);         /* #DDE0EA */
+  --text-onsurface-onbrand: var(--foundation-white);         /* #FFFFFF */
+
+  /* Neutral Surfaces (Rock) */
+  --surface-neutral-primary: var(--foundation-white);        /* #FFFFFF */
+  --surface-neutral-secondary: var(--foundation-rock-050);   /* #F8F8F8 */
+  --surface-neutral-tertiary: var(--foundation-rock-100);    /* #F2F1F2 */
+
+  /* Neutral Text (Sky + Rock) */
+  --text-neutral-default: var(--foundation-sky-700);         /* #001F4A */
+  --text-neutral-subdued: var(--foundation-rock-600);        /* #716C75 */
+  --text-neutral-loud: var(--foundation-sky-900);            /* #000000 (pure black for high emphasis) */
+  --text-neutral-muted: var(--foundation-rock-400);          /* #A39FA7 */
+
+  /* Borders (Rock) */
+  --border-neutral-default: var(--foundation-rock-200);      /* #E4E4E4 */
+  --border-neutral-subdued: var(--foundation-rock-100);      /* #F2F1F2 */
+  --border-neutral-strong: var(--foundation-rock-300);       /* #C4C2C5 */
+
+  /* Interactive States */
+  --surface-state-hover: var(--foundation-rock-100);         /* #F2F1F2 */
+  --surface-state-active: var(--foundation-sky-100);         /* #DDE0EA */
+  --surface-state-selected: var(--foundation-sky-100);       /* #DDE0EA */
+  --surface-state-disabled: var(--foundation-rock-100);      /* #F2F1F2 */
+
+  /* Context: Info (Sea) */
+  --surface-context-info: var(--foundation-sea-200);         /* #649EB3 */
+  --surface-context-info-subtle: var(--foundation-sea-100);  /* #D9E4E1 */
+  --text-context-info: var(--foundation-sea-700);            /* #336174 */
+
+  /* Context: Success (Forest) */
+  --surface-context-success: var(--foundation-forest-200);       /* #7A9652 */
+  --surface-context-success-subtle: var(--foundation-forest-100); /* #DFE3D9 */
+  --text-context-success: var(--foundation-forest-700);          /* #485E1D */
+
+  /* Context: Warning (Sand) */
+  --surface-context-warning: var(--foundation-sand-200);         /* #D39327 */
+  --surface-context-warning-subtle: var(--foundation-sand-100);  /* #EFE7DB */
+  --text-context-warning: var(--foundation-sand-700);            /* #AA6509 */
+
+  /* Context: Danger (Berries) */
+  --surface-context-danger: var(--foundation-berries-200);        /* #D64949 */
+  --surface-context-danger-subtle: var(--foundation-berries-100); /* #F4DFDF */
+  --text-context-danger: var(--foundation-berries-700);           /* #BC3939 */
+
+  /* Context: Active */
+  --surface-context-dangeractive: var(--foundation-berries-700);  /* #BC3939 */
+
+  /* On-context text/icon */
+  --text-onsurface-oncontext: var(--text-neutral-loud);        /* #001F4A */
+  --text-onsurface-oncontextactive: var(--foundation-white);      /* #FFFFFF */
+  --icon-onsurface-oncontext: var(--text-neutral-loud);        /* #001F4A */
+
+  /* Context borders */
+  --border-context-info: var(--foundation-sky-400);               /* #9DC1FB */
+  --border-context-success: var(--foundation-forest-500);         /* #7A9652 */
+  --border-context-warning: var(--foundation-sand-400);           /* #E7B35B */
+  --border-context-danger: var(--foundation-berries-600);         /* #D64949 */
+
+  /* Severity aliases */
+  --severity-info-surface: var(--surface-context-info);
+  --severity-info-surface-tint: color-mix(in srgb, var(--surface-context-info) 70%, transparent);
+  --severity-info-border: var(--border-context-info);
+  --severity-info-text: var(--text-onsurface-oncontext);
+  --severity-info-icon: var(--icon-onsurface-oncontext);
+
+  --severity-success-surface: var(--surface-context-success);
+  --severity-success-surface-tint: color-mix(in srgb, var(--surface-context-success) 70%, transparent);
+  --severity-success-border: var(--border-context-success);
+  --severity-success-text: var(--text-onsurface-oncontext);
+  --severity-success-icon: var(--icon-onsurface-oncontext);
+
+  --severity-warn-surface: var(--surface-context-warning);
+  --severity-warn-surface-tint: color-mix(in srgb, var(--surface-context-warning) 70%, transparent);
+  --severity-warn-border: var(--border-context-warning);
+  --severity-warn-text: var(--text-onsurface-oncontext);
+  --severity-warn-icon: var(--icon-onsurface-oncontext);
+
+  --severity-error-surface: var(--surface-context-danger);
+  --severity-error-surface-tint: color-mix(in srgb, var(--surface-context-danger) 70%, transparent);
+  --severity-error-border: var(--border-context-danger);
+  --severity-error-text: var(--text-onsurface-oncontext);
+  --severity-error-icon: var(--icon-onsurface-oncontext);
+
+  --severity-danger-surface: var(--surface-context-danger);
+  --severity-danger-surface-tint: color-mix(in srgb, var(--surface-context-danger) 70%, transparent);
+  --severity-danger-border: var(--border-context-danger);
+  --severity-danger-text: var(--text-onsurface-oncontext);
+  --severity-danger-icon: var(--icon-onsurface-oncontext);
+}
+
+/* ==================== PrimeReact Theme Mappings ==================== */
+:root {
+  /* Typography */
+  --font-family: "Roboto", Arial, sans-serif;
+
+  /* Prime “surface” slots */
+  --surface-a: var(--surface-neutral-primary);   /* main content background */
+  --surface-b: var(--surface-neutral-secondary); /* page background */
+  --surface-c: var(--surface-neutral-tertiary);  /* subtle panels/stripes */
+  --surface-d: var(--border-neutral-subdued);    /* dividers / subtle borders */
+  --surface-e: var(--surface-neutral-primary);   /* cards */
+  --surface-f: var(--surface-neutral-primary);   /* overlays */
+
+  /* Text */
+  --text-color: var(--text-neutral-default);             /* -> #001F4A */
+  --text-color-secondary: var(--text-neutral-subdued);   /* subdued text */
+
+  /* Primary actions (buttons, toggles, focus accents in many components) */
+  --primary-color: var(--surface-brand-primary);         /* -> sky-700 */
+  --primary-color-text: var(--text-onsurface-onbrand);   /* -> white */
+
+  /* Background helpers Prime uses */
+  --surface-ground: var(--surface-neutral-secondary);
+  --surface-section: var(--surface-neutral-primary);
+  --surface-card: var(--surface-neutral-primary);
+  --surface-overlay: var(--surface-neutral-primary);
+
+  /* Borders + hover */
+  --surface-border: var(--border-neutral-default);
+  --surface-hover: var(--surface-state-hover);
+
+  /* Focus ring: choose a visible token (Prime expects a box-shadow colour) */
+  --focus-ring: 0 0 0 0.2rem var(--surface-context-info);
+
+  /* Highlights (selected text/rows etc.) */
+  --highlight-bg: var(--surface-state-selected);
+  --highlight-text-color: var(--text-neutral-default);
+
+  color-scheme: light;
+}
+
+
+
+
+:root {
+  /* === Prime palette aliases -> Yggdrasil foundations === */
+
+  /* Prime "blue" family -> Yggdrasil Sky */
+  --blue-50:  var(--foundation-sky-050);
+  --blue-100: var(--foundation-sky-100);
+  --blue-200: var(--foundation-sky-200);
+  --blue-300: var(--foundation-sky-300);
+  --blue-400: var(--foundation-sky-400);
+  --blue-500: var(--foundation-sky-500);
+  --blue-600: var(--foundation-sky-600);
+  --blue-700: var(--foundation-sky-700);
+  --blue-800: var(--foundation-sky-800);
+  --blue-900: var(--foundation-sky-900);
+
+  /* Prime "cyan" family -> Yggdrasil Sea (Prime often uses cyan for info accents) */
+  --cyan-50:  var(--foundation-sea-100); /* no sea-050 in your set; start at 100 */
+  --cyan-100: var(--foundation-sea-100);
+  --cyan-200: var(--foundation-sea-200);
+  --cyan-300: var(--foundation-sea-300);
+  --cyan-400: var(--foundation-sea-400);
+  --cyan-500: var(--foundation-sea-500);
+  --cyan-600: var(--foundation-sea-600);
+  --cyan-700: var(--foundation-sea-700);
+  --cyan-800: var(--foundation-sea-800);
+  --cyan-900: var(--foundation-sea-800); /* clamp; you don’t currently have sea-900 */
+
+  /* Prime "teal" family -> also Sea (or Forest, but Sea fits your scheme better) */
+  --teal-50:  var(--foundation-sea-100);
+  --teal-100: var(--foundation-sea-100);
+  --teal-200: var(--foundation-sea-200);
+  --teal-300: var(--foundation-sea-300);
+  --teal-400: var(--foundation-sea-400);
+  --teal-500: var(--foundation-sea-500);
+  --teal-600: var(--foundation-sea-600);
+  --teal-700: var(--foundation-sea-700);
+  --teal-800: var(--foundation-sea-800);
+  --teal-900: var(--foundation-sea-800);
+
+  /* Prime "green" family -> Yggdrasil Forest */
+  --green-50:  var(--foundation-forest-100);
+  --green-100: var(--foundation-forest-100);
+  --green-200: var(--foundation-forest-200);
+  --green-300: var(--foundation-forest-300);
+  --green-400: var(--foundation-forest-400);
+  --green-500: var(--foundation-forest-500);
+  --green-600: var(--foundation-forest-600);
+  --green-700: var(--foundation-forest-700);
+  --green-800: var(--foundation-forest-700); /* clamp */
+  --green-900: var(--foundation-forest-700); /* clamp */
+
+  /* Prime "yellow" family -> Yggdrasil Sand */
+  --yellow-50:  var(--foundation-sand-100);
+  --yellow-100: var(--foundation-sand-100);
+  --yellow-200: var(--foundation-sand-200);
+  --yellow-300: var(--foundation-sand-300);
+  --yellow-400: var(--foundation-sand-400);
+  --yellow-500: var(--foundation-sand-500);
+  --yellow-600: var(--foundation-sand-600);
+  --yellow-700: var(--foundation-sand-700);
+  --yellow-800: var(--foundation-sand-800);
+  --yellow-900: var(--foundation-sand-800); /* clamp */
+
+  /* Prime "orange" family -> also Sand (Prime sometimes uses orange separately) */
+  --orange-50:  var(--foundation-sand-100);
+  --orange-100: var(--foundation-sand-100);
+  --orange-200: var(--foundation-sand-200);
+  --orange-300: var(--foundation-sand-300);
+  --orange-400: var(--foundation-sand-400);
+  --orange-500: var(--foundation-sand-500);
+  --orange-600: var(--foundation-sand-600);
+  --orange-700: var(--foundation-sand-700);
+  --orange-800: var(--foundation-sand-800);
+  --orange-900: var(--foundation-sand-800);
+
+  /* Prime "red" / "pink" -> Yggdrasil Berries */
+  --red-50:  var(--foundation-berries-100);
+  --red-100: var(--foundation-berries-100);
+  --red-200: var(--foundation-berries-200);
+  --red-300: var(--foundation-berries-300);
+  --red-400: var(--foundation-berries-400);
+  --red-500: var(--foundation-berries-500);
+  --red-600: var(--foundation-berries-600);
+  --red-700: var(--foundation-berries-700);
+  --red-800: var(--foundation-berries-700); /* clamp */
+  --red-900: var(--foundation-berries-700);
+
+  --pink-50:  var(--foundation-berries-100);
+  --pink-100: var(--foundation-berries-100);
+  --pink-200: var(--foundation-berries-200);
+  --pink-300: var(--foundation-berries-300);
+  --pink-400: var(--foundation-berries-400);
+  --pink-500: var(--foundation-berries-500);
+  --pink-600: var(--foundation-berries-600);
+  --pink-700: var(--foundation-berries-700);
+  --pink-800: var(--foundation-berries-700);
+  --pink-900: var(--foundation-berries-700);
+
+  /* Prime neutrals -> Yggdrasil Rock */
+  --bluegray-50:  var(--foundation-rock-050);
+  --bluegray-100: var(--foundation-rock-100);
+  --bluegray-200: var(--foundation-rock-200);
+  --bluegray-300: var(--foundation-rock-300);
+  --bluegray-400: var(--foundation-rock-400);
+  --bluegray-500: var(--foundation-rock-500);
+  --bluegray-600: var(--foundation-rock-600);
+  --bluegray-700: var(--foundation-rock-700);
+  --bluegray-800: var(--foundation-rock-800);
+  --bluegray-900: var(--foundation-rock-900);
+
+  /* Prime "primary-*" ramp (used heavily in component CSS) -> Sky ramp */
+  --primary-50:  var(--foundation-sky-050);
+  --primary-100: var(--foundation-sky-100);
+  --primary-200: var(--foundation-sky-200);
+  --primary-300: var(--foundation-sky-300);
+  --primary-400: var(--foundation-sky-400);
+  --primary-500: var(--foundation-sky-500);
+  --primary-600: var(--foundation-sky-600);
+  --primary-700: var(--foundation-sky-700);
+  --primary-800: var(--foundation-sky-800);
+}

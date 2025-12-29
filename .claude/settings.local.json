@@ -29,7 +29,17 @@
       "Bash(netstat:*)",
       "Bash(findstr:*)",
       "Bash(node scripts/replace-hardcoded-colors.cjs:*)",
-      "Bash(taskkill /F /PID 21316)"
+      "Bash(taskkill /F /PID 21316)",
+      "Bash(git checkout:*)",
+      "Bash(git restore:*)",
+      "Bash(node scripts/extract-theme-structure-v2.cjs:*)",
+      "Bash(node scripts/extract-theme-final.cjs:*)",
+      "Bash(npm run test:contrast:*)",
+      "Bash(node -e:*)",
+      "Bash(npx vitest:*)",
+      "Bash(npx tsx:*)",
+      "Bash(node --loader ts-node/esm:*)",
+      "Bash(node:*)"
     ]
   }
 }
