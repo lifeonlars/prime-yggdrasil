@@ -3,6 +3,7 @@
  */
 
 @import "./foundations.css";
+@import "./prime-palette.css";
 
 /* ==================== Semantic Tokens (Dark Theme) ==================== */
 :root {
@@ -12,10 +13,10 @@
   --surface-neutral-tertiary: var(--foundation-sky-950);
   --surface-neutral-overlay: var(--foundation-lighter-100);
 
-  --surface-brand-primary: var(--foundation-sky-600);
-  --surface-brand-secondary: var(--foundation-sky-700);
-  --surface-brand-accent: var(--foundation-berries-600);
-  --surface-brand-overlay: var(--foundation-darker-300);
+  --surface-brand-primary: var(--foundation-sky-500);
+  --surface-brand-secondary: var(--foundation-sky-600);
+  --surface-brand-accent: var(--foundation-berries-500);
+  --surface-brand-overlay: var(--foundation-lighter-100);
 
   --surface-context-success: var(--foundation-forest-700);
   --surface-context-warning: var(--foundation-sand-700);
@@ -53,7 +54,7 @@
   --border-neutral-loud: var(--foundation-rock-500);
   --border-neutral-glassoutline: var(--foundation-rock-900);
 
-  --border-state-interactive: var(--foundation-sky-300);
+  --border-state-interactive: var(--foundation-sky-500);
   --border-state-selected: var(--foundation-sea-500);
   --border-state-focus: var(--foundation-sky-400);
 
@@ -84,6 +85,11 @@
   --icon-context-danger: var(--foundation-berries-400);
   --icon-context-info: var(--foundation-sky-300);
 
+  /* Elevation (Shadows) - Dark mode uses lighter rim + stronger shadows */
+  --elevation-subtle: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 8px 0 rgba(255, 255, 255, 0.1), 0 1px 2px 0 rgba(255, 255, 255, 0.05);
+  --elevation-moderate: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 8px 16px 0 rgba(255, 255, 255, 0.1), 0 4px 8px 0 rgba(255, 255, 255, 0.05);
+  --elevation-elevated: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 20px 32px -10px rgba(255, 255, 255, 0.15), 0 0 30px 0px rgba(255, 255, 255, 0.2);
+  --elevation-high: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 24px 64px 0 rgba(255, 255, 255, 0.15), 0 0 64px 0px rgba(255, 255, 255, 0.2);
   /* Severity aliases */
   --severity-info-surface: var(--surface-context-info);
   --severity-info-surface-tint: color-mix(in srgb, var(--surface-context-info) 70%, transparent);
@@ -198,5 +204,5 @@
   color-scheme: dark;
 }
 
-/* ==================== Prime Palette Aliases ==================== */
-@import "./prime-palette.css";
+
+

@@ -52,3 +52,18 @@ export const Empty: Story = {
     ),
   },
 }
+
+export const WithPrimeCard: Story = {
+  args: {
+    usePrimeCard: true,
+    children: (
+      <div>
+        <h3 className="text-color font-bold mb-2">Using PrimeReact Card</h3>
+        <p className="text-color-secondary mb-0">
+          This uses the native PrimeReact Card component with .p-card styling,
+          which includes elevation tokens for proper dark mode shadows.
+        </p>
+      </div>
+    ),
+  },
+}

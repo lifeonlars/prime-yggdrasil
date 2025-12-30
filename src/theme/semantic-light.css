@@ -3,6 +3,7 @@
  */
 
 @import "./foundations.css";
+@import "./prime-palette.css";
 
 /* ==================== Semantic Tokens (Light Theme) ==================== */
 :root {
@@ -83,6 +84,12 @@
   --icon-context-warning: var(--foundation-sand-600);
   --icon-context-danger: var(--foundation-berries-600);
   --icon-context-info: var(--foundation-sea-600);
+
+  /* Elevation (Shadows) */
+  --elevation-subtle: 0 2px 4px 0 rgba(0, 0, 0, 0.05), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  --elevation-moderate: 0 4px 8px -1px rgba(0, 0, 0, 0.1), 0 4px 8px -1px rgba(0, 0, 0, 0.06);
+  --elevation-elevated: 0 12px 16px -3px rgba(0, 0, 0, 0.1), 0 12px 16px -2px rgba(0, 0, 0, 0.05);
+  --elevation-high: 0 24px 32px -5px rgba(0, 0, 0, 0.1), 0 16px 16px -5px rgba(0, 0, 0, 0.04);
 
   /* Severity aliases */
   --severity-info-surface: var(--surface-context-info);
@@ -198,5 +205,4 @@
   color-scheme: light;
 }
 
-/* ==================== Prime Palette Aliases ==================== */
-@import "./prime-palette.css";
+
