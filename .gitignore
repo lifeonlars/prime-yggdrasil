@@ -35,6 +35,7 @@ nul
 *-analysis.md
 *-audit.md
 *-report.md
+!docs/contrast-report.md
 
 # Playwright test artifacts
 playwright-report/
