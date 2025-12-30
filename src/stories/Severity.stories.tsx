@@ -7,7 +7,7 @@ import { Badge } from 'primereact/badge'
 import { Toast } from 'primereact/toast'
 
 const meta = {
-  title: 'Theme/Severity',
+  title: 'Design System/Severity',
   component: Message,
   parameters: {
     layout: 'padded',

@@ -1,0 +1,44 @@
+/**
+ * Border Radius Tokens
+ *
+ * Yggdrasil uses a 4px soft grid system for all spacing, including border radius.
+ * These semantic tokens map to component-specific contexts and ensure consistency.
+ *
+ * All values follow the 4px grid: 2px, 4px, 8px, 12px, etc.
+ */
+
+:root {
+  /* ==================== Component-Specific Radius ==================== */
+
+  /* Button radius - applies to all button types and button groups */
+  --button-radius: 8px;
+
+  /* Input radius - applies to text-input, textarea, select box, dropdown triggers */
+  --input-radius: 8px;
+
+  /* Layout radius - dropdowns, panels, menus */
+  --radius-layout-dropdowns: 8px;
+  --radius-layout-widgets: 12px;
+  --radius-layout-cards: 12px;
+  --radius-layout-modals: 12px;
+
+  /* Chart radius */
+  --radius-charts-large: 12px;   /* bar charts, column charts */
+  --radius-charts-medium: 8px;   /* donut charts, tree maps */
+  --radius-charts-small: 2px;    /* segments of stacked charts */
+
+  /* Special radius */
+  --radius-full: 9999px;         /* fully rounded elements (pills, avatars) */
+
+  /* ==================== Generic Radius Scale ==================== */
+  /* For direct use in custom components following 4px grid */
+
+  --radius-none: 0;
+  --radius-sm: 4px;     /* Small elements, tight corners */
+  --radius-md: 8px;     /* Default for most components */
+  --radius-lg: 12px;    /* Larger containers */
+  --radius-xl: 16px;    /* Extra large containers */
+  --radius-2xl: 20px;   /* Very large containers */
+  --radius-3xl: 24px;   /* Exceptional large containers */
+  --radius-full: 9999px; /* Fully rounded (pills, circles) */
+}

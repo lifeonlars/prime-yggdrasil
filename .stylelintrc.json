@@ -1,0 +1,33 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "color-no-hex": [true, {
+      "severity": "warning"
+    }],
+    "function-disallowed-list": [["rgb", "rgba", "hsl", "hsla"], {
+      "severity": "warning"
+    }],
+    "custom-property-pattern": null,
+    "declaration-property-value-no-unknown": true,
+    "no-duplicate-selectors": true,
+    "import-notation": null
+  },
+  "overrides": [
+    {
+      "files": ["**/foundations.css", "**/prime-palette.css"],
+      "rules": {
+        "color-no-hex": null,
+        "function-disallowed-list": null
+      }
+    },
+    {
+      "files": ["**/semantic-*.css"],
+      "rules": {
+        "function-disallowed-list": null,
+        "alpha-value-notation": null,
+        "color-function-alias-notation": null,
+        "color-function-notation": null
+      }
+    }
+  ]
+}
