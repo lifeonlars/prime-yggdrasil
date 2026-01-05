@@ -369,12 +369,196 @@ Before writing any UI code, verify:
 - [ ] No hardcoded colors or sizes in implementation
 - [ ] Component will work in both light and dark modes
 
+## 📖 PrimeReact Component Reference
+
+Before implementing any UI, **always check PrimeReact documentation first**:
+
+### Core Component Categories
+
+**Form Components**: https://primereact.org/inputtext/
+- InputText, InputNumber, InputMask, InputTextarea
+- Dropdown, MultiSelect, AutoComplete, TreeSelect
+- Calendar, ColorPicker, Slider, Knob
+- Checkbox, RadioButton, ToggleButton, SelectButton
+- FileUpload, Password, Rating
+
+**Data Display**: https://primereact.org/datatable/
+- DataTable (sortable, filterable, paginated tables)
+- TreeTable (hierarchical data)
+- DataView (flexible data display)
+- Timeline, OrderList, PickList
+
+**Panels & Containers**: https://primereact.org/panel/
+- Panel, Fieldset, Card, Accordion
+- TabView, Splitter, ScrollPanel
+- Toolbar, Divider
+
+**Overlays**: https://primereact.org/dialog/
+- Dialog, Sidebar, Drawer
+- OverlayPanel, ConfirmDialog, ConfirmPopup
+- Tooltip
+
+**Navigation**: https://primereact.org/menubar/
+- Menubar, Menu, TieredMenu, MegaMenu
+- Breadcrumb, Steps, TabMenu
+- PanelMenu, ContextMenu
+
+**Messages**: https://primereact.org/message/
+- Message, Messages, Toast
+- InlineMessage
+
+**Buttons**: https://primereact.org/button/
+- Button, SplitButton, SpeedDial
+
+**Media**: https://primereact.org/image/
+- Image, Galleria, Carousel
+
+### How to Use PrimeReact Docs
+
+1. **Search by use case**: "I need a dropdown" → Search "dropdown"
+2. **Check API tab**: See all available props and events
+3. **View examples**: Copy working code snippets
+4. **Adapt with tokens**: Replace any inline styles with semantic tokens
+
+Example workflow:
+```
+Need: Date picker
+1. Visit: https://primereact.org/calendar/
+2. Copy: Basic example code
+3. Adapt: Add semantic token styling if needed
+4. Test: In both light and dark modes
+```
+
+## 🏗️ Creating Local Blocks (Project-Specific)
+
+Sometimes you need composite components specific to your project. These are called "blocks" (inspired by PrimeBlocks).
+
+### When to Create a Local Block
+
+✅ **Create a local block when:**
+- Combining multiple PrimeReact components into a project-specific pattern
+- Building a complex layout that's reused multiple times in YOUR project
+- Creating domain-specific composites (e.g., "UserProfileCard", "OrderSummaryPanel")
+
+❌ **Don't create a local block when:**
+- A single PrimeReact component would suffice
+- The pattern is only used once
+- It duplicates existing PrimeReact functionality
+
+### Local Block Guidelines
+
+**Location**: Create blocks in your project, NOT in the design system
+```
+your-project/
+├── src/
+│   ├── blocks/          # Your project-specific blocks
+│   │   ├── UserCard.tsx
+│   │   ├── StatsDashboard.tsx
+│   │   └── CheckoutForm.tsx
+```
+
+**Rules for blocks:**
+1. **Use only PrimeReact components** - Don't create custom base components
+2. **Use only semantic tokens** - No hardcoded colors or spacing
+3. **Follow 4px grid** - All spacing must follow the grid
+4. **Make them generic** - Can be reused across your project
+5. **Document in your project** - Add to your local Storybook
+
+**Example: Good Local Block**
+```tsx
+// src/blocks/UserCard.tsx
+import { Card } from 'primereact/card';
+import { Button } from 'primereact/button';
+import { Avatar } from 'primereact/avatar';
+
+interface UserCardProps {
+  name: string;
+  email: string;
+  avatar?: string;
+  onContact: () => void;
+}
+
+export function UserCard({ name, email, avatar, onContact }: UserCardProps) {
+  return (
+    <Card
+      style={{
+        padding: '1.5rem',  // 24px - 4px grid
+        borderRadius: 'var(--radius-lg)',
+        background: 'var(--surface-neutral-primary)',
+        color: 'var(--text-neutral-default)'
+      }}
+    >
+      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+        <Avatar
+          image={avatar}
+          label={!avatar ? name[0] : undefined}
+          size="large"
+          shape="circle"
+        />
+        <div style={{ flex: 1 }}>
+          <h3 style={{
+            margin: 0,
+            color: 'var(--text-neutral-loud)'
+          }}>
+            {name}
+          </h3>
+          <p style={{
+            margin: '0.25rem 0 0',
+            color: 'var(--text-neutral-subdued)'
+          }}>
+            {email}
+          </p>
+        </div>
+        <Button
+          label="Contact"
+          icon="pi pi-envelope"
+          onClick={onContact}
+        />
+      </div>
+    </Card>
+  );
+}
+```
+
+**Example: Bad Local Block (Don't do this)**
+```tsx
+// ❌ DON'T DO THIS
+export function UserCard({ name, email }: Props) {
+  return (
+    // Creating custom card instead of using PrimeReact
+    <div style={{
+      background: '#ffffff',        // ❌ Hardcoded color
+      border: '1px solid #e5e7eb',  // ❌ Hardcoded color
+      borderRadius: '6px',          // ❌ Not on 4px grid
+      padding: '15px'               // ❌ Not on 4px grid
+    }}>
+      {/* Custom button instead of PrimeReact */}
+      <button style={{ background: '#3B82F6' }}>  {/* ❌ Custom component */}
+        Contact
+      </button>
+    </div>
+  );
+}
+```
+
+### When to Promote Blocks to Design System
+
+If you find a block being used across **multiple projects**, consider promoting it to the design system:
+
+1. **Document the use case** - Why is this needed across projects?
+2. **Generalize the API** - Make it work for broader use cases
+3. **Add to design system** - Submit PR with Storybook documentation
+4. **Test thoroughly** - Ensure it works in all contexts
+5. **Update AI guide** - Add to component reference
+
 ## 🎓 Learning Resources
 
-1. **PrimeReact Docs**: https://primereact.org/
-2. **Local Storybook**: `npm run dev` → localhost:6006
-3. **Semantic Token Reference**: `src/theme/semantic-light.css`
-4. **Component Examples**: `src/stories/`
+1. **PrimeReact Docs**: https://primereact.org/ (comprehensive component reference)
+2. **PrimeReact Showcase**: https://primereact.org/installation/ (live examples)
+3. **PrimeReact GitHub**: https://github.com/primefaces/primereact (source code, issues)
+4. **Local Storybook**: `npm run dev` → localhost:6006 (themed examples)
+5. **Semantic Token Reference**: `src/theme/semantic-light.css` (all tokens)
+6. **Component Examples**: `src/stories/` (usage patterns)
 
 ## 🚀 Success Metrics
 

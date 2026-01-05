@@ -43,3 +43,16 @@ nul
 # Playwright test artifacts
 playwright-report/
 test-results/
+
+# Backup files
+*.backup
+*.old
+*.old.*
+README.old.md
+
+# Outdated documentation (completed migrations)
+docs/SEMANTIC-MIGRATION-PLAN.md
+
+# Old theme documentation (pre-refactor)
+YGGDRASIL_THEME.md
+agentic_policy.md
