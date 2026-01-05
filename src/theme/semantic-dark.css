@@ -118,8 +118,8 @@
   --severity-danger-surface: var(--surface-context-danger);
   --severity-danger-surface-tint: color-mix(in srgb, var(--surface-context-danger) 70%, transparent);
   --severity-danger-border: var(--border-context-danger);
-  --severity-danger-text: var(--text-onsurface-oncontext);
-  --severity-danger-icon: var(--icon-onsurface-oncontext);
+  --severity-danger-text: var(--text-context-danger);
+  --severity-danger-icon: var(--icon-context-danger);
 
   /* Charts + misc (copied straight from your semantic-dark list) */
   --charts-boolean-primary: var(--charts-aquamarine-300);
