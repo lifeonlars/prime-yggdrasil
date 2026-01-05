@@ -2,7 +2,27 @@
   "name": "prime-yggdrasil",
   "version": "0.1.0",
   "type": "module",
-  "description": "A PrimeReact-based design system for React + Vite projects",
+  "description": "AI-agent-friendly PrimeReact design system for component-driven development with semantic tokens and dark mode support",
+  "keywords": [
+    "primereact",
+    "design-system",
+    "semantic-tokens",
+    "dark-mode",
+    "ai-agents",
+    "component-driven",
+    "react",
+    "theme"
+  ],
+  "homepage": "https://github.com/lifeonlars/prime-yggdrasil#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lifeonlars/prime-yggdrasil.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lifeonlars/prime-yggdrasil/issues"
+  },
+  "license": "MIT",
+  "author": "Your Name <your.email@example.com>",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -12,13 +32,17 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./yggdrasil-light.css": "./dist/yggdrasil-light.css",
+    "./yggdrasil-dark.css": "./dist/yggdrasil-dark.css",
     "./theme.css": "./dist/prime-yggdrasil.css",
-    "./theme-light.css": "./dist/yggdrasil-light.css",
-    "./theme-dark.css": "./dist/yggdrasil-dark.css",
-    "./foundations.css": "./dist/foundations.css"
+    "./foundations.css": "./dist/foundations.css",
+    "./docs/*": "./docs/*"
   },
   "files": [
-    "dist"
+    "dist",
+    "docs",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "dev": "vite",

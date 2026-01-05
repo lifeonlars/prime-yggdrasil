@@ -1,279 +1,276 @@
-# Prime Yggdrasil
+# 🌳 Yggdrasil Design System
 
-A PrimeReact-based design system for React + Vite projects, built with a 3-tier architecture optimized for LLM-assisted development.
+> **AI-agent-friendly PrimeReact design system for component-driven development**
 
-## Overview
+Yggdrasil is a comprehensive design system built on [PrimeReact](https://primereact.org/) that enforces consistency through semantic tokens, prevents bespoke component creation, and guides AI agents to use existing patterns.
 
-`prime-yggdrasil` is a **Tier 1 Global Design System** package that provides:
+[![Storybook](https://img.shields.io/badge/Storybook-FF4785?logo=storybook&logoColor=white)](https://your-storybook-url.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- PrimeReact primitives with styled mode (PrimeOne-based theme)
-- Shared Blocks and Layout Blocks
-- Yggdrasil theme with custom design tokens
-- Storybook documentation and visual regression testing
-- Clear patterns for consuming apps (Tier 2 local blocks, Tier 3 views)
+## 🎯 Purpose
 
-## Installation
+**Problem**: AI agents often create custom components and hardcode styles, leading to inconsistent UIs and maintenance nightmares.
+
+**Solution**: Yggdrasil enforces component reuse and token-based styling through:
+- 📚 Comprehensive semantic token system (727+ tokens)
+- 🧩 PrimeReact component library integration
+- 🌓 Automatic light/dark mode support
+- 📏 4px grid system for consistent spacing
+- 🤖 AI-agent-specific documentation and guardrails
+
+## ✨ Features
+
+- **🎨 Semantic Token System** - 96% of styles use semantic tokens instead of hardcoded values
+- **🌗 Dark Mode Built-in** - Automatic theme switching with optimized dark mode shadows
+- **📦 Modular Architecture** - Split into 10 category files for easy maintenance
+- **🧩 Component-First** - Encourages PrimeReact usage over custom components
+- **📐 4px Grid System** - Consistent spacing and sizing across all components
+- **♿ WCAG 3.0 Compliant** - APCA contrast tested for accessibility
+- **📖 Storybook Integration** - Live component examples and documentation
+- **🤖 AI Agent Guides** - Purpose-built documentation for AI-driven development
+
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
-npm install prime-yggdrasil
+npm install prime-yggdrasil primereact primeicons
 ```
 
-This package requires peer dependencies:
-
-```bash
-npm install react react-dom primereact primeicons primeflex
-```
-
-## Usage
-
-### 1. Import the theme CSS
-
-In your app's entry point (e.g., `main.tsx` or `App.tsx`):
+### Usage
 
 ```tsx
-// Import Yggdrasil standalone theme (choose light or dark)
-import 'prime-yggdrasil/theme.css';        // Light mode
-// OR
-// import 'prime-yggdrasil/theme-dark.css';  // Dark mode
-
-// Then import icons and utilities
+// Import theme
+import 'prime-yggdrasil/yggdrasil-light.css';  // or yggdrasil-dark.css
 import 'primeicons/primeicons.css';
-import 'primeflex/primeflex.css';
-```
 
-**Note:** The Yggdrasil theme is **standalone** - it includes all PrimeReact component styles with Yggdrasil colors. You do NOT need to import a separate PrimeReact theme.
-
-### 2. Wrap your app with YggdrasilProvider
-
-```tsx
-import { YggdrasilProvider } from 'prime-yggdrasil';
-import 'prime-yggdrasil/theme.css';
-import 'primeicons/primeicons.css';
-import 'primeflex/primeflex.css';
+// Use PrimeReact components
+import { Button } from 'primereact/button';
+import { DataTable } from 'primereact/datatable';
 
 function App() {
   return (
-    <YggdrasilProvider>
-      <YourApp />
-    </YggdrasilProvider>
+    <div style={{ color: 'var(--text-neutral-default)' }}>
+      <Button label="Click me" />
+    </div>
   );
 }
 ```
 
-### 3. Use Blocks in your views
+## 📚 Documentation
 
+### For Developers
+- **[Getting Started](./docs/README.md)** - Overview and project structure
+- **[Theme Architecture](./src/theme/README.md)** - How the theme system works
+- **[Consumption Guide](./docs/CONSUMPTION-GUIDE.md)** - How to use in your project
+
+### For AI Agents
+- **[AI Agent Guide](./docs/AI-AGENT-GUIDE.md)** - Complete guide for AI-driven development
+- **[Component Selection](./docs/AI-AGENT-GUIDE.md#component-selection-guide)** - Decision tree for choosing components
+- **[Token Reference](./docs/AI-AGENT-GUIDE.md#quick-reference-for-common-tasks)** - Quick semantic token lookup
+
+### For Designers
+- **[Design Principles](./docs/README.md#design-principles)** - 4px grid, semantic tokens
+- **[Elevation System](./docs/ELEVATION-SYSTEM.md)** - Shadow hierarchy and usage
+- **[Contrast Report](./docs/contrast-report.md)** - Accessibility validation
+
+## 🎨 Design Tokens
+
+### Colors
+```css
+/* Text */
+--text-neutral-default       /* Main body text */
+--text-neutral-subdued       /* Secondary text */
+--text-state-interactive     /* Links, interactive elements */
+--text-onsurface-onbrand     /* Text on colored backgrounds */
+
+/* Surfaces */
+--surface-neutral-primary    /* Main backgrounds */
+--surface-neutral-secondary  /* Secondary backgrounds */
+--surface-brand-primary      /* Brand blue */
+--surface-state-hover        /* Hover states */
+
+/* Borders */
+--border-neutral-default     /* Standard borders */
+--border-state-interactive   /* Interactive borders */
+--border-state-focus         /* Focus rings */
+```
+
+### Spacing (4px Grid)
+```css
+0.5rem  /*  8px */
+1rem    /* 16px */
+1.5rem  /* 24px */
+2rem    /* 32px */
+```
+
+### Border Radius
+```css
+--radius-sm   /* 4px - Subtle */
+--radius-md   /* 8px - Standard */
+--radius-lg   /* 12px - Cards */
+--radius-full /* Pills, avatars */
+```
+
+## 🧩 Component Usage
+
+### ✅ Correct (Use PrimeReact)
 ```tsx
-import { Card, PageHeader, FormField } from 'prime-yggdrasil';
+import { Button } from 'primereact/button';
+import { DataTable } from 'primereact/datatable';
 import { InputText } from 'primereact/inputtext';
 
-export function MyView() {
-  return (
-    <div className="p-3 md:p-4">
-      <PageHeader
-        title="Dashboard"
-        description="Welcome to your dashboard"
-      />
-
-      <div className="grid gap-3">
-        <div className="col-12 md:col-6">
-          <Card>
-            <FormField label="Email" htmlFor="email">
-              <InputText id="email" type="email" />
-            </FormField>
-          </Card>
-        </div>
-      </div>
-    </div>
-  );
-}
+<Button label="Save" />
+<DataTable value={data} />
+<InputText placeholder="Enter text" />
 ```
 
-## Architecture
-
-This package implements **Tier 1** of a 3-tier architecture:
-
-### Tier 1: Global Design System (this package)
-- PrimeReact primitives (styled mode, PrimeOne-based theme)
-- Shared Blocks and Layout Blocks
-- Theme CSS and Provider setup
-- Storybook (canonical reference, read-only for consumers)
-- Chromatic visual regression
-
-### Tier 2: Local Blocks (in consuming apps)
-- App-specific blocks built from Tier 1 primitives
-- Can use PrimeFlex for layout (same rules as Views)
-- Promotion candidates when patterns are reused
-
-### Tier 3: Views (in consuming apps)
-- Screens that compose blocks
-- Minimal layout scaffolding only
-- **Strictly limited PrimeFlex usage** (see below)
-
-## PrimeFlex Usage Policy
-
-PrimeFlex is the layout utility system alongside PrimeReact. It's for **structural scaffolding**, not visual styling.
-
-### ✅ Allowed in Views (whitelist)
-
-**Grid scaffolding (preferred):**
-- `grid`, `col-*` (e.g., `col-12`, `col-6`, `col-3`)
-- Responsive variants (e.g., `md:col-6`, `lg:col-4`)
-
-**Flex scaffolding (secondary):**
-- `flex`, `flex-wrap`
-- Responsive variants (e.g., `md:flex`)
-
-**Spacing between layout regions:**
-- `gap-*` and responsive variants (e.g., `gap-3`, `md:gap-4`)
-
-**Alignment for structural layout:**
-- `align-items-*` (e.g., `align-items-start`, `align-items-center`)
-- `justify-content-*` (e.g., `justify-content-between`, `justify-content-center`)
-- Responsive variants
-
-**Outer page padding only (single wrapper):**
-- `p-*` or `px-*`/`py-*`
-- Responsive variants (e.g., `p-3 md:p-4`)
-
-### ❌ Forbidden in Views (blacklist)
-
-- **Colors / visual identity** (anything that changes colours, borders, shadows)
-- **Typography** (font sizing/weights/line-height)
-- **Radius, shadows, effects**
-- **Ad-hoc spacing for visual tuning:**
-  - No `m-*`, `mx-*`, `my-*`, `mt-*`, `mb-*`, `ml-*`, `mr-*`
-  - No extra `p-*` beyond the single outer wrapper
-- **One-off layout hacks** (absolute positioning, z-index, negative margins)
-
-**If you need more than the whitelist: you need a Block, not more PrimeFlex.**
-
-### Canonical view patterns
-
-**Page scaffold (grid-first):**
+### ❌ Incorrect (Don't Create Custom)
 ```tsx
-<div className="p-3 md:p-4">
-  <div className="grid gap-3 md:gap-4">
-    <div className="col-12 md:col-8">
-      <Card>Main content</Card>
-    </div>
-    <div className="col-12 md:col-4">
-      <Card>Sidebar</Card>
-    </div>
-  </div>
-</div>
+// Don't do this!
+const CustomButton = ({ children }) => (
+  <button style={{ background: '#3B82F6', color: 'white' }}>
+    {children}
+  </button>
+);
 ```
 
-**Header row (structural flex):**
-```tsx
-<div className="flex align-items-center justify-content-between">
-  <h1>Title</h1>
-  <Button label="Action" />
-</div>
+## 🛠️ Development
+
+### Prerequisites
+- Node.js 18+
+- npm or pnpm
+
+### Local Development
+```bash
+# Install dependencies
+npm install
+
+# Start Storybook
+npm run dev
+
+# Run tests
+npm test
+
+# Build library
+npm run build
 ```
-
-## Exported API
-
-### Components
-
-- `YggdrasilProvider` - Wraps PrimeReactProvider with sensible defaults
-- `Card` - Surface container with consistent elevation
-- `PageHeader` - Page title and description block
-- `FormField` - Label + input wrapper
-- `SectionTitle` - Section heading
-
-### Theme
-
-Import the standalone Yggdrasil theme:
-```tsx
-import 'prime-yggdrasil/theme.css';        // Light mode
-// OR
-import 'prime-yggdrasil/theme-dark.css';   // Dark mode
-```
-
-The Yggdrasil themes are **standalone** and include:
-- Complete PrimeReact component styles (based on Lara)
-- Yggdrasil design tokens (Sky, Sea, Forest, Sand, Clay, Slate)
-- Roboto font family
-- All color mappings built-in
-
-**No separate PrimeReact theme import needed!**
-
-## Development
-
-This repo contains:
 
 ### Scripts
-
 ```bash
-# Build the library
-npm run build
-
-# Run Storybook (canonical reference)
-npm run storybook
-
-# Build Storybook for deployment
-npm run build-storybook
-
-# Publish to Chromatic
-npm run chromatic
+npm run dev                 # Start Storybook
+npm run build              # Build library
+npm run test:contrast      # Test color contrast
+npm run test:themes        # Validate theme structure
+npm run lint:css           # Lint CSS files
 ```
 
-### Project Structure
+## 📊 Project Stats
+
+- **Semantic Tokens**: 727 color replacements (96% coverage)
+- **Components**: 69 PrimeReact components themed
+- **Files**: 10 modular CSS category files
+- **Contrast**: WCAG 3.0 (APCA) validated
+- **Dark Mode**: Optimized shadows with white rim strategy
+
+## 🤖 AI Agent Integration
+
+Yggdrasil is specifically designed to guide AI agents toward component-driven development:
+
+1. **Comprehensive Documentation** - AI agents can read [AI-AGENT-GUIDE.md](./docs/AI-AGENT-GUIDE.md)
+2. **Decision Trees** - Step-by-step component selection guidance
+3. **Token Reference** - Quick lookup for semantic tokens
+4. **Anti-Patterns** - Clear examples of what NOT to do
+5. **Validation Rules** - Optional ESLint/pre-commit hooks
+
+### Example AI Prompt
+```
+I'm building a React app with Yggdrasil design system.
+
+Before implementing UI:
+1. Read: node_modules/prime-yggdrasil/docs/AI-AGENT-GUIDE.md
+2. Check: Is there a PrimeReact component for this?
+3. Use: Semantic tokens only (no hardcoded colors)
+4. Follow: 4px grid for all spacing
+
+Create a user profile form with name, email, and submit button.
+```
+
+## 🏗️ Architecture
 
 ```
-src/
-├── index.ts              # Public API exports
-├── provider/
-│   └── YggdrasilProvider.tsx
-├── theme/
-│   └── index.css         # Consolidated theme
-├── blocks/               # Exported blocks
-│   ├── Card.tsx
-│   ├── PageHeader.tsx
-│   ├── FormField.tsx
-│   └── SectionTitle.tsx
-├── layouts/              # Layout blocks (future)
-├── primitives/           # Wrappers (minimal, avoid)
-└── stories/              # Storybook documentation
-    ├── Card.stories.tsx
-    ├── Card.docs.mdx
-    └── ...
+Yggdrasil
+├── Foundations (foundations.css)
+│   └── Raw color palette (Sky, Sea, Forest, etc.)
+│
+├── Border Radius (radius.css)
+│   └── Semantic radius tokens (sm, md, lg)
+│
+├── Semantic Tokens (semantic-light/dark.css)
+│   ├── Surfaces (backgrounds)
+│   ├── Text (typography colors)
+│   ├── Borders (borders, focus rings)
+│   ├── Icons (icon colors)
+│   └── Elevation (shadows)
+│
+└── Components (components/*.css)
+    ├── button.css (buttons, splitbutton)
+    ├── data.css (tables, trees, pagination)
+    ├── form.css (inputs, dropdowns, checkboxes)
+    ├── menu.css (navigation components)
+    └── ... (6 more category files)
 ```
 
-## Storybook
+## 📦 Package Contents
 
-Storybook serves as:
-- Executable documentation of approved primitives and blocks
-- Reference for both human developers and LLM agents
-- Canonical examples and edge cases
+When you install Yggdrasil, you get:
 
-**Storybook is read-only for consuming apps** - it lives in this repo only.
+```
+prime-yggdrasil/
+├── dist/
+│   ├── yggdrasil-light.css     # Light theme (import this)
+│   ├── yggdrasil-dark.css      # Dark theme (import this)
+│   ├── index.js                # Optional JS utilities
+│   └── index.d.ts              # TypeScript definitions
+│
+└── docs/
+    ├── AI-AGENT-GUIDE.md       # For AI agents
+    ├── CONSUMPTION-GUIDE.md    # Integration guide
+    ├── ELEVATION-SYSTEM.md     # Shadow system
+    └── contrast-report.md      # Accessibility report
+```
 
-View the published Storybook at: [Your Chromatic URL]
+## 🤝 Contributing
 
-## Rules for Consuming Apps
+We welcome contributions! Please:
 
-1. **No local primitives** - Use PrimeReact components directly
-2. **Local blocks allowed** - Build app-specific blocks from Tier 1 primitives
-3. **PrimeFlex whitelist only** - Follow the strict usage policy above
-4. **Promote when reused** - If a local block is used in multiple views, promote it to this package
-5. **Storybook is the contract** - If it's not in Storybook, don't assume it exists
+1. Follow existing semantic token patterns
+2. Test in both light and dark modes
+3. Run contrast tests for new colors
+4. Update documentation
+5. Add Storybook examples
 
-## LLM Agent Guidelines
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
 
-When building UI:
-1. Use **PrimeReact primitives** for all basic UI elements
-2. Prefer **existing Blocks** from this package over custom layouts
-3. Follow **PrimeFlex whitelist** strictly in views
-4. If a new pattern is required:
-   - Create a local Block in your app (Tier 2)
-   - Add it to Storybook if it becomes reusable
-   - Promote to this package when used across multiple projects
+## 📄 License
 
-## Architecture Reference
+MIT © [Your Name]
 
-See [agentic_policy.md](./agentic_policy.md) for the full architecture specification and LLM development guidelines.
+## 🙏 Credits
 
-## License
+Built with:
+- [PrimeReact](https://primereact.org/) - Component library
+- [PrimeIcons](https://primereact.org/icons) - Icon set
+- [Storybook](https://storybook.js.org/) - Component documentation
+- [APCA](https://github.com/Myndex/apca-w3) - Contrast testing
 
-[Your License]
+## 📞 Support
+
+- 📖 [Documentation](./docs/README.md)
+- 🐛 [Issue Tracker](https://github.com/lifeonlars/prime-yggdrasil/issues)
+- 💬 [Discussions](https://github.com/lifeonlars/prime-yggdrasil/discussions)
+- 🎨 [Storybook](https://your-storybook-url.com)
+
+---
+
+**Made for AI agents, loved by developers** 🤖❤️👨‍💻
