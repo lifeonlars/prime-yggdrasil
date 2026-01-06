@@ -34,14 +34,14 @@ Yggdrasil is a comprehensive design system built on [PrimeReact](https://primere
 ### Installation
 
 ```bash
-npm install prime-yggdrasil primereact primeicons
+npm install @lifeonlars/prime-yggdrasil primereact primeicons
 ```
 
 ### Usage
 
 ```tsx
 // Import theme
-import 'prime-yggdrasil/yggdrasil-light.css';  // or yggdrasil-dark.css
+import '@lifeonlars/prime-yggdrasil/yggdrasil-light.css';  // or yggdrasil-dark.css
 import 'primeicons/primeicons.css';
 
 // Use PrimeReact components
@@ -188,7 +188,7 @@ Yggdrasil is specifically designed to guide AI agents toward component-driven de
 I'm building a React app with Yggdrasil design system.
 
 Before implementing UI:
-1. Read: node_modules/prime-yggdrasil/docs/AI-AGENT-GUIDE.md
+1. Read: node_modules/@lifeonlars/prime-yggdrasil/docs/AI-AGENT-GUIDE.md
 2. Check: Is there a PrimeReact component for this?
 3. Use: Semantic tokens only (no hardcoded colors)
 4. Follow: 4px grid for all spacing
@@ -226,7 +226,7 @@ Yggdrasil
 When you install Yggdrasil, you get:
 
 ```
-prime-yggdrasil/
+@lifeonlars/prime-yggdrasil/
 ├── dist/
 │   ├── yggdrasil-light.css     # Light theme (import this)
 │   ├── yggdrasil-dark.css      # Dark theme (import this)
