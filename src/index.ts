@@ -5,15 +5,15 @@
  *
  * Installation:
  * ```bash
- * npm install prime-yggdrasil primereact primeicons
+ * npm install @lifeonlars/prime-yggdrasil primereact primeicons
  * ```
  *
  * Usage:
  * ```tsx
  * // Import theme CSS
- * import 'prime-yggdrasil/yggdrasil-light.css';  // Light mode
+ * import '@lifeonlars/prime-yggdrasil/yggdrasil-light.css';  // Light mode
  * // OR
- * import 'prime-yggdrasil/yggdrasil-dark.css';   // Dark mode
+ * import '@lifeonlars/prime-yggdrasil/yggdrasil-dark.css';   // Dark mode
  *
  * import 'primeicons/primeicons.css';
  *
@@ -44,5 +44,5 @@ export const theme = {
 };
 
 // Theme CSS is exported via package.json exports field:
-// import 'prime-yggdrasil/yggdrasil-light.css'
-// import 'prime-yggdrasil/yggdrasil-dark.css'
+// import '@lifeonlars/prime-yggdrasil/yggdrasil-light.css'
+// import '@lifeonlars/prime-yggdrasil/yggdrasil-dark.css'
