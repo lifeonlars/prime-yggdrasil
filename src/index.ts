@@ -5,55 +5,44 @@
  *
  * Installation:
  * ```bash
- * npm install prime-yggdrasil
+ * npm install prime-yggdrasil primereact primeicons
  * ```
  *
  * Usage:
  * ```tsx
- * import { YggdrasilProvider } from 'prime-yggdrasil';
- * // Import Yggdrasil standalone theme
- * import 'prime-yggdrasil/theme.css';        // Light mode
- * // OR import 'prime-yggdrasil/theme-dark.css';  // Dark mode
+ * // Import theme CSS
+ * import 'prime-yggdrasil/yggdrasil-light.css';  // Light mode
+ * // OR
+ * import 'prime-yggdrasil/yggdrasil-dark.css';   // Dark mode
+ *
  * import 'primeicons/primeicons.css';
- * import 'primeflex/primeflex.css';
+ *
+ * // Use PrimeReact components
+ * import { Button } from 'primereact/button';
+ * import { DataTable } from 'primereact/datatable';
  *
  * function App() {
- *   return (
- *     <YggdrasilProvider>
- *       <YourApp />
- *     </YggdrasilProvider>
- *   );
+ *   return <Button label="Hello Yggdrasil" />;
  * }
  * ```
  */
 
-// Import theme CSS to be bundled with library
-import './theme/index.css';
-import './blocks/blocks.css';
+/**
+ * Package version
+ */
+export const version = '0.1.0';
 
-// Provider
-export { YggdrasilProvider } from './provider/YggdrasilProvider';
-export type { YggdrasilProviderProps } from './provider/YggdrasilProvider';
-
-// Blocks
-export { Card } from './blocks/Card';
-export { PageHeader } from './blocks/PageHeader';
-export { FormField } from './blocks/FormField';
-export { SectionTitle } from './blocks/SectionTitle';
-export {
-  TableShell,
-  identityColumn,
-  selectionColumn,
-  statusColumn,
-  actionsColumn,
-  textColumn,
-  standardTablePreset,
-  selectableRowsPreset,
-  expandableRowsPreset,
-  editableRowsPreset,
-  draggableRowsPreset,
-} from './blocks/table';
-export type { TableRow, TableValueArray, TableShellProps } from './blocks/table';
+/**
+ * Theme information
+ */
+export const theme = {
+  name: 'Yggdrasil',
+  version: '0.1.0',
+  tokens: 727,
+  coverage: '96%',
+  modes: ['light', 'dark'] as const,
+};
 
 // Theme CSS is exported via package.json exports field:
-// import 'prime-yggdrasil/theme.css'
+// import 'prime-yggdrasil/yggdrasil-light.css'
+// import 'prime-yggdrasil/yggdrasil-dark.css'

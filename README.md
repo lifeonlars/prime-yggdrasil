@@ -254,7 +254,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
 
 ## 📄 License
 
-MIT © [Your Name]
+MIT © Lars Farstad
 
 ## 🙏 Credits
 

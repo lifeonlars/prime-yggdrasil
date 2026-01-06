@@ -9,12 +9,7 @@
     "composite": false
   },
   "include": [
-    "src/index.ts",
-    "src/provider/**/*",
-    "src/theme/**/*",
-    "src/blocks/**/*",
-    "src/layouts/**/*",
-    "src/primitives/**/*"
+    "src/index.ts"
   ],
   "exclude": [
     "src/**/*.stories.tsx",

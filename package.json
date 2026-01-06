@@ -1,5 +1,5 @@
 {
-  "name": "prime-yggdrasil",
+  "name": "@lifeonlars/prime-yggdrasil",
   "version": "0.1.0",
   "type": "module",
   "description": "AI-agent-friendly PrimeReact design system for component-driven development with semantic tokens and dark mode support",
@@ -16,13 +16,13 @@
   "homepage": "https://github.com/lifeonlars/prime-yggdrasil#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lifeonlars/prime-yggdrasil.git"
+    "url": "git+https://github.com/lifeonlars/prime-yggdrasil.git"
   },
   "bugs": {
     "url": "https://github.com/lifeonlars/prime-yggdrasil/issues"
   },
   "license": "MIT",
-  "author": "Your Name <your.email@example.com>",
+  "author": "Lars Farstad <lars.farstad@gmail.com>",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
