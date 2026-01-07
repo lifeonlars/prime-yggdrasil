@@ -6,28 +6,67 @@ import fs from 'node:fs';
 
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
-// Plugin to copy theme variants
+// Plugin to copy theme files
 function copyThemeVariants() {
   return {
     name: 'copy-theme-variants',
     writeBundle() {
-      // Copy light theme
-      const lightSrc = path.resolve(dirname, 'src/theme/yggdrasil-light.css');
-      const lightDest = path.resolve(dirname, 'dist/yggdrasil-light.css');
-      fs.copyFileSync(lightSrc, lightDest);
-      console.log('✓ Copied yggdrasil-light.css to dist/');
+      const filesToCopy = [
+        // Main theme files
+        'yggdrasil-light.css',
+        'yggdrasil-dark.css',
+        // Dependencies
+        'foundations.css',
+        'radius.css',
+        'semantic-light.css',
+        'semantic-dark.css',
+        'components.css'
+      ];
 
-      // Copy dark theme
-      const darkSrc = path.resolve(dirname, 'src/theme/yggdrasil-dark.css');
-      const darkDest = path.resolve(dirname, 'dist/yggdrasil-dark.css');
-      fs.copyFileSync(darkSrc, darkDest);
-      console.log('✓ Copied yggdrasil-dark.css to dist/');
+      const componentFiles = [
+        'button.css',
+        'data.css',
+        'menu.css',
+        'form.css',
+        'calendar.css',
+        'overlay.css',
+        'panel.css',
+        'message.css',
+        'media.css',
+        'misc.css'
+      ];
 
-      // Copy foundations
-      const foundationsSrc = path.resolve(dirname, 'src/theme/foundations.css');
-      const foundationsDest = path.resolve(dirname, 'dist/foundations.css');
-      fs.copyFileSync(foundationsSrc, foundationsDest);
-      console.log('✓ Copied foundations.css to dist/');
+      // Copy main theme files
+      filesToCopy.forEach(file => {
+        const src = path.resolve(dirname, 'src/theme', file);
+        const dest = path.resolve(dirname, 'dist', file);
+
+        if (fs.existsSync(src)) {
+          fs.copyFileSync(src, dest);
+          console.log(`✓ Copied ${file} to dist/`);
+        } else {
+          console.warn(`⚠ Warning: ${file} not found in src/theme/`);
+        }
+      });
+
+      // Create components directory in dist
+      const componentsDir = path.resolve(dirname, 'dist/components');
+      if (!fs.existsSync(componentsDir)) {
+        fs.mkdirSync(componentsDir, { recursive: true });
+      }
+
+      // Copy component files
+      componentFiles.forEach(file => {
+        const src = path.resolve(dirname, 'src/theme/components', file);
+        const dest = path.resolve(dirname, 'dist/components', file);
+
+        if (fs.existsSync(src)) {
+          fs.copyFileSync(src, dest);
+          console.log(`✓ Copied components/${file} to dist/`);
+        } else {
+          console.warn(`⚠ Warning: components/${file} not found`);
+        }
+      });
     }
   };
 }
