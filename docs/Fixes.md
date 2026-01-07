@@ -1,123 +1,258 @@
-# Prime Yggdrasil npm Package Issues
+# Prime Yggdrasil npm Package Issues - Testing Report
 
-## Critical Issues Found
+## Version History
 
-### 1. **Broken CSS Build** (CRITICAL - Blocks Usage)
+### v0.1.1 - Initial Test
 
-**Package Version:** `@lifeonlars/prime-yggdrasil@0.1.1`
+**Status:** ❌ BROKEN - Missing 4 critical CSS files
 
-**Problem:**
+### v0.1.2 - After First Fix
+
+**Status:** ⚠️ PARTIALLY FIXED - Missing 1 critical file (prime-palette.css)
+
+### v0.1.3 - After Second Fix
+
+**Status:** ❌ BROKEN - CSS syntax error in misc.css
+
+---
+
+## Issue #1: Missing CSS Files (v0.1.1) ✅ RESOLVED
+
+### Problem
+
 The `yggdrasil-light.css` and `yggdrasil-dark.css` files contain `@import` statements that reference CSS files that don't exist in the published package.
 
-**yggdrasil-light.css contains:**
+**Status:** ✅ FIXED in v0.1.2
 
-```css
-@import url('https://fonts.googleapis.com/css2?family=Roboto:...');
-@import "./foundations.css";  ✅ EXISTS
-@import "./radius.css";       ❌ MISSING
-@import "./semantic-light.css"; ❌ MISSING
-@import "./components.css";   ❌ MISSING
+---
+
+## Issue #2: Missing prime-palette.css (v0.1.2) ✅ RESOLVED
+
+### Problem
+
+Both `semantic-light.css` and `semantic-dark.css` import `prime-palette.css` which didn't exist in dist folder.
+
+**Status:** ✅ FIXED in v0.1.3 - File is now present (8.1KB)
+
+---
+
+## Issue #3: CSS Syntax Error in misc.css (v0.1.3) ❌ CURRENT ISSUE
+
+### Problem (NEW in v0.1.3)
+
+The file `dist/components/misc.css` has a CSS syntax error - an extra closing brace `}` at line 606.
+
+**Build Error:**
+
+```
+[vite:css] [postcss] postcss-import:
+S:\...\dist\components\misc.css:606:1: Unexpected }
 ```
 
-**Files in dist folder:**
+**Location:** `components/misc.css` line 606
 
-- ✅ `foundations.css` (6KB, contains foundation color tokens)
-- ✅ `yggdrasil-light.css` (401 bytes, just imports)
-- ✅ `yggdrasil-dark.css` (399 bytes, just imports)
-- ❌ `radius.css` (MISSING)
-- ❌ `semantic-light.css` (MISSING)
-- ❌ `semantic-dark.css` (MISSING)
-- ❌ `components.css` (MISSING)
+**Analysis:**
+
+- Lines 1-606 contain:
+  - **Opening braces:** 127
+  - **Closing braces:** 128
+  - **Extra closing braces:** 1
+
+**Context around line 606:**
+
+```css
+  .border-round-right-lg {
+    border-top-right-radius: var(--radius-lg) !important;
+    border-bottom-right-radius: var(--radius-lg) !important;
+  }
+}  ← Line 606: EXTRA CLOSING BRACE
+
+  .p-inplace .p-inplace-display {
+    padding: 0.75rem 0.75rem;
+```
 
 **Impact:**
 
-- Cannot use the theme as documented
-- Importing `@lifeonlars/prime-yggdrasil/yggdrasil-light.css` fails silently or throws errors
-- Semantic tokens referenced in documentation are not available
+- ❌ Production build fails completely
+- ❌ Cannot deploy application
+- ❌ PostCSS parsing error prevents CSS compilation
 
 **Root Cause:**
-The Vite build configuration is not properly bundling CSS files. The `@import` statements are being left as-is instead of:
+There's an unmatched closing brace at line 606. This appears to be a leftover from editing or a merge conflict. The brace doesn't close any open block.
 
-1. Being resolved and bundled into a single file, OR
-2. Having the referenced files copied to the dist folder
+---
 
-## Recommended Fixes
+## Recommended Fix for v0.1.4
 
-### Option 1: Bundle All Imports (Recommended)
+### Fix: Remove Extra Closing Brace
 
-Update `vite.config.lib.ts` to use PostCSS with the `postcss-import` plugin to inline all `@import` statements:
+**In `dist/components/misc.css` line 606:**
 
-```ts
-// vite.config.lib.ts
-import { defineConfig } from 'vite';
-import postcssImport from 'postcss-import';
-
-export default defineConfig({
-  css: {
-    postcss: {
-      plugins: [postcssImport()],
-    },
-  },
-  build: {
-    lib: {
-      // ... existing config
-    },
-    cssCodeSplit: false, // Bundle all CSS into one file
-  },
-});
-```
-
-### Option 2: Copy All Referenced Files
-
-Update the build script to copy all referenced CSS files to dist:
-
-```json
-{
-  "scripts": {
-    "build": "tsc -p tsconfig.lib.json && vite build --config vite.config.lib.ts && npm run copy-css",
-    "copy-css": "cp src/theme/radius.css src/theme/semantic-light.css src/theme/semantic-dark.css src/theme/components.css dist/"
+```diff
+  .border-round-right-lg {
+    border-top-right-radius: var(--radius-lg) !important;
+    border-bottom-right-radius: var(--radius-lg) !important;
   }
-}
+- }
+
+  .p-inplace .p-inplace-display {
+    padding: 0.75rem 0.75rem;
 ```
 
-### Option 3: Update Package Exports
+**OR** - Check the source file before build:
 
-If the files are supposed to be separate, update the build to include them and update package.json exports:
+If this error is coming from the source, fix it in the source file (likely `src/theme/components/misc.css` or similar) and rebuild.
 
-```json
-{
-  "exports": {
-    "./radius.css": "./dist/radius.css",
-    "./semantic-light.css": "./dist/semantic-light.css",
-    "./semantic-dark.css": "./dist/semantic-dark.css",
-    "./components.css": "./dist/components.css"
-  }
-}
+### Validation Step
+
+After fixing, validate the CSS:
+
+```bash
+# Count braces - should be equal
+grep -c "{" dist/components/misc.css
+grep -c "}" dist/components/misc.css
+
+# OR use a CSS linter
+npx stylelint dist/components/misc.css
 ```
 
-## Current Workaround in This Project
+---
 
-Since the Yggdrasil theme is broken, this project uses:
+## Files Status in v0.1.3
 
-- PrimeReact's base `lara-light-blue` theme
-- Yggdrasil's `foundations.css` (for foundation color tokens)
+All required files are now present:
 
-See [src/main.tsx](src/main.tsx:3-8) for the workaround implementation.
+- ✅ `components.css` (469 bytes)
+- ✅ `foundations.css` (6.1KB)
+- ✅ `prime-palette.css` (8.1KB) - **FIXED in v0.1.3**
+- ✅ `radius.css` (1.6KB)
+- ✅ `semantic-dark.css` (9.0KB)
+- ✅ `semantic-light.css` (8.8KB)
+- ✅ `yggdrasil-dark.css` (399 bytes)
+- ✅ `yggdrasil-light.css` (401 bytes)
+- ✅ `components/` directory with individual component CSS files
+  - ❌ `components/misc.css` has syntax error
 
-## Testing Checklist for Fixed Package
+---
 
-When the package is fixed, verify:
+## Testing Checklist for v0.1.4
 
+When the package is updated, verify:
+
+- [ ] Remove extra closing brace from misc.css line 606
+- [ ] CSS linting passes (`npx stylelint dist/**/*.css`)
+- [ ] Brace count matches (opening === closing)
+- [ ] `npm run build` succeeds in consumer project
+- [ ] No PostCSS parsing errors
 - [ ] `yggdrasil-light.css` loads without errors
 - [ ] `yggdrasil-dark.css` loads without errors
-- [ ] All semantic tokens are available (--text-neutral-default, --surface-brand-primary, etc.)
-- [ ] PrimeReact components are properly styled
+- [ ] All semantic tokens available in browser
+- [ ] Production build succeeds
 - [ ] Dark mode switching works
-- [ ] No 404 errors in browser console for CSS files
+
+---
+
+## Test Commands
+
+To reproduce the issue in v0.1.3:
+
+```bash
+# Install the package
+npm install @lifeonlars/prime-yggdrasil@0.1.3
+
+# Import in your app (src/main.tsx)
+import '@lifeonlars/prime-yggdrasil/yggdrasil-light.css'
+
+# Try to build
+npm run build
+
+# Expected error:
+# [postcss] postcss-import: ...misc.css:606:1: Unexpected }
+```
+
+---
+
+## Progress Summary
+
+### v0.1.1 → v0.1.2
+
+✅ **Fixed:** Added 4 missing CSS files
+
+- radius.css
+- semantic-light.css
+- semantic-dark.css
+- components.css
+
+### v0.1.2 → v0.1.3
+
+✅ **Fixed:** Added prime-palette.css (8.1KB)
+❌ **New Issue:** CSS syntax error in components/misc.css
+
+### v0.1.3 → v0.1.4 (Required)
+
+❌ **Remaining Issue:** Extra closing brace in misc.css line 606
+
+- Single character fix
+- Blocking all production builds
+
+---
 
 ## Additional Notes
 
-- The package.json version shows `0.1.1`, which suggests this is an early release
-- Documentation references Storybook but no Storybook URL is provided
-- The foundations.css works correctly and contains all expected foundation tokens
-- The JS exports (version, theme metadata) work correctly
+### Good Progress Overall!
+
+- v0.1.2: Fixed the main missing files issue
+- v0.1.3: Fixed the nested import issue (prime-palette.css)
+- **Remaining:** Just one syntax error (extra `}` character)
+
+### Build Process Recommendations
+
+To prevent CSS syntax errors in future releases:
+
+1. **Add CSS Linting to CI/CD:**
+
+   ```json
+   {
+     "scripts": {
+       "lint:css": "stylelint \"dist/**/*.css\"",
+       "test:css": "postcss dist/**/*.css --syntax postcss"
+     }
+   }
+   ```
+
+2. **Validate Build Output:**
+
+   ```bash
+   # After build, before publish
+   npm run lint:css
+   npm run test:css
+   ```
+
+3. **Test in Consumer Project:**
+   ```bash
+   # Link locally and test build
+   npm link
+   cd ../test-project
+   npm link @lifeonlars/prime-yggdrasil
+   npm run build
+   ```
+
+### CSS File Generation
+
+The misc.css file is likely generated from source. Check:
+
+- Is there a build script that concatenates CSS files?
+- Is there a template or generator that might have introduced the extra brace?
+- Did a recent merge introduce the syntax error?
+
+---
+
+## Quick Fix Summary
+
+**The fix is simple - just remove one character:**
+
+**File:** `dist/components/misc.css`
+**Line:** 606
+**Action:** Delete the standalone `}` on this line
+
+After this fix, the package should work correctly! ✨
