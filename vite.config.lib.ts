@@ -17,6 +17,7 @@ function copyThemeVariants() {
         'yggdrasil-dark.css',
         // Dependencies
         'foundations.css',
+        'prime-palette.css',
         'radius.css',
         'semantic-light.css',
         'semantic-dark.css',
