@@ -4,7 +4,7 @@ import { Toast } from 'primereact/toast'
 import { useRef } from 'react'
 
 const meta = {
-  title: 'Components/SplitButton',
+  title: 'Button/SplitButton',
   component: SplitButton,
   parameters: {
     layout: 'centered',

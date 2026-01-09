@@ -3,6 +3,7 @@ import { themes } from 'storybook/theming';
 import { useEffect } from 'react';
 import type { ReactRenderer } from '@storybook/react';
 import type { DecoratorFunction } from 'storybook/internal/types';
+import { YggdrasilProvider } from '../src/provider/YggdrasilProvider';
 
 // Import base resources (icons and utilities)
 import 'primeicons/primeicons.css';
@@ -242,6 +243,15 @@ const withTheme: DecoratorFunction<ReactRenderer> = (Story) => {
   return Story();
 };
 
+// Wrap all stories with YggdrasilProvider to enable ripple effect
+const withYggdrasilProvider: DecoratorFunction<ReactRenderer> = (Story) => {
+  return (
+    <YggdrasilProvider ripple={true}>
+      <Story />
+    </YggdrasilProvider>
+  );
+};
+
 const preview: Preview = {
   parameters: {
     controls: {
@@ -266,7 +276,7 @@ const preview: Preview = {
     },
   },
 
-  decorators: [withTheme],
+  decorators: [withTheme, withYggdrasilProvider],
 };
 
 export default preview;

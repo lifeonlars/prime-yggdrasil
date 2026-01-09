@@ -16,30 +16,39 @@
  * import '@lifeonlars/prime-yggdrasil/yggdrasil-dark.css';   // Dark mode
  *
  * import 'primeicons/primeicons.css';
+ * import { YggdrasilProvider } from '@lifeonlars/prime-yggdrasil';
  *
- * // Use PrimeReact components
+ * // Use PrimeReact components with YggdrasilProvider
  * import { Button } from 'primereact/button';
  * import { DataTable } from 'primereact/datatable';
  *
  * function App() {
- *   return <Button label="Hello Yggdrasil" />;
+ *   return (
+ *     <YggdrasilProvider ripple={true}>
+ *       <Button label="Hello Yggdrasil" />
+ *     </YggdrasilProvider>
+ *   );
  * }
  * ```
  */
 
+// Export YggdrasilProvider for consumers
+export { YggdrasilProvider } from './provider/YggdrasilProvider';
+export type { YggdrasilProviderProps } from './provider/YggdrasilProvider';
+
 /**
  * Package version
  */
-export const version = '0.1.0';
+export const version = '0.2.1';
 
 /**
  * Theme information
  */
 export const theme = {
   name: 'Yggdrasil',
-  version: '0.1.0',
+  version: '0.2.1',
   tokens: 727,
-  coverage: '96%',
+  coverage: '100%',
   modes: ['light', 'dark'] as const,
 };
 

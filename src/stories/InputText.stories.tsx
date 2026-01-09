@@ -3,7 +3,7 @@ import { InputText } from 'primereact/inputtext'
 import { useState } from 'react'
 
 const meta = {
-  title: 'Components/InputText',
+  title: 'Form/InputText',
   component: InputText,
   parameters: {
     layout: 'centered',

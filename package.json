@@ -36,6 +36,7 @@
     "./yggdrasil-dark.css": "./dist/yggdrasil-dark.css",
     "./theme.css": "./dist/prime-yggdrasil.css",
     "./foundations.css": "./dist/foundations.css",
+    "./typography.css": "./dist/typography.css",
     "./docs/*": "./docs/*"
   },
   "files": [

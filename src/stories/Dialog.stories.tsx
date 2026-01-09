@@ -4,7 +4,7 @@ import { Button } from 'primereact/button'
 import { useState } from 'react'
 
 const meta = {
-  title: 'Components/Dialog',
+  title: 'Overlay/Dialog',
   component: Dialog,
   parameters: {
     layout: 'centered',

@@ -45,7 +45,7 @@ cp -r path/to/prime-yggdrasil/src/theme ./src/design-system
 
 ## 🚀 Integration
 
-### 1. Import Theme in Your App
+### 1. Import Theme and Provider in Your App
 
 ```tsx
 // src/main.tsx or src/App.tsx
@@ -54,14 +54,72 @@ import 'prime-yggdrasil/yggdrasil-light.css';  // Light theme
 import 'prime-yggdrasil/yggdrasil-dark.css';   // Dark theme
 
 import 'primeicons/primeicons.css';
+import { YggdrasilProvider } from 'prime-yggdrasil';
 
 // Your app code
 import { Button } from 'primereact/button';
 
 function App() {
-  return <Button label="Hello Yggdrasil" />;
+  return (
+    <YggdrasilProvider ripple={true}>
+      <Button label="Hello Yggdrasil" />
+    </YggdrasilProvider>
+  );
 }
 ```
+
+**YggdrasilProvider Configuration:**
+- `ripple` (default: `true`) - Enable ripple effect on interactive components (buttons, checkboxes, etc.)
+- `primeConfig` - Additional PrimeReact configuration options
+
+```tsx
+<YggdrasilProvider
+  ripple={true}
+  primeConfig={{
+    inputStyle: 'outlined', // or 'filled'
+    // other PrimeReact config...
+  }}
+>
+  <App />
+</YggdrasilProvider>
+```
+
+### Typography (Optional)
+
+Prime Yggdrasil loads Roboto font family by default. If you want to use the Yggdrasil typography system in your custom components:
+
+```tsx
+// Import optional typography utilities
+import '@lifeonlars/prime-yggdrasil/typography.css';
+
+// Use in your custom components
+function MyComponent() {
+  return (
+    <div style={{
+      fontFamily: 'var(--Body-family)',
+      fontSize: 'var(--Body-medium-font-size)',
+      lineHeight: 'var(--Body-medium-line-height)',
+      fontWeight: 'var(--Body-weight-regular)'
+    }}>
+      Custom content with Yggdrasil typography
+    </div>
+  );
+}
+```
+
+**Note:** PrimeReact components have their own typography sizing and don't consume these variables. Use these tokens only for custom application code outside of PrimeReact components.
+
+**Available font weights:**
+- 400 (Regular)
+- 500 (Medium)
+- 700 (Bold)
+
+**Available typography categories:**
+- `--Body-*` - Body text styles (small, medium, large)
+- `--Heading-*` - Heading styles (small, medium, large)
+- `--Title-*` - Title styles (small, medium, large)
+- `--Button-*` - Button text styles (small, medium, large)
+- `--Label-*` - Label styles (x-small, small, medium, large)
 
 ### 2. Configure Your Build Tool
 

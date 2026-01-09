@@ -4,7 +4,7 @@ import { Button } from 'primereact/button'
 import { useRef } from 'react'
 
 const meta = {
-  title: 'Components/Toast',
+  title: 'Messages/Toast',
   component: Toast,
   parameters: {
     layout: 'centered',

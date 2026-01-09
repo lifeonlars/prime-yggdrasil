@@ -19,7 +19,7 @@ const products: Product[] = [
 ]
 
 const meta = {
-  title: 'Components/DataTable',
+  title: 'Data/DataTable',
   component: DataTable,
   parameters: {
     layout: 'padded',

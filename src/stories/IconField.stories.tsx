@@ -4,7 +4,7 @@ import { InputIcon } from 'primereact/inputicon'
 import { InputText } from 'primereact/inputtext'
 
 const meta = {
-  title: 'Components/IconField',
+  title: 'Form/IconField',
   component: IconField,
   parameters: {
     layout: 'centered',

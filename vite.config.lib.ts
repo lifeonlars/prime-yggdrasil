@@ -21,7 +21,8 @@ function copyThemeVariants() {
         'radius.css',
         'semantic-light.css',
         'semantic-dark.css',
-        'components.css'
+        'components.css',
+        'typography.css'
       ];
 
       const componentFiles = [

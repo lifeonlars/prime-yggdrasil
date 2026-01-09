@@ -1,0 +1,73 @@
+/**
+ * Typography Utilities (Optional)
+ *
+ * This file provides optional typography variables based on Yggdrasil design tokens.
+ * PrimeReact components use hardcoded sizing and don't consume these variables.
+ *
+ * Use these variables in your application code for consistent typography:
+ * - Body text: var(--Body-medium-font-size), var(--Body-medium-line-height)
+ * - Headings: var(--Heading-large-font-size), var(--Heading-large-line-height)
+ * - Titles: var(--Title-medium-font-size), var(--Title-medium-line-height)
+ *
+ * Font weights available:
+ * - 400 (Regular)
+ * - 500 (Medium)
+ * - 700 (Bold)
+ */
+
+:root {
+  /* Body Text */
+  --Body-family: 'Roboto', arial, sans-serif;
+  --Body-large-font-size: 16px;
+  --Body-large-line-height: 28px;
+  --Body-medium-font-size: 14px;
+  --Body-medium-line-height: 24px;
+  --Body-small-font-size: 12px;
+  --Body-small-line-height: 20px;
+  --Body-weight-regular: 400;
+  --Body-weight-medium: 500;
+  --Body-weight-bold: 700;
+
+  /* Button Text */
+  --Button-family: 'Roboto', arial, sans-serif;
+  --Button-large-font-size: 18px;
+  --Button-large-line-height: 24px;
+  --Button-medium-font-size: 14px;
+  --Button-medium-line-height: 16px;
+  --Button-small-font-size: 12px;
+  --Button-small-line-height: 16px;
+  --Button-weight: 500;
+
+  /* Headings */
+  --Heading-family: 'Roboto', arial, sans-serif;
+  --Heading-large-font-size: 24px;
+  --Heading-large-line-height: 32px;
+  --Heading-medium-font-size: 20px;
+  --Heading-medium-line-height: 28px;
+  --Heading-small-font-size: 18px;
+  --Heading-small-line-height: 24px;
+  --Heading-weight: 500;
+
+  /* Titles */
+  --Title-family: 'Roboto', arial, sans-serif;
+  --Title-large-font-size: 36px;
+  --Title-large-line-height: 40px;
+  --Title-medium-font-size: 28px;
+  --Title-medium-line-height: 36px;
+  --Title-small-font-size: 22px;
+  --Title-small-line-height: 30px;
+  --Title-weight: 700;
+
+  /* Labels */
+  --Label-family: 'Roboto', arial, sans-serif;
+  --Label-large-font-size: 16px;
+  --Label-large-line-height: 24px;
+  --Label-medium-font-size: 14px;
+  --Label-medium-line-height: 20px;
+  --Label-small-font-size: 12px;
+  --Label-small-line-height: 16px;
+  --Label-x-small-font-size: 10px;
+  --Label-x-small-line-height: 12px;
+  --Label-weight-regular: 400;
+  --Label-weight-bold: 700;
+}

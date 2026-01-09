@@ -3,7 +3,7 @@ import { Password } from 'primereact/password'
 import { useState } from 'react'
 
 const meta = {
-  title: 'Components/Password',
+  title: 'Form/Password',
   component: Password,
   parameters: {
     layout: 'centered',

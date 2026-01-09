@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Tag } from 'primereact/tag'
 
 const meta = {
-  title: 'Components/Tag',
+  title: 'Misc/Tag',
   component: Tag,
   parameters: {
     layout: 'centered',

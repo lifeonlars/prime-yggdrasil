@@ -5,7 +5,7 @@ import { Button } from 'primereact/button'
 import { useRef } from 'react'
 
 const meta = {
-  title: 'Components/Message',
+  title: 'Messages/Message',
   component: Message,
   parameters: {
     layout: 'centered',

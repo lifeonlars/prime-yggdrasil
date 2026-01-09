@@ -3,7 +3,7 @@ import { SelectButton } from 'primereact/selectbutton'
 import { useState } from 'react'
 
 const meta = {
-  title: 'Components/SelectButton',
+  title: 'Form/SelectButton',
   component: SelectButton,
   parameters: {
     layout: 'centered',

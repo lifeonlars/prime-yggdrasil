@@ -3,7 +3,7 @@ import { MultiSelect } from 'primereact/multiselect'
 import { useState } from 'react'
 
 const meta = {
-  title: 'Components/MultiSelect',
+  title: 'Form/MultiSelect',
   component: MultiSelect,
   parameters: {
     layout: 'centered',

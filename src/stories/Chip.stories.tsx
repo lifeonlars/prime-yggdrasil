@@ -4,7 +4,7 @@ import { Chips } from 'primereact/chips'
 import { useState } from 'react'
 
 const meta = {
-  title: 'Components/Chip',
+  title: 'Misc/Chip',
   component: Chip,
   parameters: {
     layout: 'centered',
