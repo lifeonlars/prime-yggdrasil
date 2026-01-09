@@ -34,7 +34,8 @@ function copyThemeVariants() {
         'panel.css',
         'message.css',
         'media.css',
-        'misc.css'
+        'misc.css',
+        'misc-extended.css'
       ];
 
       // Copy main theme files

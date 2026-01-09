@@ -122,6 +122,85 @@ Or use utility classes:
 <div className="shadow-4">High shadow</div>
 ```
 
+## ⚙️ PrimeReact Configuration
+
+### App Setup with PrimeReactProvider
+
+Wrap your app with `PrimeReactProvider` to configure global settings:
+
+```tsx
+import { PrimeReactProvider } from 'primereact/api';
+
+function App() {
+  const primeConfig = {
+    ripple: true,              // Enable ripple effect on buttons/clicks
+    inputStyle: 'outlined',    // 'outlined' or 'filled'
+    locale: 'en',              // Default locale
+  };
+
+  return (
+    <PrimeReactProvider value={primeConfig}>
+      {/* Your app content */}
+    </PrimeReactProvider>
+  );
+}
+```
+
+### Ripple Effect
+
+The ripple effect is **disabled by default**. Enable it for Material Design-style click animations:
+
+```tsx
+<PrimeReactProvider value={{ ripple: true }}>
+```
+
+**Supported components:**
+- Button
+- Checkbox
+- RadioButton
+- Dropdown items
+- Menu items
+- ListBox items
+
+**Note:** The ripple effect is a JavaScript feature, not CSS. It's configured at the app level, not in the theme.
+
+### Input Style
+
+Choose between outlined (default) or filled input styles:
+
+```tsx
+// Outlined inputs (default) - border around input
+<PrimeReactProvider value={{ inputStyle: 'outlined' }}>
+
+// Filled inputs - filled background, bottom border only
+<PrimeReactProvider value={{ inputStyle: 'filled' }}>
+```
+
+### Other Configuration Options
+
+```tsx
+const primeConfig = {
+  ripple: true,
+  inputStyle: 'outlined',
+
+  // Append overlays to specific element (default: document.body)
+  appendTo: 'self',  // or document.getElementById('overlays')
+
+  // Control z-index layering
+  zIndex: {
+    modal: 1100,     // Modals
+    overlay: 1000,   // Overlays/dropdowns
+    menu: 1000,      // Menus
+    tooltip: 1100,   // Tooltips
+  },
+
+  // Locale for date formatting, number formatting, etc.
+  locale: 'en',
+};
+```
+
+**Documentation:** [PrimeReact Configuration](https://primereact.org/configuration/)
+
 ## 🧩 Component Selection Guide
 
 ### Data Display
@@ -243,6 +322,42 @@ import { Button } from 'primereact/button';
 // ✅ DO THIS INSTEAD - Use PrimeReact Card
 import { Card } from 'primereact/card';
 <Card>Content</Card>
+```
+
+### 5. **CRITICAL: Applying Utility Classes to Components**
+```tsx
+// ❌ DON'T DO THIS - Utility classes on components
+<Button className="w-full block mt-4 p-4" label="Submit" />
+<InputText className="text-lg font-bold" />
+<DataTable className="my-8" value={data} />
+
+// ✅ DO THIS INSTEAD - Use component props + wrapper
+<div className="w-full mt-4">  {/* Utility classes on wrapper */}
+  <Button label="Submit" />
+</div>
+
+<div className="text-lg">  {/* Styling on wrapper */}
+  <InputText />
+</div>
+```
+
+**Why this matters:**
+- ✅ **Components** are configured via **props** (size, variant, severity, etc.)
+- ✅ **Utility classes** are for **layout/composition** (flex, grid, margins, width)
+- ❌ Mixing utility classes with components breaks the design system
+- ❌ Can cause unexpected visual bugs (icon misalignment, broken layouts)
+
+**Correct approach:**
+```tsx
+// ✅ Layout utilities on wrappers/containers
+<div className="flex gap-4 w-full">
+  <Button label="Cancel" severity="secondary" />
+  <Button label="Submit" />
+</div>
+
+// ✅ Component configuration via props
+<Button label="Large Button" size="large" />
+<InputText placeholder="Text" className="w-full" />  {/* Width is OK */}
 ```
 
 ## 🔍 Decision Tree for UI Development

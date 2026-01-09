@@ -611,3 +611,82 @@
     border-color: transparent;
     color: var(--severity-danger-text);
   }
+
+  /* Button Contrast Variant */
+  .p-button.p-button-contrast,
+  .p-button-group.p-button-contrast > .p-button,
+  .p-splitbutton.p-button-contrast > .p-button {
+    color: var(--surface-neutral-primary);
+    background: var(--text-neutral-loud);
+    border: 1px solid var(--text-neutral-loud);
+  }
+
+  .p-button.p-button-contrast:not(:disabled):hover,
+  .p-button-group.p-button-contrast > .p-button:not(:disabled):hover,
+  .p-splitbutton.p-button-contrast > .p-button:not(:disabled):hover {
+    background: var(--text-neutral-loud);
+    color: var(--surface-neutral-primary);
+    border-color: var(--text-neutral-loud);
+  }
+
+  .p-button.p-button-contrast:not(:disabled):focus,
+  .p-button-group.p-button-contrast > .p-button:not(:disabled):focus,
+  .p-splitbutton.p-button-contrast > .p-button:not(:disabled):focus {
+    box-shadow: none;
+  }
+
+  .p-button.p-button-contrast:not(:disabled):active,
+  .p-button-group.p-button-contrast > .p-button:not(:disabled):active,
+  .p-splitbutton.p-button-contrast > .p-button:not(:disabled):active {
+    background: var(--text-neutral-default);
+    color: var(--surface-neutral-primary);
+    border-color: var(--text-neutral-default);
+  }
+
+  .p-button.p-button-contrast.p-button-outlined,
+  .p-button-group.p-button-contrast > .p-button.p-button-outlined,
+  .p-splitbutton.p-button-contrast > .p-button.p-button-outlined {
+    background-color: transparent;
+    color: var(--text-neutral-loud);
+    border: 1px solid;
+  }
+
+  .p-button.p-button-contrast.p-button-outlined:not(:disabled):hover,
+  .p-button-group.p-button-contrast > .p-button.p-button-outlined:not(:disabled):hover,
+  .p-splitbutton.p-button-contrast > .p-button.p-button-outlined:not(:disabled):hover {
+    background: color-mix(in srgb, var(--text-neutral-loud) 4%, transparent);
+    color: var(--text-neutral-loud);
+    border: 1px solid;
+  }
+
+  .p-button.p-button-contrast.p-button-outlined:not(:disabled):active,
+  .p-button-group.p-button-contrast > .p-button.p-button-outlined:not(:disabled):active,
+  .p-splitbutton.p-button-contrast > .p-button.p-button-outlined:not(:disabled):active {
+    background: color-mix(in srgb, var(--text-neutral-loud) 16%, transparent);
+    color: var(--text-neutral-loud);
+    border: 1px solid;
+  }
+
+  .p-button.p-button-contrast.p-button-text,
+  .p-button-group.p-button-contrast > .p-button.p-button-text,
+  .p-splitbutton.p-button-contrast > .p-button.p-button-text {
+    background-color: transparent;
+    color: var(--text-neutral-loud);
+    border-color: transparent;
+  }
+
+  .p-button.p-button-contrast.p-button-text:not(:disabled):hover,
+  .p-button-group.p-button-contrast > .p-button.p-button-text:not(:disabled):hover,
+  .p-splitbutton.p-button-contrast > .p-button.p-button-text:not(:disabled):hover {
+    background: color-mix(in srgb, var(--text-neutral-loud) 4%, transparent);
+    border-color: transparent;
+    color: var(--text-neutral-loud);
+  }
+
+  .p-button.p-button-contrast.p-button-text:not(:disabled):active,
+  .p-button-group.p-button-contrast > .p-button.p-button-text:not(:disabled):active,
+  .p-splitbutton.p-button-contrast > .p-button.p-button-text:not(:disabled):active {
+    background: color-mix(in srgb, var(--text-neutral-loud) 16%, transparent);
+    border-color: transparent;
+    color: var(--text-neutral-loud);
+  }

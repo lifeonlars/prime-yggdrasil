@@ -1,0 +1,192 @@
+/**
+ * Extended miscellaneous components
+ * Components not commonly used but part of PrimeReact
+ */
+
+  /* InputOTP */
+  .p-inputotp {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .p-inputotp-input {
+    text-align: center;
+    width: 2.5rem;
+  }
+
+  /* Mention */
+  .p-mention-panel {
+    background: var(--surface-neutral-primary);
+    color: var(--text-neutral-default);
+    border: 0 none;
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+  }
+
+  .p-mention-panel .p-mention-items {
+    padding: 0.75rem 0;
+  }
+
+  .p-mention-panel .p-mention-items .p-mention-item {
+    margin: 0;
+    padding: 0.75rem 1.25rem;
+    border: 0 none;
+    color: var(--text-neutral-default);
+    background: transparent;
+    transition: box-shadow 0.2s;
+    border-radius: 0;
+  }
+
+  .p-mention-panel .p-mention-items .p-mention-item:hover {
+    color: var(--text-neutral-default);
+    background: var(--surface-state-hover);
+  }
+
+  .p-mention-panel .p-mention-items .p-mention-item.p-highlight {
+    color: var(--text-state-interactive);
+    background: var(--surface-brand-overlay);
+  }
+
+  /* Toolbar */
+  .p-toolbar {
+    background: var(--surface-neutral-secondary);
+    border: 1px solid var(--border-neutral-subdued);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    gap: 0.5rem;
+  }
+
+  .p-toolbar .p-toolbar-separator {
+    margin: 0 0.5rem;
+  }
+
+  /* ConfirmPopup */
+  .p-confirm-popup {
+    background: var(--surface-neutral-primary);
+    color: var(--text-neutral-default);
+    border: 0 none;
+    border-radius: var(--radius-md);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
+  }
+
+  .p-confirm-popup .p-confirm-popup-content {
+    padding: 1.25rem;
+  }
+
+  .p-confirm-popup .p-confirm-popup-footer {
+    text-align: right;
+    padding: 0 1.25rem 1.25rem 1.25rem;
+  }
+
+  .p-confirm-popup .p-confirm-popup-footer button {
+    margin: 0 0.5rem 0 0;
+    width: auto;
+  }
+
+  .p-confirm-popup .p-confirm-popup-footer button:last-child {
+    margin: 0;
+  }
+
+  .p-confirm-popup:after {
+    border: solid transparent;
+    border-color: rgb(255 255 255 / 0%);
+    border-bottom-color: var(--surface-neutral-primary);
+  }
+
+  .p-confirm-popup:before {
+    border: solid transparent;
+    border-color: rgb(255 255 255 / 0%);
+    border-bottom-color: var(--surface-neutral-primary);
+  }
+
+  .p-confirm-popup.p-confirm-popup-flipped:after {
+    border-top-color: var(--surface-neutral-primary);
+  }
+
+  .p-confirm-popup.p-confirm-popup-flipped:before {
+    border-top-color: var(--surface-neutral-primary);
+  }
+
+  .p-confirm-popup .p-confirm-popup-icon {
+    font-size: 1.5rem;
+  }
+
+  .p-confirm-popup .p-confirm-popup-icon.p-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .p-confirm-popup .p-confirm-popup-message {
+    margin-left: 1rem;
+  }
+
+  /* ScrollTop */
+  .p-scrolltop {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-full);
+    box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+
+  .p-scrolltop.p-link {
+    background: rgb(0 0 0 / 70%);
+  }
+
+  .p-scrolltop.p-link:hover {
+    background: rgb(0 0 0 / 80%);
+  }
+
+  .p-scrolltop .p-scrolltop-icon {
+    font-size: 1.5rem;
+    color: var(--surface-neutral-secondary);
+  }
+
+  .p-scrolltop .p-scrolltop-icon.p-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  /* DataScroller */
+  .p-datascroller .p-paginator-top {
+    border-width: 0 0 1px 0;
+    border-radius: 0;
+  }
+
+  .p-datascroller .p-paginator-bottom {
+    border-width: 0 0 1px 0;
+    border-radius: 0;
+  }
+
+  .p-datascroller .p-datascroller-header {
+    background: var(--surface-neutral-secondary);
+    color: var(--text-neutral-loud);
+    border: 1px solid var(--border-neutral-subdued);
+    border-width: 1px 0 1px 0;
+    padding: 1rem 1rem;
+    font-weight: 700;
+  }
+
+  .p-datascroller .p-datascroller-content {
+    background: var(--surface-neutral-primary);
+    color: var(--text-neutral-default);
+    border: 0 none;
+    padding: 0;
+  }
+
+  .p-datascroller.p-datascroller-inline .p-datascroller-list > li {
+    border: solid var(--border-neutral-subdued);
+    border-width: 0 0 1px 0;
+  }
+
+  .p-datascroller .p-datascroller-footer {
+    background: var(--surface-neutral-secondary);
+    color: var(--text-neutral-loud);
+    border: 1px solid var(--border-neutral-subdued);
+    border-width: 0 0 1px 0;
+    padding: 1rem 1rem;
+    font-weight: 700;
+    border-bottom-left-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+  }

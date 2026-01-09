@@ -78,6 +78,15 @@
   .p-avatar.p-avatar-xl .p-avatar-icon {
     font-size: 2rem;
   }
+
+  .p-avatar-circle {
+    border-radius: var(--radius-full);
+  }
+
+  .p-avatar-group .p-avatar {
+    border: 2px solid var(--surface-neutral-primary);
+  }
+
   .p-chip {
     background-color: var(--surface-neutral-secondary);
     color: var(--text-neutral-default);

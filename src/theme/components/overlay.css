@@ -176,3 +176,37 @@
   .p-tooltip.p-tooltip-bottom .p-tooltip-arrow {
     border-bottom-color: var(--text-neutral-subdued);
   }
+
+  /* Component Overlay Transitions */
+  .p-component-overlay {
+    background-color: rgb(0 0 0 / 40%);
+    transition-duration: 0.2s;
+  }
+
+  .p-component-overlay-enter {
+    animation: p-component-overlay-enter-animation 150ms forwards;
+  }
+
+  .p-component-overlay-leave {
+    animation: p-component-overlay-leave-animation 150ms forwards;
+  }
+
+  @keyframes p-component-overlay-enter-animation {
+    from {
+      background-color: transparent;
+    }
+
+    to {
+      background-color: rgb(0 0 0 / 40%);
+    }
+  }
+
+  @keyframes p-component-overlay-leave-animation {
+    from {
+      background-color: rgb(0 0 0 / 40%);
+    }
+
+    to {
+      background-color: transparent;
+    }
+  }
