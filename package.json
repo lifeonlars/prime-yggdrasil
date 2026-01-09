@@ -1,6 +1,6 @@
 {
   "name": "@lifeonlars/prime-yggdrasil",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "module",
   "description": "AI-agent-friendly PrimeReact design system for component-driven development with semantic tokens and dark mode support",
   "keywords": [
