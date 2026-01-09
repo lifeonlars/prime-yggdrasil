@@ -388,6 +388,22 @@
   .p-splitbutton {
     border-radius: var(--radius-md);
   }
+
+  /* SplitButton border radius overrides for grouped buttons */
+  .p-splitbutton > .p-button {
+    border-radius: 0;
+  }
+
+  .p-splitbutton > .p-button:first-child {
+    border-top-left-radius: var(--radius-md);
+    border-bottom-left-radius: var(--radius-md);
+  }
+
+  .p-splitbutton > .p-button:last-child {
+    border-top-right-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+  }
+
   .p-splitbutton.p-button-outlined > .p-button {
     background-color: transparent;
     color: var(--text-state-interactive);
