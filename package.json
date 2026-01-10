@@ -39,9 +39,14 @@
     "./typography.css": "./dist/typography.css",
     "./docs/*": "./docs/*"
   },
+  "bin": {
+    "yggdrasil": "./cli/bin/yggdrasil.js"
+  },
   "files": [
     "dist",
     "docs",
+    "cli",
+    ".ai",
     "README.md",
     "LICENSE"
   ],
