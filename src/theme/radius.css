@@ -27,11 +27,11 @@
   --radius-charts-medium: 8px;   /* donut charts, tree maps */
   --radius-charts-small: 2px;    /* segments of stacked charts */
 
-  /* Special radius */
-  --radius-full: 9999px;         /* fully rounded elements (pills, avatars) */
 
   /* ==================== Generic Radius Scale ==================== */
-  /* For direct use in custom components following 4px grid */
+
+  /* Generally not used, however included for edge cases for direct use in
+  custom coponents, blocks or compositions to ensure 4px grid adherence */
 
   --radius-none: 0;
   --radius-sm: 4px;     /* Small elements, tight corners */

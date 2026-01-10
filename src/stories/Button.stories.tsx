@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Button } from 'primereact/button'
+import { expect, within } from 'storybook/test'
 
 const meta = {
   title: 'Button/Button',
@@ -37,12 +38,23 @@ export const Primary: Story = {
   args: {
     label: 'Primary',
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const button = canvas.getByRole('button')
+    await expect(button).toBeInTheDocument()
+    await expect(button).toHaveTextContent('Primary')
+  },
 }
 
 export const Danger: Story = {
   args: {
     label: 'Danger',
     severity: 'danger',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const button = canvas.getByRole('button')
+    await expect(button).toHaveClass('p-button-danger')
   },
 }
 
@@ -63,6 +75,11 @@ export const Outlined: Story = {
   args: {
     label: 'Outlined',
     outlined: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const button = canvas.getByRole('button')
+    await expect(button).toHaveClass('p-button-outlined')
   },
 }
 
