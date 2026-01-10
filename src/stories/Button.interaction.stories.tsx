@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from 'primereact/button';
-import { expect, within, userEvent } from '@storybook/test';
+import { expect, within, userEvent } from 'storybook/test';
 
 const meta = {
   title: 'Button/Button (Interactive Tests)',
