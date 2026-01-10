@@ -542,6 +542,46 @@ Need: Date picker
 2. Copy: Basic example code
 3. Adapt: Add semantic token styling if needed
 4. Test: In both light and dark modes
+5. Verify: Check Storybook for play function tests and a11y violations
+```
+
+## 🧪 Testing Your Implementation
+
+When implementing components with Yggdrasil:
+
+**1. Visual Testing (Automatic)**
+- View your story in Storybook
+- Check both light and dark modes (use theme toggle)
+- Watch for automatic accessibility violations in the a11y panel
+
+**2. Interactive Testing (Play Functions)**
+- Stories with play functions test automatically when viewed
+- Check the Interactions panel for test results
+- See `Button.stories.tsx` for examples of play functions
+
+**3. Accessibility (Built-in)**
+- `@storybook/addon-a11y` checks for violations automatically
+- Review the Accessibility panel for any issues
+- Violations are color-coded by severity
+
+**4. Visual Regression (Chromatic)**
+- Run `npm run chromatic` to catch visual changes
+- CI automatically runs Chromatic on push to main/master
+- Review changes in Chromatic dashboard before approving
+
+**Example Play Function:**
+```tsx
+import { expect, within } from 'storybook/test';
+
+export const Primary: Story = {
+  args: { label: 'Click Me' },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button');
+    await expect(button).toBeInTheDocument();
+    await expect(button).toHaveTextContent('Click Me');
+  },
+};
 ```
 
 ## 🏗️ Creating Local Blocks (Project-Specific)

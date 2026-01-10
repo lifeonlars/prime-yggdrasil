@@ -158,12 +158,28 @@ npm run build
 
 ### Scripts
 ```bash
-npm run dev                 # Start Storybook
-npm run build              # Build library
-npm run test:contrast      # Test color contrast
+npm run storybook          # Start Storybook development server
+npm run build              # Build library package
+npm run build-storybook    # Build static Storybook for deployment
+npm run test:contrast      # Test color contrast (APCA)
 npm run test:themes        # Validate theme structure
+npm run lint               # Lint TypeScript/JavaScript
 npm run lint:css           # Lint CSS files
+npm run chromatic          # Run visual regression tests
 ```
+
+### Testing
+
+**Storybook Built-in Testing:**
+- **Play functions** - Interactive tests run automatically when viewing stories
+- **Accessibility tests** - `@storybook/addon-a11y` checks components for a11y violations
+- **Visual regression** - Chromatic integration for catching visual changes
+
+**CI/CD Pipeline:**
+- GitHub Actions runs on every push/PR
+- Validates linting, builds, and accessibility
+- Chromatic visual regression testing (on push to main/master)
+- See [`.github/workflows/ci.yml`](.github/workflows/ci.yml) for details
 
 ## 📊 Project Stats
 
