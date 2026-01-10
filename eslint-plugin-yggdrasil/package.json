@@ -1,0 +1,53 @@
+{
+  "name": "@lifeonlars/eslint-plugin-yggdrasil",
+  "version": "0.1.0",
+  "description": "ESLint plugin for Prime Yggdrasil design system enforcement",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "primereact",
+    "design-system",
+    "yggdrasil",
+    "semantic-tokens",
+    "primeflex"
+  ],
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./configs/recommended": "./configs/recommended.js",
+    "./configs/strict": "./configs/strict.js"
+  },
+  "files": [
+    "index.js",
+    "rules/",
+    "configs/",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "vitest": "^4.0.15"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lifeonlars/prime-yggdrasil.git",
+    "directory": "eslint-plugin-yggdrasil"
+  },
+  "bugs": {
+    "url": "https://github.com/lifeonlars/prime-yggdrasil/issues"
+  },
+  "homepage": "https://github.com/lifeonlars/prime-yggdrasil#readme",
+  "author": "Lars Farstad <lars.farstad@gmail.com>",
+  "license": "MIT"
+}
