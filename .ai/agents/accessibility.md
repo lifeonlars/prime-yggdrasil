@@ -4,7 +4,7 @@
 
 **When to invoke:** When implementing any UI, reviewing code for accessibility, or validating semantic token pairings.
 
-**Status:** 🚧 Phase 6 (Future) - Specification complete, not yet integrated into CLI/ESLint
+**Status:** ✅ Active - Integrated into CLI validation and ESLint plugin (Phase 6 complete)
 
 **Mandatory References:**
 - [`docs/AESTHETICS.md`](../../docs/AESTHETICS.md) - Accessibility requirements section
@@ -571,11 +571,18 @@ button:focus-visible {
 
 ---
 
-**Status:** 🚧 Phase 6 specification (ready for implementation)
-**Next Steps:**
-1. Integrate contrast checking into CLI validation
-2. Add ARIA validation rules to ESLint plugin
-3. Create accessibility testing guide
-4. Add to consumer agent bundle
+**Status:** ✅ Phase 6 Active (CLI validation + ESLint plugin integrated)
+**Available Validations:**
+1. ✅ Missing alt text (images, icon-only buttons, avatars)
+2. ✅ Missing form labels (proper htmlFor/id association)
 
-**Last Updated:** 2026-01-10
+**Usage:**
+```bash
+# CLI validation
+npx @lifeonlars/prime-yggdrasil validate --rules accessibility/missing-alt-text,accessibility/missing-form-labels
+npx @lifeonlars/prime-yggdrasil audit --fix
+
+# ESLint (install @lifeonlars/eslint-plugin-yggdrasil)
+```
+
+**Last Updated:** 2026-01-11

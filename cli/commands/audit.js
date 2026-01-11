@@ -1,6 +1,10 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { validateCommand } from './validate.js';
 
+// Import Phase 6 rules for autofix
+import interactionPatternsRules from '../rules/interaction-patterns/index.js';
+import accessibilityRules from '../rules/accessibility/index.js';
+
 /**
  * Audit command - Detailed analysis with autofix
  *
@@ -136,7 +140,25 @@ const AUTOFIXES = {
       return content;
     },
     explanation: 'Rounds spacing values to nearest 4px grid value (0, 4, 8, 12, 16, 20, 24, 28, 32px).'
-  }
+  },
+
+  // Phase 6 Autofixes: Dynamically add from rule definitions
+  ...Object.fromEntries(
+    Object.entries({ ...interactionPatternsRules, ...accessibilityRules }).map(([key, rule]) => [
+      key,
+      {
+        canAutoFix: typeof rule.autofix === 'function',
+        fix: (content, violation) => {
+          if (rule.autofix) {
+            const result = rule.autofix(content, violation);
+            return result.fixed ? result.content : content;
+          }
+          return content;
+        },
+        explanation: rule.autofix ? `${rule.description} (Phase 6 rule)` : 'Manual fix required'
+      }
+    ])
+  )
 };
 
 /**

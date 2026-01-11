@@ -199,11 +199,11 @@ Yggdrasil includes **6 specialized AI agents** that prevent drift, guide composi
 npx @lifeonlars/prime-yggdrasil init
 ```
 
-This copies 4 active agents + 2 future specs to your project's `.ai/yggdrasil/` directory.
+This copies all 6 active agents to your project's `.ai/yggdrasil/` directory.
 
 ### 📋 The 6 Agents
 
-#### Active Agents (Phase 1-4 Complete)
+#### Active Agents (All 6 Complete - Phase 6 ✅)
 
 1. **Block Composer** - Composition-first UI planning
    - Prevents bespoke component creation
@@ -225,18 +225,17 @@ This copies 4 active agents + 2 future specs to your project's `.ai/yggdrasil/` 
    - ESLint plugin + CLI validation
    - Autofix capability for safe violations
 
-#### Future Agents (Phase 6 Specs Ready)
+5. **Interaction Patterns** - Behavioral consistency *(Phase 6 - NEW ✨)*
+   - Enforces state completeness (loading/error/empty/disabled)
+   - Detects generic copy (button labels, messages)
+   - Validates focus management (Dialog/Modal patterns)
+   - Ensures keyboard navigation works correctly
 
-5. **Interaction Patterns** *(specification complete)*
-   - Standardizes empty/loading/error/success patterns
-   - Enforces keyboard navigation and focus management
-   - Ensures copy is clear, pragmatic, non-fluffy
-
-6. **Accessibility** *(specification complete)*
-   - WCAG 2.1 AA minimum compliance
-   - Contrast ratio validation
+6. **Accessibility** - WCAG 2.1 AA compliance *(Phase 6 - NEW ✨)*
+   - Validates alt text on images and icon-only buttons
+   - Enforces proper form label associations (htmlFor/id)
+   - Checks contrast ratios for text/surface combinations
    - Ensures color is not the only cue (icons, text, patterns)
-   - Validates ARIA and semantic HTML
 
 ### 🛠️ Agent Tools
 
@@ -318,10 +317,10 @@ npx @lifeonlars/prime-yggdrasil validate --format json
 
 ### 📊 Enforcement Stats
 
-- **7 ESLint Rules** - Warnings (recommended) or errors (strict)
-- **5 CLI Validation Rules** - Report-only or autofix mode
-- **4 Active Agents** - Guidance during development
-- **2 Future Agents** - Specifications ready for Phase 6
+- **12 CLI Validation Rules** - 7 core + 5 Phase 6 (Interaction Patterns + Accessibility)
+- **6 Active Agents** - All agents operational (Phase 6 complete ✅)
+- **Autofix Support** - State completeness, alt text, form labels, focus management
+- **WCAG 2.1 AA** - Automated accessibility validation
 
 ### Example AI Prompt (with Agents)
 

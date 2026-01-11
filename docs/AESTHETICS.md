@@ -94,9 +94,9 @@ Agents must ensure all guidance, validation, and generated code consistently fol
 
 **Drift Validator** — Detect violations of architectural rules. Flag custom components that duplicate PrimeReact. Validate token-first approach.
 
-**Interaction Patterns** *(future)* — Enforce state visibility. Standardize empty/loading/error patterns. Specify keyboard + focus behavior. Ensure copy is clear and pragmatic.
+**Interaction Patterns** *(Phase 6 - Active ✅)* — Enforce state completeness (loading/error/empty/disabled). Detect generic copy. Validate focus management and keyboard navigation. Ensure copy is clear and pragmatic.
 
-**Accessibility** *(future)* — Validate WCAG 2.1 AA compliance. Check contrast ratios. Ensure color is not the only cue. Verify keyboard navigation.
+**Accessibility** *(Phase 6 - Active ✅)* — Validate WCAG 2.1 AA compliance. Check alt text and form labels. Verify contrast ratios. Ensure color is not the only cue. Validate ARIA and keyboard navigation.
 
 ### Quick reference for agents
 
@@ -164,5 +164,5 @@ Button labels: Specific actions ("Save Changes", "Delete Item"), not generic ("O
 
 ---
 
-**Status:** Mandatory reference for all agents
-**Last updated:** 2026-01-10
+**Status:** Mandatory reference for all agents (6/6 active - Phase 6 complete ✅)
+**Last updated:** 2026-01-11

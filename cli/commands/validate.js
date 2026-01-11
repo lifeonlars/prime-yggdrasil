@@ -1,6 +1,10 @@
 import { readFileSync, readdirSync, statSync } from 'fs';
 import { join, extname } from 'path';
 
+// Import Phase 6 rules
+import interactionPatternsRules from '../rules/interaction-patterns/index.js';
+import accessibilityRules from '../rules/accessibility/index.js';
+
 /**
  * Validate command - Report-only mode
  *
@@ -241,7 +245,31 @@ const RULES = {
 
       return violations;
     }
-  }
+  },
+
+  // Phase 6 Rules: Interaction Patterns
+  ...Object.fromEntries(
+    Object.entries(interactionPatternsRules).map(([key, rule]) => [
+      key,
+      {
+        name: rule.name,
+        severity: rule.severity,
+        check: (content, filePath) => rule.validate(content, filePath)
+      }
+    ])
+  ),
+
+  // Phase 6 Rules: Accessibility
+  ...Object.fromEntries(
+    Object.entries(accessibilityRules).map(([key, rule]) => [
+      key,
+      {
+        name: rule.name,
+        severity: rule.severity,
+        check: (content, filePath) => rule.validate(content, filePath)
+      }
+    ])
+  )
 };
 
 /**

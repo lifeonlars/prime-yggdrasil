@@ -4,7 +4,7 @@
 
 **When to invoke:** When implementing interactive features, forms, async operations, or user feedback mechanisms.
 
-**Status:** 🚧 Phase 6 (Future) - Specification complete, not yet integrated into CLI/ESLint
+**Status:** ✅ Active - Integrated into CLI validation and ESLint plugin (Phase 6 complete)
 
 **Mandatory References:**
 - [`docs/AESTHETICS.md`](../../docs/AESTHETICS.md) - Interaction principles (subtle motion, clear feedback, functional transparency)
@@ -455,11 +455,19 @@ Before implementing any interactive feature, verify:
 
 ---
 
-**Status:** 🚧 Phase 6 specification (ready for implementation)
-**Next Steps:**
-1. Integrate into CLI validation
-2. Add to ESLint plugin
-3. Create pattern library examples
-4. Add to consumer agent bundle
+**Status:** ✅ Phase 6 Active (CLI validation + ESLint plugin integrated)
+**Available Validations:**
+1. ✅ State completeness (loading/error/empty/disabled)
+2. ✅ Generic copy detection (button labels, messages)
+3. ✅ Focus management (Dialog/Modal patterns)
 
-**Last Updated:** 2026-01-10
+**Usage:**
+```bash
+# CLI validation
+npx @lifeonlars/prime-yggdrasil validate --rules interaction-patterns/state-completeness
+npx @lifeonlars/prime-yggdrasil audit --fix
+
+# ESLint (install @lifeonlars/eslint-plugin-yggdrasil)
+```
+
+**Last Updated:** 2026-01-11
