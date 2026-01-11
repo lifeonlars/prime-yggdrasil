@@ -4,6 +4,11 @@
 
 **When to invoke:** Before commits, during code review, or when auditing existing code for design system compliance.
 
+**Mandatory References:**
+- [`docs/AESTHETICS.md`](../../docs/AESTHETICS.md) - All aesthetic principles and enforcement rules
+- [`docs/PRIMEFLEX-POLICY.md`](../../docs/PRIMEFLEX-POLICY.md) - PrimeFlex allowlist
+- [`eslint-plugin-yggdrasil/rules/`](../../eslint-plugin-yggdrasil/rules/) - ESLint rule implementations
+
 ---
 
 ## Mission

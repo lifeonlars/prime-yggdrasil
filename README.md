@@ -189,25 +189,152 @@ npm run chromatic          # Run visual regression tests
 - **Contrast**: WCAG 3.0 (APCA) validated
 - **Dark Mode**: Optimized shadows with white rim strategy
 
-## 🤖 AI Agent Integration
+## 🤖 AI Agent Infrastructure
 
-Yggdrasil is specifically designed to guide AI agents toward component-driven development:
+Yggdrasil includes **6 specialized AI agents** that prevent drift, guide composition, and enforce design system compliance.
 
-1. **Comprehensive Documentation** - AI agents can read [AI-AGENT-GUIDE.md](./docs/AI-AGENT-GUIDE.md)
-2. **Decision Trees** - Step-by-step component selection guidance
-3. **Token Reference** - Quick lookup for semantic tokens
-4. **Anti-Patterns** - Clear examples of what NOT to do
-5. **Validation Rules** - Optional ESLint/pre-commit hooks
+### 🚀 Quick Start: Initialize Agents
 
-### Example AI Prompt
+```bash
+npx @lifeonlars/prime-yggdrasil init
+```
+
+This copies 4 active agents + 2 future specs to your project's `.ai/yggdrasil/` directory.
+
+### 📋 The 6 Agents
+
+#### Active Agents (Phase 1-4 Complete)
+
+1. **Block Composer** - Composition-first UI planning
+   - Prevents bespoke component creation
+   - Suggests PrimeReact components + existing Blocks
+   - Specifies all 5+ states (default, hover, focus, active, disabled)
+
+2. **PrimeFlex Guard** - Layout constraint enforcement
+   - Allows PrimeFlex for layout/spacing ONLY (not design)
+   - Critical rule: NO PrimeFlex on PrimeReact components (except `w-full` on inputs)
+   - Maintains 4px grid discipline
+
+3. **Semantic Token Intent** - State-complete token selection
+   - Ensures all states defined (default, hover, focus, active, disabled)
+   - Validates token pairings work in light/dark modes
+   - Prevents hardcoded colors and foundation tokens in app code
+
+4. **Drift Validator** - Comprehensive policy enforcement
+   - 7 core rules (no hardcoded colors, no PrimeFlex on components, etc.)
+   - ESLint plugin + CLI validation
+   - Autofix capability for safe violations
+
+#### Future Agents (Phase 6 Specs Ready)
+
+5. **Interaction Patterns** *(specification complete)*
+   - Standardizes empty/loading/error/success patterns
+   - Enforces keyboard navigation and focus management
+   - Ensures copy is clear, pragmatic, non-fluffy
+
+6. **Accessibility** *(specification complete)*
+   - WCAG 2.1 AA minimum compliance
+   - Contrast ratio validation
+   - Ensures color is not the only cue (icons, text, patterns)
+   - Validates ARIA and semantic HTML
+
+### 🛠️ Agent Tools
+
+**ESLint Plugin** (Phase 3)
+```bash
+npm install --save-dev @lifeonlars/eslint-plugin-yggdrasil
+```
+
+```js
+// eslint.config.js
+import yggdrasil from '@lifeonlars/eslint-plugin-yggdrasil';
+
+export default [
+  {
+    plugins: { '@lifeonlars/yggdrasil': yggdrasil },
+    rules: yggdrasil.configs.recommended.rules  // Warnings for adoption
+    // Or: yggdrasil.configs.strict.rules      // Errors for enforcement
+  }
+];
+```
+
+**CLI Validation** (Phase 4)
+```bash
+# Report-only validation
+npx @lifeonlars/prime-yggdrasil validate
+
+# Detailed audit with recommendations
+npx @lifeonlars/prime-yggdrasil audit
+
+# Apply automatic fixes
+npx @lifeonlars/prime-yggdrasil audit --fix
+
+# JSON output for CI/CD
+npx @lifeonlars/prime-yggdrasil validate --format json
+```
+
+### 📖 Agent Documentation
+
+**For Consumers:**
+- [`.ai/yggdrasil/README.md`](./.ai/agents/README.md) - Quick start guide (copied to your project)
+- [`docs/AESTHETICS.md`](./docs/AESTHETICS.md) - Mandatory aesthetic principles reference
+- [`docs/PRIMEFLEX-POLICY.md`](./docs/PRIMEFLEX-POLICY.md) - Complete PrimeFlex allowlist
+
+**For Agent Developers:**
+- [`.ai/agents/block-composer.md`](./.ai/agents/block-composer.md) - Composition planning
+- [`.ai/agents/primeflex-guard.md`](./.ai/agents/primeflex-guard.md) - Layout constraints
+- [`.ai/agents/semantic-token-intent.md`](./.ai/agents/semantic-token-intent.md) - Token selection
+- [`.ai/agents/drift-validator.md`](./.ai/agents/drift-validator.md) - Policy enforcement
+- [`.ai/agents/interaction-patterns.md`](./.ai/agents/interaction-patterns.md) - Behavioral patterns *(future)*
+- [`.ai/agents/accessibility.md`](./.ai/agents/accessibility.md) - WCAG compliance *(future)*
+
+### 🎯 Agent Workflow Example
+
+**Implementing a User Profile Form:**
+
+1. **Block Composer** - "Use `<Card>` + `<InputText>` + `<Button>`. Specify loading/empty/error states."
+2. **PrimeFlex Guard** - "Use `flex flex-column gap-3 p-4` for layout. NO `bg-*` or `rounded-*` utilities."
+3. **Semantic Token Intent** - "Use `var(--surface-neutral-primary)` for card, `var(--text-neutral-default)` for labels."
+4. **Drift Validator** - "✅ No violations. All rules passing."
+
+### 🔧 Dual Enforcement Strategy
+
+**Prevention (Agents guide before code is written)**
+- Block Composer prevents bespoke UI
+- PrimeFlex Guard prevents utility chaos
+- Semantic Token Intent prevents styling violations
+
+**Detection (ESLint + CLI catch violations after)**
+- ESLint: Code-time detection in IDE (fast feedback)
+- CLI: Runtime validation with deeper analysis (pre-commit, CI/CD)
+
+### 🚀 Migration Path
+
+1. **Week 1**: Install update, run `npx @lifeonlars/prime-yggdrasil init`
+2. **Week 2**: Read agent documentation in `.ai/yggdrasil/`
+3. **Week 3**: Install ESLint plugin (`recommended` config - warnings only)
+4. **Week 4**: Run `yggdrasil audit` on existing code, apply fixes incrementally
+5. **Week 5+**: Switch to ESLint `strict` config (errors) for new code
+
+### 📊 Enforcement Stats
+
+- **7 ESLint Rules** - Warnings (recommended) or errors (strict)
+- **5 CLI Validation Rules** - Report-only or autofix mode
+- **4 Active Agents** - Guidance during development
+- **2 Future Agents** - Specifications ready for Phase 6
+
+### Example AI Prompt (with Agents)
+
 ```
 I'm building a React app with Yggdrasil design system.
 
 Before implementing UI:
-1. Read: node_modules/@lifeonlars/prime-yggdrasil/docs/AI-AGENT-GUIDE.md
-2. Check: Is there a PrimeReact component for this?
-3. Use: Semantic tokens only (no hardcoded colors)
-4. Follow: 4px grid for all spacing
+1. Read: .ai/yggdrasil/block-composer.md
+2. Read: docs/AESTHETICS.md (mandatory reference)
+3. Check: Is there a PrimeReact component for this?
+4. Use: Semantic tokens only (no hardcoded colors)
+5. Follow: 4px grid for all spacing
+6. Validate: Run `yggdrasil audit` before committing
 
 Create a user profile form with name, email, and submit button.
 ```

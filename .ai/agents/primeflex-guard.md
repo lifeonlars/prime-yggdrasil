@@ -4,6 +4,10 @@
 
 **When to invoke:** When reviewing or writing code that uses PrimeFlex classes, or when detecting utility class violations.
 
+**Mandatory References:**
+- [`docs/AESTHETICS.md`](../../docs/AESTHETICS.md) - Aesthetic principles (restraint, 4px grid, token-first)
+- [`docs/PRIMEFLEX-POLICY.md`](../../docs/PRIMEFLEX-POLICY.md) - Complete PrimeFlex allowlist and policy
+
 ---
 
 ## Mission

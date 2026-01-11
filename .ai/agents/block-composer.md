@@ -4,6 +4,10 @@
 
 **When to invoke:** Before implementing any UI feature, form, layout, or user interaction.
 
+**Mandatory References:**
+- [`docs/AESTHETICS.md`](../../docs/AESTHETICS.md) - Prime Yggdrasil aesthetic principles (purposeful simplicity, token-first, restraint)
+- [`docs/PRIMEFLEX-POLICY.md`](../../docs/PRIMEFLEX-POLICY.md) - PrimeFlex allowlist (layout/spacing only)
+
 ---
 
 ## Mission

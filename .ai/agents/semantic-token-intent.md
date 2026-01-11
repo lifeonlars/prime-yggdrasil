@@ -4,6 +4,11 @@
 
 **When to invoke:** When styling any UI element, choosing colors, or translating design intent to code.
 
+**Mandatory References:**
+- [`docs/AESTHETICS.md`](../../docs/AESTHETICS.md) - Aesthetic principles (color for meaning, not decoration; state visibility)
+- [`src/themes/semantic-light.css`](../../src/themes/semantic-light.css) - Complete semantic token catalog (light mode)
+- [`src/themes/semantic-dark.css`](../../src/themes/semantic-dark.css) - Complete semantic token catalog (dark mode)
+
 ---
 
 ## Mission
