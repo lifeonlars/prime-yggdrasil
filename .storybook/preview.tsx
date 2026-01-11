@@ -12,7 +12,10 @@ import 'primeflex/primeflex.css';
 // Import blocks styles (theme-agnostic)
 import '../src/blocks/blocks.css';
 
-// Note: We DON'T import a theme here - it's injected by the theme manager below
+// Import both themes statically so they're bundled by Vite
+// This ensures Chromatic can access them in production builds
+import '../src/theme/yggdrasil-light.css';
+import '../src/theme/yggdrasil-dark.css';
 
 // Global theme management - runs once, not per story
 let currentTheme: 'light' | 'dark' | null = null;
@@ -21,27 +24,13 @@ let isInitialized = false;
 function applyTheme(theme: 'light' | 'dark') {
   const isDark = theme === 'dark';
 
-  // Update theme link
-  const currentThemeLink = document.getElementById('yggdrasil-theme') as HTMLLinkElement;
-  const newHref = isDark
-    ? '../src/theme/yggdrasil-dark.css'
-    : '../src/theme/yggdrasil-light.css';
-
-  const hasMatchingTheme = Boolean(currentThemeLink && currentThemeLink.href.includes(theme));
-  if (currentTheme === theme && hasMatchingTheme) return; // Skip if already applied
+  // Skip if already applied
+  if (currentTheme === theme) return;
   currentTheme = theme;
 
-  if (!hasMatchingTheme) {
-    // Remove existing theme links
-    document.querySelectorAll('link[href*="yggdrasil"]').forEach(link => link.remove());
-
-    // Create new theme link
-    const link = document.createElement('link');
-    link.id = 'yggdrasil-theme';
-    link.rel = 'stylesheet';
-    link.href = newHref;
-    document.head.appendChild(link);
-  }
+  // Both themes are now statically imported and bundled
+  // We just need to toggle the data-theme attribute
+  // The CSS will handle the theme switching via [data-theme] selectors
 
   // Update color-scheme and data-theme
   document.documentElement.style.colorScheme = theme;
