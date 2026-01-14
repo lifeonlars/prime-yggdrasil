@@ -1,0 +1,237 @@
+/**
+ * Yggdrasil Adaptive Theme
+ *
+ * Runtime theme switching via [data-theme] attribute.
+ * Combines light and dark themes with data-theme selectors for Storybook.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import "./foundations.css";
+@import "./radius.css";
+@import "./typography.css";
+@import "./components.css";
+
+/* ==================== Light Theme Semantic Tokens ==================== */
+:root,
+[data-theme="light"] {
+  /* Surfaces */
+  --surface-neutral-primary: var(--foundation-white);
+  --surface-neutral-secondary: var(--foundation-rock-050);
+  --surface-neutral-tertiary: var(--foundation-rock-100);
+  --surface-neutral-overlay: var(--foundation-darker-300);
+
+  --surface-brand-primary: var(--foundation-sky-700);
+  --surface-brand-secondary: var(--foundation-sky-600);
+  --surface-brand-accent: var(--foundation-berries-600);
+  --surface-brand-overlay: var(--foundation-lighter-200);
+
+  --surface-context-success: var(--foundation-forest-200);
+  --surface-context-warning: var(--foundation-sand-200);
+  --surface-context-danger: var(--foundation-berries-200);
+  --surface-context-info: var(--foundation-sea-200);
+  --surface-context-signal: var(--foundation-sea-300);
+  --surface-context-dangeractive: var(--foundation-berries-700);
+
+  --surface-input-primary: var(--foundation-white);
+  --surface-input-secondary: var(--foundation-rock-050);
+
+  /* Text */
+  --text-neutral-default: var(--foundation-sky-700);
+  --text-neutral-subdued: var(--foundation-rock-600);
+  --text-neutral-loud: var(--foundation-sky-900);
+  --text-neutral-disabled: var(--foundation-rock-400);
+
+  --text-state-interactive: var(--foundation-sky-600);
+  --text-state-selected: var(--foundation-sea-700);
+
+  --text-onsurface-onbrand: var(--foundation-white);
+  --text-onsurface-onaccent: var(--foundation-white);
+  --text-onsurface-oncontext: var(--foundation-sky-900);
+  --text-onsurface-oncontextactive: var(--foundation-white);
+  --text-onsurface-onsentiment: var(--foundation-white);
+  --text-onsurface-onhighlight: var(--foundation-sky-900);
+
+  --text-context-success: var(--foundation-forest-700);
+  --text-context-warning: var(--foundation-sand-700);
+  --text-context-danger: var(--foundation-berries-700);
+  --text-context-info: var(--foundation-sea-700);
+
+  --text-brand-primary: var(--foundation-sky-600);
+  --text-brand-secondary: var(--foundation-sky-700);
+
+  /* Borders */
+  --border-neutral-default: var(--foundation-rock-200);
+  --border-neutral-subdued: var(--foundation-rock-100);
+  --border-neutral-loud: var(--foundation-rock-300);
+
+  --border-brand-primary: var(--foundation-sky-600);
+  --border-brand-accent: var(--foundation-berries-600);
+
+  --border-context-success: var(--foundation-forest-600);
+  --border-context-warning: var(--foundation-sand-600);
+  --border-context-danger: var(--foundation-berries-600);
+  --border-context-info: var(--foundation-sea-600);
+
+  --border-state-hover: var(--foundation-sky-400);
+  --border-state-focus: var(--foundation-sky-500);
+  --border-state-active: var(--foundation-sky-700);
+  --border-state-disabled: var(--foundation-rock-200);
+
+  /* Icons */
+  --icon-neutral-default: var(--foundation-sky-700);
+  --icon-neutral-subdued: var(--foundation-rock-500);
+  --icon-neutral-disabled: var(--foundation-rock-300);
+
+  --icon-brand-primary: var(--foundation-sky-600);
+  --icon-brand-secondary: var(--foundation-sea-600);
+
+  --icon-context-success: var(--foundation-forest-600);
+  --icon-context-warning: var(--foundation-sand-700);
+  --icon-context-danger: var(--foundation-berries-600);
+  --icon-context-info: var(--foundation-sea-600);
+
+  --icon-onsurface-onbrand: var(--foundation-white);
+  --icon-onsurface-oncontext: var(--foundation-sky-900);
+  --icon-onsurface-ondanger: var(--foundation-white);
+
+  /* State overlays */
+  --surface-state-hover: var(--foundation-lighter-100);
+  --surface-state-pressed: var(--foundation-lighter-200);
+  --surface-state-disabled: var(--foundation-rock-100);
+  --surface-state-selected: var(--foundation-sea-100);
+
+  /* Elevation (Shadows) - Light mode */
+  --elevation-subtle: 0 2px 4px 0 rgba(0, 0, 0, 0.05), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  --elevation-moderate: 0 4px 8px -1px rgba(0, 0, 0, 0.1), 0 4px 8px -1px rgba(0, 0, 0, 0.06);
+  --elevation-elevated: 0 12px 16px -3px rgba(0, 0, 0, 0.1), 0 12px 16px -2px rgba(0, 0, 0, 0.05);
+  --elevation-high: 0 24px 32px -5px rgba(0, 0, 0, 0.1), 0 16px 16px -5px rgba(0, 0, 0, 0.04);
+
+  /* Typography */
+  --font-family: "Roboto", arial, sans-serif;
+
+  /* PrimeReact Legacy Tokens */
+  --surface-ground: var(--foundation-rock-050);
+  --surface-section: var(--foundation-white);
+  --surface-card: var(--foundation-white);
+  --surface-overlay: var(--foundation-white);
+  --surface-border: var(--foundation-rock-200);
+  --surface-hover: var(--foundation-lighter-100);
+
+  --text-color: var(--foundation-sky-700);
+  --text-color-secondary: var(--foundation-rock-600);
+
+  --primary-color: var(--foundation-sky-600);
+  --primary-color-text: var(--foundation-white);
+}
+
+/* ==================== Dark Theme Semantic Tokens ==================== */
+[data-theme="dark"] {
+  /* Surfaces */
+  --surface-neutral-primary: var(--foundation-darker-800);
+  --surface-neutral-secondary: var(--foundation-darker-700);
+  --surface-neutral-tertiary: var(--foundation-darker-600);
+  --surface-neutral-overlay: var(--foundation-rock-100);
+
+  --surface-brand-primary: var(--foundation-sky-500);
+  --surface-brand-secondary: var(--foundation-sky-600);
+  --surface-brand-accent: var(--foundation-berries-400);
+  --surface-brand-overlay: var(--foundation-darker-600);
+
+  --surface-context-success: var(--foundation-forest-800);
+  --surface-context-warning: var(--foundation-sand-800);
+  --surface-context-danger: var(--foundation-berries-800);
+  --surface-context-info: var(--foundation-sea-800);
+  --surface-context-signal: var(--foundation-sea-700);
+  --surface-context-dangeractive: var(--foundation-berries-600);
+
+  --surface-input-primary: var(--foundation-darker-700);
+  --surface-input-secondary: var(--foundation-darker-600);
+
+  /* Text */
+  --text-neutral-default: var(--foundation-lighter-200);
+  --text-neutral-subdued: var(--foundation-rock-400);
+  --text-neutral-loud: var(--foundation-white);
+  --text-neutral-disabled: var(--foundation-rock-600);
+
+  --text-state-interactive: var(--foundation-sky-300);
+  --text-state-selected: var(--foundation-sea-300);
+
+  --text-onsurface-onbrand: var(--foundation-white);
+  --text-onsurface-onaccent: var(--foundation-white);
+  --text-onsurface-oncontext: var(--foundation-white);
+  --text-onsurface-oncontextactive: var(--foundation-white);
+  --text-onsurface-onsentiment: var(--foundation-white);
+  --text-onsurface-onhighlight: var(--foundation-darker-900);
+
+  --text-context-success: var(--foundation-forest-300);
+  --text-context-warning: var(--foundation-sand-300);
+  --text-context-danger: var(--foundation-berries-300);
+  --text-context-info: var(--foundation-sea-300);
+
+  --text-brand-primary: var(--foundation-sky-400);
+  --text-brand-secondary: var(--foundation-sky-300);
+
+  /* Borders */
+  --border-neutral-default: var(--foundation-darker-600);
+  --border-neutral-subdued: var(--foundation-darker-700);
+  --border-neutral-loud: var(--foundation-darker-500);
+
+  --border-brand-primary: var(--foundation-sky-400);
+  --border-brand-accent: var(--foundation-berries-400);
+
+  --border-context-success: var(--foundation-forest-400);
+  --border-context-warning: var(--foundation-sand-400);
+  --border-context-danger: var(--foundation-berries-400);
+  --border-context-info: var(--foundation-sea-400);
+
+  --border-state-hover: var(--foundation-sky-500);
+  --border-state-focus: var(--foundation-sky-400);
+  --border-state-active: var(--foundation-sky-300);
+  --border-state-disabled: var(--foundation-darker-600);
+
+  /* Icons */
+  --icon-neutral-default: var(--foundation-lighter-200);
+  --icon-neutral-subdued: var(--foundation-rock-500);
+  --icon-neutral-disabled: var(--foundation-rock-700);
+
+  --icon-brand-primary: var(--foundation-sky-400);
+  --icon-brand-secondary: var(--foundation-sea-400);
+
+  --icon-context-success: var(--foundation-forest-400);
+  --icon-context-warning: var(--foundation-sand-400);
+  --icon-context-danger: var(--foundation-berries-400);
+  --icon-context-info: var(--foundation-sea-400);
+
+  --icon-onsurface-onbrand: var(--foundation-white);
+  --icon-onsurface-oncontext: var(--foundation-white);
+  --icon-onsurface-ondanger: var(--foundation-white);
+
+  /* State overlays */
+  --surface-state-hover: var(--foundation-darker-700);
+  --surface-state-pressed: var(--foundation-darker-600);
+  --surface-state-disabled: var(--foundation-darker-750);
+  --surface-state-selected: var(--foundation-sea-900);
+
+  /* Elevation (Shadows) - Dark mode uses white rim + lighter shadows */
+  --elevation-subtle: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 8px 0 rgba(255, 255, 255, 0.1), 0 1px 2px 0 rgba(255, 255, 255, 0.05);
+  --elevation-moderate: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 8px 16px 0 rgba(255, 255, 255, 0.1), 0 4px 8px 0 rgba(255, 255, 255, 0.05);
+  --elevation-elevated: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 20px 32px -10px rgba(255, 255, 255, 0.15), 0 0 30px 0px rgba(255, 255, 255, 0.2);
+  --elevation-high: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 24px 64px 0 rgba(255, 255, 255, 0.15), 0 0 64px 0px rgba(255, 255, 255, 0.2);
+
+  /* Typography */
+  --font-family: "Roboto", arial, sans-serif;
+
+  /* PrimeReact Legacy Tokens */
+  --surface-ground: var(--foundation-darker-900);
+  --surface-section: var(--foundation-darker-800);
+  --surface-card: var(--foundation-darker-800);
+  --surface-overlay: var(--foundation-darker-700);
+  --surface-border: var(--foundation-darker-600);
+  --surface-hover: var(--foundation-darker-700);
+
+  --text-color: var(--foundation-lighter-200);
+  --text-color-secondary: var(--foundation-rock-400);
+
+  --primary-color: var(--foundation-sky-400);
+  --primary-color-text: var(--foundation-white);
+}

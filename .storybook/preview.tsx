@@ -12,10 +12,9 @@ import 'primeflex/primeflex.css';
 // Import blocks styles (theme-agnostic)
 import '../src/blocks/blocks.css';
 
-// Import both themes statically so they're bundled by Vite
-// This ensures Chromatic can access them in production builds
-import '../src/theme/yggdrasil-light.css';
-import '../src/theme/yggdrasil-dark.css';
+// Import adaptive theme that handles both light and dark via [data-theme] attribute
+// This ensures Chromatic can access both themes while allowing Storybook to switch
+import '../src/theme/yggdrasil-adaptive.css';
 
 // Global theme management - runs once, not per story
 let currentTheme: 'light' | 'dark' | null = null;
