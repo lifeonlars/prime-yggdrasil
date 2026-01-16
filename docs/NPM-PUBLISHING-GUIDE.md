@@ -42,8 +42,8 @@ npm run build
 ls -la dist/
 
 # Expected files:
-# - yggdrasil-light.css
-# - yggdrasil-dark.css
+# - theme.css
+
 # - index.js
 # - index.cjs
 # - index.d.ts
@@ -61,7 +61,7 @@ cd /path/to/test-project
 npm install /path/to/prime-yggdrasil/prime-yggdrasil-0.1.0.tgz
 
 # Verify imports work
-import 'prime-yggdrasil/yggdrasil-light.css';
+import 'prime-yggdrasil/theme.css';
 ```
 
 ### 5. Update README Links
@@ -233,7 +233,7 @@ npm publish --access public
 
 ### Usage in projects
 ```tsx
-import '@your-org/prime-yggdrasil/yggdrasil-light.css';
+import '@your-org/prime-yggdrasil/theme.css';
 ```
 
 ## Troubleshooting

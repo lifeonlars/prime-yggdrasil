@@ -1,16 +1,16 @@
-# PrimeFlex Usage Policy
+# Yggdrasil Utilities Usage Policy
 
-**Purpose:** Define the allowed and forbidden uses of PrimeFlex utility classes in the Yggdrasil design system.
+**Purpose:** Define the allowed and forbidden uses of utility classes in the Yggdrasil design system.
 
-**TL;DR:** PrimeFlex for **layout and spacing only**. Never for design (colors, borders, shadows). Never on PrimeReact components (except `w-full` on inputs).
+**TL;DR:** Utilities for **layout and spacing only**. Never for design (colors, borders, shadows). Never on PrimeReact components (except `w-full` on inputs).
 
 ---
 
 ## Core Principle: Layout vs Design
 
-The fundamental rule of PrimeFlex usage is the separation of **layout** and **design** concerns.
+The fundamental rule of utility usage is the separation of **layout** and **design** concerns.
 
-### Layout (✅ PrimeFlex)
+### Layout (✅ Utilities)
 
 **What it controls:**
 - Element positioning (flex, grid, relative, absolute)
@@ -19,7 +19,7 @@ The fundamental rule of PrimeFlex usage is the separation of **layout** and **de
 - Structural dimensions (width, height for layout purposes)
 - Display properties (block, inline-block, hidden)
 
-**Why PrimeFlex?**
+**Why utilities?**
 - Layout changes with screen size (responsive)
 - Layout changes with component composition
 - Layout is structural, not thematic
@@ -35,7 +35,7 @@ The fundamental rule of PrimeFlex usage is the separation of **layout** and **de
 
 ---
 
-### Design (❌ PrimeFlex → ✅ Semantic Tokens)
+### Design (❌ Utilities → ✅ Semantic Tokens)
 
 **What it controls:**
 - Colors (text, background, border)
@@ -71,46 +71,46 @@ The fundamental rule of PrimeFlex usage is the separation of **layout** and **de
 
 ```css
 /* Container */
-flex
-flex-1, flex-auto, flex-initial, flex-none
+.flex
+.flex-1, .flex-auto, .flex-initial, .flex-none
 
 /* Direction */
-flex-row, flex-row-reverse
-flex-column, flex-column-reverse
+.flex-row, .flex-row-reverse
+.flex-column, .flex-column-reverse
 
 /* Wrapping */
-flex-wrap, flex-nowrap, flex-wrap-reverse
+.flex-wrap, .flex-nowrap, .flex-wrap-reverse
 
 /* Main axis alignment */
-justify-content-start
-justify-content-end
-justify-content-center
-justify-content-between
-justify-content-around
-justify-content-evenly
+.justify-content-start
+.justify-content-end
+.justify-content-center
+.justify-content-between
+.justify-content-around
+.justify-content-evenly
 
 /* Cross axis alignment */
-align-items-start
-align-items-end
-align-items-center
-align-items-baseline
-align-items-stretch
+.align-items-start
+.align-items-end
+.align-items-center
+.align-items-baseline
+.align-items-stretch
 
 /* Multi-line alignment */
-align-content-start
-align-content-end
-align-content-center
-align-content-between
-align-content-around
-align-content-stretch
+.align-content-start
+.align-content-end
+.align-content-center
+.align-content-between
+.align-content-around
+.align-content-stretch
 
 /* Item self-alignment */
-align-self-auto
-align-self-start
-align-self-end
-align-self-center
-align-self-baseline
-align-self-stretch
+.align-self-auto
+.align-self-start
+.align-self-end
+.align-self-center
+.align-self-baseline
+.align-self-stretch
 ```
 
 **Usage:**
@@ -128,20 +128,20 @@ align-self-stretch
 
 ```css
 /* Grid container */
-grid
+.grid
 
 /* Columns (12-column system) */
-col, col-1, col-2, ..., col-12
+.col, .col-1, .col-2, ..., .col-12
 
 /* Column offset */
-col-offset-1, col-offset-2, ..., col-offset-12
+.col-offset-1, .col-offset-2, ..., .col-offset-12
 
 /* Responsive columns */
-sm:col-*, md:col-*, lg:col-*, xl:col-*
+.md\:col-*, .lg\:col-*, .xl\:col-*
 
 /* Gap (flex and grid) */
-gap-0, gap-1, gap-2, gap-3, gap-4, gap-5, gap-6, gap-7, gap-8
-column-gap-*, row-gap-*
+.gap-0, .gap-1, .gap-2, .gap-3, .gap-4, .gap-5, .gap-6, .gap-7, .gap-8
+.column-gap-*, .row-gap-*
 ```
 
 **Usage:**
@@ -178,18 +178,18 @@ column-gap-*, row-gap-*
 **Classes:**
 ```css
 /* Padding */
-p-0, p-1, p-2, p-3, p-4, p-5, p-6, p-7, p-8
-pt-*, pr-*, pb-*, pl-*  /* Directional */
-px-*, py-*  /* Axis */
+.p-0, .p-1, .p-2, .p-3, .p-4, .p-5, .p-6, .p-7, .p-8
+.pt-*, .pr-*, .pb-*, .pl-*  /* Directional */
+.px-*, .py-*  /* Axis */
 
 /* Margin */
-m-0, m-1, m-2, m-3, m-4, m-5, m-6, m-7, m-8
-mt-*, mr-*, mb-*, ml-*  /* Directional */
-mx-*, my-*  /* Axis */
-m-auto  /* Auto margin */
+.m-0, .m-1, .m-2, .m-3, .m-4, .m-5, .m-6, .m-7, .m-8
+.mt-*, .mr-*, .mb-*, .ml-*  /* Directional */
+.mx-*, .my-*  /* Axis */
+.m-auto  /* Auto margin */
 
 /* Gap (already covered in flex/grid) */
-gap-0, gap-1, gap-2, gap-3, gap-4, gap-5, gap-6, gap-7, gap-8
+.gap-0, .gap-1, .gap-2, .gap-3, .gap-4, .gap-5, .gap-6, .gap-7, .gap-8
 ```
 
 **Usage:**
@@ -208,18 +208,18 @@ gap-0, gap-1, gap-2, gap-3, gap-4, gap-5, gap-6, gap-7, gap-8
 
 ```css
 /* Display type */
-block
-inline-block
-inline
+.block
+.inline-block
+.inline
 
 /* Visibility */
-hidden  /* display: none */
-invisible  /* visibility: hidden */
+.hidden  /* display: none */
+.invisible  /* visibility: hidden */
 
 /* Overflow */
-overflow-auto, overflow-hidden, overflow-visible, overflow-scroll
-overflow-x-auto, overflow-x-hidden, overflow-x-scroll
-overflow-y-auto, overflow-y-hidden, overflow-y-scroll
+.overflow-auto, .overflow-hidden, .overflow-visible, .overflow-scroll
+.overflow-x-auto, .overflow-x-hidden, .overflow-x-scroll
+.overflow-y-auto, .overflow-y-hidden, .overflow-y-scroll
 ```
 
 **Usage:**
@@ -236,13 +236,13 @@ overflow-y-auto, overflow-y-hidden, overflow-y-scroll
 
 ```css
 /* Position type */
-static, relative, absolute, fixed, sticky
+.static, .relative, .absolute, .fixed, .sticky
 
 /* Position values */
-top-0, top-50, top-100
-right-0, right-50, right-100
-bottom-0, bottom-50, bottom-100
-left-0, left-50, left-100
+.top-0, .top-50, .top-100
+.right-0, .right-50, .right-100
+.bottom-0, .bottom-50, .bottom-100
+.left-0, .left-50, .left-100
 ```
 
 **Usage:**
@@ -262,18 +262,16 @@ left-0, left-50, left-100
 
 ```css
 /* Width */
-w-auto, w-full
-w-screen  /* 100vw */
-w-1, w-2, w-3, w-4, w-5, w-6  /* Fixed sizes */
+.w-auto, .w-full
+.w-screen  /* 100vw */
 
 /* Height */
-h-auto, h-full
-h-screen  /* 100vh */
-h-1, h-2, h-3, h-4, h-5, h-6  /* Fixed sizes */
+.h-auto, .h-full
+.h-screen  /* 100vh */
 
 /* Min/Max */
-min-w-0, max-w-full
-min-h-0, max-h-full
+.min-w-0, .max-w-full
+.min-h-0, .max-h-full
 ```
 
 **Usage:**
@@ -285,27 +283,104 @@ min-h-0, max-h-full
 
 ---
 
-## The Forbidden List
+### Typography ✅ (Limited)
 
-### ❌ Colors
-
-**Forbidden:** All color utilities
+**Purpose:** Minimal typography utilities using semantic tokens
 
 ```css
-/* Text colors */
-text-blue-500, text-red-600, text-gray-900, text-white, etc.
+/* Font weight */
+.font-bold         /* 700 */
+.font-semibold     /* 600 */
+.font-medium       /* 500 */
+.font-normal       /* 400 */
 
-/* Background colors */
-bg-blue-500, bg-white, bg-gray-100, etc.
+/* Font size (semantic tokens) */
+.text-xs      /* 0.75rem (12px) */
+.text-sm      /* 0.875rem (14px) */
+.text-base    /* 1rem (16px) */
+.text-lg      /* 1.125rem (18px) */
 
-/* Border colors */
-border-blue-500, border-gray-300, etc.
+/* Text alignment */
+.text-left
+.text-center
+.text-right
+
+/* Text color (semantic tokens only) */
+.text-primary        /* var(--text-neutral-default) */
+.text-secondary      /* var(--text-neutral-subdued) */
+.text-interactive    /* var(--text-state-interactive) */
+```
+
+**Usage:**
+```tsx
+✅ <span className="font-bold">Bold text</span>
+✅ <h2 className="text-lg">Large heading</h2>
+✅ <p className="text-secondary">Muted text</p>
+```
+
+---
+
+### Borders ✅ (Using Semantic Tokens)
+
+**Purpose:** Border utilities that reference design tokens
+
+```css
+/* Border width - using tokens */
+.border-1     /* 1px solid var(--border-neutral-default) */
+.border-none  /* border: none */
+
+/* Border radius - using tokens */
+.border-round          /* var(--radius-md) */
+.border-round-sm       /* var(--radius-sm) */
+.border-round-lg       /* var(--radius-lg) */
+.border-round-full     /* var(--radius-full) */
+```
+
+**Usage:**
+```tsx
+✅ <div className="border-1 border-round">  {/* Uses tokens */}
+✅ <div className="border-round-lg">  {/* Large radius */}
+```
+
+---
+
+### Shadows ✅ (Using Elevation Tokens)
+
+**Purpose:** Shadow utilities that reference elevation tokens
+
+```css
+/* Shadows using elevation tokens */
+.shadow-subtle      /* var(--elevation-subtle) */
+.shadow-moderate    /* var(--elevation-moderate) */
+.shadow-elevated    /* var(--elevation-elevated) */
+.shadow-high        /* var(--elevation-high) */
+```
+
+**Usage:**
+```tsx
+✅ <div className="shadow-moderate">  {/* Uses token */}
+✅ <Card className="shadow-subtle">  {/* Subtle elevation */}
+```
+
+---
+
+## The Forbidden List
+
+### ❌ Arbitrary Colors
+
+**Forbidden:** Hardcoded color values
+
+```css
+/* Never use hardcoded colors */
+.bg-blue-500, .bg-white, .bg-gray-100
+.text-red-600, .text-gray-900
+.border-blue-500, .border-gray-300
 ```
 
 **Use Instead:** Semantic tokens
 ```tsx
-✅ color: 'var(--text-neutral-default)'
 ✅ background: 'var(--surface-brand-primary)'
+✅ color: 'var(--text-neutral-default)'
 ✅ borderColor: 'var(--border-neutral-default)'
 ```
 
@@ -317,117 +392,29 @@ border-blue-500, border-gray-300, etc.
 
 ---
 
-### ❌ Borders
+### ❌ Arbitrary Borders/Shadows
 
-**Forbidden:** Border utilities
+**Forbidden:** Border/shadow utilities with hardcoded values
 
 ```css
-/* Border width */
-border, border-0, border-2, border-4, border-8
-
-/* Border style */
-border-solid, border-dashed, border-dotted, border-double
-
-/* Border sides */
-border-t, border-r, border-b, border-l
-border-x, border-y
-
-/* Border radius */
-rounded, rounded-sm, rounded-md, rounded-lg, rounded-xl, rounded-full
-rounded-t-*, rounded-r-*, rounded-b-*, rounded-l-*
+/* These don't exist in utilities.css */
+.border-2, .border-4, .border-8  /* No arbitrary widths */
+.rounded-xl, .rounded-2xl  /* No arbitrary radii */
+.shadow-sm, .shadow-lg, .shadow-2xl  /* No arbitrary shadows */
 ```
 
 **Use Instead:** Semantic tokens
 ```tsx
-✅ border: `1px solid var(--border-neutral-default)`
+✅ border: '1px solid var(--border-neutral-default)'
 ✅ borderRadius: 'var(--radius-md)'
-```
-
-**Exception:** `1px` hairline borders are allowed for width
-```tsx
-✅ border: '1px solid var(--border-neutral-default)'  {/* 1px OK */}
-❌ border: '3px solid var(--border-brand-primary)'  {/* 3px NOT OK */}
-```
-
-**Rationale:**
-- Border styles are part of design language (theme)
-- Border radius values must be consistent (design tokens)
-- Theme defines visual hierarchy through borders
-
----
-
-### ❌ Shadows
-
-**Forbidden:** Shadow utilities
-
-```css
-shadow-none
-shadow-sm
-shadow, shadow-md
-shadow-lg, shadow-xl
-shadow-2xl
-```
-
-**Use Instead:** Elevation tokens
-```tsx
-✅ boxShadow: 'var(--elevation-subtle)'
 ✅ boxShadow: 'var(--elevation-moderate)'
-✅ boxShadow: 'var(--elevation-elevated)'
-✅ boxShadow: 'var(--elevation-high)'
 ```
-
-**Rationale:**
-- Shadows define depth hierarchy (design system)
-- Dark mode requires different shadow strategies
-- Elevation is semantic (subtle vs elevated)
-
----
-
-### ❌ Typography
-
-**Forbidden:** Typography utilities
-
-```css
-/* Font family */
-font-sans, font-serif, font-mono
-
-/* Font size */
-text-xs, text-sm, text-base, text-lg, text-xl, text-2xl, etc.
-
-/* Font weight */
-font-thin, font-light, font-normal, font-medium, font-semibold, font-bold, font-black
-
-/* Text alignment */
-text-left, text-center, text-right, text-justify
-
-/* Text decoration */
-underline, no-underline, line-through
-
-/* Text transform */
-uppercase, lowercase, capitalize
-
-/* Line height */
-leading-none, leading-tight, leading-normal, leading-relaxed
-```
-
-**Use Instead:** CSS styles with theme values
-```tsx
-✅ fontSize: '1.125rem'  {/* 18px */}
-✅ fontWeight: 600
-✅ textAlign: 'center'
-```
-
-**Rationale:**
-- Typography is core to brand identity
-- Font sizes must follow typographic scale
-- Font weights are limited by font family
-- Theme owns typography hierarchy
 
 ---
 
 ### ❌ Tailwind-Specific Utilities
 
-**Forbidden:** These are Tailwind, not PrimeFlex
+**Forbidden:** These are Tailwind, not Yggdrasil
 
 ```css
 /* Spacing utilities */
@@ -438,37 +425,29 @@ divide-x-*, divide-y-*
 ring-*, ring-offset-*, ring-inset
 
 /* Effects */
-blur-*, brightness-*, contrast-*, grayscale-*, hue-rotate-*
+blur-*, brightness-*, contrast-*, grayscale-*
 
 /* Transitions */
 transition-*, duration-*, delay-*, ease-*
 
 /* Transforms */
 transform, translate-*, rotate-*, scale-*, skew-*
-
-/* Filters */
-filter, backdrop-filter
 ```
 
 **Use Instead:**
-- `space-x/y` → PrimeFlex `gap-*`
+- `space-x/y` → Yggdrasil `gap-*`
 - `ring` → CSS `outline` with semantic token
 - Effects/transitions → CSS properties
 - Transforms → CSS properties
 
-**Rationale:**
-- Yggdrasil uses PrimeFlex, not Tailwind
-- Different API, different philosophy
-- Prevents confusion and mixing frameworks
-
 ---
 
-## Critical Anti-Pattern: PrimeFlex on Components
+## Critical Anti-Pattern: Utilities on Components
 
 ### The Rule
 
-**✅ PrimeFlex on containers (div, section, etc.)**
-**❌ PrimeFlex on PrimeReact components**
+**✅ Utilities on containers (div, section, etc.)**
+**❌ Utilities on PrimeReact components**
 
 ### Why This Matters
 
@@ -497,10 +476,10 @@ Adding utility classes **overrides the theme** and breaks:
 **Everything else is forbidden:**
 
 ```tsx
-❌ <Button className="bg-blue-500 p-3" label="Submit" />
+❌ <Button className="p-3 bg-blue-500" label="Submit" />
 ❌ <DataTable className="border shadow-lg" value={data} />
 ❌ <Card className="rounded-xl bg-white">
-❌ <InputText className="border-2 rounded-lg" />  {/* Beyond w-full */}
+❌ <InputText className="border-2 text-lg" />  {/* Beyond w-full */}
 ```
 
 ### Correct Pattern
@@ -530,13 +509,13 @@ Adding utility classes **overrides the theme** and breaks:
 
 ## Rationale: Why This Policy Exists
 
-### Problem: Tailwind Reinvention
+### Problem: Utility Class Chaos
 
-Without constraints, developers (and AI agents) will reinvent Tailwind using PrimeFlex:
+Without constraints, developers (and AI agents) will create inconsistent UIs:
 
 ```tsx
-❌ {/* This is Tailwind-style development with PrimeFlex */}
-   <div className="bg-blue-500 text-white p-4 rounded-lg shadow-md border border-blue-600">
+❌ {/* This leads to UI drift */}
+   <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200">
      <Button className="bg-red-500 text-white font-bold py-2 px-4 rounded-full">
        Delete
      </Button>
@@ -552,14 +531,14 @@ Without constraints, developers (and AI agents) will reinvent Tailwind using Pri
 
 ### Solution: Separation of Concerns
 
-**PrimeFlex:** Layout and spacing (structure)
+**Utilities:** Layout and spacing (structure)
 **Semantic Tokens:** Design and theming (appearance)
 **PrimeReact:** Components (functionality)
 
 ```tsx
 ✅ {/* Correct: Separation of concerns */}
    <div
-     className="flex flex-column gap-3 p-4"  {/* PrimeFlex: layout */}
+     className="flex flex-column gap-3 p-4"  {/* Utilities: layout */}
      style={{
        background: 'var(--surface-neutral-secondary)',  {/* Tokens: design */}
        borderRadius: 'var(--radius-md)',
@@ -576,46 +555,6 @@ Without constraints, developers (and AI agents) will reinvent Tailwind using Pri
 - Accessibility guaranteed (validated token pairings)
 - Maintainability (update theme, not code)
 - Reusability (extract to Blocks)
-
----
-
-## Migration Guide from Tailwind
-
-If you're coming from Tailwind, here's the mapping:
-
-### Layout → Keep (use PrimeFlex equivalents)
-
-| Tailwind | PrimeFlex |
-|----------|-----------|
-| `flex` | `flex` |
-| `flex-col` | `flex-column` |
-| `justify-between` | `justify-content-between` |
-| `items-center` | `align-items-center` |
-| `gap-4` | `gap-3` (12px) |
-| `p-4` | `p-3` (12px) |
-| `grid grid-cols-3` | `grid` + `col-4` (12/3=4) |
-| `space-x-2` | `flex gap-2` |
-| `hidden md:block` | `hidden md:block` |
-
-### Design → Replace with semantic tokens
-
-| Tailwind | Yggdrasil |
-|----------|-----------|
-| `bg-blue-500` | `background: var(--surface-brand-primary)` |
-| `text-gray-900` | `color: var(--text-neutral-default)` |
-| `border-gray-300` | `border: 1px solid var(--border-neutral-default)` |
-| `rounded-lg` | `borderRadius: var(--radius-lg)` |
-| `shadow-md` | `boxShadow: var(--elevation-moderate)` |
-| `text-white` | `color: var(--text-onsurface-onbrand)` |
-
-### Components → Use PrimeReact
-
-| Tailwind Pattern | Yggdrasil |
-|------------------|-----------|
-| Custom button with `bg-blue-500` | `<Button label="..." />` |
-| Custom input with `border rounded` | `<InputText />` |
-| Custom card with `border shadow` | `<Card>` |
-| Custom table | `<DataTable>` |
 
 ---
 
@@ -705,31 +644,31 @@ If you're coming from Tailwind, here's the mapping:
 
 This policy is enforced through:
 
-1. **PrimeFlex Guard Agent** - Guides developers during implementation
+1. **Semantic Token Intent Agent** - Guides developers during implementation
 2. **ESLint Plugin** - Code-time detection in IDE
-   - Rule: `@lifeonlars/yggdrasil/primeflex-allowlist`
+   - Rule: `@lifeonlars/yggdrasil/utility-allowlist`
    - Rule: `@lifeonlars/yggdrasil/no-utility-on-components`
 3. **Drift Validator CLI** - Pre-commit and CI/CD validation
 4. **Code Review** - Manual review for complex cases
 
 **Severity:**
-- Using forbidden PrimeFlex (colors, etc.) → Warning
-- PrimeFlex on PrimeReact components → **Error** (Critical)
+- Using forbidden utilities (hardcoded colors) → Warning
+- Utilities on PrimeReact components → **Error** (Critical)
 
 ---
 
 ## Summary
 
 **DO:**
-- ✅ Use PrimeFlex for layout (flex, grid, positioning)
-- ✅ Use PrimeFlex for spacing (padding, margin, gap) on 4px grid
-- ✅ Use PrimeFlex on containers (div, section, article)
+- ✅ Use utilities for layout (flex, grid, positioning)
+- ✅ Use utilities for spacing (padding, margin, gap) on 4px grid
+- ✅ Use utilities on containers (div, section, article)
 - ✅ Use semantic tokens for design (colors, borders, shadows)
 - ✅ Use PrimeReact components for UI elements
 
 **DON'T:**
-- ❌ Use PrimeFlex for colors, borders, shadows, typography
-- ❌ Use PrimeFlex on PrimeReact components (except w-full on inputs)
+- ❌ Use utilities for colors, arbitrary borders, arbitrary shadows
+- ❌ Use utilities on PrimeReact components (except w-full on inputs)
 - ❌ Use Tailwind classes
 - ❌ Hardcode design values
 - ❌ Create custom components when PrimeReact exists

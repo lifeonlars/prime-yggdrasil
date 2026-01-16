@@ -7,7 +7,7 @@ It is intentionally token-agnostic: **use design tokens, not raw values**.
 
 - **Typography:** Use the system font configuration provided by Prime Yggdrasil (Roboto). Do not introduce additional fonts.
 - **Tokens over values:** Do not hardcode colours, spacing, radii, shadows, or typography values. Use semantic tokens.
-- **No Tailwind:** Do not use Tailwind or Tailwind-like utility classes. Use **PrimeFlex** utilities and Prime Yggdrasil patterns.
+- **Layout utilities only:** Use **Yggdrasil utilities** for layout and spacing only. Never for design (colors, borders, shadows). See UTILITIES-POLICY.md.
 - **Restraint:** Prefer neutral surfaces, clear hierarchy, and functional layout. Avoid decorative styling.
 
 ## Visual tone
@@ -88,7 +88,7 @@ Agents must ensure all guidance, validation, and generated code consistently fol
 
 **Block Composer** — Suggest compositions that embody purposeful simplicity. Don't over-engineer. Ensure all 5 states specified (default, hover, focus, active, disabled).
 
-**PrimeFlex Guard** — Enforce layout-only PrimeFlex usage. Block design utilities (colors, borders, shadows). Maintain 4px grid discipline.
+**Utilities Guard** — Enforce layout-only utility usage. Block design utilities (colors, borders, shadows). Maintain 4px grid discipline.
 
 **Semantic Token Intent** — Ensure state completeness. Validate token pairings work in light/dark modes. Prevent hardcoded values.
 
@@ -103,7 +103,7 @@ Agents must ensure all guidance, validation, and generated code consistently fol
 **Before suggesting UI:**
 - Can this use existing PrimeReact components?
 - Can this reuse an existing Block?
-- Does layout use PrimeFlex (layout/spacing only)?
+- Does layout use Yggdrasil utilities (layout/spacing only)?
 - Does design use semantic tokens only?
 - Are all states defined (5+ minimum)?
 - Does it work in both light and dark modes?
@@ -112,28 +112,28 @@ Agents must ensure all guidance, validation, and generated code consistently fol
 
 **Before validating code:**
 - Check for hardcoded colors (hex, rgb, named)
-- Check for PrimeFlex on PrimeReact components
-- Check for PrimeFlex design utilities (bg-*, text-*, rounded-*, shadow-*)
+- Check for utilities on PrimeReact components (except w-full on inputs)
+- Check for design utilities in class names (should use tokens in style prop)
 - Check for off-grid spacing (not 4px increments)
 - Check for foundation tokens in app code (var(--blue-500))
 - Check for custom components duplicating PrimeReact
 - Check for missing states (no hover, no focus, no disabled)
 - Check for Tailwind classes
 
-**PrimeFlex allowlist (layout & spacing only):**
-- Flexbox: `flex`, `flex-column`, `justify-*`, `align-*`
+**Utilities allowlist (layout & spacing only):**
+- Flexbox: `flex`, `flex-column`, `justify-content-*`, `align-items-*`
 - Grid: `grid`, `col-*`, `gap-*`
 - Spacing: `p-*`, `m-*` (4px grid: 0-8)
 - Display: `block`, `inline-block`, `hidden`
 - Positioning: `relative`, `absolute`, `fixed`, `sticky`
+- Typography: `font-bold`, `text-primary`, `text-secondary` (using tokens)
+- Borders/Shadows: Use utility classes that reference tokens (`.border-1`, `.shadow-moderate`)
 
-**PrimeFlex forbidden (design):**
-- Colors: `bg-*`, `text-[color]-*`, `border-[color]-*`
-- Borders: `rounded-*`, `border-*`
-- Shadows: `shadow-*` (use semantic tokens instead)
-- Typography: `font-*`, `text-[size]-*`
+**Utilities forbidden (use tokens in style prop):**
+- Arbitrary colors, borders, shadows
+- Tailwind-specific utilities
 
-**Critical rule:** NO PrimeFlex on PrimeReact components (exception: `w-full` on form inputs)
+**Critical rule:** NO utilities on PrimeReact components (exception: `w-full` on form inputs)
 
 ### Copy & content tone
 

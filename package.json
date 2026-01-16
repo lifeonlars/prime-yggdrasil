@@ -32,9 +32,7 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./yggdrasil-light.css": "./dist/yggdrasil-light.css",
-    "./yggdrasil-dark.css": "./dist/yggdrasil-dark.css",
-    "./theme.css": "./dist/prime-yggdrasil.css",
+    "./theme.css": "./dist/theme.css",
     "./foundations.css": "./dist/foundations.css",
     "./typography.css": "./dist/typography.css",
     "./docs/*": "./docs/*"
@@ -69,7 +67,6 @@
     "chromatic": "npx chromatic --project-token=chpt_f57d218f413ed30"
   },
   "peerDependencies": {
-    "primeflex": "^4.0.0",
     "primeicons": "^7.0.0",
     "primereact": "^10.9.7",
     "react": "^19.2.0",
@@ -101,7 +98,6 @@
     "eslint-plugin-storybook": "^10.1.11",
     "globals": "^16.5.0",
     "jsdom": "^27.4.0",
-    "primeflex": "^4.0.0",
     "primeicons": "^7.0.0",
     "primereact": "^10.9.7",
     "react": "^19.2.0",

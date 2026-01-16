@@ -1,10 +1,11 @@
 /**
  * Theme Structure Validation Script
  *
- * Ensures semantic-light.css and semantic-dark.css stay synchronized:
- * - Same number of tokens
- * - Same token names in same order
- * - No hardcoded colors in semantic files
+ * Ensures theme.css has both light and dark theme blocks:
+ * - Both [data-theme="light"] and [data-theme="dark"] blocks exist
+ * - Same number of tokens in each theme
+ * - Same token names in both themes
+ * - No hardcoded colors (must use foundation variables)
  * - All tokens follow naming convention
  *
  * Run with: node scripts/validate-themes.js
@@ -18,36 +19,32 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const THEME_DIR = path.join(__dirname, '..', 'src', 'theme');
-const LIGHT_THEME = path.join(THEME_DIR, 'semantic-light.css');
-const DARK_THEME = path.join(THEME_DIR, 'semantic-dark.css');
+const THEME_FILE = path.join(THEME_DIR, 'theme.css');
 
 /**
- * Parse CSS file and extract token names (not values)
+ * Parse CSS file and extract tokens from a specific selector block
  */
-function parseTokenNames(cssContent) {
-  const tokens = [];
-  const varRegex = /--([\w-]+)\s*:/g;
-  let match;
+function parseTokensFromBlock(cssContent, selector) {
+  const tokens = new Map();
 
-  while ((match = varRegex.exec(cssContent)) !== null) {
-    const tokenName = `--${match[1]}`;
-    tokens.push(tokenName);
+  // Find the block for this selector
+  const selectorPattern = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const blockRegex = new RegExp(`${selectorPattern}\\s*\\{([^}]+(?:\\{[^}]*\\}[^}]*)*)\\}`, 's');
+  const match = cssContent.match(blockRegex);
+
+  if (!match) {
+    throw new Error(`Could not find selector block: ${selector}`);
   }
 
-  return tokens;
-}
+  const blockContent = match[1];
 
-/**
- * Parse CSS file and extract token name-value pairs
- */
-function parseTokens(cssContent) {
-  const tokens = new Map();
+  // Extract tokens from block
   const varRegex = /--([\w-]+)\s*:\s*([^;]+);/g;
-  let match;
+  let tokenMatch;
 
-  while ((match = varRegex.exec(cssContent)) !== null) {
-    const tokenName = `--${match[1]}`;
-    const value = match[2].trim().replace(/\/\*.*?\*\//g, '').trim();
+  while ((tokenMatch = varRegex.exec(blockContent)) !== null) {
+    const tokenName = `--${tokenMatch[1]}`;
+    const value = tokenMatch[2].trim().replace(/\/\*.*?\*\//g, '').trim();
     tokens.set(tokenName, value);
   }
 
@@ -55,48 +52,42 @@ function parseTokens(cssContent) {
 }
 
 /**
- * Check if a value is a hardcoded color (hex, rgb, hsl)
+ * Parse CSS file and extract token names only
  */
-function isHardcodedColor(value) {
-  // Check for hex colors
+function parseTokenNames(cssContent, selector) {
+  const tokens = parseTokensFromBlock(cssContent, selector);
+  return Array.from(tokens.keys());
+}
+
+/**
+ * Check if token value uses hardcoded color
+ */
+function hasHardcodedColor(value) {
+  // Ignore var() references - these are fine
+  if (value.includes('var(--foundation-') || value.includes('var(--p-')) {
+    return false;
+  }
+
+  // Check for hardcoded hex colors
   if (/#[0-9A-Fa-f]{3,8}/.test(value)) {
     return true;
   }
 
-  // Check for rgb/rgba/hsl/hsla functions
-  if (/rgba?\s*\(|hsla?\s*\(/.test(value)) {
+  // Check for rgb/rgba
+  if (/rgba?\(/.test(value)) {
+    // Allow rgba for shadows/overlays with alpha
+    if (value.includes('shadow') || value.includes('overlay')) {
+      return false;
+    }
+    return true;
+  }
+
+  // Check for hsl/hsla
+  if (/hsla?\(/.test(value)) {
     return true;
   }
 
   return false;
-}
-
-/**
- * Check if token follows semantic naming convention
- */
-function isSemanticToken(tokenName) {
-  const validPrefixes = [
-    '--surface-',
-    '--text-',
-    '--border-',
-    '--icon-',
-    '--severity-',
-    '--context-',
-    '--font-',
-    '--primary-',
-    '--p-',
-    '--transition-',
-    '--border-radius',
-    '--content-padding',
-    '--inline-spacing',
-    '--disabled-opacity',
-    '--focus-ring',
-    '--mask-bg',
-    '--highlight-',
-    '--charts-',
-  ];
-
-  return validPrefixes.some(prefix => tokenName.startsWith(prefix));
 }
 
 /**
@@ -144,133 +135,170 @@ function validateThemes() {
   let hasErrors = false;
   const warnings = [];
 
-  // Read theme files
-  const lightContent = fs.readFileSync(LIGHT_THEME, 'utf-8');
-  const darkContent = fs.readFileSync(DARK_THEME, 'utf-8');
+  // Read theme file
+  if (!fs.existsSync(THEME_FILE)) {
+    console.error(`❌ ERROR: theme.css not found at ${THEME_FILE}`);
+    process.exit(1);
+  }
 
-  // Parse all tokens
-  const lightTokens = parseTokens(lightContent);
-  const darkTokens = parseTokens(darkContent);
+  const themeContent = fs.readFileSync(THEME_FILE, 'utf-8');
 
-  // Extract semantic tokens only (exclude palette)
-  const lightSemantic = extractSemanticTokens(lightTokens);
-  const darkSemantic = extractSemanticTokens(darkTokens);
+  // Check that both theme blocks exist
+  console.log('✓ Checking theme blocks exist...');
 
-  console.log(`Light theme: ${lightSemantic.size} semantic tokens`);
-  console.log(`Dark theme: ${darkSemantic.size} semantic tokens`);
+  const hasLightBlock = /\[data-theme="light"\]\s*\{/.test(themeContent);
+  const hasDarkBlock = /\[data-theme="dark"\]\s*\{/.test(themeContent);
 
-  // Validation 1: Check token count
-  if (lightSemantic.size !== darkSemantic.size) {
-    console.error(`\n❌ Token count mismatch:`);
-    console.error(`   Light: ${lightSemantic.size} tokens`);
-    console.error(`   Dark: ${darkSemantic.size} tokens`);
+  if (!hasLightBlock) {
+    console.error('❌ ERROR: Missing [data-theme="light"] block');
     hasErrors = true;
   }
 
-  // Validation 2: Check token names match
-  const lightNames = Array.from(lightSemantic.keys());
-  const darkNames = Array.from(darkSemantic.keys());
-
-  const lightOnly = lightNames.filter(name => !darkSemantic.has(name));
-  const darkOnly = darkNames.filter(name => !lightSemantic.has(name));
-
-  if (lightOnly.length > 0) {
-    console.error(`\n❌ Tokens only in light theme:`);
-    lightOnly.forEach(name => console.error(`   - ${name}`));
+  if (!hasDarkBlock) {
+    console.error('❌ ERROR: Missing [data-theme="dark"] block');
     hasErrors = true;
   }
 
-  if (darkOnly.length > 0) {
-    console.error(`\n❌ Tokens only in dark theme:`);
-    darkOnly.forEach(name => console.error(`   - ${name}`));
+  if (hasErrors) {
+    process.exit(1);
+  }
+
+  // Parse both theme blocks
+  console.log('✓ Parsing theme tokens...');
+
+  let lightTokens, darkTokens;
+  try {
+    lightTokens = parseTokensFromBlock(themeContent, '[data-theme="light"]');
+    darkTokens = parseTokensFromBlock(themeContent, '[data-theme="dark"]');
+  } catch (error) {
+    console.error(`❌ ERROR: Failed to parse theme blocks: ${error.message}`);
+    process.exit(1);
+  }
+
+  const lightSemanticTokens = extractSemanticTokens(lightTokens);
+  const darkSemanticTokens = extractSemanticTokens(darkTokens);
+
+  console.log(`  Light theme: ${lightSemanticTokens.size} semantic tokens`);
+  console.log(`  Dark theme: ${darkSemanticTokens.size} semantic tokens`);
+
+  // 1. Check token count matches
+  console.log('\n✓ Checking token counts match...');
+  if (lightSemanticTokens.size !== darkSemanticTokens.size) {
+    console.error(`❌ ERROR: Token count mismatch`);
+    console.error(`  Light: ${lightSemanticTokens.size} tokens`);
+    console.error(`  Dark: ${darkSemanticTokens.size} tokens`);
+    hasErrors = true;
+  } else {
+    console.log(`  ✓ Both themes have ${lightSemanticTokens.size} tokens`);
+  }
+
+  // 2. Check all tokens exist in both themes
+  console.log('\n✓ Checking token names match...');
+  const lightNames = new Set(lightSemanticTokens.keys());
+  const darkNames = new Set(darkSemanticTokens.keys());
+
+  const onlyInLight = [...lightNames].filter(name => !darkNames.has(name));
+  const onlyInDark = [...darkNames].filter(name => !lightNames.has(name));
+
+  if (onlyInLight.length > 0) {
+    console.error(`❌ ERROR: Tokens only in light theme:`);
+    onlyInLight.forEach(name => console.error(`  - ${name}`));
     hasErrors = true;
   }
 
-  // Validation 3: Check for hardcoded colors in semantic tokens
+  if (onlyInDark.length > 0) {
+    console.error(`❌ ERROR: Tokens only in dark theme:`);
+    onlyInDark.forEach(name => console.error(`  - ${name}`));
+    hasErrors = true;
+  }
+
+  if (onlyInLight.length === 0 && onlyInDark.length === 0) {
+    console.log(`  ✓ All token names match between themes`);
+  }
+
+  // 3. Check for hardcoded colors
+  console.log('\n✓ Checking for hardcoded colors...');
   const lightHardcoded = [];
   const darkHardcoded = [];
 
-  for (const [name, value] of lightSemantic.entries()) {
-    if (isHardcodedColor(value)) {
+  for (const [name, value] of lightSemanticTokens.entries()) {
+    if (hasHardcodedColor(value)) {
       lightHardcoded.push({ name, value });
     }
   }
 
-  for (const [name, value] of darkSemantic.entries()) {
-    if (isHardcodedColor(value)) {
+  for (const [name, value] of darkSemanticTokens.entries()) {
+    if (hasHardcodedColor(value)) {
       darkHardcoded.push({ name, value });
     }
   }
 
   if (lightHardcoded.length > 0) {
-    console.warn(`\n⚠️  Hardcoded colors in light theme semantic tokens:`);
+    console.warn(`⚠ WARNING: Hardcoded colors in light theme:`);
     lightHardcoded.forEach(({ name, value }) => {
-      console.warn(`   ${name}: ${value}`);
+      console.warn(`  ${name}: ${value}`);
+      warnings.push(`Hardcoded color in light theme: ${name}`);
     });
-    warnings.push(`${lightHardcoded.length} hardcoded colors in light theme`);
   }
 
   if (darkHardcoded.length > 0) {
-    console.warn(`\n⚠️  Hardcoded colors in dark theme semantic tokens:`);
+    console.warn(`⚠ WARNING: Hardcoded colors in dark theme:`);
     darkHardcoded.forEach(({ name, value }) => {
-      console.warn(`   ${name}: ${value}`);
+      console.warn(`  ${name}: ${value}`);
+      warnings.push(`Hardcoded color in dark theme: ${name}`);
     });
-    warnings.push(`${darkHardcoded.length} hardcoded colors in dark theme`);
   }
 
-  // Validation 4: Check semantic naming convention
-  const lightInvalid = [];
-  const darkInvalid = [];
+  if (lightHardcoded.length === 0 && darkHardcoded.length === 0) {
+    console.log(`  ✓ No hardcoded colors found`);
+  }
+
+  // 4. Check naming convention
+  console.log('\n✓ Checking token naming conventions...');
+  const validPrefixes = [
+    'surface-', 'text-', 'border-', 'icon-', 'elevation-',
+    'font-', 'radius-', 'spacing-', 'primary-', 'surface-'
+  ];
+
+  const invalidNames = [];
 
   for (const name of lightNames) {
-    if (!isSemanticToken(name) && !isPaletteToken(name)) {
-      lightInvalid.push(name);
+    const tokenName = name.replace('--', '');
+    const hasValidPrefix = validPrefixes.some(prefix => tokenName.startsWith(prefix));
+
+    if (!hasValidPrefix && !isPaletteToken(name)) {
+      invalidNames.push(name);
     }
   }
 
-  for (const name of darkNames) {
-    if (!isSemanticToken(name) && !isPaletteToken(name)) {
-      darkInvalid.push(name);
-    }
-  }
-
-  if (lightInvalid.length > 0) {
-    console.warn(`\n⚠️  Non-semantic token names in light theme:`);
-    lightInvalid.forEach(name => console.warn(`   ${name}`));
-    warnings.push(`${lightInvalid.length} non-semantic tokens in light theme`);
-  }
-
-  if (darkInvalid.length > 0) {
-    console.warn(`\n⚠️  Non-semantic token names in dark theme:`);
-    darkInvalid.forEach(name => console.warn(`   ${name}`));
-    warnings.push(`${darkInvalid.length} non-semantic tokens in dark theme`);
+  if (invalidNames.length > 0) {
+    console.warn(`⚠ WARNING: Tokens with non-standard naming:`);
+    invalidNames.forEach(name => {
+      console.warn(`  ${name}`);
+      warnings.push(`Non-standard naming: ${name}`);
+    });
+  } else {
+    console.log(`  ✓ All tokens follow naming convention`);
   }
 
   // Summary
-  console.log(`\n=== Validation Summary ===`);
-
-  if (!hasErrors && warnings.length === 0) {
-    console.log(`✅ All validations passed!`);
-    console.log(`   - Token counts match (${lightSemantic.size} each)`);
-    console.log(`   - Token names match`);
-    console.log(`   - No hardcoded colors in semantic tokens`);
-    console.log(`   - All tokens follow naming convention\n`);
-    process.exit(0);
-  }
+  console.log('\n=== Validation Summary ===\n');
 
   if (hasErrors) {
-    console.log(`\n❌ Validation failed with ${hasErrors ? 'errors' : '0 errors'}`);
+    console.error('❌ FAILED: Theme validation found errors');
+    process.exit(1);
+  } else if (warnings.length > 0) {
+    console.warn(`⚠ PASSED with warnings: ${warnings.length} warning(s)`);
+    console.log('\n✓ Core structure is valid');
+    process.exit(0);
+  } else {
+    console.log('✅ SUCCESS: All validation checks passed!');
+    console.log(`\n  Total semantic tokens: ${lightSemanticTokens.size}`);
+    console.log(`  Both themes synchronized`);
+    console.log(`  No hardcoded colors`);
+    console.log(`  All naming conventions followed`);
+    process.exit(0);
   }
-
-  if (warnings.length > 0) {
-    console.log(`\n⚠️  ${warnings.length} warning(s):`);
-    warnings.forEach(w => console.log(`   - ${w}`));
-  }
-
-  console.log('');
-
-  // Exit with 0 for now (warnings only), change to 1 to block builds
-  process.exit(hasErrors ? 1 : 0);
 }
 
 // Run validation

@@ -24,10 +24,10 @@ export function NavigationTabs({
   endContent,
   elevation = false,
 }: NavigationTabsProps) {
-  const elevationStyle = elevation ? { boxShadow: 'var(--elevation-moderate)' } : {}
+  const elevationStyle = elevation ? { boxShadow: 'var(--elevation-elevated)' } : { boxShadow: 'var(--elevation-moderate)' }
 
   return (
-    <div className="surface-card border-bottom-1 border-neutral-subdued" style={elevationStyle}>
+    <div className="surface-card" style={elevationStyle}>
       <div className="flex align-items-center px-4">
         {/* Logo - responsive: wide on desktop, square on tablet/mobile */}
         {logo && (

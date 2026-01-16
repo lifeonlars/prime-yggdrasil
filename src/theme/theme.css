@@ -1,14 +1,20 @@
 /**
- * Yggdrasil Adaptive Theme
+ * Yggdrasil Theme - Single Source of Truth
  *
- * Runtime theme switching via [data-theme] attribute.
- * Combines light and dark themes with data-theme selectors for Storybook.
+ * All semantic tokens defined here with adaptive light/dark support.
+ * Works for both static theme selection and runtime theme switching.
+ *
+ * Usage:
+ * - Import once: import '@lifeonlars/prime-yggdrasil/theme.css'
+ * - Set theme: <html data-theme="light"> or <html data-theme="dark">
+ * - Toggle runtime: document.documentElement.setAttribute('data-theme', 'dark')
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 @import "./foundations.css";
 @import "./radius.css";
 @import "./typography.css";
+@import "./utilities.css";
 @import "./components.css";
 
 /* ==================== Light Theme Semantic Tokens ==================== */
@@ -63,15 +69,14 @@
   --border-neutral-default: var(--foundation-rock-200);
   --border-neutral-subdued: var(--foundation-rock-100);
   --border-neutral-loud: var(--foundation-rock-300);
-
   --border-brand-primary: var(--foundation-sky-600);
   --border-brand-accent: var(--foundation-berries-600);
-
   --border-context-success: var(--foundation-forest-600);
   --border-context-warning: var(--foundation-sand-600);
   --border-context-danger: var(--foundation-berries-600);
   --border-context-info: var(--foundation-sea-600);
-
+  --border-state-interactive: var(--foundation-sky-600);
+  --border-state-selected: var(--foundation-sea-500);
   --border-state-hover: var(--foundation-sky-400);
   --border-state-focus: var(--foundation-sky-500);
   --border-state-active: var(--foundation-sky-700);
@@ -122,6 +127,33 @@
 
   --primary-color: var(--foundation-sky-600);
   --primary-color-text: var(--foundation-white);
+
+  /* Severity tokens (map to context tokens) */
+  --severity-info-surface: var(--surface-context-info);
+  --severity-info-surface-tint: var(--surface-context-info);
+  --severity-info-border: var(--border-context-info);
+  --severity-info-text: var(--text-context-info);
+  --severity-info-icon: var(--icon-context-info);
+  --severity-success-surface: var(--surface-context-success);
+  --severity-success-surface-tint: var(--surface-context-success);
+  --severity-success-border: var(--border-context-success);
+  --severity-success-text: var(--text-context-success);
+  --severity-success-icon: var(--icon-context-success);
+  --severity-warn-surface: var(--surface-context-warning);
+  --severity-warn-surface-tint: var(--surface-context-warning);
+  --severity-warn-border: var(--border-context-warning);
+  --severity-warn-text: var(--text-context-warning);
+  --severity-warn-icon: var(--icon-context-warning);
+  --severity-error-surface: var(--surface-context-danger);
+  --severity-error-surface-tint: var(--surface-context-danger);
+  --severity-error-border: var(--border-context-danger);
+  --severity-error-text: var(--text-context-danger);
+  --severity-error-icon: var(--icon-context-danger);
+  --severity-danger-surface: var(--surface-context-dangeractive);
+  --severity-danger-surface-tint: var(--surface-context-dangeractive);
+  --severity-danger-border: var(--border-context-danger);
+  --severity-danger-text: var(--text-onsurface-oncontextactive);
+  --severity-danger-icon: var(--icon-onsurface-ondanger);
 }
 
 /* ==================== Dark Theme Semantic Tokens ==================== */
@@ -149,7 +181,7 @@
 
   /* Text */
   --text-neutral-default: var(--foundation-lighter-200);
-  --text-neutral-subdued: var(--foundation-rock-400);
+  --text-neutral-subdued: var(--foundation-lighter-400);
   --text-neutral-loud: var(--foundation-white);
   --text-neutral-disabled: var(--foundation-rock-600);
 
@@ -178,12 +210,12 @@
 
   --border-brand-primary: var(--foundation-sky-400);
   --border-brand-accent: var(--foundation-berries-400);
-
   --border-context-success: var(--foundation-forest-400);
   --border-context-warning: var(--foundation-sand-400);
   --border-context-danger: var(--foundation-berries-400);
   --border-context-info: var(--foundation-sea-400);
-
+  --border-state-interactive: var(--foundation-sky-400);
+  --border-state-selected: var(--foundation-sea-500);
   --border-state-hover: var(--foundation-sky-500);
   --border-state-focus: var(--foundation-sky-400);
   --border-state-active: var(--foundation-sky-300);
@@ -234,4 +266,31 @@
 
   --primary-color: var(--foundation-sky-400);
   --primary-color-text: var(--foundation-white);
+
+  /* Severity tokens (map to context tokens) */
+  --severity-info-surface: var(--surface-context-info);
+  --severity-info-surface-tint: var(--surface-context-info);
+  --severity-info-border: var(--border-context-info);
+  --severity-info-text: var(--text-context-info);
+  --severity-info-icon: var(--icon-context-info);
+  --severity-success-surface: var(--surface-context-success);
+  --severity-success-surface-tint: var(--surface-context-success);
+  --severity-success-border: var(--border-context-success);
+  --severity-success-text: var(--text-context-success);
+  --severity-success-icon: var(--icon-context-success);
+  --severity-warn-surface: var(--surface-context-warning);
+  --severity-warn-surface-tint: var(--surface-context-warning);
+  --severity-warn-border: var(--border-context-warning);
+  --severity-warn-text: var(--text-context-warning);
+  --severity-warn-icon: var(--icon-context-warning);
+  --severity-error-surface: var(--surface-context-danger);
+  --severity-error-surface-tint: var(--surface-context-danger);
+  --severity-error-border: var(--border-context-danger);
+  --severity-error-text: var(--text-context-danger);
+  --severity-error-icon: var(--icon-context-danger);
+  --severity-danger-surface: var(--surface-context-dangeractive);
+  --severity-danger-surface-tint: var(--surface-context-dangeractive);
+  --severity-danger-border: var(--border-context-danger);
+  --severity-danger-text: var(--text-onsurface-oncontextactive);
+  --severity-danger-icon: var(--icon-onsurface-ondanger);
 }

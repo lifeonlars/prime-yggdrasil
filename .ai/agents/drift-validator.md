@@ -6,7 +6,7 @@
 
 **Mandatory References:**
 - [`docs/AESTHETICS.md`](../../docs/AESTHETICS.md) - All aesthetic principles and enforcement rules
-- [`docs/PRIMEFLEX-POLICY.md`](../../docs/PRIMEFLEX-POLICY.md) - PrimeFlex allowlist
+- [`docs/PRIMEFLEX-POLICY.md`](../../docs/PRIMEFLEX-POLICY.md) - Yggdrasil utilities allowlist
 - [`eslint-plugin-yggdrasil/rules/`](../../eslint-plugin-yggdrasil/rules/) - ESLint rule implementations
 
 ---
@@ -28,11 +28,11 @@ You are the **Drift Validator Agent** - the comprehensive enforcement backbone. 
 
 ### Rule 1: No Tailwind Classes
 
-**Policy:** This project uses PrimeFlex, not Tailwind. Tailwind classes are forbidden.
+**Policy:** This project uses Yggdrasil utilities, not Tailwind. Tailwind classes are forbidden.
 
 **Detection Patterns:**
 ```regex
-/* Tailwind-specific utilities not in PrimeFlex */
+/* Tailwind-specific utilities not in Yggdrasil utilities */
 space-x-\d+
 space-y-\d+
 divide-[xy]-\d+
@@ -67,9 +67,9 @@ skew-[xy]-\d+
 
 ---
 
-### Rule 2: PrimeFlex Allowlist (Layout/Spacing Only)
+### Rule 2: Yggdrasil utilities Allowlist (Layout/Spacing Only)
 
-**Policy:** Only approved PrimeFlex classes allowed. See PrimeFlex Guard agent for full allowlist.
+**Policy:** Only approved Yggdrasil utilities classes allowed. See Yggdrasil utilities Guard agent for full allowlist.
 
 **Allowed Categories:**
 - Flex layout: `flex`, `flex-row`, `justify-*`, `align-*`
@@ -117,9 +117,9 @@ text-(xs|sm|base|lg|xl)
 
 ---
 
-### Rule 3: No PrimeFlex on PrimeReact Components
+### Rule 3: No Yggdrasil utilities on PrimeReact Components
 
-**Policy:** PrimeFlex/utility classes CANNOT override PrimeReact component styles.
+**Policy:** Yggdrasil utilities/utility classes CANNOT override PrimeReact component styles.
 
 **Exception:** `w-full` is allowed on form inputs (InputText, Dropdown, etc.)
 
@@ -365,7 +365,7 @@ Warnings: 18
 
 [File]: src/components/UserCard.tsx
 [Line]: 45
-[Rule]: no-primeflex-on-components
+[Rule]: no-yggdrasil utilities-on-components
 [Severity]: error
 
 <Button className="bg-red-500 p-4" label="Delete" />
@@ -392,9 +392,9 @@ Fix: Use semantic token
 ---
 
 Summary by Rule:
-- no-primeflex-on-components: 5 violations
+- no-yggdrasil utilities-on-components: 5 violations
 - no-hardcoded-colors: 12 violations
-- primeflex-allowlist: 6 violations
+- yggdrasil utilities-allowlist: 6 violations
 
 Affected Files: 8
 Compliance Score: 73% (23 violations / 87 inspected elements)
@@ -410,7 +410,7 @@ Compliance Score: 73% (23 violations / 87 inspected elements)
 
 **Safe Autofixes** (apply automatically):
 - Remove className from PrimeReact components (except w-full on inputs)
-- Convert Tailwind space-x/y to PrimeFlex gap
+- Convert Tailwind space-x/y to Yggdrasil utilities gap
 - Fix PrimeReact import statements
 - Suggest closest 4px grid value for off-grid spacing
 
@@ -431,7 +431,7 @@ Compliance Score: 73% (23 violations / 87 inspected elements)
 +    <Button label="Save" />
 +  </div>
 
-✅ Fixed: Removed PrimeFlex on component
+✅ Fixed: Removed Yggdrasil utilities on component
 
 ---
 
@@ -482,7 +482,7 @@ Summary:
 Critical Violations: 3
 
 FAIL src/components/UserCard.tsx:45
-  Rule: no-primeflex-on-components
+  Rule: no-yggdrasil utilities-on-components
   <Button className="bg-red-500 p-4" label="Delete" />
 
 FAIL src/pages/Dashboard.tsx:12
@@ -524,7 +524,7 @@ module.exports = {
 rules: {
   '@lifeonlars/yggdrasil/no-hardcoded-colors': 'warn',
   '@lifeonlars/yggdrasil/no-utility-on-components': 'error',  // Critical
-  '@lifeonlars/yggdrasil/primeflex-allowlist': 'warn',
+  '@lifeonlars/yggdrasil/yggdrasil utilities-allowlist': 'warn',
   '@lifeonlars/yggdrasil/no-tailwind': 'error',
   '@lifeonlars/yggdrasil/valid-spacing': 'warn',
   '@lifeonlars/yggdrasil/semantic-tokens-only': 'warn',
@@ -606,14 +606,14 @@ export async function runDriftValidation() {
 
 ### Critical (Build-Breaking in Strict Mode)
 
-- `no-primeflex-on-components` - Breaks theme consistency
+- `no-yggdrasil utilities-on-components` - Breaks theme consistency
 - `no-tailwind` - Wrong framework
 - `semantic-tokens-only` (component overrides) - Breaks theme
 
 ### Error (Should Fix Soon)
 
 - `no-hardcoded-colors` - Breaks theme switching
-- `primeflex-allowlist` (design utilities) - Wrong usage
+- `yggdrasil utilities-allowlist` (design utilities) - Wrong usage
 
 ### Warning (Technical Debt)
 
@@ -676,8 +676,8 @@ Top Violating Files:
 
 Most Common Violations:
 1. no-hardcoded-colors (12 occurrences)
-2. primeflex-allowlist (6 occurrences)
-3. no-primeflex-on-components (5 occurrences)
+2. yggdrasil utilities-allowlist (6 occurrences)
+3. no-yggdrasil utilities-on-components (5 occurrences)
 
 Recommendation:
 Focus on UserCard.tsx refactor to reduce 35% of violations.

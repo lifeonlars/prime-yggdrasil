@@ -62,8 +62,8 @@ npm run build
 ls -lh dist/
 
 # Expected files:
-# - yggdrasil-light.css (main theme)
-# - yggdrasil-dark.css (dark theme)
+# - theme.css (main theme)
+ (dark theme)
 # - foundations.css (foundation colors)
 # - index.js (ES module)
 # - index.cjs (CommonJS)
@@ -86,7 +86,7 @@ From `npm pack` output:
 - **Unpacked size**: 104.7 kB
 - **Total files**: 23
 - **Main files**:
-  - Theme CSS: yggdrasil-light.css, yggdrasil-dark.css
+  - Theme CSS: theme.css
   - Documentation: 12 markdown files
   - TypeScript: index.d.ts
 

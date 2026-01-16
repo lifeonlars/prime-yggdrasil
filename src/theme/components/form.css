@@ -95,7 +95,7 @@
     background: var(--severity-danger-text);
   }
   .p-password-panel .p-password-meter .p-password-strength.medium {
-    background: var(--severity-warning-text);
+    background: var(--severity-warn-text);
   }
   .p-password-panel .p-password-meter .p-password-strength.strong {
     background: var(--severity-success-text);

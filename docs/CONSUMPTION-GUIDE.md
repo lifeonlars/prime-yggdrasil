@@ -15,10 +15,10 @@ This guide explains how to use the Yggdrasil design system in another project to
 
 ```bash
 # Install Yggdrasil theme
-npm install @your-org/prime-yggdrasil
+npm install @lifeonlars/prime-yggdrasil
 
 # Install peer dependencies
-npm install primereact@^10.0.0 primeicons@^7.0.0 react@^18.0.0
+npm install primereact@^10.9.7 primeicons@^7.0.0 react@^19.2.0
 ```
 
 ### Option 2: Git Submodule (Recommended for development)
@@ -49,39 +49,39 @@ cp -r path/to/prime-yggdrasil/src/theme ./src/design-system
 
 ```tsx
 // src/main.tsx or src/App.tsx
-import 'prime-yggdrasil/yggdrasil-light.css';  // Light theme
-// OR
-import 'prime-yggdrasil/yggdrasil-dark.css';   // Dark theme
-
+import '@lifeonlars/prime-yggdrasil/theme.css';
 import 'primeicons/primeicons.css';
-import { YggdrasilProvider } from 'prime-yggdrasil';
+
+// Set theme via data-theme attribute on html element
+document.documentElement.setAttribute('data-theme', 'light'); // or 'dark'
 
 // Your app code
 import { Button } from 'primereact/button';
+import { PrimeReactProvider } from 'primereact/api';
 
 function App() {
   return (
-    <YggdrasilProvider ripple={true}>
+    <PrimeReactProvider value={{ ripple: true }}>
       <Button label="Hello Yggdrasil" />
-    </YggdrasilProvider>
+    </PrimeReactProvider>
   );
 }
 ```
 
-**YggdrasilProvider Configuration:**
-- `ripple` (default: `true`) - Enable ripple effect on interactive components (buttons, checkboxes, etc.)
-- `primeConfig` - Additional PrimeReact configuration options
+**PrimeReactProvider Configuration:**
+- `ripple` (default: `false`) - Enable ripple effect on interactive components (buttons, checkboxes, etc.)
+- `inputStyle` - Choose between 'outlined' or 'filled' input styles
 
 ```tsx
-<YggdrasilProvider
-  ripple={true}
-  primeConfig={{
+<PrimeReactProvider
+  value={{
+    ripple: true,
     inputStyle: 'outlined', // or 'filled'
     // other PrimeReact config...
   }}
 >
   <App />
-</YggdrasilProvider>
+</PrimeReactProvider>
 ```
 
 ### Typography (Optional)
@@ -147,10 +147,15 @@ module.exports = {
 
 ```tsx
 // pages/_app.tsx
-import 'prime-yggdrasil/yggdrasil-light.css';
+import '@lifeonlars/prime-yggdrasil/theme.css';
 import 'primeicons/primeicons.css';
 
 export default function App({ Component, pageProps }) {
+  // Set theme on mount
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }, []);
+
   return <Component {...pageProps} />;
 }
 ```
@@ -183,17 +188,25 @@ This project uses the Yggdrasil design system built on PrimeReact.
 1. NEVER create custom components if PrimeReact provides equivalent
 2. ALWAYS use semantic tokens for colors (never hardcoded hex values)
 3. ALWAYS follow 4px grid for spacing (8px, 12px, 16px, 24px, etc.)
-4. CHECK Storybook before implementing any UI
+4. USE Yggdrasil utilities for layout/spacing ONLY (not design)
+5. CHECK Storybook before implementing any UI
 
 ## Quick Reference
 
-**Colors:**
+**Colors (use semantic tokens):**
 - Text: `var(--text-neutral-default)`, `var(--text-neutral-subdued)`
 - Backgrounds: `var(--surface-neutral-primary)`, `var(--surface-neutral-secondary)`
 - Brand: `var(--surface-brand-primary)`, `var(--text-state-interactive)`
 
-**Spacing (4px grid):**
-- `0.5rem` (8px), `1rem` (16px), `1.5rem` (24px), `2rem` (32px)
+**Spacing (4px grid - use utilities or inline styles):**
+- Utilities: `.p-4`, `.m-2`, `.gap-3` (layout only)
+- Inline: `0.5rem` (8px), `1rem` (16px), `1.5rem` (24px), `2rem` (32px)
+
+**Layout Utilities (allowed):**
+- Flexbox: `.flex`, `.flex-column`, `.justify-content-between`, `.align-items-center`
+- Grid: `.grid`, `.col-12`, `.col-6`
+- Spacing: `.p-4`, `.m-2`, `.gap-3`
+- NO utilities on PrimeReact components (except `.w-full` on inputs)
 
 **Components:**
 - Data tables: `import { DataTable } from 'primereact/datatable'`
@@ -209,7 +222,8 @@ This project uses the Yggdrasil design system built on PrimeReact.
 
 ## Documentation
 
-Full guide: [node_modules/prime-yggdrasil/docs/AI-AGENT-GUIDE.md]
+Full guide: [node_modules/@lifeonlars/prime-yggdrasil/docs/AI-AGENT-GUIDE.md]
+Utilities policy: [node_modules/@lifeonlars/prime-yggdrasil/docs/UTILITIES-POLICY.md]
 Storybook: Run `npm run storybook` in design system package
 ```
 
@@ -218,14 +232,16 @@ Storybook: Run `npm run storybook` in design system package
 When working with AI agents, include this in your initial prompt:
 
 ```
-Before implementing any UI, read the design system guide at:
-./node_modules/prime-yggdrasil/docs/AI-AGENT-GUIDE.md
+Before implementing any UI, read the design system guides at:
+./node_modules/@lifeonlars/prime-yggdrasil/docs/AI-AGENT-GUIDE.md
+./node_modules/@lifeonlars/prime-yggdrasil/docs/UTILITIES-POLICY.md
 
 Follow these principles:
 1. Check PrimeReact components first
-2. Use semantic tokens only
+2. Use semantic tokens only (no hardcoded colors)
 3. Follow 4px spacing grid
-4. Reference Storybook examples
+4. Use utilities for layout only (not design)
+5. Reference Storybook examples
 ```
 
 ## 🎨 Theme Switching (Optional)
@@ -244,18 +260,8 @@ export function useTheme() {
   };
 
   useEffect(() => {
-    // Remove old theme
-    const oldLink = document.getElementById('theme-link');
-    if (oldLink) oldLink.remove();
-
-    // Add new theme
-    const link = document.createElement('link');
-    link.id = 'theme-link';
-    link.rel = 'stylesheet';
-    link.href = theme === 'light'
-      ? '/node_modules/prime-yggdrasil/yggdrasil-light.css'
-      : '/node_modules/prime-yggdrasil/yggdrasil-dark.css';
-    document.head.appendChild(link);
+    // Update data-theme attribute on html element
+    document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
   return { theme, toggleTheme };
@@ -428,10 +434,11 @@ After integration, verify:
 
 ## 📚 Additional Resources
 
-- **AI Agent Guide**: `node_modules/prime-yggdrasil/docs/AI-AGENT-GUIDE.md`
-- **Theme Architecture**: `node_modules/prime-yggdrasil/src/theme/README.md`
+- **AI Agent Guide**: `node_modules/@lifeonlars/prime-yggdrasil/docs/AI-AGENT-GUIDE.md`
+- **Utilities Policy**: `node_modules/@lifeonlars/prime-yggdrasil/docs/UTILITIES-POLICY.md`
+- **Theme Architecture**: `node_modules/@lifeonlars/prime-yggdrasil/src/theme/README.md`
 - **PrimeReact Docs**: https://primereact.org/
-- **Semantic Tokens**: `node_modules/prime-yggdrasil/src/theme/semantic-light.css`
+- **Semantic Tokens**: `node_modules/@lifeonlars/prime-yggdrasil/src/theme/theme.css`
 
 ## 🤝 Contributing Back
 

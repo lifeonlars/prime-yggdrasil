@@ -36,6 +36,22 @@
 export { YggdrasilProvider } from './provider/YggdrasilProvider';
 export type { YggdrasilProviderProps } from './provider/YggdrasilProvider';
 
+// Export reusable blocks
+export { NavigationTabs } from './blocks/NavigationTabs';
+export { AccountMenu } from './blocks/AccountMenu';
+export { ThemeToggle } from './blocks/ThemeToggle';
+export { LanguageMenu, LANGUAGES } from './blocks/LanguageMenu';
+export { NotificationButton } from './blocks/NotificationButton';
+export { PageHeader } from './blocks/PageHeader';
+export { Card } from './blocks/Card';
+export { FormField } from './blocks/FormField';
+
+// Export components
+export { Flag } from './components/Flag';
+export type { FlagCountry } from './components/Flag';
+export type { Language } from './blocks/LanguageMenu';
+export type { Theme } from './blocks/ThemeToggle';
+
 /**
  * Package version
  */
@@ -53,5 +69,4 @@ export const theme = {
 };
 
 // Theme CSS is exported via package.json exports field:
-// import '@lifeonlars/prime-yggdrasil/yggdrasil-light.css'
-// import '@lifeonlars/prime-yggdrasil/yggdrasil-dark.css'
+// import '@lifeonlars/prime-yggdrasil/theme.css'

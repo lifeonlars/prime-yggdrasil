@@ -34,15 +34,19 @@ Yggdrasil is a comprehensive design system built on [PrimeReact](https://primere
 ### Installation
 
 ```bash
-npm install @lifeonlars/prime-yggdrasil primereact primeicons
+npm install @lifeonlars/prime-yggdrasil
+npm install primereact primeicons
 ```
 
 ### Usage
 
 ```tsx
 // Import theme
-import '@lifeonlars/prime-yggdrasil/yggdrasil-light.css';  // or yggdrasil-dark.css
+import '@lifeonlars/prime-yggdrasil/theme.css';
 import 'primeicons/primeicons.css';
+
+// Set theme on html element
+document.documentElement.setAttribute('data-theme', 'light'); // or 'dark'
 
 // Use PrimeReact components
 import { Button } from 'primereact/button';
@@ -210,9 +214,9 @@ This copies all 6 active agents to your project's `.ai/yggdrasil/` directory.
    - Suggests PrimeReact components + existing Blocks
    - Specifies all 5+ states (default, hover, focus, active, disabled)
 
-2. **PrimeFlex Guard** - Layout constraint enforcement
-   - Allows PrimeFlex for layout/spacing ONLY (not design)
-   - Critical rule: NO PrimeFlex on PrimeReact components (except `w-full` on inputs)
+2. **Utilities Guard** - Layout constraint enforcement
+   - Allows utilities for layout/spacing ONLY (not design)
+   - Critical rule: NO utilities on PrimeReact components (except `w-full` on inputs)
    - Maintains 4px grid discipline
 
 3. **Semantic Token Intent** - State-complete token selection
@@ -277,22 +281,22 @@ npx @lifeonlars/prime-yggdrasil validate --format json
 **For Consumers:**
 - [`.ai/yggdrasil/README.md`](./.ai/agents/README.md) - Quick start guide (copied to your project)
 - [`docs/AESTHETICS.md`](./docs/AESTHETICS.md) - Mandatory aesthetic principles reference
-- [`docs/PRIMEFLEX-POLICY.md`](./docs/PRIMEFLEX-POLICY.md) - Complete PrimeFlex allowlist
+- [`docs/UTILITIES-POLICY.md`](./docs/UTILITIES-POLICY.md) - Complete utilities allowlist and policy
 
 **For Agent Developers:**
 - [`.ai/agents/block-composer.md`](./.ai/agents/block-composer.md) - Composition planning
-- [`.ai/agents/primeflex-guard.md`](./.ai/agents/primeflex-guard.md) - Layout constraints
+- [`.ai/agents/utilities-guard.md`](./.ai/agents/utilities-guard.md) - Layout constraints
 - [`.ai/agents/semantic-token-intent.md`](./.ai/agents/semantic-token-intent.md) - Token selection
 - [`.ai/agents/drift-validator.md`](./.ai/agents/drift-validator.md) - Policy enforcement
-- [`.ai/agents/interaction-patterns.md`](./.ai/agents/interaction-patterns.md) - Behavioral patterns *(future)*
-- [`.ai/agents/accessibility.md`](./.ai/agents/accessibility.md) - WCAG compliance *(future)*
+- [`.ai/agents/interaction-patterns.md`](./.ai/agents/interaction-patterns.md) - Behavioral patterns
+- [`.ai/agents/accessibility.md`](./.ai/agents/accessibility.md) - WCAG compliance
 
 ### 🎯 Agent Workflow Example
 
 **Implementing a User Profile Form:**
 
 1. **Block Composer** - "Use `<Card>` + `<InputText>` + `<Button>`. Specify loading/empty/error states."
-2. **PrimeFlex Guard** - "Use `flex flex-column gap-3 p-4` for layout. NO `bg-*` or `rounded-*` utilities."
+2. **Utilities Guard** - "Use `flex flex-column gap-3 p-4` for layout. NO arbitrary colors or design utilities."
 3. **Semantic Token Intent** - "Use `var(--surface-neutral-primary)` for card, `var(--text-neutral-default)` for labels."
 4. **Drift Validator** - "✅ No violations. All rules passing."
 
@@ -300,7 +304,7 @@ npx @lifeonlars/prime-yggdrasil validate --format json
 
 **Prevention (Agents guide before code is written)**
 - Block Composer prevents bespoke UI
-- PrimeFlex Guard prevents utility chaos
+- Utilities Guard prevents utility chaos
 - Semantic Token Intent prevents styling violations
 
 **Detection (ESLint + CLI catch violations after)**
@@ -370,8 +374,7 @@ When you install Yggdrasil, you get:
 ```
 @lifeonlars/prime-yggdrasil/
 ├── dist/
-│   ├── yggdrasil-light.css     # Light theme (import this)
-│   ├── yggdrasil-dark.css      # Dark theme (import this)
+│   ├── theme.css               # Single theme file (light + dark)
 │   ├── index.js                # Optional JS utilities
 │   └── index.d.ts              # TypeScript definitions
 │

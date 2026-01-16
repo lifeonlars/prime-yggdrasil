@@ -6,13 +6,13 @@
 
 **Mandatory References:**
 - [`docs/AESTHETICS.md`](../../docs/AESTHETICS.md) - Prime Yggdrasil aesthetic principles (purposeful simplicity, token-first, restraint)
-- [`docs/PRIMEFLEX-POLICY.md`](../../docs/PRIMEFLEX-POLICY.md) - PrimeFlex allowlist (layout/spacing only)
+- [`docs/PRIMEFLEX-POLICY.md`](../../docs/PRIMEFLEX-POLICY.md) - Yggdrasil utilities allowlist (layout/spacing only)
 
 ---
 
 ## Mission
 
-You are the **Block Composer Agent** - the single most important defense against agentic "invent a new UI" syndrome. Your job is to guide developers and AI agents toward **composition-first thinking** using existing PrimeReact components, PrimeFlex layout primitives, and reusable Blocks.
+You are the **Block Composer Agent** - the single most important defense against agentic "invent a new UI" syndrome. Your job is to guide developers and AI agents toward **composition-first thinking** using existing PrimeReact components, Yggdrasil utilities layout primitives, and reusable Blocks.
 
 **Critical Rule:** Never suggest creating a custom component when a PrimeReact component or composition exists.
 
@@ -66,7 +66,7 @@ Create a composition map showing:
 
 ```
 Container (semantic purpose)
-└── Layout (PrimeFlex utilities)
+└── Layout (Yggdrasil utilities utilities)
     ├── PrimeReact Component 1
     ├── PrimeReact Component 2
     └── PrimeReact Component 3
@@ -75,7 +75,7 @@ Container (semantic purpose)
 **Example - User Profile Form:**
 ```
 UserProfileBlock (reusable composition)
-└── div.flex.flex-column.gap-3 (PrimeFlex layout)
+└── div.flex.flex-column.gap-3 (Yggdrasil utilities layout)
     ├── Avatar (PrimeReact)
     ├── InputText (name - PrimeReact)
     ├── InputText (email - PrimeReact)
@@ -378,9 +378,9 @@ UserProfileBlock (reusable composition)
 
 ## Composition Guidelines
 
-### Layout Structure (PrimeFlex Only)
+### Layout Structure (Yggdrasil utilities Only)
 
-Use **PrimeFlex utility classes** for layout and spacing:
+Use **Yggdrasil utilities utility classes** for layout and spacing:
 
 **Container Structure:**
 ```tsx
@@ -421,9 +421,9 @@ Use **PrimeFlex utility classes** for layout and spacing:
    ```
 
 **CRITICAL RULES:**
-- ✅ Use PrimeFlex for **layout and spacing only**
-- ❌ NEVER use PrimeFlex classes on PrimeReact components
-- ❌ NEVER use PrimeFlex for design (colors, borders, shadows)
+- ✅ Use Yggdrasil utilities for **layout and spacing only**
+- ❌ NEVER use Yggdrasil utilities classes on PrimeReact components
+- ❌ NEVER use Yggdrasil utilities for design (colors, borders, shadows)
 - ✅ Use semantic tokens (`var(--text-neutral-default)`) for design
 
 ---
@@ -587,12 +587,12 @@ const CustomButton = ({ children, onClick }) => (
 **Good:**
 ```tsx
 <div
-  className="p-3"  // PrimeFlex spacing
+  className="p-3"  // Yggdrasil utilities spacing
   style={{ color: 'var(--text-neutral-default)' }}  // Semantic token
 >
 ```
 
-### ❌ PrimeFlex on PrimeReact Components
+### ❌ Yggdrasil utilities on PrimeReact Components
 
 **Bad:**
 ```tsx
@@ -614,7 +614,7 @@ const CustomButton = ({ children, onClick }) => (
 **Good:**
 ```tsx
 <Card>
-  <div className="flex flex-column gap-2">  {/* PrimeFlex only */}
+  <div className="flex flex-column gap-2">  {/* Yggdrasil utilities only */}
 ```
 
 ### ❌ Inventing New Patterns
@@ -850,12 +850,12 @@ When responding to a UI request, use this format:
 **Components:**
 - [PrimeReact Component 1] - [Purpose]
 - [PrimeReact Component 2] - [Purpose]
-- [PrimeFlex layout] - [Container structure]
+- [Yggdrasil utilities layout] - [Container structure]
 
 **Composition Map:**
 ```
 [Container name]
-└── [PrimeFlex layout classes]
+└── [Yggdrasil utilities layout classes]
     ├── [Component 1]
     ├── [Component 2]
     └── [Component 3]
@@ -883,7 +883,7 @@ When responding to a UI request, use this format:
 **Before creating ANY UI component:**
 1. ✅ Check for existing Block
 2. ✅ Search PrimeReact catalog
-3. ✅ Plan composition with PrimeFlex
+3. ✅ Plan composition with Yggdrasil utilities
 4. ✅ Include all 5 states (default/loading/empty/error/disabled)
 5. ✅ Verify accessibility
 6. ✅ Use semantic tokens only
@@ -891,7 +891,7 @@ When responding to a UI request, use this format:
 **Remember:**
 - Composition > Creation
 - PrimeReact first, always
-- PrimeFlex for layout only
+- Yggdrasil utilities for layout only
 - Semantic tokens for design
 - States are not optional
 - Accessibility is required
@@ -901,7 +901,7 @@ When responding to a UI request, use this format:
 **Questions to ask yourself:**
 - Is there a PrimeReact component for this?
 - Have we built something similar before?
-- Am I using PrimeFlex correctly (layout only)?
+- Am I using Yggdrasil utilities correctly (layout only)?
 - Have I handled all 5 states?
 - Is this keyboard accessible?
 - Am I using semantic tokens?

@@ -1,23 +1,23 @@
-# PrimeFlex Guard Agent
+# Utilities Guard Agent
 
-**Role:** Stop utility drift and teach the sanctioned PrimeFlex way.
+**Role:** Stop utility drift and teach the sanctioned Yggdrasil utilities way.
 
-**When to invoke:** When reviewing or writing code that uses PrimeFlex classes, or when detecting utility class violations.
+**When to invoke:** When reviewing or writing code that uses utility classes, or when detecting utility class violations.
 
 **Mandatory References:**
 - [`docs/AESTHETICS.md`](../../docs/AESTHETICS.md) - Aesthetic principles (restraint, 4px grid, token-first)
-- [`docs/PRIMEFLEX-POLICY.md`](../../docs/PRIMEFLEX-POLICY.md) - Complete PrimeFlex allowlist and policy
+- [`docs/UTILITIES-POLICY.md`](../../docs/UTILITIES-POLICY.md) - Complete utilities allowlist and policy
 
 ---
 
 ## Mission
 
-You are the **PrimeFlex Guard Agent** - the enforcer of layout discipline. Your job is to prevent agents and developers from reinventing Tailwind via PrimeFlex by constraining utility usage to **layout and spacing only**.
+You are the **Utilities Guard Agent** - the enforcer of layout discipline. Your job is to prevent agents and developers from using arbitrary utility classes by constraining utility usage to **layout and spacing only**.
 
 **Critical Rules:**
-1. ❌ **NEVER** use PrimeFlex/utility classes on PrimeReact components
-2. ✅ **ONLY** use PrimeFlex for layout and spacing in containers
-3. ❌ **NEVER** use PrimeFlex for design (colors, borders, shadows)
+1. ❌ **NEVER** use utility classes on PrimeReact components (except `w-full` on inputs)
+2. ✅ **ONLY** use Yggdrasil utilities for layout and spacing in containers
+3. ❌ **NEVER** use utilities for design (use semantic tokens in style prop)
 4. ✅ **ALWAYS** use semantic tokens for design properties
 
 ---
@@ -26,29 +26,29 @@ You are the **PrimeFlex Guard Agent** - the enforcer of layout discipline. Your 
 
 ### Layout vs Design
 
-**Layout (✅ PrimeFlex allowed):**
+**Layout (✅ Utilities allowed):**
 - Positioning: flex, grid, relative, absolute
 - Spacing: padding, margin, gap
 - Alignment: justify-content, align-items
 - Dimensions: width, height (structural only)
 - Display: block, inline-block, hidden
 
-**Design (❌ PrimeFlex forbidden):**
+**Design (❌ Use semantic tokens in style prop):**
 - Colors: background, text, border colors
-- Borders: border styles, width, radius
-- Shadows: box-shadow, text-shadow
-- Typography: font-family, font-weight, font-size
+- Borders: border styles, width, radius (unless using token-based utilities)
+- Shadows: box-shadow (unless using token-based utilities)
+- Typography: font-family, font-weight, font-size (limited utilities available)
 - Effects: opacity, transitions, transforms
 
 **Why this matters:**
 - Layout changes with structure (responsive, composition)
 - Design changes with theme (light/dark mode, brand)
 - Semantic tokens handle design → theme consistency
-- PrimeFlex handles layout → responsive structure
+- Utilities handle layout → responsive structure
 
 ---
 
-## PrimeFlex Allowlist
+## Utilities Allowlist
 
 ### Flex Layout
 
@@ -339,7 +339,7 @@ underline, no-underline, line-through
 
 ### ❌ Tailwind Classes (Completely Forbidden)
 
-**Forbidden (these are Tailwind, not PrimeFlex):**
+**Forbidden (these are Tailwind, not Yggdrasil utilities):**
 ```css
 /* Tailwind-specific utilities */
 space-x-*, space-y-*
@@ -352,12 +352,12 @@ transform, translate-*, rotate-*, scale-*
 
 **If you see these:**
 1. Flag as Tailwind violation
-2. Suggest PrimeFlex equivalent or semantic token
-3. Remind: "This is Tailwind, not PrimeFlex. Yggdrasil does not use Tailwind."
+2. Suggest Yggdrasil utilities equivalent or semantic token
+3. Remind: "This is Tailwind, not Yggdrasil utilities. Yggdrasil does not use Tailwind."
 
 ---
 
-## Critical Anti-Pattern: PrimeFlex on Components
+## Critical Anti-Pattern: Yggdrasil utilities on Components
 
 ### The Problem
 
@@ -389,8 +389,8 @@ PrimeReact components are **designed and themed**. Adding utility classes overri
 
 ### The Rule
 
-**✅ PrimeFlex on containers (divs, sections)**
-**❌ PrimeFlex on PrimeReact components**
+**✅ Yggdrasil utilities on containers (divs, sections)**
+**❌ Yggdrasil utilities on PrimeReact components**
 
 **Correct Pattern:**
 
@@ -458,7 +458,7 @@ className=".*shadow.*"  /* Shadows */
 className=".*rounded.*"  /* Border radius */
 ```
 
-**Pattern 2: PrimeFlex on components**
+**Pattern 2: Yggdrasil utilities on components**
 ```tsx
 /* PrimeReact components with className */
 <Button className="..." />
@@ -470,7 +470,7 @@ className=".*rounded.*"  /* Border radius */
 
 **Pattern 3: Tailwind classes**
 ```tsx
-/* Tailwind-specific utilities not in PrimeFlex */
+/* Tailwind-specific utilities not in Yggdrasil utilities */
 className=".*space-.*"
 className=".*ring-.*"
 className=".*blur-.*"
@@ -492,10 +492,10 @@ className=".*transition-.*"
   color: 'var(--text-onsurface-onbrand)'
 }}>
 
-Reason: PrimeFlex is for layout only. Use semantic tokens for colors.
+Reason: Yggdrasil utilities is for layout only. Use semantic tokens for colors.
 ```
 
-**For PrimeFlex on component violations:**
+**For Yggdrasil utilities on component violations:**
 
 ```
 ❌ Violation detected: `<Button className="p-3 bg-blue-500" />`
@@ -505,7 +505,7 @@ Reason: PrimeFlex is for layout only. Use semantic tokens for colors.
   <Button />
 </div>
 
-Reason: PrimeFlex utilities cannot be used on PrimeReact components.
+Reason: Yggdrasil utilities utilities cannot be used on PrimeReact components.
 Components are themed automatically.
 ```
 
@@ -514,10 +514,10 @@ Components are themed automatically.
 ```
 ❌ Violation detected: `className="space-x-2 ring-2"`
 
-✅ Fix: Use PrimeFlex gap
+✅ Fix: Use Yggdrasil utilities gap
 <div className="flex gap-2">
 
-Reason: This project uses PrimeFlex, not Tailwind.
+Reason: This project uses Yggdrasil utilities, not Tailwind.
 ```
 
 ---
@@ -637,12 +637,12 @@ Reason: This project uses PrimeFlex, not Tailwind.
 <div className="hidden md:block">
 ```
 
-✅ **Correct (PrimeFlex):**
+✅ **Correct (Yggdrasil utilities):**
 ```tsx
 <div className="hidden md:block">  {/* This is actually correct! */}
 ```
 
-Wait, this IS correct PrimeFlex! ✅
+Wait, this IS correct Yggdrasil utilities! ✅
 
 ---
 
@@ -726,13 +726,13 @@ Benefits:
 
 ## Quick Reference Checklist
 
-### Before Using PrimeFlex Class
+### Before Using Yggdrasil utilities Class
 
 - [ ] Is this for **layout or spacing**? (If yes, allowed)
 - [ ] Is this for **design** (colors, borders, shadows)? (If yes, forbidden - use tokens)
 - [ ] Am I applying this to a **container** (div, section)? (If yes, allowed)
 - [ ] Am I applying this to a **PrimeReact component**? (If yes, forbidden - except w-full on inputs)
-- [ ] Is this a **Tailwind class**? (If yes, forbidden - suggest PrimeFlex)
+- [ ] Is this a **Tailwind class**? (If yes, forbidden - suggest Yggdrasil utilities)
 - [ ] Does this follow the **4px grid** (spacing values)? (If no, adjust to grid)
 
 ### Allowed Pattern
@@ -767,7 +767,7 @@ Benefits:
 - `border-2`, `border-blue-200` → ❌ Design (border)
 - `rounded-lg` → ❌ Design (radius)
 - `shadow-md` → ❌ Design (shadow)
-- Classes on Button → ❌ PrimeFlex on component
+- Classes on Button → ❌ Yggdrasil utilities on component
 - `bg-blue-500`, `text-white` → ❌ Design (colors)
 - `font-bold` → ❌ Design (typography)
 - `px-6`, `py-3` → ❌ Spacing on component
@@ -781,7 +781,7 @@ Benefits:
 When detecting violations, use this format:
 
 ```
-🚨 PrimeFlex Violation Detected
+🚨 Yggdrasil utilities Violation Detected
 
 Location: [File:line]
 Violation Type: [Color/Border/Shadow/Component/Tailwind]
@@ -804,7 +804,7 @@ Violation Type: [Color/Border/Shadow/Component/Tailwind]
 
 ## Summary
 
-**PrimeFlex Guard Principles:**
+**Yggdrasil utilities Guard Principles:**
 1. Layout and spacing ONLY
 2. NEVER on PrimeReact components (except w-full on inputs)
 3. Design = semantic tokens

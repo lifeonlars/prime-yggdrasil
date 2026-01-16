@@ -5,16 +5,14 @@ import type { ReactRenderer } from '@storybook/react';
 import type { DecoratorFunction } from 'storybook/internal/types';
 import { YggdrasilProvider } from '../src/provider/YggdrasilProvider';
 
-// Import base resources (icons and utilities)
+// Import base resources (icons)
 import 'primeicons/primeicons.css';
-import 'primeflex/primeflex.css';
 
 // Import blocks styles (theme-agnostic)
 import '../src/blocks/blocks.css';
 
-// Import adaptive theme that handles both light and dark via [data-theme] attribute
-// This ensures Chromatic can access both themes while allowing Storybook to switch
-import '../src/theme/yggdrasil-adaptive.css';
+// Import theme that handles both light and dark via [data-theme] attribute
+import '../src/theme/theme.css';
 
 // Global theme management - runs once, not per story
 let currentTheme: 'light' | 'dark' | null = null;

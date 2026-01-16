@@ -12,17 +12,14 @@ function copyThemeVariants() {
     name: 'copy-theme-variants',
     writeBundle() {
       const filesToCopy = [
-        // Main theme files
-        'yggdrasil-light.css',
-        'yggdrasil-dark.css',
+        // Main theme file
+        'theme.css',
         // Dependencies
         'foundations.css',
-        'prime-palette.css',
         'radius.css',
-        'semantic-light.css',
-        'semantic-dark.css',
-        'components.css',
-        'typography.css'
+        'typography.css',
+        'utilities.css',
+        'components.css'
       ];
 
       const componentFiles = [
@@ -90,8 +87,7 @@ export default defineConfig({
         'react-dom',
         'primereact',
         'primereact/api',
-        'primeicons',
-        'primeflex'
+        'primeicons'
       ],
       output: {
         globals: {

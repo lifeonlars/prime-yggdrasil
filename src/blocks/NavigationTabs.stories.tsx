@@ -2,6 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { NavigationTabs } from './NavigationTabs'
 import { Button } from 'primereact/button'
 import { useState } from 'react'
+import { AccountMenu } from './AccountMenu'
+import { ThemeToggle, type Theme } from './ThemeToggle'
+import { LanguageMenu, LANGUAGES, type Language } from './LanguageMenu'
 
 const meta = {
   title: 'Blocks/NavigationTabs',
@@ -108,6 +111,8 @@ export const WithElevation: Story = {
 export const WithUserControls: Story = {
   render: () => {
     const [activeIndex, setActiveIndex] = useState(0)
+    const [theme, setTheme] = useState<Theme>('light')
+    const [currentLanguage, setCurrentLanguage] = useState<Language>(LANGUAGES[0])
 
     const items = [
       { label: 'Workspace' },
@@ -116,10 +121,36 @@ export const WithUserControls: Story = {
       { label: 'Help' },
     ]
 
+    const handleThemeChange = (newTheme: Theme) => {
+      setTheme(newTheme)
+      document.documentElement.setAttribute('data-theme', newTheme)
+    }
+
+    const handleLanguageChange = (lang: Language) => {
+      setCurrentLanguage(lang)
+      console.log('Language changed to:', lang.name)
+    }
+
+    const user = {
+      firstName: 'Leeloo',
+      lastName: 'Dallas',
+      email: 'leeloo.dallas@example.com',
+    }
+
     const endContent = (
       <div className="flex gap-2 align-items-center">
-        <Button icon="pi pi-bell" rounded text aria-label="Notifications" />
-        <Button icon="pi pi-user" rounded text aria-label="User profile" />
+        <ThemeToggle currentTheme={theme} onThemeChange={handleThemeChange} />
+        <LanguageMenu
+          currentLanguage={currentLanguage}
+          availableLanguages={LANGUAGES}
+          onLanguageChange={handleLanguageChange}
+        />
+        <AccountMenu
+          user={user}
+          onProfileClick={() => console.log('Profile clicked')}
+          onPreferencesClick={() => console.log('Preferences clicked')}
+          onLogout={() => console.log('Logout clicked')}
+        />
       </div>
     )
 
@@ -132,6 +163,8 @@ export const WithUserControls: Story = {
 export const FullExample: Story = {
   render: () => {
     const [activeIndex, setActiveIndex] = useState(0)
+    const [theme, setTheme] = useState<Theme>('light')
+    const [currentLanguage, setCurrentLanguage] = useState<Language>(LANGUAGES[0])
 
     const items = [
       { label: 'Dashboard', icon: 'pi pi-home' },
@@ -151,11 +184,36 @@ export const FullExample: Story = {
       square: <i className="pi pi-globe text-2xl text-brand-primary"></i>,
     }
 
+    const handleThemeChange = (newTheme: Theme) => {
+      setTheme(newTheme)
+      document.documentElement.setAttribute('data-theme', newTheme)
+    }
+
+    const handleLanguageChange = (lang: Language) => {
+      setCurrentLanguage(lang)
+      console.log('Language changed to:', lang.name)
+    }
+
+    const user = {
+      firstName: 'Leeloo',
+      lastName: 'Dallas',
+      email: 'leeloo.dallas@example.com',
+    }
+
     const endContent = (
       <div className="flex gap-2 align-items-center">
-        <Button icon="pi pi-bell" rounded text aria-label="Notifications" />
-        <Button icon="pi pi-search" rounded text aria-label="Search" />
-        <Button icon="pi pi-user" rounded text aria-label="User profile" />
+        <ThemeToggle currentTheme={theme} onThemeChange={handleThemeChange} />
+        <LanguageMenu
+          currentLanguage={currentLanguage}
+          availableLanguages={LANGUAGES}
+          onLanguageChange={handleLanguageChange}
+        />
+        <AccountMenu
+          user={user}
+          onProfileClick={() => console.log('Profile clicked')}
+          onPreferencesClick={() => console.log('Preferences clicked')}
+          onLogout={() => console.log('Logout clicked')}
+        />
       </div>
     )
 

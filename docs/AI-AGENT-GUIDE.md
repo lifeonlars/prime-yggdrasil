@@ -351,7 +351,7 @@ import { Card } from 'primereact/card';
 ```tsx
 // ✅ Layout utilities on wrappers/containers
 <div className="flex gap-4 w-full">
-  <Button label="Cancel" severity="secondary" />
+  <Button label="Cancel" outlined />
   <Button label="Submit" />
 </div>
 
@@ -387,14 +387,14 @@ When integrating Yggdrasil into another project:
 
 ### 1. Installation
 ```bash
-npm install prime-yggdrasil
+npm install @lifeonlars/prime-yggdrasil
 npm install primereact primeicons
 ```
 
 ### 2. Import Theme
 ```tsx
 // In your main app file
-import 'prime-yggdrasil/yggdrasil-light.css';  // or yggdrasil-dark.css
+import '@lifeonlars/prime-yggdrasil/theme.css';
 import 'primeicons/primeicons.css';
 ```
 
@@ -711,9 +711,10 @@ If you find a block being used across **multiple projects**, consider promoting 
 1. **PrimeReact Docs**: https://primereact.org/ (comprehensive component reference)
 2. **PrimeReact Showcase**: https://primereact.org/installation/ (live examples)
 3. **PrimeReact GitHub**: https://github.com/primefaces/primereact (source code, issues)
-4. **Local Storybook**: `npm run dev` → localhost:6006 (themed examples)
-5. **Semantic Token Reference**: `src/theme/semantic-light.css` (all tokens)
+4. **Local Storybook**: `npm run storybook` → localhost:6006 (themed examples)
+5. **Semantic Token Reference**: `src/theme/theme.css` (all tokens)
 6. **Component Examples**: `src/stories/` (usage patterns)
+7. **Utilities Reference**: `src/stories/Utilities.stories.tsx` (utility class documentation)
 
 ## 🚀 Success Metrics
 
