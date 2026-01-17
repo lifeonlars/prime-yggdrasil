@@ -1,3 +1,16 @@
+---
+title: "Utilities Usage Policy"
+category: reference
+tags: [utilities, layout, spacing, policy, allowlist, forbidden]
+audience: ai-agent
+version: 0.7.0
+lastUpdated: 2026-01-16
+relatedDocs:
+  - AI-AGENT-GUIDE.md
+  - AESTHETICS.md
+  - .ai/agents/utilities-guard.md
+---
+
 # Yggdrasil Utilities Usage Policy
 
 **Purpose:** Define the allowed and forbidden uses of utility classes in the Yggdrasil design system.

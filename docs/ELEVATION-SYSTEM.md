@@ -1,3 +1,15 @@
+---
+title: "Elevation System"
+category: reference
+tags: [elevation, shadows, depth, hierarchy, dark-mode]
+audience: designer
+version: 0.7.0
+lastUpdated: 2026-01-16
+relatedDocs:
+  - AI-AGENT-GUIDE.md
+  - AESTHETICS.md
+---
+
 # Yggdrasil Elevation System
 
 ## Dark Mode Shadow Strategy

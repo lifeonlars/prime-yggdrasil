@@ -1,3 +1,17 @@
+---
+title: "Interaction Patterns Agent"
+category: agent
+tags: [agent, interaction, state-management, forms, feedback, focus, ux]
+audience: ai-agent
+version: 0.7.0
+lastUpdated: 2026-01-16
+relatedDocs:
+  - ../../docs/AESTHETICS.md
+  - ../../docs/AI-AGENT-GUIDE.md
+  - block-composer.md
+  - accessibility.md
+---
+
 # Interaction Patterns Agent
 
 **Role:** Standardize behavior patterns (empty/loading/error, form validation, confirmations, toasts vs banners, focus management) aligned with Prime Yggdrasil aesthetics.

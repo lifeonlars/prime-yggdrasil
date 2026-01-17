@@ -1,3 +1,17 @@
+---
+title: "Drift Validator Agent"
+category: agent
+tags: [agent, validation, eslint, cli, policy-enforcement, design-system]
+audience: ai-agent
+version: 0.7.0
+lastUpdated: 2026-01-16
+relatedDocs:
+  - ../../docs/UTILITIES-POLICY.md
+  - ../../docs/AESTHETICS.md
+  - utilities-guard.md
+  - semantic-token-intent.md
+---
+
 # Drift Validator Agent
 
 **Role:** Enforce design system rules consistently across consumer repos (CLI + ESLint).

@@ -1,3 +1,18 @@
+---
+title: "Semantic Token Intent Agent"
+category: agent
+tags: [agent, semantic-tokens, colors, intent, state-completeness, wcag]
+audience: ai-agent
+version: 0.7.0
+lastUpdated: 2026-01-16
+relatedDocs:
+  - ../../docs/MASTER-TOKEN-REFERENCE.md
+  - ../../docs/AI-AGENT-GUIDE.md
+  - ../../docs/AESTHETICS.md
+  - block-composer.md
+  - accessibility.md
+---
+
 # Semantic Token Intent Agent
 
 **Role:** Make semantic token selection intent-driven and state-complete.
@@ -5,6 +20,7 @@
 **When to invoke:** When styling any UI element, choosing colors, or translating design intent to code.
 
 **Mandatory References:**
+- [`docs/MASTER-TOKEN-REFERENCE.md`](../../docs/MASTER-TOKEN-REFERENCE.md) - **PRIMARY REFERENCE** - Comprehensive token catalog with intent-based selection, pairing rules, and examples
 - [`docs/AESTHETICS.md`](../../docs/AESTHETICS.md) - Aesthetic principles (color for meaning, not decoration; state visibility)
 - [`src/themes/semantic-light.css`](../../src/themes/semantic-light.css) - Complete semantic token catalog (light mode)
 - [`src/themes/semantic-dark.css`](../../src/themes/semantic-dark.css) - Complete semantic token catalog (dark mode)

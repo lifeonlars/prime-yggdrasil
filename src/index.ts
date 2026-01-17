@@ -48,21 +48,23 @@ export { FormField } from './blocks/FormField';
 
 // Export components
 export { Flag } from './components/Flag';
+export { Icon } from './components/Icon';
 export type { FlagCountry } from './components/Flag';
+export type { IconProps } from './components/Icon';
 export type { Language } from './blocks/LanguageMenu';
 export type { Theme } from './blocks/ThemeToggle';
 
 /**
  * Package version
  */
-export const version = '0.2.1';
+export const version = '0.7.0';
 
 /**
  * Theme information
  */
 export const theme = {
   name: 'Yggdrasil',
-  version: '0.2.1',
+  version: '0.7.0',
   tokens: 727,
   coverage: '100%',
   modes: ['light', 'dark'] as const,

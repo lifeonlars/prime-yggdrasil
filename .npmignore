@@ -19,9 +19,25 @@ node_modules/
 
 # Build artifacts
 storybook-static/
+playwright-report/
+test-results/
+coverage/
 *.log
 
-# Documentation (keep these)
+# Archive and internal documentation (exclude from npm package)
+documentation/
+docs/scripts/
+
+# Test templates (exclude - for development only)
+tests/
+
+# Scripts (exclude - internal tooling)
+scripts/
+
+# Vite artifacts
+dist/vite.svg
+
+# Keep essential documentation
 !README.md
 !LICENSE
 !agentic_policy.md

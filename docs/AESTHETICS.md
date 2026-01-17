@@ -1,3 +1,16 @@
+---
+title: "UI Aesthetics & Principles"
+category: reference
+tags: [aesthetics, principles, visual-tone, design-philosophy, agents]
+audience: ai-agent
+version: 0.7.0
+lastUpdated: 2026-01-16
+relatedDocs:
+  - AI-AGENT-GUIDE.md
+  - UTILITIES-POLICY.md
+  - .ai/agents/block-composer.md
+---
+
 # Prime Yggdrasil — UI Aesthetics & Principles
 
 This document defines the aesthetic and interaction principles that all UI built with **Prime Yggdrasil** must follow.

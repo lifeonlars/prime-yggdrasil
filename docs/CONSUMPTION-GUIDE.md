@@ -1,3 +1,17 @@
+---
+title: "Consumption Guide"
+category: guide
+tags: [integration, setup, npm, installation, theme-switching, icons]
+audience: developer
+version: 0.7.0
+lastUpdated: 2026-01-16
+relatedDocs:
+  - AI-AGENT-GUIDE.md
+  - MASTER-TOKEN-REFERENCE.md
+  - UTILITIES-POLICY.md
+  - README.md
+---
+
 # Consuming Yggdrasil in Your Project
 
 This guide explains how to use the Yggdrasil design system in another project to ensure AI agents maintain design consistency.
@@ -193,25 +207,28 @@ This project uses the Yggdrasil design system built on PrimeReact.
 
 ## Quick Reference
 
-**Colors (use semantic tokens):**
+**For comprehensive documentation**, see:
+- **Tokens**: [MASTER-TOKEN-REFERENCE.md](./MASTER-TOKEN-REFERENCE.md)
+- **Utilities**: [UTILITIES-POLICY.md](./UTILITIES-POLICY.md)
+- **AI Agent Guide**: [AI-AGENT-GUIDE.md](./AI-AGENT-GUIDE.md)
+
+**Most common tokens:**
 - Text: `var(--text-neutral-default)`, `var(--text-neutral-subdued)`
 - Backgrounds: `var(--surface-neutral-primary)`, `var(--surface-neutral-secondary)`
-- Brand: `var(--surface-brand-primary)`, `var(--text-state-interactive)`
+- Brand: `var(--surface-brand-primary)`, `var(--text-onsurface-onbrand)`
+- Spacing: `0.5rem`, `1rem`, `1.5rem`, `2rem` (4px grid)
 
-**Spacing (4px grid - use utilities or inline styles):**
-- Utilities: `.p-4`, `.m-2`, `.gap-3` (layout only)
-- Inline: `0.5rem` (8px), `1rem` (16px), `1.5rem` (24px), `2rem` (32px)
-
-**Layout Utilities (allowed):**
-- Flexbox: `.flex`, `.flex-column`, `.justify-content-between`, `.align-items-center`
-- Grid: `.grid`, `.col-12`, `.col-6`
-- Spacing: `.p-4`, `.m-2`, `.gap-3`
+**Allowed layout utilities** (see [UTILITIES-POLICY.md](./UTILITIES-POLICY.md)):
+- Flexbox: `.flex`, `.flex-column`, `.justify-content-*`, `.align-items-*`
+- Grid: `.grid`, `.col-*`
+- Spacing: `.p-*`, `.m-*`, `.gap-*`
 - NO utilities on PrimeReact components (except `.w-full` on inputs)
 
 **Components:**
 - Data tables: `import { DataTable } from 'primereact/datatable'`
 - Forms: `import { InputText } from 'primereact/inputtext'`
 - Buttons: `import { Button } from 'primereact/button'`
+- Icons: `import { Icon } from '@lifeonlars/prime-yggdrasil'`
 - Navigation: `import { Menubar } from 'primereact/menubar'`
 
 **Buttons (only these variants):**
@@ -219,6 +236,10 @@ This project uses the Yggdrasil design system built on PrimeReact.
 - Outlined: `<Button label="Action" outlined />`
 - Link: `<Button label="Action" text />`
 - Danger: `<Button label="Delete" severity="danger" />`
+
+**Icons (PrimeIcons or custom SVGs):**
+- PrimeIcons: `<Icon name="pi pi-check" size="medium" />`
+- Custom SVG: `<Icon name="my-icon" />` (from public/icons/my-icon.svg)
 
 ## Documentation
 
@@ -243,6 +264,110 @@ Follow these principles:
 4. Use utilities for layout only (not design)
 5. Reference Storybook examples
 ```
+
+## 🎨 Icon System
+
+Yggdrasil provides flexible icon support with both PrimeIcons and custom SVG icons.
+
+### Option 1: Using PrimeIcons (Traditional)
+
+```tsx
+// Install primeicons
+npm install primeicons
+
+// Import CSS
+import 'primeicons/primeicons.css'
+import { Icon } from '@lifeonlars/prime-yggdrasil'
+
+// Use PrimeIcons
+<Icon name="pi pi-check" size="medium" />
+<Icon name="pi pi-bell" size="large" />
+<Icon name="pi pi-user" size="small" />
+```
+
+### Option 2: Using Custom SVG Icons
+
+```tsx
+// No primeicons needed
+import { Icon } from '@lifeonlars/prime-yggdrasil'
+
+// 1. Create public/icons/ directory
+mkdir public/icons
+
+// 2. Add SVG files
+// - public/icons/bell.svg
+// - public/icons/check.svg
+// - public/icons/user.svg
+
+// 3. Use Icon component
+<Icon name="bell" size="medium" />
+<Icon name="check" size="large" />
+<Icon name="user" size="small" />
+```
+
+### Option 3: Mixed Icons (Both)
+
+```tsx
+import 'primeicons/primeicons.css'
+import { Icon } from '@lifeonlars/prime-yggdrasil'
+
+// PrimeIcons for common UI icons
+<Icon name="pi pi-check" />
+<Icon name="pi pi-times" />
+
+// Custom SVGs for brand/app-specific icons
+<Icon name="my-app-logo" />
+<Icon name="custom-icon" />
+```
+
+### Icon Sizing
+
+```tsx
+// Predefined sizes
+<Icon name="pi pi-bell" size="small" />   {/* 16px */}
+<Icon name="pi pi-bell" size="medium" />  {/* 20px - default */}
+<Icon name="pi pi-bell" size="large" />   {/* 24px */}
+
+// Custom pixel size
+<Icon name="pi pi-bell" size={32} />
+<Icon name="pi pi-bell" size={48} />
+```
+
+### Colored Icons with Semantic Tokens
+
+```tsx
+<Icon
+  name="pi pi-check"
+  size="large"
+  color="var(--text-state-success)"
+/>
+
+<Icon
+  name="pi pi-times"
+  size="large"
+  color="var(--text-state-danger)"
+/>
+
+<Icon
+  name="pi pi-info-circle"
+  size="large"
+  color="var(--text-state-info)"
+/>
+```
+
+### Interactive Icons
+
+```tsx
+<Icon
+  name="pi pi-bell"
+  size="large"
+  onClick={() => console.log('Clicked!')}
+  aria-label="Notifications"
+  style={{ cursor: 'pointer' }}
+/>
+```
+
+**Note:** PrimeIcons is now an optional dependency. You can skip installing it if you only use custom SVG icons.
 
 ## 🎨 Theme Switching (Optional)
 
@@ -435,10 +560,10 @@ After integration, verify:
 ## 📚 Additional Resources
 
 - **AI Agent Guide**: `node_modules/@lifeonlars/prime-yggdrasil/docs/AI-AGENT-GUIDE.md`
+- **Master Token Reference**: `node_modules/@lifeonlars/prime-yggdrasil/docs/MASTER-TOKEN-REFERENCE.md`
 - **Utilities Policy**: `node_modules/@lifeonlars/prime-yggdrasil/docs/UTILITIES-POLICY.md`
 - **Theme Architecture**: `node_modules/@lifeonlars/prime-yggdrasil/src/theme/README.md`
 - **PrimeReact Docs**: https://primereact.org/
-- **Semantic Tokens**: `node_modules/@lifeonlars/prime-yggdrasil/src/theme/theme.css`
 
 ## 🤝 Contributing Back
 

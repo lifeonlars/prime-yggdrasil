@@ -1,6 +1,6 @@
 {
   "name": "@lifeonlars/prime-yggdrasil",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "type": "module",
   "description": "AI-agent-friendly PrimeReact design system for component-driven development with semantic tokens and dark mode support",
   "keywords": [
@@ -71,6 +71,11 @@
     "primereact": "^10.9.7",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
+  },
+  "peerDependenciesMeta": {
+    "primeicons": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.3",

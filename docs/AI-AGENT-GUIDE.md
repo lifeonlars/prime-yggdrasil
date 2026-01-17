@@ -1,3 +1,19 @@
+---
+title: "AI Agent Guide"
+category: guide
+tags: [ai-agents, tokens, components, quick-reference, semantic-tokens, primereact]
+audience: ai-agent
+version: 0.7.0
+lastUpdated: 2026-01-16
+relatedDocs:
+  - MASTER-TOKEN-REFERENCE.md
+  - AESTHETICS.md
+  - UTILITIES-POLICY.md
+  - CONSUMPTION-GUIDE.md
+  - .ai/agents/block-composer.md
+  - .ai/agents/semantic-token-intent.md
+---
+
 # Yggdrasil Design System - AI Agent Guide
 
 **Purpose**: This guide helps AI agents maintain design consistency and use component-driven development when building applications with the Yggdrasil design system.
@@ -25,102 +41,49 @@ Before writing any UI code, **always**:
 
 ## 📚 Quick Reference for Common Tasks
 
-### Choosing Colors
+### Semantic Tokens
 
-**For text:**
-```css
---text-neutral-default       /* Main body text (dark in light mode) */
---text-neutral-subdued       /* Secondary/muted text */
---text-neutral-loud          /* Emphasized text (extra dark) */
---text-neutral-disabled      /* Disabled state text */
---text-state-interactive     /* Interactive elements (links, buttons) */
---text-onsurface-onbrand     /* Text on brand-colored backgrounds (white) */
-```
+**For comprehensive token documentation**, see [MASTER-TOKEN-REFERENCE.md](./MASTER-TOKEN-REFERENCE.md).
 
-**For surfaces/backgrounds:**
-```css
---surface-neutral-primary    /* Main backgrounds (white in light mode) */
---surface-neutral-secondary  /* Secondary backgrounds (light gray) */
---surface-neutral-tertiary   /* Tertiary backgrounds (lighter gray) */
---surface-brand-primary      /* Brand primary (main blue) */
---surface-state-hover        /* Hover state background */
---surface-state-selected     /* Selected state background */
-```
-
-**For borders:**
-```css
---border-neutral-default     /* Standard borders */
---border-neutral-subdued     /* Subtle borders (lighter) */
---border-state-interactive   /* Interactive element borders */
---border-state-focus         /* Focus rings */
-```
-
-**For context/feedback:**
-```css
-/* Use severity tokens for messages, alerts, etc. */
---severity-info-surface      /* Info background */
---severity-info-text         /* Info text */
---severity-info-border       /* Info border */
-
---severity-success-surface   /* Success background */
---severity-danger-surface    /* Danger/error background */
---severity-warn-surface      /* Warning background */
-```
-
-### Choosing Spacing
-
-**Always use the 4px grid:**
-```css
-/* ✅ CORRECT */
-padding: 0.5rem;     /* 8px */
-padding: 1rem;       /* 16px */
-padding: 1.5rem;     /* 24px */
-margin: 2rem;        /* 32px */
-
-/* ❌ INCORRECT */
-padding: 10px;       /* Not on 4px grid */
-margin: 15px;        /* Not on 4px grid */
-```
-
-**Common spacing values:**
-- `0.25rem` (4px) - Minimal spacing
-- `0.5rem` (8px) - Tight spacing
-- `0.75rem` (12px) - Compact spacing
-- `1rem` (16px) - Standard spacing
-- `1.25rem` (20px) - Comfortable spacing
-- `1.5rem` (24px) - Spacious
-- `2rem` (32px) - Large gaps
-
-### Choosing Border Radius
+**Quick reference for most common tokens:**
 
 ```css
---radius-sm        /* 4px - Subtle rounding */
---radius-md        /* 8px - Standard (buttons, inputs) */
---radius-lg        /* 12px - Cards, panels */
---radius-xl        /* 16px - Large containers */
---radius-full      /* 9999px - Pills, avatars */
+/* Text */
+--text-neutral-default         /* Body text */
+--text-neutral-subdued         /* Helper text */
+--text-neutral-loud            /* Headings */
+--text-onsurface-onbrand       /* Text on brand buttons */
 
-/* Component-specific */
---button-radius    /* Buttons (8px) */
---input-radius     /* Form inputs (8px) */
+/* Surfaces */
+--surface-neutral-primary      /* Page background */
+--surface-neutral-secondary    /* Cards, panels */
+--surface-brand-primary        /* Primary buttons */
+--surface-input-primary        /* Inputs */
+
+/* Borders */
+--border-neutral-default       /* Standard borders */
+--border-state-focus           /* Focus rings */
+--border-context-danger        /* Error borders */
+
+/* Context (Messages) */
+--surface-context-success      /* Success backgrounds */
+--surface-context-danger       /* Error backgrounds */
+--text-onsurface-oncontext     /* Text on context surfaces */
+
+/* Spacing (4px grid) */
+0.5rem, 1rem, 1.5rem, 2rem     /* 8px, 16px, 24px, 32px */
+
+/* Radius */
+--radius-md                    /* 8px - default */
+--radius-lg                    /* 12px - cards */
+
+/* Elevation */
+--elevation-subtle             /* Hovercards */
+--elevation-moderate           /* Dropdowns */
+--elevation-elevated           /* Modals */
 ```
 
-### Choosing Elevation/Shadows
-
-```css
---elevation-subtle     /* Minimal depth (tooltips) */
---elevation-moderate   /* Standard depth (dropdowns, cards) */
---elevation-elevated   /* Significant depth (modals) */
---elevation-high       /* Maximum depth (drawers) */
-```
-
-Or use utility classes:
-```jsx
-<div className="shadow-1">Subtle shadow</div>
-<div className="shadow-2">Moderate shadow</div>
-<div className="shadow-3">Elevated shadow</div>
-<div className="shadow-4">High shadow</div>
-```
+**For detailed token categories, pairing rules, state completeness, and dark mode behavior**, see [MASTER-TOKEN-REFERENCE.md](./MASTER-TOKEN-REFERENCE.md).
 
 ## ⚙️ PrimeReact Configuration
 
@@ -249,6 +212,44 @@ import { Button } from 'primereact/button';
 ```
 
 **❌ Don't use:** `secondary`, `help`, `contrast`, `info`, `success`, `warning` buttons (removed from design system)
+
+### Icons
+
+**Yggdrasil supports both PrimeIcons and custom SVG icons:**
+
+```tsx
+import { Icon } from '@lifeonlars/prime-yggdrasil';
+
+{/* PrimeIcons - requires primeicons package */}
+<Icon name="pi pi-check" size="medium" />
+<Icon name="pi pi-bell" size="large" />
+
+{/* Custom SVG icons - from public/icons/ directory */}
+<Icon name="my-icon" size="medium" />
+<Icon name="custom-bell" size={32} />
+```
+
+**Sizing:**
+- `size="small"` → 16px
+- `size="medium"` → 20px (default)
+- `size="large"` → 24px
+- `size={32}` → Custom pixel value
+
+**Colored icons with semantic tokens:**
+```tsx
+<Icon
+  name="pi pi-check"
+  size="large"
+  color="var(--text-state-success)"
+/>
+```
+
+**Using custom SVG icons:**
+1. Create `public/icons/` directory in your project
+2. Add SVG files: `public/icons/my-icon.svg`
+3. Use: `<Icon name="my-icon" />`
+
+**Note:** PrimeIcons is now optional. You can use only custom SVGs if preferred.
 
 ### Navigation
 

@@ -1,3 +1,18 @@
+---
+title: "Block Composer Agent"
+category: agent
+tags: [agent, composition, primereact, blocks, ui-planning, decision-tree]
+audience: ai-agent
+version: 0.7.0
+lastUpdated: 2026-01-16
+relatedDocs:
+  - ../../docs/AI-AGENT-GUIDE.md
+  - ../../docs/MASTER-TOKEN-REFERENCE.md
+  - ../../docs/AESTHETICS.md
+  - semantic-token-intent.md
+  - utilities-guard.md
+---
+
 # Block Composer Agent
 
 **Role:** Turn "I need X UI" into a composition plan, not just a component pick.

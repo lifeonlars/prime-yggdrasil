@@ -1,3 +1,17 @@
+---
+title: "Accessibility Agent"
+category: agent
+tags: [agent, accessibility, wcag, a11y, aria, keyboard-navigation, contrast]
+audience: ai-agent
+version: 0.7.0
+lastUpdated: 2026-01-16
+relatedDocs:
+  - ../../docs/AESTHETICS.md
+  - ../../docs/AI-AGENT-GUIDE.md
+  - semantic-token-intent.md
+  - interaction-patterns.md
+---
+
 # Accessibility Agent
 
 **Role:** Dedicated accessibility specialist for PrimeReact + Prime Yggdrasil usage. Ensure WCAG 2.1 AA compliance minimum.

@@ -24,6 +24,7 @@ Yggdrasil is a comprehensive design system built on [PrimeReact](https://primere
 - **🌗 Dark Mode Built-in** - Automatic theme switching with optimized dark mode shadows
 - **📦 Modular Architecture** - Split into 10 category files for easy maintenance
 - **🧩 Component-First** - Encourages PrimeReact usage over custom components
+- **🎯 Flexible Icon System** - Use PrimeIcons, custom SVGs, or both (PrimeIcons optional)
 - **📐 4px Grid System** - Consistent spacing and sizing across all components
 - **♿ WCAG 3.0 Compliant** - APCA contrast tested for accessibility
 - **📖 Storybook Integration** - Live component examples and documentation
@@ -34,8 +35,10 @@ Yggdrasil is a comprehensive design system built on [PrimeReact](https://primere
 ### Installation
 
 ```bash
-npm install @lifeonlars/prime-yggdrasil
-npm install primereact primeicons
+npm install @lifeonlars/prime-yggdrasil primereact
+
+# Optional: PrimeIcons (for icon font support)
+npm install primeicons
 ```
 
 ### Usage
@@ -123,10 +126,22 @@ function App() {
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { InputText } from 'primereact/inputtext';
+import { Icon } from '@lifeonlars/prime-yggdrasil';
 
 <Button label="Save" />
 <DataTable value={data} />
 <InputText placeholder="Enter text" />
+<Icon name="pi pi-check" size="medium" />
+```
+
+### Icons
+```tsx
+// PrimeIcons (requires primeicons package)
+import { Icon } from '@lifeonlars/prime-yggdrasil';
+<Icon name="pi pi-check" size="medium" />
+
+// Custom SVG icons (from public/icons/)
+<Icon name="my-icon" size="large" />
 ```
 
 ### ❌ Incorrect (Don't Create Custom)

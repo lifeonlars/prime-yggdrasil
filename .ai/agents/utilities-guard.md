@@ -1,3 +1,16 @@
+---
+title: "Utilities Guard Agent"
+category: agent
+tags: [agent, utilities, layout, spacing, policy-enforcement, eslint]
+audience: ai-agent
+version: 0.7.0
+lastUpdated: 2026-01-16
+relatedDocs:
+  - ../../docs/UTILITIES-POLICY.md
+  - ../../docs/AI-AGENT-GUIDE.md
+  - drift-validator.md
+---
+
 # Utilities Guard Agent
 
 **Role:** Stop utility drift and teach the sanctioned Yggdrasil utilities way.
