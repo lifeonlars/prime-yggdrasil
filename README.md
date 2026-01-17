@@ -26,6 +26,8 @@ npm install @lifeonlars/prime-yggdrasil primereact
 npm install primeicons
 ```
 
+For custom SVG icons, see [section 5](#5-svg-icons-optional).
+
 ### 2. Initialize AI Agents (Recommended)
 
 ```bash
@@ -61,34 +63,53 @@ function App() {
 }
 ```
 
+### 5. SVG Icons (Optional)
+
+Yggdrasil supports custom SVG icons without requiring PrimeIcons. Create a `public/icons/` directory and add your SVG files:
+
+```tsx
+import { Icon } from '@lifeonlars/prime-yggdrasil';
+
+// Option A: PrimeIcons (requires primeicons package)
+<Icon name="pi pi-check" size="medium" />
+
+// Option B: Custom SVG icons (place in public/icons/)
+<Icon name="my-icon" size="large" />  // loads public/icons/my-icon.svg
+```
+
+For full icon documentation including sizing and colors, see [Consumption Guide - Icon System](./docs/CONSUMPTION-GUIDE.md#-icon-system).
+
 ---
 
 ## What's Included
 
-| Feature | Description |
-|---------|-------------|
-| **Semantic Token System** | 727+ tokens with automatic light/dark mode |
-| **PrimeReact Integration** | 69 themed components ready to use |
-| **6 AI Agents** | Prevent drift, guide composition, enforce compliance |
-| **CLI Validation** | `yggdrasil audit` and `yggdrasil validate` commands |
-| **4px Grid System** | Consistent spacing across all components |
-| **WCAG 3.0 Compliant** | APCA contrast tested for accessibility |
+| Feature                    | Description                                          |
+| -------------------------- | ---------------------------------------------------- |
+| **Semantic Token System**  | 727+ tokens with automatic light/dark mode           |
+| **PrimeReact Integration** | 69 themed components ready to use                    |
+| **6 AI Agents**            | Prevent drift, guide composition, enforce compliance |
+| **CLI Validation**         | `yggdrasil audit` and `yggdrasil validate` commands  |
+| **4px Grid System**        | Consistent spacing across all components             |
+| **WCAG 3.0 Compliant**     | APCA contrast tested for accessibility               |
 
 ---
 
 ## Documentation
 
 ### For Developers
+
 - [Consumption Guide](./docs/CONSUMPTION-GUIDE.md) - Integration and setup
 - [Utilities Policy](./docs/UTILITIES-POLICY.md) - Allowed utility classes
 - [FAQ & Troubleshooting](./docs/FAQ-TROUBLESHOOTING.md) - Common issues
 
 ### For AI Agents
+
 - [AI Agent Guide](./docs/AI-AGENT-GUIDE.md) - Complete AI integration guide
 - [Decision Matrix](./docs/DECISION-MATRIX.md) - Component selection for common scenarios
 - [Anti-Patterns](./docs/ANTI-PATTERNS.md) - What NOT to do
 
 ### Reference
+
 - [Master Token Reference](./docs/MASTER-TOKEN-REFERENCE.md) - All semantic tokens
 - [Component Inventory](./docs/COMPONENT-INVENTORY.md) - Use-case to component mapping
 - [Aesthetics](./docs/AESTHETICS.md) - Design principles
@@ -99,14 +120,14 @@ function App() {
 
 Yggdrasil includes **6 specialized agents** that prevent drift and enforce design system compliance:
 
-| Agent | Purpose |
-|-------|---------|
-| **Block Composer** | Prevents bespoke components, suggests PrimeReact alternatives |
-| **Utilities Guard** | Enforces utilities for layout only (not design) |
-| **Semantic Token Intent** | Ensures correct token usage for all states |
-| **Drift Validator** | Catches violations via CLI and ESLint |
-| **Interaction Patterns** | Validates loading/error/empty state handling |
-| **Accessibility** | Enforces WCAG 2.1 AA compliance |
+| Agent                     | Purpose                                                       |
+| ------------------------- | ------------------------------------------------------------- |
+| **Block Composer**        | Prevents bespoke components, suggests PrimeReact alternatives |
+| **Utilities Guard**       | Enforces utilities for layout only (not design)               |
+| **Semantic Token Intent** | Ensures correct token usage for all states                    |
+| **Drift Validator**       | Catches violations via CLI and ESLint                         |
+| **Interaction Patterns**  | Validates loading/error/empty state handling                  |
+| **Accessibility**         | Enforces WCAG 2.1 AA compliance                               |
 
 ### Validate Your Code
 
@@ -158,6 +179,7 @@ For all 727+ tokens, see [Master Token Reference](./docs/MASTER-TOKEN-REFERENCE.
 ## Component Usage
 
 ### Correct (Use PrimeReact)
+
 ```tsx
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
@@ -167,6 +189,7 @@ import { DataTable } from 'primereact/datatable';
 ```
 
 ### Incorrect (Don't Create Custom)
+
 ```tsx
 // Don't do this!
 const CustomButton = ({ children }) => (
@@ -206,6 +229,7 @@ See [Anti-Patterns](./docs/ANTI-PATTERNS.md) for more examples of what to avoid.
 For contributors working on Yggdrasil itself:
 
 ### Prerequisites
+
 - Node.js 18+
 - npm or pnpm
 
@@ -256,6 +280,7 @@ MIT © Lars Farstad
 ## Credits
 
 Built with:
+
 - [PrimeReact](https://primereact.org/) - Component library
 - [PrimeIcons](https://primereact.org/icons) - Icon set
 - [Storybook](https://storybook.js.org/) - Component documentation
