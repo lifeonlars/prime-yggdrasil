@@ -15,8 +15,7 @@ const config: StorybookConfig = {
     "@chromatic-com/storybook",
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
-    "@vueless/storybook-dark-mode",
-    "@storybook/addon-onboarding"
+    "@vueless/storybook-dark-mode"
   ],
   "framework": "@storybook/react-vite",
   async viteFinal(config) {

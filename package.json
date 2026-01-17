@@ -1,6 +1,6 @@
 {
   "name": "@lifeonlars/prime-yggdrasil",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "type": "module",
   "description": "AI-agent-friendly PrimeReact design system for component-driven development with semantic tokens and dark mode support",
   "keywords": [
@@ -35,6 +35,7 @@
     "./theme.css": "./dist/theme.css",
     "./foundations.css": "./dist/foundations.css",
     "./typography.css": "./dist/typography.css",
+    "./utilities.css": "./dist/utilities.css",
     "./docs/*": "./docs/*"
   },
   "bin": {
@@ -82,7 +83,6 @@
     "@eslint/js": "^9.39.1",
     "@storybook/addon-a11y": "^10.1.11",
     "@storybook/addon-docs": "^10.1.11",
-    "@storybook/addon-onboarding": "^10.1.11",
     "@storybook/react-vite": "^10.1.11",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
@@ -91,12 +91,10 @@
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
-    "@vitest/browser-playwright": "^4.0.15",
     "@vitest/coverage-v8": "^4.0.15",
     "@vueless/storybook-dark-mode": "^10.0.4",
     "apca-w3": "^0.1.9",
     "chromatic": "^13.3.4",
-    "css-color-converter": "^2.0.0",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
@@ -107,7 +105,6 @@
     "primereact": "^10.9.7",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "sass": "^1.97.0",
     "storybook": "^10.1.11",
     "stylelint": "^16.26.1",
     "stylelint-config-standard": "^39.0.1",

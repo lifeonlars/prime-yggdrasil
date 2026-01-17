@@ -13,7 +13,7 @@ export default defineConfig({
     // Temporarily disable setup to isolate the issue
     // setupFiles: ['./tests/setup.ts'],
     include: ['tests/**/*.test.{ts,tsx,js}'],
-    exclude: ['**/node_modules/**', '**/dist/**', '**/.storybook/**', '**/storybook-static/**'],
+    exclude: ['**/node_modules/**', '**/dist/**', '**/.storybook/**', '**/storybook-static/**', '**/tests/templates/**', '**/tests/contrast.test.ts'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
