@@ -2129,7 +2129,7 @@ useEffect(() => {
 
 If you're about to create something that feels like it should already exist, it probably does. Check:
 1. [DECISION-MATRIX.md](./DECISION-MATRIX.md) for common scenarios
-2. [COMPONENT-INVENTORY.md](./COMPONENT-INVENTORY.md) for PrimeReact components
+2. [Component Index](./components/INDEX.md) for PrimeReact components and Yggdrasil blocks
 3. [PrimeReact documentation](https://primereact.org/)
 4. [Yggdrasil Storybook](http://localhost:6006/)
 

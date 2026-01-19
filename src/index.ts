@@ -45,6 +45,8 @@ export { NotificationButton } from './blocks/NotificationButton';
 export { PageHeader } from './blocks/PageHeader';
 export { Card } from './blocks/Card';
 export { FormField } from './blocks/FormField';
+export { FilterBar } from './blocks/FilterBar';
+export type { FilterBarProps, FilterConfig } from './blocks/FilterBar';
 
 // Export components
 export { Flag } from './components/Flag';

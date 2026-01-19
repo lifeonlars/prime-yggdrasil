@@ -571,7 +571,7 @@ it('renders accessible button', () => {
 **Yggdrasil Docs**:
 - [AI-AGENT-GUIDE.md](../docs/AI-AGENT-GUIDE.md) - Component patterns
 - [ACCESSIBILITY.md](../.ai/agents/accessibility.md) - Accessibility agent rules
-- [COMPONENT-INVENTORY.md](../docs/COMPONENT-INVENTORY.md) - Component catalog
+- [Component Index](../docs/components/INDEX.md) - Component catalog
 
 ---
 

@@ -1,7 +1,7 @@
 {
-  "generated": "2026-01-17T07:47:29.880Z",
+  "generated": "2026-01-18T22:03:31.350Z",
   "version": "0.7.0",
-  "documentCount": 15,
+  "documentCount": 26,
   "documents": [
     {
       "path": ".ai/agents/accessibility.md",
@@ -2394,6 +2394,105 @@
       ]
     },
     {
+      "path": "docs/components/button.md",
+      "title": "Button Components",
+      "category": "reference",
+      "tags": [
+        "components",
+        "primereact",
+        "button",
+        "actions"
+      ],
+      "audience": "ai-agent",
+      "version": "0.7.4",
+      "lastUpdated": "2026-01-18",
+      "relatedDocs": [
+        "INDEX.md",
+        "../DECISION-MATRIX.md"
+      ],
+      "deprecated": false,
+      "sections": [
+        {
+          "title": "Button",
+          "line": 21,
+          "anchor": "#button",
+          "level": 2
+        },
+        {
+          "title": "SplitButton",
+          "line": 75,
+          "anchor": "#splitbutton",
+          "level": 2
+        },
+        {
+          "title": "SpeedDial",
+          "line": 114,
+          "anchor": "#speeddial",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/components/INDEX.md",
+      "title": "Component Inventory Index",
+      "category": "reference",
+      "tags": [
+        "components",
+        "primereact",
+        "inventory",
+        "use-cases",
+        "catalog",
+        "quick-reference"
+      ],
+      "audience": "ai-agent",
+      "version": "0.7.4",
+      "lastUpdated": "2026-01-18",
+      "relatedDocs": [
+        "AI-AGENT-GUIDE.md",
+        "DECISION-MATRIX.md",
+        ".ai/agents/block-composer.md"
+      ],
+      "deprecated": false,
+      "sections": [
+        {
+          "title": "Quick Search Table",
+          "line": 22,
+          "anchor": "#quick-search-table",
+          "level": 2
+        },
+        {
+          "title": "Yggdrasil Blocks (Use First)",
+          "line": 24,
+          "anchor": "#yggdrasil-blocks-use-first",
+          "level": 3
+        },
+        {
+          "title": "PrimeReact Components",
+          "line": 44,
+          "anchor": "#primereact-components",
+          "level": 3
+        },
+        {
+          "title": "Category Documentation",
+          "line": 110,
+          "anchor": "#category-documentation",
+          "level": 2
+        },
+        {
+          "title": "Decision Guide",
+          "line": 127,
+          "anchor": "#decision-guide",
+          "level": 2
+        },
+        {
+          "title": "Using This Index",
+          "line": 144,
+          "anchor": "#using-this-index",
+          "level": 2
+        }
+      ]
+    },
+    {
       "path": "docs/COMPONENT-INVENTORY.md",
       "title": "Component Inventory: Use Case Mapping",
       "category": "reference",
@@ -2958,6 +3057,78 @@
       ]
     },
     {
+      "path": "docs/components/data.md",
+      "title": "Data Components",
+      "category": "reference",
+      "tags": [
+        "components",
+        "primereact",
+        "data",
+        "datatable",
+        "dataview",
+        "tree",
+        "timeline"
+      ],
+      "audience": "ai-agent",
+      "version": "0.7.4",
+      "lastUpdated": "2026-01-18",
+      "relatedDocs": [
+        "INDEX.md",
+        "../DECISION-MATRIX.md"
+      ],
+      "deprecated": false,
+      "sections": [
+        {
+          "title": "DataTable",
+          "line": 21,
+          "anchor": "#datatable",
+          "level": 2
+        },
+        {
+          "title": "DataView",
+          "line": 68,
+          "anchor": "#dataview",
+          "level": 2
+        },
+        {
+          "title": "Tree",
+          "line": 115,
+          "anchor": "#tree",
+          "level": 2
+        },
+        {
+          "title": "TreeTable",
+          "line": 161,
+          "anchor": "#treetable",
+          "level": 2
+        },
+        {
+          "title": "Timeline",
+          "line": 193,
+          "anchor": "#timeline",
+          "level": 2
+        },
+        {
+          "title": "VirtualScroller",
+          "line": 228,
+          "anchor": "#virtualscroller",
+          "level": 2
+        },
+        {
+          "title": "OrderList",
+          "line": 259,
+          "anchor": "#orderlist",
+          "level": 2
+        },
+        {
+          "title": "PickList",
+          "line": 290,
+          "anchor": "#picklist",
+          "level": 2
+        }
+      ]
+    },
+    {
       "path": "docs/DECISION-MATRIX.md",
       "title": "Decision Matrix: Common UI Scenarios",
       "category": "reference",
@@ -2975,7 +3146,7 @@
       "relatedDocs": [
         "AI-AGENT-GUIDE.md",
         "MASTER-TOKEN-REFERENCE.md",
-        "COMPONENT-INVENTORY.md",
+        "components/INDEX.md",
         ".ai/agents/block-composer.md"
       ],
       "deprecated": false,
@@ -3743,6 +3914,138 @@
       ]
     },
     {
+      "path": "docs/components/form.md",
+      "title": "Form Components",
+      "category": "reference",
+      "tags": [
+        "components",
+        "primereact",
+        "form",
+        "input",
+        "dropdown",
+        "calendar"
+      ],
+      "audience": "ai-agent",
+      "version": "0.7.4",
+      "lastUpdated": "2026-01-18",
+      "relatedDocs": [
+        "INDEX.md",
+        "../DECISION-MATRIX.md",
+        "yggdrasil-blocks.md"
+      ],
+      "deprecated": false,
+      "sections": [
+        {
+          "title": "InputText",
+          "line": 24,
+          "anchor": "#inputtext",
+          "level": 2
+        },
+        {
+          "title": "InputTextarea",
+          "line": 50,
+          "anchor": "#inputtextarea",
+          "level": 2
+        },
+        {
+          "title": "InputNumber",
+          "line": 71,
+          "anchor": "#inputnumber",
+          "level": 2
+        },
+        {
+          "title": "Dropdown",
+          "line": 93,
+          "anchor": "#dropdown",
+          "level": 2
+        },
+        {
+          "title": "MultiSelect",
+          "line": 122,
+          "anchor": "#multiselect",
+          "level": 2
+        },
+        {
+          "title": "Calendar",
+          "line": 144,
+          "anchor": "#calendar",
+          "level": 2
+        },
+        {
+          "title": "AutoComplete",
+          "line": 167,
+          "anchor": "#autocomplete",
+          "level": 2
+        },
+        {
+          "title": "Password",
+          "line": 196,
+          "anchor": "#password",
+          "level": 2
+        },
+        {
+          "title": "Checkbox",
+          "line": 217,
+          "anchor": "#checkbox",
+          "level": 2
+        },
+        {
+          "title": "RadioButton",
+          "line": 240,
+          "anchor": "#radiobutton",
+          "level": 2
+        },
+        {
+          "title": "InputSwitch",
+          "line": 266,
+          "anchor": "#inputswitch",
+          "level": 2
+        },
+        {
+          "title": "Slider",
+          "line": 285,
+          "anchor": "#slider",
+          "level": 2
+        },
+        {
+          "title": "ColorPicker",
+          "line": 305,
+          "anchor": "#colorpicker",
+          "level": 2
+        },
+        {
+          "title": "Editor",
+          "line": 321,
+          "anchor": "#editor",
+          "level": 2
+        },
+        {
+          "title": "Rating",
+          "line": 341,
+          "anchor": "#rating",
+          "level": 2
+        },
+        {
+          "title": "Chips",
+          "line": 357,
+          "anchor": "#chips",
+          "level": 2
+        },
+        {
+          "title": "InputMask",
+          "line": 373,
+          "anchor": "#inputmask",
+          "level": 2
+        },
+        {
+          "title": "FileUpload",
+          "line": 393,
+          "anchor": "#fileupload",
+          "level": 2
+        }
+      ]
+    },
+    {
       "path": "docs/MASTER-TOKEN-REFERENCE.md",
       "title": "Master Token Reference",
       "category": "reference",
@@ -4086,6 +4389,397 @@
       ]
     },
     {
+      "path": "docs/components/media.md",
+      "title": "Media Components",
+      "category": "reference",
+      "tags": [
+        "components",
+        "primereact",
+        "media",
+        "image",
+        "carousel",
+        "galleria"
+      ],
+      "audience": "ai-agent",
+      "version": "0.7.4",
+      "lastUpdated": "2026-01-18",
+      "relatedDocs": [
+        "INDEX.md",
+        "../DECISION-MATRIX.md"
+      ],
+      "deprecated": false,
+      "sections": [
+        {
+          "title": "Image",
+          "line": 21,
+          "anchor": "#image",
+          "level": 2
+        },
+        {
+          "title": "Carousel",
+          "line": 61,
+          "anchor": "#carousel",
+          "level": 2
+        },
+        {
+          "title": "Galleria",
+          "line": 108,
+          "anchor": "#galleria",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/components/menu.md",
+      "title": "Menu Components",
+      "category": "reference",
+      "tags": [
+        "components",
+        "primereact",
+        "menu",
+        "navigation",
+        "breadcrumb"
+      ],
+      "audience": "ai-agent",
+      "version": "0.7.4",
+      "lastUpdated": "2026-01-18",
+      "relatedDocs": [
+        "INDEX.md",
+        "../DECISION-MATRIX.md",
+        "yggdrasil-blocks.md"
+      ],
+      "deprecated": false,
+      "sections": [
+        {
+          "title": "Menu",
+          "line": 24,
+          "anchor": "#menu",
+          "level": 2
+        },
+        {
+          "title": "Menubar",
+          "line": 60,
+          "anchor": "#menubar",
+          "level": 2
+        },
+        {
+          "title": "MegaMenu",
+          "line": 100,
+          "anchor": "#megamenu",
+          "level": 2
+        },
+        {
+          "title": "PanelMenu",
+          "line": 136,
+          "anchor": "#panelmenu",
+          "level": 2
+        },
+        {
+          "title": "BreadCrumb",
+          "line": 177,
+          "anchor": "#breadcrumb",
+          "level": 2
+        },
+        {
+          "title": "ContextMenu",
+          "line": 207,
+          "anchor": "#contextmenu",
+          "level": 2
+        },
+        {
+          "title": "TieredMenu",
+          "line": 241,
+          "anchor": "#tieredmenu",
+          "level": 2
+        },
+        {
+          "title": "SlideMenu",
+          "line": 274,
+          "anchor": "#slidemenu",
+          "level": 2
+        },
+        {
+          "title": "Dock",
+          "line": 297,
+          "anchor": "#dock",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/components/messages.md",
+      "title": "Messages Components",
+      "category": "reference",
+      "tags": [
+        "components",
+        "primereact",
+        "messages",
+        "toast",
+        "notification"
+      ],
+      "audience": "ai-agent",
+      "version": "0.7.4",
+      "lastUpdated": "2026-01-18",
+      "relatedDocs": [
+        "INDEX.md",
+        "../DECISION-MATRIX.md"
+      ],
+      "deprecated": false,
+      "sections": [
+        {
+          "title": "Toast",
+          "line": 21,
+          "anchor": "#toast",
+          "level": 2
+        },
+        {
+          "title": "Message",
+          "line": 82,
+          "anchor": "#message",
+          "level": 2
+        },
+        {
+          "title": "InlineMessage",
+          "line": 116,
+          "anchor": "#inlinemessage",
+          "level": 2
+        },
+        {
+          "title": "Messages",
+          "line": 143,
+          "anchor": "#messages",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/components/misc.md",
+      "title": "Misc Components",
+      "category": "reference",
+      "tags": [
+        "components",
+        "primereact",
+        "misc",
+        "avatar",
+        "badge",
+        "progress",
+        "skeleton"
+      ],
+      "audience": "ai-agent",
+      "version": "0.7.4",
+      "lastUpdated": "2026-01-18",
+      "relatedDocs": [
+        "INDEX.md",
+        "../DECISION-MATRIX.md"
+      ],
+      "deprecated": false,
+      "sections": [
+        {
+          "title": "Avatar",
+          "line": 21,
+          "anchor": "#avatar",
+          "level": 2
+        },
+        {
+          "title": "AvatarGroup",
+          "line": 53,
+          "anchor": "#avatargroup",
+          "level": 2
+        },
+        {
+          "title": "Badge",
+          "line": 77,
+          "anchor": "#badge",
+          "level": 2
+        },
+        {
+          "title": "Tag",
+          "line": 111,
+          "anchor": "#tag",
+          "level": 2
+        },
+        {
+          "title": "Chip",
+          "line": 138,
+          "anchor": "#chip",
+          "level": 2
+        },
+        {
+          "title": "ProgressBar",
+          "line": 173,
+          "anchor": "#progressbar",
+          "level": 2
+        },
+        {
+          "title": "ProgressSpinner",
+          "line": 204,
+          "anchor": "#progressspinner",
+          "level": 2
+        },
+        {
+          "title": "Skeleton",
+          "line": 231,
+          "anchor": "#skeleton",
+          "level": 2
+        },
+        {
+          "title": "BlockUI",
+          "line": 269,
+          "anchor": "#blockui",
+          "level": 2
+        },
+        {
+          "title": "Divider",
+          "line": 301,
+          "anchor": "#divider",
+          "level": 2
+        },
+        {
+          "title": "Paginator",
+          "line": 337,
+          "anchor": "#paginator",
+          "level": 2
+        },
+        {
+          "title": "Toolbar",
+          "line": 371,
+          "anchor": "#toolbar",
+          "level": 2
+        },
+        {
+          "title": "Terminal",
+          "line": 405,
+          "anchor": "#terminal",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/components/overlay.md",
+      "title": "Overlay Components",
+      "category": "reference",
+      "tags": [
+        "components",
+        "primereact",
+        "overlay",
+        "dialog",
+        "sidebar",
+        "tooltip"
+      ],
+      "audience": "ai-agent",
+      "version": "0.7.4",
+      "lastUpdated": "2026-01-18",
+      "relatedDocs": [
+        "INDEX.md",
+        "../DECISION-MATRIX.md"
+      ],
+      "deprecated": false,
+      "sections": [
+        {
+          "title": "Dialog",
+          "line": 21,
+          "anchor": "#dialog",
+          "level": 2
+        },
+        {
+          "title": "ConfirmDialog",
+          "line": 66,
+          "anchor": "#confirmdialog",
+          "level": 2
+        },
+        {
+          "title": "Sidebar",
+          "line": 113,
+          "anchor": "#sidebar",
+          "level": 2
+        },
+        {
+          "title": "OverlayPanel",
+          "line": 148,
+          "anchor": "#overlaypanel",
+          "level": 2
+        },
+        {
+          "title": "Tooltip",
+          "line": 181,
+          "anchor": "#tooltip",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/components/panel.md",
+      "title": "Panel Components",
+      "category": "reference",
+      "tags": [
+        "components",
+        "primereact",
+        "panel",
+        "card",
+        "tabs",
+        "accordion"
+      ],
+      "audience": "ai-agent",
+      "version": "0.7.4",
+      "lastUpdated": "2026-01-18",
+      "relatedDocs": [
+        "INDEX.md",
+        "../DECISION-MATRIX.md",
+        "yggdrasil-blocks.md"
+      ],
+      "deprecated": false,
+      "sections": [
+        {
+          "title": "Card",
+          "line": 24,
+          "anchor": "#card",
+          "level": 2
+        },
+        {
+          "title": "TabView",
+          "line": 54,
+          "anchor": "#tabview",
+          "level": 2
+        },
+        {
+          "title": "Accordion",
+          "line": 89,
+          "anchor": "#accordion",
+          "level": 2
+        },
+        {
+          "title": "Steps",
+          "line": 122,
+          "anchor": "#steps",
+          "level": 2
+        },
+        {
+          "title": "Fieldset",
+          "line": 158,
+          "anchor": "#fieldset",
+          "level": 2
+        },
+        {
+          "title": "Panel",
+          "line": 185,
+          "anchor": "#panel",
+          "level": 2
+        },
+        {
+          "title": "ScrollPanel",
+          "line": 210,
+          "anchor": "#scrollpanel",
+          "level": 2
+        },
+        {
+          "title": "Splitter",
+          "line": 232,
+          "anchor": "#splitter",
+          "level": 2
+        }
+      ]
+    },
+    {
       "path": "docs/UTILITIES-POLICY.md",
       "title": "Utilities Usage Policy",
       "category": "reference",
@@ -4294,6 +4988,139 @@
           "level": 2
         }
       ]
+    },
+    {
+      "path": "docs/components/yggdrasil-blocks.md",
+      "title": "Yggdrasil Blocks",
+      "category": "reference",
+      "tags": [
+        "components",
+        "yggdrasil",
+        "blocks",
+        "custom",
+        "navigation",
+        "account",
+        "form"
+      ],
+      "audience": "ai-agent",
+      "version": "0.7.4",
+      "lastUpdated": "2026-01-18",
+      "relatedDocs": [
+        "INDEX.md",
+        "../DECISION-MATRIX.md",
+        "../AI-AGENT-GUIDE.md"
+      ],
+      "deprecated": false,
+      "sections": [
+        {
+          "title": "NavigationTabs",
+          "line": 24,
+          "anchor": "#navigationtabs",
+          "level": 2
+        },
+        {
+          "title": "AccountMenu",
+          "line": 72,
+          "anchor": "#accountmenu",
+          "level": 2
+        },
+        {
+          "title": "LanguageMenu",
+          "line": 111,
+          "anchor": "#languagemenu",
+          "level": 2
+        },
+        {
+          "title": "NotificationButton",
+          "line": 145,
+          "anchor": "#notificationbutton",
+          "level": 2
+        },
+        {
+          "title": "ThemeToggle",
+          "line": 171,
+          "anchor": "#themetoggle",
+          "level": 2
+        },
+        {
+          "title": "Card",
+          "line": 199,
+          "anchor": "#card",
+          "level": 2
+        },
+        {
+          "title": "FormField",
+          "line": 241,
+          "anchor": "#formfield",
+          "level": 2
+        },
+        {
+          "title": "PageHeader",
+          "line": 282,
+          "anchor": "#pageheader",
+          "level": 2
+        },
+        {
+          "title": "SectionTitle",
+          "line": 304,
+          "anchor": "#sectiontitle",
+          "level": 2
+        },
+        {
+          "title": "TableShell",
+          "line": 326,
+          "anchor": "#tableshell",
+          "level": 2
+        },
+        {
+          "title": "Icon",
+          "line": 355,
+          "anchor": "#icon",
+          "level": 2
+        },
+        {
+          "title": "Table Column Helpers",
+          "line": 384,
+          "anchor": "#table-column-helpers",
+          "level": 2
+        },
+        {
+          "title": "textColumn",
+          "line": 399,
+          "anchor": "#textcolumn",
+          "level": 3
+        },
+        {
+          "title": "statusColumn",
+          "line": 412,
+          "anchor": "#statuscolumn",
+          "level": 3
+        },
+        {
+          "title": "actionsColumn",
+          "line": 428,
+          "anchor": "#actionscolumn",
+          "level": 3
+        },
+        {
+          "title": "identityColumn",
+          "line": 439,
+          "anchor": "#identitycolumn",
+          "level": 3
+        },
+        {
+          "title": "selectionColumn",
+          "line": 451,
+          "anchor": "#selectioncolumn",
+          "level": 3
+        },
+        {
+          "title": "When to Use Yggdrasil Blocks vs PrimeReact",
+          "line": 463,
+          "anchor": "#when-to-use-yggdrasil-blocks-vs-primereact",
+          "level": 2
+        }
+      ]
     }
   ],
   "searchIndex": {
@@ -4352,6 +5179,18 @@
       "docs/COMPONENT-INVENTORY.md#misc-components",
       "docs/COMPONENT-INVENTORY.md#file-components",
       "docs/COMPONENT-INVENTORY.md#chart-components",
+      "docs/components/button.md",
+      "docs/components/data.md",
+      "docs/components/form.md",
+      "docs/components/INDEX.md",
+      "docs/components/INDEX.md#primereact-components",
+      "docs/components/media.md",
+      "docs/components/menu.md",
+      "docs/components/messages.md",
+      "docs/components/misc.md",
+      "docs/components/overlay.md",
+      "docs/components/panel.md",
+      "docs/components/yggdrasil-blocks.md",
       "docs/CONSUMPTION-GUIDE.md#-testing-components",
       "docs/CONSUMPTION-GUIDE.md#components-look-unstyled",
       "docs/DECISION-MATRIX.md",
@@ -4375,7 +5214,8 @@
       ".ai/agents/utilities-guard.md#violation-2-spacing-on-components"
     ],
     "quick-reference": [
-      "docs/AI-AGENT-GUIDE.md"
+      "docs/AI-AGENT-GUIDE.md",
+      "docs/components/INDEX.md"
     ],
     "semantic-tokens": [
       "docs/AI-AGENT-GUIDE.md",
@@ -4390,6 +5230,18 @@
       "docs/ANTI-PATTERNS.md#anti-pattern-28-using-utilities-on-primereact-components",
       "docs/ANTI-PATTERNS.md#primereact-integration-issues",
       "docs/COMPONENT-INVENTORY.md",
+      "docs/components/button.md",
+      "docs/components/data.md",
+      "docs/components/form.md",
+      "docs/components/INDEX.md",
+      "docs/components/INDEX.md#primereact-components",
+      "docs/components/media.md",
+      "docs/components/menu.md",
+      "docs/components/messages.md",
+      "docs/components/misc.md",
+      "docs/components/overlay.md",
+      "docs/components/panel.md",
+      "docs/components/yggdrasil-blocks.md#when-to-use-yggdrasil-blocks-vs-primereact",
       "docs/DECISION-MATRIX.md",
       "docs/FAQ-TROUBLESHOOTING.md#q-primereact-components-not-matching-design-system",
       "docs/FAQ-TROUBLESHOOTING.md#q-typescript-errors-with-primereact-imports",
@@ -4417,6 +5269,7 @@
     "guide": [
       "docs/AI-AGENT-GUIDE.md",
       "docs/AI-AGENT-GUIDE.md#-component-selection-guide",
+      "docs/components/INDEX.md#decision-guide",
       "docs/CONSUMPTION-GUIDE.md"
     ],
     "core": [
@@ -4497,6 +5350,7 @@
     "quick": [
       "docs/AI-AGENT-GUIDE.md#-quick-reference-for-common-tasks",
       "docs/COMPONENT-INVENTORY.md#quick-search-table",
+      "docs/components/INDEX.md#quick-search-table",
       "docs/CONSUMPTION-GUIDE.md#quick-reference",
       "docs/FAQ-TROUBLESHOOTING.md#quick-diagnostic-checklist",
       "docs/MASTER-TOKEN-REFERENCE.md#quick-reference-cheat-sheet",
@@ -4599,6 +5453,7 @@
     "input": [
       "docs/AI-AGENT-GUIDE.md#input-style",
       "docs/ANTI-PATTERNS.md#anti-pattern-6-custom-input-component-with-icon",
+      "docs/components/form.md",
       "docs/DECISION-MATRIX.md#scenario-11-simple-text-input-field",
       "docs/DECISION-MATRIX.md#scenario-19-sliderrange-input",
       "docs/DECISION-MATRIX.md#scenario-22-password-input-with-toggle",
@@ -4639,6 +5494,7 @@
       "docs/ANTI-PATTERNS.md#anti-pattern-55-overriding-component-styles-with-important",
       "docs/ANTI-PATTERNS.md#anti-pattern-56-not-using-built-in-component-features",
       "docs/COMPONENT-INVENTORY.md",
+      "docs/components/INDEX.md",
       "docs/ELEVATION-SYSTEM.md#component-mappings",
       "docs/FAQ-TROUBLESHOOTING.md#component-styling-problems",
       "docs/FAQ-TROUBLESHOOTING.md#q-custom-component-breaks-in-dark-mode",
@@ -4658,6 +5514,7 @@
       "docs/AI-AGENT-GUIDE.md#data-display",
       "docs/ANTI-PATTERNS.md#anti-pattern-59-not-handling-async-data-in-datatable",
       "docs/COMPONENT-INVENTORY.md#data-components",
+      "docs/components/data.md",
       "docs/DECISION-MATRIX.md#data-display",
       "docs/DECISION-MATRIX.md#scenario-6-show-treehierarchical-data",
       ".ai/agents/block-composer.md#data-components-displaying-liststables"
@@ -4692,6 +5549,8 @@
     ],
     "navigation": [
       "docs/AI-AGENT-GUIDE.md#navigation",
+      "docs/components/menu.md",
+      "docs/components/yggdrasil-blocks.md",
       "docs/DECISION-MATRIX.md#navigation",
       "docs/DECISION-MATRIX.md#scenario-47-top-navigation-bar",
       "docs/DECISION-MATRIX.md#scenario-48-sidebar-navigation",
@@ -4734,6 +5593,7 @@
       "docs/ANTI-PATTERNS.md#anti-pattern-58-not-using-ref-for-imperative-apis",
       "docs/ANTI-PATTERNS.md#using-this-library",
       "docs/COMPONENT-INVENTORY.md#using-this-inventory",
+      "docs/components/INDEX.md#using-this-index",
       "docs/CONSUMPTION-GUIDE.md#option-1-using-primeicons-traditional",
       "docs/CONSUMPTION-GUIDE.md#option-2-using-custom-svg-icons",
       ".ai/agents/semantic-token-intent.md#-using-foundationprimitive-tokens",
@@ -4841,6 +5701,7 @@
     ],
     "decision": [
       "docs/AI-AGENT-GUIDE.md#-decision-tree-for-ui-development",
+      "docs/components/INDEX.md#decision-guide",
       "docs/DECISION-MATRIX.md",
       ".ai/agents/block-composer.md#decision-tree-i-need-x-ui",
       ".ai/agents/block-composer.md#block-vs-component-decision",
@@ -4849,6 +5710,8 @@
     "tree": [
       "docs/AI-AGENT-GUIDE.md#-decision-tree-for-ui-development",
       "docs/COMPONENT-INVENTORY.md#tree",
+      "docs/components/data.md",
+      "docs/components/data.md#tree",
       ".ai/agents/semantic-token-intent.md#token-selection-decision-tree"
     ],
     "development": [
@@ -4885,6 +5748,7 @@
       "docs/AI-AGENT-GUIDE.md#3-use-components",
       "docs/AI-AGENT-GUIDE.md#how-to-use-primereact-docs",
       "docs/COMPONENT-INVENTORY.md",
+      "docs/components/yggdrasil-blocks.md#when-to-use-yggdrasil-blocks-vs-primereact",
       "docs/DECISION-MATRIX.md#how-to-use-this-matrix",
       "docs/MASTER-TOKEN-REFERENCE.md#common-use-cases",
       "docs/MASTER-TOKEN-REFERENCE.md#most-common-tokens-80-of-use-cases",
@@ -5004,6 +5868,9 @@
     "blocks": [
       "docs/AI-AGENT-GUIDE.md#-creating-local-blocks-project-specific",
       "docs/AI-AGENT-GUIDE.md#when-to-promote-blocks-to-design-system",
+      "docs/components/INDEX.md#yggdrasil-blocks-use-first",
+      "docs/components/yggdrasil-blocks.md",
+      "docs/components/yggdrasil-blocks.md#when-to-use-yggdrasil-blocks-vs-primereact",
       ".ai/agents/block-composer.md",
       ".ai/agents/block-composer.md#step-2-check-for-existing-blocks"
     ],
@@ -5015,6 +5882,7 @@
       "docs/AI-AGENT-GUIDE.md#when-to-promote-blocks-to-design-system",
       "docs/ANTI-PATTERNS.md#when-reviewing-code",
       "docs/ANTI-PATTERNS.md#when-stuck",
+      "docs/components/yggdrasil-blocks.md#when-to-use-yggdrasil-blocks-vs-primereact",
       "docs/DECISION-MATRIX.md#when-to-create-custom-components",
       "docs/FAQ-TROUBLESHOOTING.md#q-focus-not-visible-when-tabbing",
       "docs/FAQ-TROUBLESHOOTING.md#q-colors-not-updating-when-switching-to-dark-mode"
@@ -5090,6 +5958,8 @@
       "docs/ANTI-PATTERNS.md#anti-pattern-5-custom-table-component",
       "docs/COMPONENT-INVENTORY.md#quick-search-table",
       "docs/COMPONENT-INVENTORY.md#table-of-contents",
+      "docs/components/INDEX.md#quick-search-table",
+      "docs/components/yggdrasil-blocks.md#table-column-helpers",
       "docs/DECISION-MATRIX.md#table-of-contents",
       "docs/DECISION-MATRIX.md#scenario-3-show-paginated-table",
       "docs/DECISION-MATRIX.md#scenario-4-show-sortablefilterable-table",
@@ -5185,6 +6055,7 @@
       "docs/ANTI-PATTERNS.md#anti-pattern-11-custom-loading-spinner",
       "docs/ANTI-PATTERNS.md#anti-pattern-12-custom-breadcrumb-component",
       "docs/ANTI-PATTERNS.md#anti-pattern-33-custom-css-classes-for-spacing",
+      "docs/components/yggdrasil-blocks.md",
       "docs/CONSUMPTION-GUIDE.md#option-2-using-custom-svg-icons",
       "docs/CONSUMPTION-GUIDE.md#custom-analytics-optional",
       "docs/DECISION-MATRIX.md#when-to-create-custom-components",
@@ -5197,6 +6068,8 @@
       "docs/ANTI-PATTERNS.md#anti-pattern-1-custom-button-component",
       "docs/COMPONENT-INVENTORY.md#button-components",
       "docs/COMPONENT-INVENTORY.md#button",
+      "docs/components/button.md",
+      "docs/components/button.md#button",
       "docs/DECISION-MATRIX.md#scenario-52-primary-action-button",
       "docs/DECISION-MATRIX.md#scenario-53-secondary-action-button",
       "docs/DECISION-MATRIX.md#scenario-54-destructive-action-button",
@@ -5242,6 +6115,9 @@
     "card": [
       "docs/ANTI-PATTERNS.md#anti-pattern-2-inline-styled-div-instead-of-card-block",
       "docs/COMPONENT-INVENTORY.md#card",
+      "docs/components/panel.md",
+      "docs/components/panel.md#card",
+      "docs/components/yggdrasil-blocks.md#card",
       "docs/MASTER-TOKEN-REFERENCE.md#pattern-1-card",
       "docs/UTILITIES-POLICY.md#violation-1-colored-card",
       ".ai/agents/semantic-token-intent.md#pattern-1-card",
@@ -5252,7 +6128,9 @@
     ],
     "dropdown": [
       "docs/ANTI-PATTERNS.md#anti-pattern-3-custom-dropdown-component",
-      "docs/COMPONENT-INVENTORY.md#dropdown"
+      "docs/COMPONENT-INVENTORY.md#dropdown",
+      "docs/components/form.md",
+      "docs/components/form.md#dropdown"
     ],
     "#4:": [
       "docs/ANTI-PATTERNS.md#anti-pattern-4-custom-modaldialog"
@@ -5270,6 +6148,7 @@
     "icon": [
       "docs/ANTI-PATTERNS.md#anti-pattern-6-custom-input-component-with-icon",
       "docs/ANTI-PATTERNS.md#anti-pattern-38-missing-aria-labels-on-icon-buttons",
+      "docs/components/yggdrasil-blocks.md#icon",
       "docs/CONSUMPTION-GUIDE.md#-icon-system",
       "docs/CONSUMPTION-GUIDE.md#icon-sizing",
       "docs/MASTER-TOKEN-REFERENCE.md#icon-tokens",
@@ -5286,7 +6165,9 @@
     ],
     "accordion": [
       "docs/ANTI-PATTERNS.md#anti-pattern-8-custom-accordion-component",
-      "docs/COMPONENT-INVENTORY.md#accordion"
+      "docs/COMPONENT-INVENTORY.md#accordion",
+      "docs/components/panel.md",
+      "docs/components/panel.md#accordion"
     ],
     "#9:": [
       "docs/ANTI-PATTERNS.md#anti-pattern-9-custom-pagination-component"
@@ -5300,7 +6181,8 @@
     ],
     "checkbox": [
       "docs/ANTI-PATTERNS.md#anti-pattern-10-custom-checkbox-component",
-      "docs/COMPONENT-INVENTORY.md#checkbox"
+      "docs/COMPONENT-INVENTORY.md#checkbox",
+      "docs/components/form.md#checkbox"
     ],
     "#11:": [
       "docs/ANTI-PATTERNS.md#anti-pattern-11-custom-loading-spinner"
@@ -5333,6 +6215,8 @@
     "breadcrumb": [
       "docs/ANTI-PATTERNS.md#anti-pattern-12-custom-breadcrumb-component",
       "docs/COMPONENT-INVENTORY.md#breadcrumb",
+      "docs/components/menu.md",
+      "docs/components/menu.md#breadcrumb",
       "docs/DECISION-MATRIX.md#scenario-49-breadcrumb-navigation"
     ],
     "token": [
@@ -5987,6 +6871,8 @@
     "datatable": [
       "docs/ANTI-PATTERNS.md#anti-pattern-59-not-handling-async-data-in-datatable",
       "docs/COMPONENT-INVENTORY.md#datatable",
+      "docs/components/data.md",
+      "docs/components/data.md#datatable",
       "docs/FAQ-TROUBLESHOOTING.md#q-datatable-rows-not-alternating-colors",
       "docs/FAQ-TROUBLESHOOTING.md#q-large-datatable-slow-to-render"
     ],
@@ -6013,6 +6899,7 @@
     "this": [
       "docs/ANTI-PATTERNS.md#using-this-library",
       "docs/COMPONENT-INVENTORY.md#using-this-inventory",
+      "docs/components/INDEX.md#using-this-index",
       "docs/DECISION-MATRIX.md#how-to-use-this-matrix",
       "docs/MASTER-TOKEN-REFERENCE.md#think-what-is-the-semantic-purpose-of-this-element",
       "docs/UTILITIES-POLICY.md#why-this-matters",
@@ -6034,14 +6921,17 @@
     ],
     "inventory": [
       "docs/COMPONENT-INVENTORY.md",
-      "docs/COMPONENT-INVENTORY.md#using-this-inventory"
+      "docs/COMPONENT-INVENTORY.md#using-this-inventory",
+      "docs/components/INDEX.md"
     ],
     "use-cases": [
       "docs/COMPONENT-INVENTORY.md",
+      "docs/components/INDEX.md",
       "docs/DECISION-MATRIX.md"
     ],
     "catalog": [
       "docs/COMPONENT-INVENTORY.md",
+      "docs/components/INDEX.md",
       ".ai/agents/block-composer.md#primereact-component-catalog"
     ],
     "component-library": [
@@ -6058,29 +6948,40 @@
     ],
     "search": [
       "docs/COMPONENT-INVENTORY.md#quick-search-table",
+      "docs/components/INDEX.md#quick-search-table",
       "docs/DECISION-MATRIX.md#scenario-21-auto-complete-search",
       "docs/DECISION-MATRIX.md#scenario-30-search-results-loading"
     ],
     "dataview": [
-      "docs/COMPONENT-INVENTORY.md#dataview"
+      "docs/COMPONENT-INVENTORY.md#dataview",
+      "docs/components/data.md",
+      "docs/components/data.md#dataview"
     ],
     "treetable": [
-      "docs/COMPONENT-INVENTORY.md#treetable"
+      "docs/COMPONENT-INVENTORY.md#treetable",
+      "docs/components/data.md#treetable"
     ],
     "timeline": [
-      "docs/COMPONENT-INVENTORY.md#timeline"
+      "docs/COMPONENT-INVENTORY.md#timeline",
+      "docs/components/data.md",
+      "docs/components/data.md#timeline"
     ],
     "virtualscroller": [
-      "docs/COMPONENT-INVENTORY.md#virtualscroller"
+      "docs/COMPONENT-INVENTORY.md#virtualscroller",
+      "docs/components/data.md#virtualscroller"
     ],
     "orderlist": [
-      "docs/COMPONENT-INVENTORY.md#orderlist"
+      "docs/COMPONENT-INVENTORY.md#orderlist",
+      "docs/components/data.md#orderlist"
     ],
     "picklist": [
-      "docs/COMPONENT-INVENTORY.md#picklist"
+      "docs/COMPONENT-INVENTORY.md#picklist",
+      "docs/components/data.md#picklist"
     ],
     "form": [
       "docs/COMPONENT-INVENTORY.md#form-components",
+      "docs/components/form.md",
+      "docs/components/yggdrasil-blocks.md",
       "docs/DECISION-MATRIX.md#form-interactions",
       "docs/DECISION-MATRIX.md#scenario-31-form-field-validation-error",
       "docs/DECISION-MATRIX.md#scenario-42-modal-form-dialog",
@@ -6096,52 +6997,68 @@
       ".ai/agents/utilities-guard.md#violation-5-form-layout"
     ],
     "inputtext": [
-      "docs/COMPONENT-INVENTORY.md#inputtext"
+      "docs/COMPONENT-INVENTORY.md#inputtext",
+      "docs/components/form.md#inputtext"
     ],
     "inputtextarea": [
-      "docs/COMPONENT-INVENTORY.md#inputtextarea"
+      "docs/COMPONENT-INVENTORY.md#inputtextarea",
+      "docs/components/form.md#inputtextarea"
     ],
     "inputnumber": [
-      "docs/COMPONENT-INVENTORY.md#inputnumber"
+      "docs/COMPONENT-INVENTORY.md#inputnumber",
+      "docs/components/form.md#inputnumber"
     ],
     "multiselect": [
-      "docs/COMPONENT-INVENTORY.md#multiselect"
+      "docs/COMPONENT-INVENTORY.md#multiselect",
+      "docs/components/form.md#multiselect"
     ],
     "calendar": [
-      "docs/COMPONENT-INVENTORY.md#calendar"
+      "docs/COMPONENT-INVENTORY.md#calendar",
+      "docs/components/form.md",
+      "docs/components/form.md#calendar"
     ],
     "autocomplete": [
-      "docs/COMPONENT-INVENTORY.md#autocomplete"
+      "docs/COMPONENT-INVENTORY.md#autocomplete",
+      "docs/components/form.md#autocomplete"
     ],
     "password": [
       "docs/COMPONENT-INVENTORY.md#password",
+      "docs/components/form.md#password",
       "docs/DECISION-MATRIX.md#scenario-22-password-input-with-toggle",
       "docs/DECISION-MATRIX.md#scenario-39-password-strength-indicator"
     ],
     "radiobutton": [
-      "docs/COMPONENT-INVENTORY.md#radiobutton"
+      "docs/COMPONENT-INVENTORY.md#radiobutton",
+      "docs/components/form.md#radiobutton"
     ],
     "inputswitch": [
-      "docs/COMPONENT-INVENTORY.md#inputswitch"
+      "docs/COMPONENT-INVENTORY.md#inputswitch",
+      "docs/components/form.md#inputswitch"
     ],
     "slider": [
-      "docs/COMPONENT-INVENTORY.md#slider"
+      "docs/COMPONENT-INVENTORY.md#slider",
+      "docs/components/form.md#slider"
     ],
     "colorpicker": [
-      "docs/COMPONENT-INVENTORY.md#colorpicker"
+      "docs/COMPONENT-INVENTORY.md#colorpicker",
+      "docs/components/form.md#colorpicker"
     ],
     "editor": [
       "docs/COMPONENT-INVENTORY.md#editor",
+      "docs/components/form.md#editor",
       "docs/DECISION-MATRIX.md#scenario-16-rich-text-editor"
     ],
     "rating": [
-      "docs/COMPONENT-INVENTORY.md#rating"
+      "docs/COMPONENT-INVENTORY.md#rating",
+      "docs/components/form.md#rating"
     ],
     "chips": [
-      "docs/COMPONENT-INVENTORY.md#chips"
+      "docs/COMPONENT-INVENTORY.md#chips",
+      "docs/components/form.md#chips"
     ],
     "inputmask": [
-      "docs/COMPONENT-INVENTORY.md#inputmask"
+      "docs/COMPONENT-INVENTORY.md#inputmask",
+      "docs/components/form.md#inputmask"
     ],
     "knob": [
       "docs/COMPONENT-INVENTORY.md#knob"
@@ -6162,151 +7079,204 @@
       "docs/COMPONENT-INVENTORY.md#cascadeselect"
     ],
     "splitbutton": [
-      "docs/COMPONENT-INVENTORY.md#splitbutton"
+      "docs/COMPONENT-INVENTORY.md#splitbutton",
+      "docs/components/button.md#splitbutton"
     ],
     "speeddial": [
-      "docs/COMPONENT-INVENTORY.md#speeddial"
+      "docs/COMPONENT-INVENTORY.md#speeddial",
+      "docs/components/button.md#speeddial"
     ],
     "panel": [
       "docs/COMPONENT-INVENTORY.md#panel-components",
       "docs/COMPONENT-INVENTORY.md#panel",
+      "docs/components/panel.md",
+      "docs/components/panel.md#panel",
       "docs/DECISION-MATRIX.md#scenario-46-popoveroverlay-panel",
       ".ai/agents/block-composer.md#panel-components-organizing-content"
     ],
     "tabview": [
-      "docs/COMPONENT-INVENTORY.md#tabview"
+      "docs/COMPONENT-INVENTORY.md#tabview",
+      "docs/components/panel.md#tabview"
     ],
     "fieldset": [
-      "docs/COMPONENT-INVENTORY.md#fieldset"
+      "docs/COMPONENT-INVENTORY.md#fieldset",
+      "docs/components/panel.md#fieldset"
     ],
     "toolbar": [
       "docs/COMPONENT-INVENTORY.md#toolbar",
+      "docs/components/misc.md#toolbar",
       "docs/DECISION-MATRIX.md#scenario-59-batch-actions-toolbar"
     ],
     "scrollpanel": [
-      "docs/COMPONENT-INVENTORY.md#scrollpanel"
+      "docs/COMPONENT-INVENTORY.md#scrollpanel",
+      "docs/components/panel.md#scrollpanel"
     ],
     "splitter": [
-      "docs/COMPONENT-INVENTORY.md#splitter"
+      "docs/COMPONENT-INVENTORY.md#splitter",
+      "docs/components/panel.md#splitter"
     ],
     "divider": [
-      "docs/COMPONENT-INVENTORY.md#divider"
+      "docs/COMPONENT-INVENTORY.md#divider",
+      "docs/components/misc.md#divider"
     ],
     "steps": [
-      "docs/COMPONENT-INVENTORY.md#steps"
+      "docs/COMPONENT-INVENTORY.md#steps",
+      "docs/components/panel.md#steps"
     ],
     "overlay": [
       "docs/COMPONENT-INVENTORY.md#overlay-components",
+      "docs/components/overlay.md",
       "docs/DECISION-MATRIX.md#scenario-27-loading-overlay-blocking",
       ".ai/agents/block-composer.md#overlay-components-dialogs-popups"
     ],
     "dialog": [
       "docs/COMPONENT-INVENTORY.md#dialog",
+      "docs/components/overlay.md",
+      "docs/components/overlay.md#dialog",
       "docs/DECISION-MATRIX.md#scenario-41-confirmation-dialog",
       "docs/DECISION-MATRIX.md#scenario-42-modal-form-dialog"
     ],
     "confirmdialog": [
-      "docs/COMPONENT-INVENTORY.md#confirmdialog"
+      "docs/COMPONENT-INVENTORY.md#confirmdialog",
+      "docs/components/overlay.md#confirmdialog"
     ],
     "sidebar": [
       "docs/COMPONENT-INVENTORY.md#sidebar",
+      "docs/components/overlay.md",
+      "docs/components/overlay.md#sidebar",
       "docs/DECISION-MATRIX.md#scenario-48-sidebar-navigation"
     ],
     "tooltip": [
       "docs/COMPONENT-INVENTORY.md#tooltip",
+      "docs/components/overlay.md",
+      "docs/components/overlay.md#tooltip",
       "docs/DECISION-MATRIX.md#scenario-44-tooltip-on-hover"
     ],
     "overlaypanel": [
-      "docs/COMPONENT-INVENTORY.md#overlaypanel"
+      "docs/COMPONENT-INVENTORY.md#overlaypanel",
+      "docs/components/overlay.md#overlaypanel"
     ],
     "menu": [
       "docs/COMPONENT-INVENTORY.md#menu-components",
       "docs/COMPONENT-INVENTORY.md#menu",
+      "docs/components/menu.md",
+      "docs/components/menu.md#menu",
       "docs/DECISION-MATRIX.md#scenario-45-context-menu-right-click",
       ".ai/agents/block-composer.md#menu-components-navigation"
     ],
     "menubar": [
-      "docs/COMPONENT-INVENTORY.md#menubar"
+      "docs/COMPONENT-INVENTORY.md#menubar",
+      "docs/components/menu.md#menubar"
     ],
     "contextmenu": [
-      "docs/COMPONENT-INVENTORY.md#contextmenu"
+      "docs/COMPONENT-INVENTORY.md#contextmenu",
+      "docs/components/menu.md#contextmenu"
     ],
     "panelmenu": [
-      "docs/COMPONENT-INVENTORY.md#panelmenu"
+      "docs/COMPONENT-INVENTORY.md#panelmenu",
+      "docs/components/menu.md#panelmenu"
     ],
     "tabmenu": [
       "docs/COMPONENT-INVENTORY.md#tabmenu"
     ],
     "megamenu": [
-      "docs/COMPONENT-INVENTORY.md#megamenu"
+      "docs/COMPONENT-INVENTORY.md#megamenu",
+      "docs/components/menu.md#megamenu"
     ],
     "messages": [
       "docs/COMPONENT-INVENTORY.md#messages-components",
       "docs/COMPONENT-INVENTORY.md#messages",
+      "docs/components/messages.md",
+      "docs/components/messages.md#messages",
       ".ai/agents/block-composer.md#messages-feedback",
       ".ai/agents/interaction-patterns.md#-generic-error-messages"
     ],
     "toast": [
       "docs/COMPONENT-INVENTORY.md#toast",
+      "docs/components/messages.md",
+      "docs/components/messages.md#toast",
       "docs/DECISION-MATRIX.md#scenario-33-success-toast-notification",
       "docs/DECISION-MATRIX.md#scenario-34-error-toast-notification"
     ],
     "message": [
       "docs/COMPONENT-INVENTORY.md#message",
+      "docs/components/messages.md#message",
       "docs/DECISION-MATRIX.md#scenario-35-warning-message",
       "docs/DECISION-MATRIX.md#scenario-36-info-message",
       "docs/MASTER-TOKEN-REFERENCE.md#pattern-4-success-message"
     ],
     "inlinemessage": [
-      "docs/COMPONENT-INVENTORY.md#inlinemessage"
+      "docs/COMPONENT-INVENTORY.md#inlinemessage",
+      "docs/components/messages.md#inlinemessage"
     ],
     "media": [
       "docs/COMPONENT-INVENTORY.md#media-components",
+      "docs/components/media.md",
       ".ai/agents/block-composer.md#media-components"
     ],
     "image": [
-      "docs/COMPONENT-INVENTORY.md#image"
+      "docs/COMPONENT-INVENTORY.md#image",
+      "docs/components/media.md",
+      "docs/components/media.md#image"
     ],
     "carousel": [
-      "docs/COMPONENT-INVENTORY.md#carousel"
+      "docs/COMPONENT-INVENTORY.md#carousel",
+      "docs/components/media.md",
+      "docs/components/media.md#carousel"
     ],
     "galleria": [
-      "docs/COMPONENT-INVENTORY.md#galleria"
+      "docs/COMPONENT-INVENTORY.md#galleria",
+      "docs/components/media.md",
+      "docs/components/media.md#galleria"
     ],
     "misc": [
       "docs/COMPONENT-INVENTORY.md#misc-components",
+      "docs/components/misc.md",
       ".ai/agents/block-composer.md#misc-components"
     ],
     "progressspinner": [
-      "docs/COMPONENT-INVENTORY.md#progressspinner"
+      "docs/COMPONENT-INVENTORY.md#progressspinner",
+      "docs/components/misc.md#progressspinner"
     ],
     "progressbar": [
-      "docs/COMPONENT-INVENTORY.md#progressbar"
+      "docs/COMPONENT-INVENTORY.md#progressbar",
+      "docs/components/misc.md#progressbar"
     ],
     "skeleton": [
       "docs/COMPONENT-INVENTORY.md#skeleton",
+      "docs/components/misc.md",
+      "docs/components/misc.md#skeleton",
       "docs/DECISION-MATRIX.md#scenario-25-skeleton-loading-content-placeholder"
     ],
     "avatar": [
-      "docs/COMPONENT-INVENTORY.md#avatar"
+      "docs/COMPONENT-INVENTORY.md#avatar",
+      "docs/components/misc.md",
+      "docs/components/misc.md#avatar"
     ],
     "badge": [
-      "docs/COMPONENT-INVENTORY.md#badge"
+      "docs/COMPONENT-INVENTORY.md#badge",
+      "docs/components/misc.md",
+      "docs/components/misc.md#badge"
     ],
     "tag": [
-      "docs/COMPONENT-INVENTORY.md#tag"
+      "docs/COMPONENT-INVENTORY.md#tag",
+      "docs/components/misc.md#tag"
     ],
     "chip": [
-      "docs/COMPONENT-INVENTORY.md#chip"
+      "docs/COMPONENT-INVENTORY.md#chip",
+      "docs/components/misc.md#chip"
     ],
     "paginator": [
-      "docs/COMPONENT-INVENTORY.md#paginator"
+      "docs/COMPONENT-INVENTORY.md#paginator",
+      "docs/components/misc.md#paginator"
     ],
     "blockui": [
-      "docs/COMPONENT-INVENTORY.md#blockui"
+      "docs/COMPONENT-INVENTORY.md#blockui",
+      "docs/components/misc.md#blockui"
     ],
     "terminal": [
-      "docs/COMPONENT-INVENTORY.md#terminal"
+      "docs/COMPONENT-INVENTORY.md#terminal",
+      "docs/components/misc.md#terminal"
     ],
     "file": [
       "docs/COMPONENT-INVENTORY.md#file-components",
@@ -6315,11 +7285,128 @@
       ".ai/agents/block-composer.md#file-components"
     ],
     "fileupload": [
-      "docs/COMPONENT-INVENTORY.md#fileupload"
+      "docs/COMPONENT-INVENTORY.md#fileupload",
+      "docs/components/form.md#fileupload"
     ],
     "chart": [
       "docs/COMPONENT-INVENTORY.md#chart-components",
       "docs/COMPONENT-INVENTORY.md#chart"
+    ],
+    "actions": [
+      "docs/components/button.md",
+      "docs/DECISION-MATRIX.md#scenario-1-show-list-of-items-with-actions",
+      "docs/DECISION-MATRIX.md#actions-confirmations",
+      "docs/DECISION-MATRIX.md#scenario-59-batch-actions-toolbar"
+    ],
+    "index": [
+      "docs/components/INDEX.md",
+      "docs/components/INDEX.md#using-this-index"
+    ],
+    "yggdrasil": [
+      "docs/components/INDEX.md#yggdrasil-blocks-use-first",
+      "docs/components/yggdrasil-blocks.md",
+      "docs/components/yggdrasil-blocks.md#when-to-use-yggdrasil-blocks-vs-primereact",
+      "docs/ELEVATION-SYSTEM.md#yggdrasil-elevation-levels",
+      ".ai/agents/block-composer.md#-yggdrasil-utilities-on-primereact-components",
+      ".ai/agents/drift-validator.md#rule-2-yggdrasil-utilities-allowlist-layoutspacing-only",
+      ".ai/agents/drift-validator.md#rule-3-no-yggdrasil-utilities-on-primereact-components",
+      ".ai/agents/utilities-guard.md#critical-anti-pattern-yggdrasil-utilities-on-components",
+      ".ai/agents/utilities-guard.md#before-using-yggdrasil-utilities-class"
+    ],
+    "(use": [
+      "docs/components/INDEX.md#yggdrasil-blocks-use-first",
+      ".ai/agents/utilities-guard.md#-colors-use-semantic-tokens",
+      ".ai/agents/utilities-guard.md#-borders-use-semantic-tokens",
+      ".ai/agents/utilities-guard.md#-shadows-use-semantic-tokens",
+      ".ai/agents/utilities-guard.md#-typography-use-semantic-tokens"
+    ],
+    "first)": [
+      "docs/components/INDEX.md#yggdrasil-blocks-use-first"
+    ],
+    "category": [
+      "docs/components/INDEX.md#category-documentation",
+      ".ai/agents/block-composer.md#step-3-match-to-primereact-component-category",
+      ".ai/agents/semantic-token-intent.md#step-2-identify-semantic-category"
+    ],
+    "documentation": [
+      "docs/components/INDEX.md#category-documentation",
+      "docs/CONSUMPTION-GUIDE.md#documentation",
+      "docs/CONSUMPTION-GUIDE.md#reference-documentation-in-prompts"
+    ],
+    "tieredmenu": [
+      "docs/components/menu.md#tieredmenu"
+    ],
+    "slidemenu": [
+      "docs/components/menu.md#slidemenu"
+    ],
+    "dock": [
+      "docs/components/menu.md#dock"
+    ],
+    "notification": [
+      "docs/components/messages.md",
+      "docs/DECISION-MATRIX.md#scenario-33-success-toast-notification",
+      "docs/DECISION-MATRIX.md#scenario-34-error-toast-notification"
+    ],
+    "progress": [
+      "docs/components/misc.md"
+    ],
+    "avatargroup": [
+      "docs/components/misc.md#avatargroup"
+    ],
+    "tabs": [
+      "docs/components/panel.md",
+      "docs/DECISION-MATRIX.md#scenario-50-tabs-navigation"
+    ],
+    "account": [
+      "docs/components/yggdrasil-blocks.md"
+    ],
+    "navigationtabs": [
+      "docs/components/yggdrasil-blocks.md#navigationtabs"
+    ],
+    "accountmenu": [
+      "docs/components/yggdrasil-blocks.md#accountmenu"
+    ],
+    "languagemenu": [
+      "docs/components/yggdrasil-blocks.md#languagemenu"
+    ],
+    "notificationbutton": [
+      "docs/components/yggdrasil-blocks.md#notificationbutton"
+    ],
+    "themetoggle": [
+      "docs/components/yggdrasil-blocks.md#themetoggle"
+    ],
+    "formfield": [
+      "docs/components/yggdrasil-blocks.md#formfield"
+    ],
+    "pageheader": [
+      "docs/components/yggdrasil-blocks.md#pageheader"
+    ],
+    "sectiontitle": [
+      "docs/components/yggdrasil-blocks.md#sectiontitle"
+    ],
+    "tableshell": [
+      "docs/components/yggdrasil-blocks.md#tableshell"
+    ],
+    "column": [
+      "docs/components/yggdrasil-blocks.md#table-column-helpers"
+    ],
+    "helpers": [
+      "docs/components/yggdrasil-blocks.md#table-column-helpers"
+    ],
+    "textcolumn": [
+      "docs/components/yggdrasil-blocks.md#textcolumn"
+    ],
+    "statuscolumn": [
+      "docs/components/yggdrasil-blocks.md#statuscolumn"
+    ],
+    "actionscolumn": [
+      "docs/components/yggdrasil-blocks.md#actionscolumn"
+    ],
+    "identitycolumn": [
+      "docs/components/yggdrasil-blocks.md#identitycolumn"
+    ],
+    "selectioncolumn": [
+      "docs/components/yggdrasil-blocks.md#selectioncolumn"
     ],
     "npm": [
       "docs/CONSUMPTION-GUIDE.md",
@@ -6407,10 +7494,6 @@
     "instructions": [
       "docs/CONSUMPTION-GUIDE.md#create-an-agent-instructions-file",
       "docs/DECISION-MATRIX.md#usage-instructions"
-    ],
-    "documentation": [
-      "docs/CONSUMPTION-GUIDE.md#documentation",
-      "docs/CONSUMPTION-GUIDE.md#reference-documentation-in-prompts"
     ],
     "prompts": [
       "docs/CONSUMPTION-GUIDE.md#reference-documentation-in-prompts"
@@ -6687,11 +7770,6 @@
       "docs/DECISION-MATRIX.md#scenario-1-show-list-of-items-with-actions",
       "docs/DECISION-MATRIX.md#scenario-2-show-cardsgrid-of-items"
     ],
-    "actions": [
-      "docs/DECISION-MATRIX.md#scenario-1-show-list-of-items-with-actions",
-      "docs/DECISION-MATRIX.md#actions-confirmations",
-      "docs/DECISION-MATRIX.md#scenario-59-batch-actions-toolbar"
-    ],
     "cards/grid": [
       "docs/DECISION-MATRIX.md#scenario-2-show-cardsgrid-of-items"
     ],
@@ -6904,10 +7982,6 @@
     "33:": [
       "docs/DECISION-MATRIX.md#scenario-33-success-toast-notification"
     ],
-    "notification": [
-      "docs/DECISION-MATRIX.md#scenario-33-success-toast-notification",
-      "docs/DECISION-MATRIX.md#scenario-34-error-toast-notification"
-    ],
     "34:": [
       "docs/DECISION-MATRIX.md#scenario-34-error-toast-notification"
     ],
@@ -7008,9 +8082,6 @@
       "docs/DECISION-MATRIX.md#scenario-49-breadcrumb-navigation"
     ],
     "50:": [
-      "docs/DECISION-MATRIX.md#scenario-50-tabs-navigation"
-    ],
-    "tabs": [
       "docs/DECISION-MATRIX.md#scenario-50-tabs-navigation"
     ],
     "51:": [
@@ -7136,14 +8207,6 @@
     ],
     "tailwind/modern": [
       "docs/ELEVATION-SYSTEM.md#tailwindmodern-approach"
-    ],
-    "yggdrasil": [
-      "docs/ELEVATION-SYSTEM.md#yggdrasil-elevation-levels",
-      ".ai/agents/block-composer.md#-yggdrasil-utilities-on-primereact-components",
-      ".ai/agents/drift-validator.md#rule-2-yggdrasil-utilities-allowlist-layoutspacing-only",
-      ".ai/agents/drift-validator.md#rule-3-no-yggdrasil-utilities-on-primereact-components",
-      ".ai/agents/utilities-guard.md#critical-anti-pattern-yggdrasil-utilities-on-components",
-      ".ai/agents/utilities-guard.md#before-using-yggdrasil-utilities-class"
     ],
     "levels": [
       "docs/ELEVATION-SYSTEM.md#yggdrasil-elevation-levels",
@@ -7784,10 +8847,6 @@
       ".ai/agents/block-composer.md#step-1-identify-the-ui-intent",
       ".ai/agents/semantic-token-intent.md"
     ],
-    "category": [
-      ".ai/agents/block-composer.md#step-3-match-to-primereact-component-category",
-      ".ai/agents/semantic-token-intent.md#step-2-identify-semantic-category"
-    ],
     "plan": [
       ".ai/agents/block-composer.md#step-4-build-composition-plan",
       ".ai/agents/block-composer.md#composition-plan"
@@ -8063,12 +9122,6 @@
     ],
     "principle": [
       ".ai/agents/utilities-guard.md#the-core-principle"
-    ],
-    "(use": [
-      ".ai/agents/utilities-guard.md#-colors-use-semantic-tokens",
-      ".ai/agents/utilities-guard.md#-borders-use-semantic-tokens",
-      ".ai/agents/utilities-guard.md#-shadows-use-semantic-tokens",
-      ".ai/agents/utilities-guard.md#-typography-use-semantic-tokens"
     ],
     "(completely": [
       ".ai/agents/utilities-guard.md#-tailwind-classes-completely-forbidden"

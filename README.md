@@ -111,7 +111,7 @@ For full icon documentation including sizing and colors, see [Consumption Guide 
 ### Reference
 
 - [Master Token Reference](./docs/MASTER-TOKEN-REFERENCE.md) - All semantic tokens
-- [Component Inventory](./docs/COMPONENT-INVENTORY.md) - Use-case to component mapping
+- [Component Index](./docs/components/INDEX.md) - Use-case to component mapping
 - [Aesthetics](./docs/AESTHETICS.md) - Design principles
 
 ---

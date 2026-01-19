@@ -69,7 +69,7 @@ interface CardProps {
  * </Card>
  *
  * @see {@link https://primereact.org/card/} for PrimeReact Card documentation
- * @see {@link ../../docs/COMPONENT-INVENTORY.md} for component selection guide
+ * @see {@link ../../docs/components/INDEX.md} for component selection guide
  */
 export function Card({ children, className = '', usePrimeCard = false }: CardProps) {
   if (usePrimeCard) {

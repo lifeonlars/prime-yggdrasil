@@ -8,7 +8,7 @@ lastUpdated: 2026-01-17
 relatedDocs:
   - AI-AGENT-GUIDE.md
   - MASTER-TOKEN-REFERENCE.md
-  - COMPONENT-INVENTORY.md
+  - components/INDEX.md
   - .ai/agents/block-composer.md
 ---
 
@@ -2113,5 +2113,5 @@ If you encounter a common UI scenario not covered here, propose it for addition 
 **Version**: 0.7.0
 **Total Scenarios**: 59
 
-For component-specific documentation, see [COMPONENT-INVENTORY.md](./COMPONENT-INVENTORY.md).
+For component-specific documentation, see [Component Index](./components/INDEX.md).
 For anti-patterns to avoid, see [ANTI-PATTERNS.md](./ANTI-PATTERNS.md).

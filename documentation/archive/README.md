@@ -25,7 +25,7 @@ For up-to-date documentation, see the main `/docs` folder:
 - [AI-AGENT-GUIDE.md](../../docs/AI-AGENT-GUIDE.md) - Comprehensive guide for AI agents
 - [AESTHETICS.md](../../docs/AESTHETICS.md) - Design system aesthetic principles
 - [MASTER-TOKEN-REFERENCE.md](../../docs/MASTER-TOKEN-REFERENCE.md) - All semantic tokens
-- [COMPONENT-INVENTORY.md](../../docs/COMPONENT-INVENTORY.md) - Component catalog
+- [Component Index](../../docs/components/INDEX.md) - Component catalog
 - [DECISION-MATRIX.md](../../docs/DECISION-MATRIX.md) - Common UI patterns
 - [ANTI-PATTERNS.md](../../docs/ANTI-PATTERNS.md) - What to avoid
 - [FAQ-TROUBLESHOOTING.md](../../docs/FAQ-TROUBLESHOOTING.md) - Common issues
