@@ -89,22 +89,22 @@ export const Colored: Story = {
       <Icon
         name="pi pi-check"
         size="large"
-        color="var(--text-state-success)"
+        color="var(--text-context-success)"
       />
       <Icon
         name="pi pi-exclamation-triangle"
         size="large"
-        color="var(--text-state-warning)"
+        color="var(--text-context-warning)"
       />
       <Icon
         name="pi pi-times"
         size="large"
-        color="var(--text-state-danger)"
+        color="var(--text-context-danger)"
       />
       <Icon
         name="pi pi-info-circle"
         size="large"
-        color="var(--text-state-info)"
+        color="var(--text-context-info)"
       />
       <Icon
         name="pi pi-star"
@@ -191,25 +191,25 @@ export const CommonPatterns: Story = {
     <div className="flex flex-column gap-4">
       {/* Success message */}
       <div className="flex align-items-center gap-2">
-        <Icon name="pi pi-check-circle" size="medium" color="var(--text-state-success)" />
+        <Icon name="pi pi-check-circle" size="medium" color="var(--text-context-success)" />
         <span>Changes saved successfully</span>
       </div>
 
       {/* Error message */}
       <div className="flex align-items-center gap-2">
-        <Icon name="pi pi-times-circle" size="medium" color="var(--text-state-danger)" />
+        <Icon name="pi pi-times-circle" size="medium" color="var(--text-context-danger)" />
         <span>Failed to save changes</span>
       </div>
 
       {/* Warning message */}
       <div className="flex align-items-center gap-2">
-        <Icon name="pi pi-exclamation-triangle" size="medium" color="var(--text-state-warning)" />
+        <Icon name="pi pi-exclamation-triangle" size="medium" color="var(--text-context-warning)" />
         <span>Unsaved changes will be lost</span>
       </div>
 
       {/* Info message */}
       <div className="flex align-items-center gap-2">
-        <Icon name="pi pi-info-circle" size="medium" color="var(--text-state-info)" />
+        <Icon name="pi pi-info-circle" size="medium" color="var(--text-context-info)" />
         <span>This feature is in beta</span>
       </div>
     </div>

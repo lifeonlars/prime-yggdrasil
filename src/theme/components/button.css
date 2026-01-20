@@ -5,11 +5,13 @@
   .p-button {
     color: var(--text-onsurface-onbrand);
     background: var(--surface-brand-primary);
-    border: 1px solid var(--border-state-interactive);
-    padding: 0.75rem 1.25rem;
-    font-size: 1rem;
+    border: var(--control-border-width) solid var(--border-state-interactive);
+    padding: var(--control-md-padding-y) 16px;
+    font-size: var(--control-md-font-size);
+    font-weight: 700;
+    line-height: var(--control-md-line-height);
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    border-radius: var(--radius-md);
+    border-radius: var(--button-radius);
   }
   .p-button:not(:disabled):hover {
     background: var(--surface-brand-secondary);
@@ -109,8 +111,8 @@
     border-radius: 2rem;
   }
   .p-button.p-button-icon-only {
-    width: 3rem;
-    padding: 0.75rem 0;
+    width: var(--control-height-md);
+    padding: var(--control-md-padding-y) 0;
   }
   .p-button.p-button-icon-only .p-button-icon-left,
   .p-button.p-button-icon-only .p-button-icon-right {
@@ -118,18 +120,22 @@
   }
   .p-button.p-button-icon-only.p-button-rounded {
     border-radius: var(--radius-full);
-    height: 3rem;
+    height: var(--control-height-md);
   }
   .p-button.p-button-sm {
-    font-size: 0.875rem;
-    padding: 0.65625rem 1.09375rem;
+    font-size: var(--control-sm-font-size);
+    font-weight: 700;
+    line-height: var(--control-sm-line-height);
+    padding: var(--control-sm-padding-y) 12px;
   }
   .p-button.p-button-sm .p-button-icon {
     font-size: 0.875rem;
   }
   .p-button.p-button-lg {
-    font-size: 1.25rem;
-    padding: 0.9375rem 1.5625rem;
+    font-size: var(--control-lg-font-size);
+    font-weight: 500;
+    line-height: var(--control-lg-line-height);
+    padding: var(--control-lg-padding-y) 24px;
   }
   .p-button.p-button-lg .p-button-icon {
     font-size: 1.25rem;
@@ -465,15 +471,19 @@
     border-radius: 2rem;
   }
   .p-splitbutton.p-button-sm > .p-button {
-    font-size: 0.875rem;
-    padding: 0.65625rem 1.09375rem;
+    font-size: var(--control-sm-font-size);
+    font-weight: 700;
+    line-height: var(--control-sm-line-height);
+    padding: var(--control-sm-padding-y) 12px;
   }
   .p-splitbutton.p-button-sm > .p-button .p-button-icon {
     font-size: 0.875rem;
   }
   .p-splitbutton.p-button-lg > .p-button {
-    font-size: 1.25rem;
-    padding: 0.9375rem 1.5625rem;
+    font-size: var(--control-lg-font-size);
+    font-weight: 500;
+    line-height: var(--control-lg-line-height);
+    padding: var(--control-lg-padding-y) 24px;
   }
   .p-splitbutton.p-button-lg > .p-button.p-button-icon-only {
     width: auto;

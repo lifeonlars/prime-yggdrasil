@@ -67,7 +67,7 @@ export const version = '0.7.0';
 export const theme = {
   name: 'Yggdrasil',
   version: '0.7.0',
-  tokens: 727,
+  tokens: 336,
   coverage: '100%',
   modes: ['light', 'dark'] as const,
 };

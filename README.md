@@ -85,7 +85,7 @@ For full icon documentation including sizing and colors, see [Consumption Guide 
 
 | Feature                    | Description                                          |
 | -------------------------- | ---------------------------------------------------- |
-| **Semantic Token System**  | 727+ tokens with automatic light/dark mode           |
+| **Semantic Token System**  | 336 design tokens with automatic light/dark mode     |
 | **PrimeReact Integration** | 69 themed components ready to use                    |
 | **6 AI Agents**            | Prevent drift, guide composition, enforce compliance |
 | **CLI Validation**         | `yggdrasil audit` and `yggdrasil validate` commands  |
@@ -172,7 +172,7 @@ For detailed agent documentation, see [.ai/agents/](./ai/agents/).
 --radius-sm (4px), --radius-md (8px), --radius-lg (12px)
 ```
 
-For all 727+ tokens, see [Master Token Reference](./docs/MASTER-TOKEN-REFERENCE.md).
+For all 336 tokens, see [Master Token Reference](./docs/MASTER-TOKEN-REFERENCE.md).
 
 ---
 

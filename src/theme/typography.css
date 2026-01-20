@@ -32,11 +32,13 @@
   --Button-family: 'Roboto', arial, sans-serif;
   --Button-large-font-size: 18px;
   --Button-large-line-height: 24px;
+  --Button-large-weight: 500;       /* Medium weight for large buttons */
   --Button-medium-font-size: 14px;
-  --Button-medium-line-height: 16px;
+  --Button-medium-line-height: 20px;  /* Corrected: was 16px */
+  --Button-medium-weight: 700;      /* Bold weight for medium buttons */
   --Button-small-font-size: 12px;
   --Button-small-line-height: 16px;
-  --Button-weight: 500;
+  --Button-small-weight: 700;       /* Bold weight for small buttons */
 
   /* Headings */
   --Heading-family: 'Roboto', arial, sans-serif;

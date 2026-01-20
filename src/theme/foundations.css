@@ -1,9 +1,10 @@
 :root {
 
-  --foundation-sky-050: #F0F4F9;
+
   --foundation-black: #000000;
-  --foundation-sky-100: #DDE0EA;
   --foundation-white: #FFFFFF;
+  --foundation-sky-050: #F0F4F9;
+  --foundation-sky-100: #DDE0EA;
   --foundation-sky-200: #BCCEE2;
   --foundation-sky-300: #9DB7D6;
   --foundation-sky-400: #648CC3;
@@ -13,6 +14,7 @@
   --foundation-sky-800: #001129;
   --foundation-sky-900: #000712;
   --foundation-sky-950: #000409;
+  --foundation-sky-990: #000D20;
   --foundation-sea-100: #D9E4E1;
   --foundation-sea-200: #BEDCDD;
   --foundation-sea-300: #98C5D3;

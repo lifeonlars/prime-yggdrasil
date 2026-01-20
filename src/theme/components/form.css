@@ -4,14 +4,16 @@
 
   .p-inputtext {
     font-family: var(--font-family);
-    font-size: 1rem;
+    font-size: var(--control-md-font-size);
+    font-weight: 400;
+    line-height: var(--control-md-line-height);
     color: var(--text-neutral-default);
     background: var(--surface-neutral-primary);
-    padding: 0.75rem 0.75rem;
-    border: 1px solid var(--border-neutral-default);
+    padding: var(--control-md-padding-y) var(--control-md-padding-x);
+    border: var(--control-border-width) solid var(--border-neutral-default);
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     appearance: none;
-    border-radius: var(--radius-md);
+    border-radius: var(--input-radius);
     outline-color: transparent;
   }
   .p-inputtext:enabled:hover {
@@ -36,12 +38,16 @@
     background-color: var(--surface-neutral-primary);
   }
   .p-inputtext.p-inputtext-sm {
-    font-size: 0.875rem;
-    padding: 0.65625rem 0.65625rem;
+    font-size: var(--control-sm-font-size);
+    font-weight: 400;
+    line-height: var(--control-sm-line-height);
+    padding: var(--control-sm-padding-y) var(--control-sm-padding-x);
   }
   .p-inputtext.p-inputtext-lg {
-    font-size: 1.25rem;
-    padding: 0.9375rem 0.9375rem;
+    font-size: var(--control-lg-font-size);
+    font-weight: 400;
+    line-height: var(--control-lg-line-height);
+    padding: var(--control-lg-padding-y) var(--control-lg-padding-x);
   }
   .p-inputnumber.p-invalid.p-component > .p-inputtext {
     border-color: var(--severity-danger-text);
@@ -494,9 +500,9 @@
   }
   .p-dropdown {
     background: var(--surface-neutral-primary);
-    border: 1px solid var(--border-neutral-default);
+    border: var(--control-border-width) solid var(--border-neutral-default);
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    border-radius: var(--radius-md);
+    border-radius: var(--input-radius);
     outline-color: transparent;
   }
   .p-dropdown:not(.p-disabled):hover {
@@ -526,6 +532,12 @@
   .p-dropdown .p-dropdown-label {
     background: transparent;
     border: 0 none;
+    font-size: var(--control-md-font-size);      /* 14px */
+    font-weight: 400;                            /* Regular - inputs use normal weight */
+    line-height: var(--control-md-line-height);  /* 20px */
+    padding: var(--control-md-padding-y) var(--control-md-padding-x);  /* 7px × 12px */
+
+    /* Total height: 20 + (2×7) + (2×1 border on parent) = 36px ✓ SAME as InputText */
   }
   .p-dropdown .p-dropdown-label.p-placeholder {
     color: var(--text-neutral-subdued);
@@ -592,7 +604,7 @@
   }
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
     color: var(--text-state-interactive);
-    background: var(--surface-brand-overlay);
+    background: var(--surface-state-selected);
   }
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {
     background: color-mix(in srgb, var(--surface-brand-primary) 24%, transparent);
@@ -685,7 +697,7 @@
   }
   .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item.p-highlight {
     color: var(--text-state-interactive);
-    background: var(--surface-brand-overlay);
+    background: var(--surface-state-selected);
   }
   .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item-group {
     margin: 0;
@@ -704,9 +716,9 @@
   }
   .p-multiselect {
     background: var(--surface-neutral-primary);
-    border: 1px solid var(--border-neutral-default);
+    border: var(--control-border-width) solid var(--border-neutral-default);
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    border-radius: var(--radius-md);
+    border-radius: var(--input-radius);
     outline-color: transparent;
   }
   .p-multiselect:not(.p-disabled):hover {
@@ -728,8 +740,13 @@
     background-color: var(--surface-neutral-primary);
   }
   .p-multiselect .p-multiselect-label {
-    padding: 0.75rem 0.75rem;
+    font-size: var(--control-md-font-size);      /* 14px */
+    font-weight: 400;                            /* Regular - inputs use normal weight */
+    line-height: var(--control-md-line-height);  /* 20px */
+    padding: var(--control-md-padding-y) var(--control-md-padding-x);  /* 7px × 12px */
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+
+    /* Total height: 20 + (2×7) + (2×1 border on parent) = 36px ✓ SAME as InputText/Dropdown */
   }
   .p-multiselect .p-multiselect-label.p-placeholder {
     color: var(--text-neutral-subdued);
@@ -866,9 +883,9 @@
 
   .p-treeselect {
     background: var(--text-onsurface-onbrand);
-    border: 1px solid var(--border-neutral-subdued);
+    border: var(--control-border-width) solid var(--border-neutral-subdued);
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    border-radius: var(--radius-md);
+    border-radius: var(--input-radius);
   }
   .p-treeselect:not(.p-disabled):hover {
     border-color: var(--border-state-interactive);
@@ -892,8 +909,13 @@
     background-color: var(--text-onsurface-onbrand);
   }
   .p-treeselect .p-treeselect-label {
-    padding: 0.75rem 0.75rem;
+    font-size: var(--control-md-font-size);      /* 14px */
+    font-weight: 400;                            /* Regular - inputs use normal weight */
+    line-height: var(--control-md-line-height);  /* 20px */
+    padding: var(--control-md-padding-y) var(--control-md-padding-x);  /* 7px × 12px */
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+
+    /* Total height: 20 + (2×7) + (2×1 border on parent) = 36px ✓ SAME as other form controls */
   }
   .p-treeselect .p-treeselect-label.p-placeholder {
     color: var(--text-neutral-subdued);
@@ -983,9 +1005,9 @@
 
   .p-cascadeselect {
     background: var(--text-onsurface-onbrand);
-    border: 1px solid var(--border-neutral-subdued);
+    border: var(--control-border-width) solid var(--border-neutral-subdued);
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    border-radius: var(--radius-md);
+    border-radius: var(--input-radius);
     outline-color: transparent;
   }
   .p-cascadeselect:not(.p-disabled):hover {
@@ -1009,7 +1031,12 @@
   .p-cascadeselect .p-cascadeselect-label {
     background: transparent;
     border: 0 none;
-    padding: 0.75rem 0.75rem;
+    font-size: var(--control-md-font-size);      /* 14px */
+    font-weight: 400;                            /* Regular - inputs use normal weight */
+    line-height: var(--control-md-line-height);  /* 20px */
+    padding: var(--control-md-padding-y) var(--control-md-padding-x);  /* 7px × 12px */
+
+    /* Total height: 20 + (2×7) + (2×1 border on parent) = 36px ✓ SAME as other form controls */
   }
   .p-cascadeselect .p-cascadeselect-label.p-placeholder {
     color: var(--text-neutral-subdued);
@@ -1054,7 +1081,7 @@
   }
   .p-cascadeselect-panel .p-cascadeselect-items .p-cascadeselect-item.p-highlight {
     color: var(--text-state-interactive);
-    background: var(--surface-brand-overlay);
+    background: var(--surface-state-selected);
   }
   .p-cascadeselect-panel .p-cascadeselect-items .p-cascadeselect-item.p-highlight.p-focus {
     background: color-mix(in srgb, var(--surface-brand-primary) 24%, transparent);
@@ -1113,7 +1140,7 @@
   }
   .p-listbox .p-listbox-list .p-listbox-item.p-highlight {
     color: var(--text-state-interactive);
-    background: var(--surface-brand-overlay);
+    background: var(--surface-state-selected);
   }
   .p-listbox .p-listbox-list .p-listbox-item-group {
     margin: 0;
