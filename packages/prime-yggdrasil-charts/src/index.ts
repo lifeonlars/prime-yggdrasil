@@ -33,14 +33,14 @@
 /**
  * Package version
  */
-export const version = '0.1.0';
+export const version = '0.2.0';
 
 /**
  * Package information
  */
 export const packageInfo = {
   name: '@lifeonlars/prime-yggdrasil-charts',
-  version: '0.1.0',
+  version: '0.2.0',
   description: 'Charts, widgets, and dashboards for Prime Yggdrasil',
 };
 
@@ -65,12 +65,27 @@ export {
 
 export type { PaletteType, PaletteInfo } from './theme/palettes';
 
-// Placeholder: Charts will be exported here in Phase 1B
-// export { TimeSeriesLine } from './charts/TimeSeriesLine';
-// export { Column } from './charts/Column';
-// export { Bar } from './charts/Bar';
-// export { StackedColumn } from './charts/StackedColumn';
-// export { Donut } from './charts/Donut';
+// Charts (Phase 1B)
+export { TimeSeriesLine } from './charts/TimeSeriesLine';
+export { Column } from './charts/Column';
+export { Bar } from './charts/Bar';
+export { StackedColumn } from './charts/StackedColumn';
+export { Donut } from './charts/Donut';
+
+// Chart types and utilities
+export type {
+  BaseChartProps,
+  ChartRow,
+  ChartSize,
+  ChartEncoding,
+  ChartFormatOptions,
+  LegendConfig,
+  TooltipConfig,
+  ChartType,
+  ChartState,
+} from './types/chart';
+
+export { formatNumber, formatCompact, formatDate, formatDateTime } from './utils/formatters';
 
 // Placeholder: Widgets will be exported here in Phase 4
 // export { WidgetFrame } from './widgets/WidgetFrame';
