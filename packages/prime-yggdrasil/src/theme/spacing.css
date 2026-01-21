@@ -1,0 +1,106 @@
+/**
+ * Spacing Tokens
+ *
+ * Yggdrasil uses a 4px soft grid for all spacing (margins, gaps, container padding).
+ * These tokens are for GENERAL-PURPOSE spacing, NOT control sizing.
+ *
+ * For interactive control sizing (buttons, inputs, etc.), use control-sizing.css tokens instead.
+ *
+ * All values follow the 4px grid: 4px, 8px, 12px, 16px, 20px, 24px, etc.
+ *
+ * @example Container padding
+ * .container {
+ *   padding: var(--space-4);  // 16px
+ * }
+ *
+ * @example Flex gap
+ * .flex-container {
+ *   gap: var(--space-2);  // 8px
+ * }
+ *
+ * @example Margin between elements
+ * .section {
+ *   margin-bottom: var(--space-6);  // 24px
+ * }
+ */
+
+:root {
+  /* ==================== Spacing Scale (4px grid) ==================== */
+
+  /**
+   * --space-1: Tight spacing (4px)
+   * Use for: Compact element spacing, tight gaps
+   */
+  --space-1: 4px;
+
+  /**
+   * --space-2: Compact spacing (8px)
+   * Use for: Small gaps, minimal padding
+   */
+  --space-2: 8px;
+
+  /**
+   * --space-3: Default spacing (12px)
+   * Use for: Standard element spacing, default gaps
+   */
+  --space-3: 12px;
+
+  /**
+   * --space-4: Comfortable spacing (16px)
+   * Use for: Container padding, comfortable gaps
+   */
+  --space-4: 16px;
+
+  /**
+   * --space-5: Relaxed spacing (20px)
+   * Use for: Section spacing, generous padding
+   */
+  --space-5: 20px;
+
+  /**
+   * --space-6: Generous spacing (24px)
+   * Use for: Large gaps, section margins
+   */
+  --space-6: 24px;
+
+  /**
+   * --space-8: Large spacing (32px)
+   * Use for: Major section separation
+   */
+  --space-8: 32px;
+
+  /**
+   * --space-10: Extra large spacing (40px)
+   * Use for: Major layout spacing
+   */
+  --space-10: 40px;
+
+  /**
+   * --space-12: Maximum spacing (48px)
+   * Use for: Page-level spacing, major separations
+   */
+  --space-12: 48px;
+}
+
+/*
+ * USAGE GUIDELINES:
+ *
+ * DO use spacing tokens for:
+ * - Container padding (.container { padding: var(--space-4); })
+ * - Flex/grid gaps (.flex { gap: var(--space-2); })
+ * - Margins between elements (.section { margin-bottom: var(--space-6); })
+ * - Card/panel internal spacing (.card-content { padding: var(--space-4); })
+ *
+ * DO NOT use spacing tokens for:
+ * - Interactive control padding (buttons, inputs) - use control-sizing.css instead
+ * - Border widths - use explicit PX values
+ * - Border radius - use radius.css tokens instead
+ *
+ * RELATIONSHIP TO CONTROL SIZING:
+ *
+ * Spacing tokens and control sizing tokens serve different purposes:
+ * - Spacing: General layout spacing (margins, gaps, container padding)
+ * - Control sizing: Interactive control dimensions with height guarantee
+ *
+ * They may have similar values (e.g., both have 8px, 12px) but serve different contracts.
+ */

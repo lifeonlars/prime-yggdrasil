@@ -10,6 +10,19 @@ A comprehensive design system built on [PrimeReact](https://primereact.org/) tha
 
 **[📚 View Live Storybook →](https://lifeonlars.github.io/prime-yggdrasil/)**
 
+---
+
+## 📦 Packages
+
+This is a monorepo containing multiple packages:
+
+| Package | Version | Description |
+|---------|---------|-------------|
+| [`@lifeonlars/prime-yggdrasil`](./packages/prime-yggdrasil) | [![npm](https://img.shields.io/npm/v/@lifeonlars/prime-yggdrasil)](https://www.npmjs.com/package/@lifeonlars/prime-yggdrasil) | Core theme, semantic tokens, and PrimeReact components |
+| [`@lifeonlars/prime-yggdrasil-charts`](./packages/prime-yggdrasil-charts) | [![npm](https://img.shields.io/npm/v/@lifeonlars/prime-yggdrasil-charts)](https://www.npmjs.com/package/@lifeonlars/prime-yggdrasil-charts) | Highcharts-based charts, widgets, and dashboards |
+
+---
+
 ## Why Yggdrasil?
 
 **Problem**: AI agents often create custom components and hardcode styles, leading to inconsistent UIs and maintenance nightmares.

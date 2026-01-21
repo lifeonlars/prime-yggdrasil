@@ -1,0 +1,58 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as TableStories from './Table.stories'
+
+<Meta of={TableStories} />
+
+# Table
+
+Composable table building blocks that stay generic to the design system. Behaviours are applied via presets, and columns come from archetype factories.
+
+## Assembly pattern
+
+- **Shell**: `TableShell` wraps a `DataTable` with title, actions, filters, loading, and empty handling.
+- **Behaviours**: Spread presets like `standardTablePreset`, `selectableRowsPreset`, `expandableRowsPreset`, or `editableRowsPreset` into `DataTable` props.
+- **Columns**: Use factories (`identityColumn`, `textColumn`, `statusColumn`, `selectionColumn`, `actionsColumn`) to keep sizing, alignment, and filtering consistent.
+- **Data**: Controlled by consuming app (fetching, mutations, domain labels); this repo stays on Tier 1 global blocks.
+
+```tsx
+import { DataTable } from 'primereact/datatable';
+import {
+  TableShell,
+  identityColumn,
+  statusColumn,
+  selectionColumn,
+  actionsColumn,
+  standardTablePreset,
+  selectableRowsPreset,
+} from 'prime-yggdrasil';
+
+<TableShell title="Entities" filters={filtersBar} actions={actionsSlot}>
+  <DataTable
+    value={rows}
+    {...standardTablePreset({ dataKey: 'id' })}
+    {...selectableRowsPreset({ dataKey: 'id', selection, onSelectionChange })}
+  >
+    {selectionColumn()}
+    {identityColumn({ field: 'name', secondaryField: 'email' })}
+    {statusColumn({ field: 'status', options: statusOptions, filter: true })}
+    {actionsColumn()}
+  </DataTable>
+</TableShell>
+```
+
+## Ownership
+
+- **In this repo**: Behaviour presets, column archetypes, shell framing, theme remapping (light/dark), Storybook docs and states.
+- **In consuming apps**: Data fetching, mutations, domain-specific columns or actions, routing links, feature flags.
+- **No-go here**: Domain tables (e.g. `UsersTable`), local primitives, business logic.
+
+## Promoting local patterns
+
+Start with local composition in your app. Once a pattern is reused across apps (or clearly reusable), extract the behaviour/column into this package as a new preset or archetype, and document it in Storybook.
+
+## References
+
+<Canvas of={TableStories.Composition} />
+<Canvas of={TableStories.Selectable} />
+<Canvas of={TableStories.Expandable} />
+<Canvas of={TableStories.Identity} />

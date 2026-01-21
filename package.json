@@ -1,82 +1,34 @@
 {
-  "name": "@lifeonlars/prime-yggdrasil",
-  "version": "0.8.2",
+  "name": "prime-yggdrasil-monorepo",
+  "version": "1.0.0",
+  "private": true,
   "type": "module",
-  "description": "AI-agent-friendly PrimeReact design system for component-driven development with semantic tokens and dark mode support",
-  "keywords": [
-    "primereact",
-    "design-system",
-    "semantic-tokens",
-    "dark-mode",
-    "ai-agents",
-    "component-driven",
-    "react",
-    "theme"
-  ],
-  "homepage": "https://github.com/lifeonlars/prime-yggdrasil#readme",
+  "description": "Monorepo for Prime Yggdrasil design system packages",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lifeonlars/prime-yggdrasil.git"
   },
-  "bugs": {
-    "url": "https://github.com/lifeonlars/prime-yggdrasil/issues"
-  },
   "license": "MIT",
   "author": "Lars Farstad <lars.farstad@gmail.com>",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./theme.css": "./dist/theme.css",
-    "./foundations.css": "./dist/foundations.css",
-    "./typography.css": "./dist/typography.css",
-    "./utilities.css": "./dist/utilities.css",
-    "./docs/*": "./docs/*"
-  },
-  "bin": {
-    "yggdrasil": "./cli/bin/yggdrasil.js"
-  },
-  "files": [
-    "dist",
-    "docs",
-    "cli",
-    ".ai",
-    "README.md",
-    "LICENSE"
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -p tsconfig.lib.json && vite build --config vite.config.lib.ts",
-    "lint": "eslint .",
-    "lint:css": "stylelint \"src/**/*.css\"",
-    "lint:css:fix": "stylelint \"src/**/*.css\" --fix",
-    "preview": "vite preview",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:contrast": "node scripts/test-contrast.js",
-    "test:contrast:vitest": "vitest run tests/contrast.test.ts",
-    "test:contrast:watch": "vitest tests/contrast.test.ts",
-    "test:themes": "node scripts/validate-themes.js",
-    "audit:foundation": "node scripts/audit-foundation-usage.js",
+    "dev": "npm run dev -w @lifeonlars/prime-yggdrasil",
+    "build": "npm run build --workspaces --if-present",
+    "build:theme": "npm run build -w @lifeonlars/prime-yggdrasil",
+    "build:charts": "npm run build -w @lifeonlars/prime-yggdrasil-charts",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:css": "npm run lint:css -w @lifeonlars/prime-yggdrasil",
+    "lint:css:fix": "npm run lint:css:fix -w @lifeonlars/prime-yggdrasil",
+    "test": "npm run test --workspaces --if-present",
+    "test:watch": "npm run test:watch --workspaces --if-present",
+    "test:contrast": "npm run test:contrast -w @lifeonlars/prime-yggdrasil",
+    "test:themes": "npm run test:themes -w @lifeonlars/prime-yggdrasil",
+    "audit:foundation": "npm run audit:foundation -w @lifeonlars/prime-yggdrasil",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "npx chromatic --project-token=chpt_f57d218f413ed30"
-  },
-  "peerDependencies": {
-    "primeicons": "^7.0.0",
-    "primereact": "^10.9.7",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
-  },
-  "peerDependenciesMeta": {
-    "primeicons": {
-      "optional": true
-    }
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.3",

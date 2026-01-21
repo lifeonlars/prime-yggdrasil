@@ -1,0 +1,167 @@
+/**
+ * media components
+ */
+
+  .p-galleria .p-galleria-close {
+    margin: 0.5rem;
+    background: transparent;
+    color: var(--surface-neutral-secondary);
+    width: 4rem;
+    height: 4rem;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    border-radius: var(--radius-full);
+  }
+  .p-galleria .p-galleria-close .p-galleria-close-icon {
+    font-size: 2rem;
+  }
+  .p-galleria .p-galleria-close .p-galleria-close-icon.p-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+  .p-galleria .p-galleria-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--surface-neutral-secondary);
+  }
+  .p-galleria .p-galleria-item-nav {
+    background: transparent;
+    color: var(--surface-neutral-secondary);
+    width: 4rem;
+    height: 4rem;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    border-radius: var(--radius-md);
+    margin: 0 0.5rem;
+  }
+  .p-galleria .p-galleria-item-nav .p-galleria-item-prev-icon,
+  .p-galleria .p-galleria-item-nav .p-galleria-item-next-icon {
+    font-size: 2rem;
+  }
+  .p-galleria .p-galleria-item-nav .p-galleria-item-prev-icon.p-icon,
+  .p-galleria .p-galleria-item-nav .p-galleria-item-next-icon.p-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+  .p-galleria .p-galleria-item-nav:not(.p-disabled):hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--surface-neutral-secondary);
+  }
+  .p-galleria .p-galleria-caption {
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--surface-neutral-secondary);
+    padding: 1rem;
+  }
+  .p-galleria .p-galleria-indicators {
+    padding: 1rem;
+  }
+  .p-galleria .p-galleria-indicators .p-galleria-indicator button {
+    background-color: var(--border-neutral-subdued);
+    width: 1rem;
+    height: 1rem;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    border-radius: var(--radius-full);
+  }
+  .p-galleria .p-galleria-indicators .p-galleria-indicator button:hover {
+    background: var(--icon-neutral-disabled);
+  }
+  .p-galleria .p-galleria-indicators .p-galleria-indicator.p-highlight button {
+    background: var(--surface-brand-overlay);
+    color: var(--text-state-interactive);
+  }
+  .p-galleria.p-galleria-indicators-bottom .p-galleria-indicator, .p-galleria.p-galleria-indicators-top .p-galleria-indicator {
+    margin-right: 0.5rem;
+  }
+  .p-galleria.p-galleria-indicators-left .p-galleria-indicator, .p-galleria.p-galleria-indicators-right .p-galleria-indicator {
+    margin-bottom: 0.5rem;
+  }
+  .p-galleria.p-galleria-indicator-onitem .p-galleria-indicators {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .p-galleria.p-galleria-indicator-onitem .p-galleria-indicators .p-galleria-indicator button {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  .p-galleria.p-galleria-indicator-onitem .p-galleria-indicators .p-galleria-indicator button:hover {
+    background: rgba(255, 255, 255, 0.6);
+  }
+  .p-galleria.p-galleria-indicator-onitem .p-galleria-indicators .p-galleria-indicator.p-highlight button {
+    background: var(--surface-brand-overlay);
+    color: var(--text-state-interactive);
+  }
+  .p-galleria .p-galleria-thumbnail-container {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 1rem 0.25rem;
+  }
+  .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev,
+  .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-next {
+    margin: 0.5rem;
+    background-color: transparent;
+    color: var(--surface-neutral-secondary);
+    width: 2rem;
+    height: 2rem;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    border-radius: var(--radius-full);
+  }
+  .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev:hover,
+  .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-next:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--surface-neutral-secondary);
+  }
+  .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-item-content {
+    transition: box-shadow 0.2s;
+  }
+  .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-item-content:focus-visible {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: var(--focus-ring);
+  }
+  .p-galleria .p-galleria-indicators .p-galleria-indicator.p-highlight button {
+    background-color: var(--surface-brand-primary);
+  }
+  .p-carousel .p-carousel-content .p-carousel-prev,
+  .p-carousel .p-carousel-content .p-carousel-next {
+    width: 2rem;
+    height: 2rem;
+    color: var(--icon-neutral-subdued);
+    border: 0 none;
+    background: transparent;
+    border-radius: var(--radius-full);
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+  .p-carousel .p-carousel-content .p-carousel-prev:enabled:hover,
+  .p-carousel .p-carousel-content .p-carousel-next:enabled:hover {
+    color: var(--text-neutral-default);
+    border-color: transparent;
+    background: var(--surface-state-hover);
+  }
+  .p-carousel .p-carousel-content .p-carousel-prev:focus-visible,
+  .p-carousel .p-carousel-content .p-carousel-next:focus-visible {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: var(--focus-ring);
+  }
+  .p-carousel .p-carousel-content .p-carousel-prev,
+  .p-carousel .p-carousel-content .p-carousel-next {
+    margin: 0.5rem;
+  }
+  .p-carousel .p-carousel-indicators {
+    padding: 1rem;
+  }
+  .p-carousel .p-carousel-indicators .p-carousel-indicator {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .p-carousel .p-carousel-indicators .p-carousel-indicator button {
+    background-color: var(--border-neutral-subdued);
+    width: 2rem;
+    height: 0.5rem;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    border-radius: 0;
+  }
+  .p-carousel .p-carousel-indicators .p-carousel-indicator button:hover {
+    background: var(--icon-neutral-disabled);
+  }
+  .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+    background: var(--surface-brand-overlay);
+    color: var(--text-state-interactive);
+  }
+  .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+    background-color: var(--surface-brand-primary);
+  }

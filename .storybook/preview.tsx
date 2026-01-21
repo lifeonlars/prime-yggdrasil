@@ -3,16 +3,16 @@ import { themes } from 'storybook/theming';
 import { useEffect } from 'react';
 import type { ReactRenderer } from '@storybook/react';
 import type { DecoratorFunction } from 'storybook/internal/types';
-import { YggdrasilProvider } from '../src/provider/YggdrasilProvider';
+import { YggdrasilProvider } from '../packages/prime-yggdrasil/src/provider/YggdrasilProvider';
 
 // Import base resources (icons)
 import 'primeicons/primeicons.css';
 
 // Import blocks styles (theme-agnostic)
-import '../src/blocks/blocks.css';
+import '../packages/prime-yggdrasil/src/blocks/blocks.css';
 
 // Import theme that handles both light and dark via [data-theme] attribute
-import '../src/theme/theme.css';
+import '../packages/prime-yggdrasil/src/theme/theme.css';
 
 // Global theme management - runs once, not per story
 let currentTheme: 'light' | 'dark' | null = null;

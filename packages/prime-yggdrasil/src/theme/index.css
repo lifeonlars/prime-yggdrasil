@@ -1,0 +1,36 @@
+/**
+ * Yggdrasil Theme - Main Export (Light Theme Only)
+ *
+ * This is the default export that provides light theme styling.
+ * For dynamic theme switching, use the individual theme files.
+ *
+ * Usage Options:
+ *
+ * Option 1 - Light theme only (default):
+ * ```tsx
+ * import 'prime-yggdrasil/theme.css';
+ * ```
+ *
+ * Option 2 - Manual theme control:
+ * ```tsx
+ * // Import theme dynamically based on user preference
+ * import 'prime-yggdrasil/theme-light.css';
+ * // OR
+ * import 'prime-yggdrasil/theme-dark.css';
+ * ```
+ *
+ * Option 3 - Runtime theme switching:
+ * ```tsx
+ * // Load the theme file dynamically
+ * const loadTheme = (theme: 'light' | 'dark') => {
+ *   const link = document.createElement('link');
+ *   link.rel = 'stylesheet';
+ *   link.href = theme === 'light'
+ *     ? '/node_modules/prime-yggdrasil/dist/yggdrasil-light.css'
+ *     : '/node_modules/prime-yggdrasil/dist/yggdrasil-dark.css';
+ *   document.head.appendChild(link);
+ * };
+ * ```
+ */
+
+@import './yggdrasil-light.css';

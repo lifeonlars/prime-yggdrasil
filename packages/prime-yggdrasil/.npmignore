@@ -1,0 +1,43 @@
+# Source files (only publish dist/)
+src/
+.storybook/
+
+# Config files
+vite.config.ts
+vite.config.lib.ts
+tsconfig.json
+tsconfig.app.json
+tsconfig.node.json
+tsconfig.lib.json
+eslint.config.js
+
+# Development
+node_modules/
+.git/
+.vscode/
+.idea/
+
+# Build artifacts
+storybook-static/
+playwright-report/
+test-results/
+coverage/
+*.log
+
+# Archive and internal documentation (exclude from npm package)
+documentation/
+docs/scripts/
+
+# Test templates (exclude - for development only)
+tests/
+
+# Scripts (exclude - internal tooling)
+scripts/
+
+# Vite artifacts
+dist/vite.svg
+
+# Keep essential documentation
+!README.md
+!LICENSE
+!agentic_policy.md

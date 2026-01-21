@@ -1,0 +1,538 @@
+/**
+ * Yggdrasil Theme - Single Source of Truth
+ *
+ * All semantic tokens defined here with adaptive light/dark support.
+ * Works for both static theme selection and runtime theme switching.
+ *
+ * Usage:
+ * - Import once: import '@lifeonlars/prime-yggdrasil/theme.css'
+ * - Set theme: <html data-theme="light"> or <html data-theme="dark">
+ * - Toggle runtime: document.documentElement.setAttribute('data-theme', 'dark')
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import "./foundations.css";
+@import "./control-sizing.css";  /* CRITICAL: Control sizing contract - must load before components */
+@import "./spacing.css";
+@import "./radius.css";
+@import "./typography.css";
+@import "./utilities.css";
+@import "./components.css";
+
+/* ==================== Light Theme Semantic Tokens ==================== */
+:root,
+[data-theme="light"] {
+  /* Surfaces */
+  --surface-neutral-primary: var(--foundation-white);
+  --surface-neutral-secondary: var(--foundation-rock-050);
+  --surface-neutral-tertiary: var(--foundation-rock-100);
+  --surface-neutral-overlay: var(--foundation-darker-150);
+  --surface-brand-primary: var(--foundation-sky-700);
+  --surface-brand-secondary: var(--foundation-sky-600);
+  --surface-brand-accent: var(--foundation-berries-400);
+  --surface-brand-overlay: var(--foundation-lighter-300);
+  --surface-context-success: var(--foundation-forest-200);
+  --surface-context-warning: var(--foundation-sand-200);
+  --surface-context-danger: var(--foundation-berries-200);
+  --surface-context-signal: var(--foundation-sea-200);
+  --surface-context-info: var(--foundation-sea-200);
+  --surface-context-dangeractive: var(--foundation-berries-700);
+  --surface-input-primary: var(--foundation-white);
+  --surface-input-secondary: var(--foundation-sky-050);
+
+
+  /* State  */
+  --surface-state-hover: var(--foundation-darker-050);
+  --surface-state-selected: var(--foundation-sky-050);
+  --surface-state-pressed: var(--foundation-lighter-200);
+  --surface-state-disabled: var(--foundation-rock-100);
+
+
+  /* Text */
+  --text-neutral-default: var(--foundation-sky-700);
+  --text-neutral-subdued: var(--foundation-rock-600);
+  --text-neutral-loud: var(--foundation-sky-950);
+  --text-neutral-disabled: var(--foundation-rock-300);
+  --text-state-interactive: var(--foundation-sky-600);
+  --text-state-interactive-hover: var(--foundation-sky-500);
+  --text-state-interactive-visited: var(--foundation-sea-700);
+  --text-state-selected: var(--foundation-sea-500);
+  --text-onsurface-onbrand: var(--foundation-white);
+  --text-onsurface-onaccent: var(--foundation-white);
+  --text-onsurface-oncontext: var(--foundation-sky-700);
+  --text-onsurface-oncontextactive: var(--foundation-white);
+  --text-onsurface-onsentiment: var(--foundation-sky-900);
+  --text-onsurface-onhighlight: var(--foundation-black);
+  --text-context-success: var(--foundation-forest-700);
+  --text-context-warning: var(--foundation-sand-700);
+  --text-context-danger: var(--foundation-berries-700);
+  --text-context-info: var(--foundation-sea-700);
+
+
+  /* Borders */
+  --border-neutral-default: var(--foundation-rock-300);
+  --border-neutral-subdued: var(--foundation-rock-200);
+  --border-neutral-loud: var(--foundation-rock-500);
+  --border-brand-primary: var(--foundation-sky-700);
+  --border-context-success: var(--foundation-forest-500);
+  --border-context-warning: var(--foundation-sand-400);
+  --border-context-danger: var(--foundation-berries-600);
+  --border-context-info: var(--foundation-sea-400);
+  --border-state-interactive: var(--foundation-sky-400);
+  --border-state-selected: var(--foundation-sea-500);
+  --border-state-focus: var(--foundation-sky-400);
+
+
+
+  /* Icons */
+  --icon-neutral-default: var(--foundation-sky-700);
+  --icon-neutral-subdued: var(--foundation-rock-500);
+  --icon-neutral-loud: var(--foundation-rock-950);
+  --icon-neutral-disabled: var(--foundation-rock-300);
+  --icon-context-success: var(--foundation-forest-500);
+  --icon-context-warning: var(--foundation-sand-500);
+  --icon-context-danger: var(--foundation-berries-600);
+  --icon-context-info: var(--foundation-sky-500);
+  --icon-onsurface-onbrand: var(--foundation-white);
+  --icon-onsurface-oncontext: var(--foundation-sky-900);
+  --icon-onsurface-ondanger: var(--foundation-white);
+
+
+  /* Elevation (Shadows) - Light mode */
+  --elevation-subtle: 0 2px 4px 0 rgba(0, 0, 0, 0.05), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  --elevation-moderate: 0 4px 8px -1px rgba(0, 0, 0, 0.1), 0 4px 8px -1px rgba(0, 0, 0, 0.06);
+  --elevation-elevated: 0 12px 16px -3px rgba(0, 0, 0, 0.1), 0 12px 16px -2px rgba(0, 0, 0, 0.05);
+  --elevation-high: 0 24px 32px -5px rgba(0, 0, 0, 0.1), 0 16px 16px -5px rgba(0, 0, 0, 0.04);
+
+  /* Focus glow - Light mode (based on --border-state-focus: sky-400) */
+  --focus-ring: 0 0 0 0.2rem rgba(100, 140, 195, 0.25);  /* sky-400 with 25% opacity */
+
+  /* Typography */
+  --font-family: "Roboto", arial, sans-serif;
+
+  /* PrimeReact Legacy Tokens */
+  --surface-ground: var(--surface-neutral-tertiary);
+  --surface-section: var(--surface-neutral-primary);
+  --surface-card: var(--surface-neutral-primary);
+  --surface-overlay: var(--foundation-darker-700);
+  --surface-border: var(--border-neutral-default);
+  --surface-hover: var(--surface-state-hover);
+  --text-color: var(--text-neutral-default);
+  --text-color-secondary: var(--text-neutral-subdued);
+  --primary-color: var(--foundation-sky-700);
+  --primary-color-text: var(--foundation-sky-700);
+
+  /* Severity tokens (map to context tokens) */
+  --severity-info-surface: var(--surface-context-info);
+  --severity-info-surface-tint: var(--surface-context-info);
+  --severity-info-border: var(--border-context-info);
+  --severity-info-text: var(--text-context-info);
+  --severity-info-icon: var(--icon-context-info);
+  --severity-success-surface: var(--surface-context-success);
+  --severity-success-surface-tint: var(--surface-context-success);
+  --severity-success-border: var(--border-context-success);
+  --severity-success-text: var(--text-context-success);
+  --severity-success-icon: var(--icon-context-success);
+  --severity-warn-surface: var(--surface-context-warning);
+  --severity-warn-surface-tint: var(--surface-context-warning);
+  --severity-warn-border: var(--border-context-warning);
+  --severity-warn-text: var(--text-context-warning);
+  --severity-warn-icon: var(--icon-context-warning);
+  --severity-error-surface: var(--surface-context-danger);
+  --severity-error-surface-tint: var(--surface-context-danger);
+  --severity-error-border: var(--border-context-danger);
+  --severity-error-text: var(--text-context-danger);
+  --severity-error-icon: var(--icon-context-danger);
+  --severity-danger-surface: var(--surface-context-dangeractive);
+  --severity-danger-surface-tint: var(--surface-context-dangeractive);
+  --severity-danger-border: var(--border-context-danger);
+  --severity-danger-text: var(--text-onsurface-oncontextactive);
+  --severity-danger-icon: var(--icon-onsurface-ondanger);
+
+  /* Chart Scaffolding */
+  --chart-scaffolding-border: var(--foundation-rock-200);
+
+  /* Chart Boolean Palette (for binary comparisons, default/emphasis sets) */
+  --chart-boolean-primary: var(--charts-aquamarine-500);
+  --chart-boolean-primary-emphasis: var(--charts-aquamarine-700);
+  --chart-boolean-secondary: var(--charts-charoite-500);
+  --chart-boolean-secondary-emphasis: var(--charts-charoite-700);
+  --chart-boolean-diminish: var(--foundation-rock-300);
+  --chart-boolean-subdued: var(--foundation-rock-200);
+
+  /* Chart Sentiment Palette (for positive/neutral/negative/undefined) */
+  --chart-sentiment-positive: var(--charts-emerald-400);
+  --chart-sentiment-neutral: var(--charts-topaz-300);
+  --chart-sentiment-negative: var(--charts-ruby-600);
+  --chart-sentiment-undefined: var(--foundation-rock-300);
+
+  /* Chart Sequential/Scale Palette (for heatmaps, choropleth, gradients) */
+  --chart-scale-0: var(--charts-sapphire-050);
+  --chart-scale-1: var(--charts-sapphire-200);
+  --chart-scale-2: var(--charts-sapphire-300);
+  --chart-scale-3: var(--charts-sapphire-500);
+  --chart-scale-4: var(--charts-sapphire-600);
+  --chart-scale-5: var(--charts-sapphire-700);
+
+  /* Chart Category Palette (for multi-series categorical data) */
+  --chart-category-1: var(--charts-sapphire-500);
+  --chart-category-2: var(--charts-garnet-600);
+  --chart-category-3: var(--charts-amber-500);
+  --chart-category-4: var(--charts-charoite-600);
+  --chart-category-5: var(--charts-emerald-500);
+  --chart-category-6: var(--charts-aquamarine-600);
+  --chart-category-7: var(--charts-ruby-600);
+  --chart-category-8: var(--charts-topaz-400);
+  --chart-category-9: var(--charts-amethyst-600);
+  --chart-category-10: var(--charts-sapphire-300);
+  --chart-category-11: var(--charts-garnet-400);
+  --chart-category-12: var(--charts-amber-300);
+}
+
+/* ==================== Dark Theme Semantic Tokens ==================== */
+[data-theme="dark"] {
+  /* Surfaces */
+  --surface-neutral-primary: var(--foundation-sky-800);
+  --surface-neutral-secondary: var(--foundation-sky-900);
+  --surface-neutral-tertiary: var(--foundation-sky-990);
+  --surface-neutral-overlay: var(--foundation-lighter-100);
+  --surface-brand-primary: var(--foundation-sky-500);
+  --surface-brand-secondary: var(--foundation-sky-600);
+  --surface-brand-accent: var(--foundation-berries-600);
+  --surface-brand-overlay: var(--foundation-darker-300);
+  --surface-context-success: var(--foundation-forest-700);
+  --surface-context-warning: var(--foundation-sand-700);
+  --surface-context-danger: var(--foundation-berries-700);
+  --surface-context-info: var(--foundation-sea-800);
+  --surface-context-signal: var(--foundation-sea-700);
+  --surface-context-dangeractive: var(--foundation-berries-600);
+  --surface-input-primary: var(--foundation-black);
+  --surface-input-secondary: var(--foundation-rock-900);
+
+  /* State surfaces*/
+  --surface-state-hover: var(--foundation-lighter-100);
+  --surface-state-pressed: var(--foundation-lighter-050);
+  --surface-state-disabled: var(--foundation-darker-500);
+  --surface-state-selected: var(--charts-sapphire-900);
+
+
+  /* Text */
+  --text-neutral-default: var(--foundation-rock-050);
+  --text-neutral-subdued: var(--foundation-rock-400);
+  --text-neutral-loud: var(--foundation-white);
+  --text-neutral-disabled: var(--foundation-rock-500);
+  --text-state-interactive: var(--foundation-sky-300);
+  --text-state-interactive-hover: var(--foundation-sky-200);
+  --text-state-interactive-visited: var(--foundation-sea-400);
+  --text-state-selected: var(--foundation-sea-500);
+  --text-onsurface-onbrand: var(--foundation-white);
+  --text-onsurface-onaccent: var(--foundation-white);
+  --text-onsurface-oncontext: var(--foundation-white);
+  --text-onsurface-oncontextactive: var(--foundation-white);
+  --text-onsurface-onsentiment: var(--foundation-white);
+  --text-onsurface-onhighlight: var(--foundation-black);
+  --text-context-success: var(--foundation-forest-300);
+  --text-context-warning: var(--foundation-sand-300);
+  --text-context-danger: var(--foundation-berries-300);
+  --text-context-info: var(--foundation-sea-300);
+
+  /* Borders */
+  --border-neutral-default: var(--foundation-rock-700);
+  --border-neutral-subdued: var(--foundation-rock-800);
+  --border-neutral-loud: var(--foundation-rock-500);
+  --border-brand-primary: var(--foundation-sky-300);
+  --border-context-success: var(--foundation-forest-400);
+  --border-context-warning: var(--foundation-sand-300);
+  --border-context-danger: var(--foundation-berries-500);
+  --border-context-info: var(--foundation-sea-300);
+  --border-state-interactive: var(--foundation-sky-400);
+  --border-state-selected: var(--foundation-sea-500);
+  --border-state-focus: var(--foundation-sky-400);
+
+
+  /* Icons */
+  --icon-neutral-default: var(--foundation-rock-050);
+  --icon-neutral-subdued: var(--foundation-rock-400);
+  --icon-neutral-loud: var(--foundation-white);
+  --icon-neutral-disabled: var(--foundation-rock-700);
+  --icon-context-success: var(--foundation-forest-400);
+  --icon-context-warning: var(--foundation-sand-400);
+  --icon-context-danger: var(--foundation-berries-400);
+  --icon-context-info: var(--foundation-sky-300);
+  --icon-onsurface-onbrand: var(--foundation-white);
+  --icon-onsurface-oncontext: var(--foundation-white);
+  --icon-onsurface-ondanger: var(--foundation-white);
+
+
+
+  /* Elevation (Shadows) - Dark mode uses white rim + lighter shadows */
+  --elevation-subtle: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 8px 0 rgba(255, 255, 255, 0.1), 0 1px 2px 0 rgba(255, 255, 255, 0.05);
+  --elevation-moderate: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 8px 16px 0 rgba(255, 255, 255, 0.1), 0 4px 8px 0 rgba(255, 255, 255, 0.05);
+  --elevation-elevated: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 20px 32px -10px rgba(255, 255, 255, 0.15), 0 0 30px 0px rgba(255, 255, 255, 0.2);
+  --elevation-high: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 24px 64px 0 rgba(255, 255, 255, 0.15), 0 0 64px 0px rgba(255, 255, 255, 0.2);
+
+  /* Focus glow - Dark mode (based on --border-state-focus: sky-400) */
+  --focus-ring: 0 0 0 0.2rem rgba(100, 140, 195, 0.4);  /* sky-400 with 40% opacity (brighter in dark mode) */
+
+  /* Typography */
+  --font-family: "Roboto", arial, sans-serif;
+
+  /* PrimeReact Legacy Tokens */
+  --surface-ground: var(--surface-neutral-tertiary);
+  --surface-section: var(--surface-neutral-primary);
+  --surface-card: var(--surface-neutral-primary);
+  --surface-overlay: var(--foundation-darker-700);
+  --surface-border: var(--border-neutral-default);
+  --surface-hover: var(--surface-state-hover);
+  --text-color: var(--text-neutral-default);
+  --text-color-secondary: var(--text-neutral-subdued);
+  --primary-color: var(--foundation-sky-400);
+  --primary-color-text: var(--foundation-sky-400);
+
+  /* Severity tokens (map to context tokens) */
+  --severity-info-surface: var(--surface-context-info);
+  --severity-info-surface-tint: var(--surface-context-info);
+  --severity-info-border: var(--border-context-info);
+  --severity-info-text: var(--text-context-info);
+  --severity-info-icon: var(--icon-context-info);
+  --severity-success-surface: var(--surface-context-success);
+  --severity-success-surface-tint: var(--surface-context-success);
+  --severity-success-border: var(--border-context-success);
+  --severity-success-text: var(--text-context-success);
+  --severity-success-icon: var(--icon-context-success);
+  --severity-warn-surface: var(--surface-context-warning);
+  --severity-warn-surface-tint: var(--surface-context-warning);
+  --severity-warn-border: var(--border-context-warning);
+  --severity-warn-text: var(--text-context-warning);
+  --severity-warn-icon: var(--icon-context-warning);
+  --severity-error-surface: var(--surface-context-danger);
+  --severity-error-surface-tint: var(--surface-context-danger);
+  --severity-error-border: var(--border-context-danger);
+  --severity-error-text: var(--text-context-danger);
+  --severity-error-icon: var(--icon-context-danger);
+  --severity-danger-surface: var(--surface-context-dangeractive);
+  --severity-danger-surface-tint: var(--surface-context-dangeractive);
+  --severity-danger-border: var(--border-context-danger);
+  --severity-danger-text: var(--text-onsurface-oncontextactive);
+  --severity-danger-icon: var(--icon-onsurface-ondanger);
+
+  /* Chart Scaffolding */
+  --chart-scaffolding-border: var(--foundation-rock-700);
+
+  /* Chart Boolean Palette (for binary comparisons, default/emphasis sets) */
+  --chart-boolean-primary: var(--charts-aquamarine-400);
+  --chart-boolean-primary-emphasis: var(--charts-aquamarine-200);
+  --chart-boolean-secondary: var(--charts-charoite-400);
+  --chart-boolean-secondary-emphasis: var(--charts-charoite-200);
+  --chart-boolean-diminish: var(--foundation-rock-600);
+  --chart-boolean-subdued: var(--foundation-rock-700);
+
+  /* Chart Sentiment Palette (for positive/neutral/negative/undefined) */
+  --chart-sentiment-positive: var(--charts-emerald-400);
+  --chart-sentiment-neutral: var(--charts-topaz-300);
+  --chart-sentiment-negative: var(--charts-ruby-500);
+  --chart-sentiment-undefined: var(--foundation-rock-600);
+
+  /* Chart Sequential/Scale Palette (for heatmaps, choropleth, gradients) */
+  --chart-scale-0: var(--charts-sapphire-900);
+  --chart-scale-1: var(--charts-sapphire-700);
+  --chart-scale-2: var(--charts-sapphire-500);
+  --chart-scale-3: var(--charts-sapphire-400);
+  --chart-scale-4: var(--charts-sapphire-300);
+  --chart-scale-5: var(--charts-sapphire-200);
+
+  /* Chart Category Palette (for multi-series categorical data) */
+  --chart-category-1: var(--charts-sapphire-400);
+  --chart-category-2: var(--charts-garnet-500);
+  --chart-category-3: var(--charts-amber-400);
+  --chart-category-4: var(--charts-charoite-500);
+  --chart-category-5: var(--charts-emerald-400);
+  --chart-category-6: var(--charts-aquamarine-500);
+  --chart-category-7: var(--charts-ruby-500);
+  --chart-category-8: var(--charts-topaz-300);
+  --chart-category-9: var(--charts-amethyst-500);
+  --chart-category-10: var(--charts-sapphire-200);
+  --chart-category-11: var(--charts-garnet-300);
+  --chart-category-12: var(--charts-amber-200);
+}
+
+/* ==================== Base Styles ==================== */
+
+/**
+ * Base font-size for Yggdrasil
+ * Original design system uses 14px as the base body text size
+ */
+body {
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--text-neutral-default);
+}
+
+/* ==================== Typography Utility Classes ==================== */
+
+/**
+ * Typography utilities based on Yggdrasil design system
+ * Use these for consistent typography across your application
+ */
+
+/* Title styles */
+.title-large {
+  font-family: var(--Title-family);
+  font-size: var(--Title-large-font-size);      /* 36px */
+  line-height: var(--Title-large-line-height);  /* 40px */
+  font-weight: var(--Title-weight);             /* 700 Bold */
+}
+
+.title-medium {
+  font-family: var(--Title-family);
+  font-size: var(--Title-medium-font-size);      /* 28px */
+  line-height: var(--Title-medium-line-height);  /* 36px */
+  font-weight: var(--Title-weight);              /* 700 Bold */
+}
+
+.title-small {
+  font-family: var(--Title-family);
+  font-size: var(--Title-small-font-size);      /* 22px */
+  line-height: var(--Title-small-line-height);  /* 30px */
+  font-weight: var(--Title-weight);             /* 700 Bold */
+}
+
+/* Heading styles */
+.heading-large {
+  font-family: var(--Heading-family);
+  font-size: var(--Heading-large-font-size);      /* 24px */
+  line-height: var(--Heading-large-line-height);  /* 32px */
+  font-weight: var(--Heading-weight);             /* 500 Medium */
+}
+
+.heading-medium {
+  font-family: var(--Heading-family);
+  font-size: var(--Heading-medium-font-size);      /* 20px */
+  line-height: var(--Heading-medium-line-height);  /* 28px */
+  font-weight: var(--Heading-weight);              /* 500 Medium */
+}
+
+.heading-small {
+  font-family: var(--Heading-family);
+  font-size: var(--Heading-small-font-size);      /* 18px */
+  line-height: var(--Heading-small-line-height);  /* 24px */
+  font-weight: var(--Heading-weight);             /* 500 Medium */
+}
+
+/* Body text styles */
+.body-large {
+  font-family: var(--Body-family);
+  font-size: var(--Body-large-font-size);      /* 16px */
+  line-height: var(--Body-large-line-height);  /* 28px */
+  font-weight: var(--Body-weight-regular);     /* 400 Regular */
+}
+
+.body-medium {
+  font-family: var(--Body-family);
+  font-size: var(--Body-medium-font-size);      /* 14px */
+  line-height: var(--Body-medium-line-height);  /* 24px */
+  font-weight: var(--Body-weight-regular);      /* 400 Regular */
+}
+
+.body-small {
+  font-family: var(--Body-family);
+  font-size: var(--Body-small-font-size);      /* 12px */
+  line-height: var(--Body-small-line-height);  /* 20px */
+  font-weight: var(--Body-weight-regular);     /* 400 Regular */
+}
+
+/* Body text weight variants */
+.body-large-medium {
+  font-family: var(--Body-family);
+  font-size: var(--Body-large-font-size);
+  line-height: var(--Body-large-line-height);
+  font-weight: var(--Body-weight-medium);  /* 500 Medium */
+}
+
+.body-medium-medium {
+  font-family: var(--Body-family);
+  font-size: var(--Body-medium-font-size);
+  line-height: var(--Body-medium-line-height);
+  font-weight: var(--Body-weight-medium);  /* 500 Medium */
+}
+
+.body-small-medium {
+  font-family: var(--Body-family);
+  font-size: var(--Body-small-font-size);
+  line-height: var(--Body-small-line-height);
+  font-weight: var(--Body-weight-medium);  /* 500 Medium */
+}
+
+.body-large-bold {
+  font-family: var(--Body-family);
+  font-size: var(--Body-large-font-size);
+  line-height: var(--Body-large-line-height);
+  font-weight: var(--Body-weight-bold);  /* 700 Bold */
+}
+
+.body-medium-bold {
+  font-family: var(--Body-family);
+  font-size: var(--Body-medium-font-size);
+  line-height: var(--Body-medium-line-height);
+  font-weight: var(--Body-weight-bold);  /* 700 Bold */
+}
+
+.body-small-bold {
+  font-family: var(--Body-family);
+  font-size: var(--Body-small-font-size);
+  line-height: var(--Body-small-line-height);
+  font-weight: var(--Body-weight-bold);  /* 700 Bold */
+}
+
+/* Label styles */
+.label-large {
+  font-family: var(--Label-family);
+  font-size: var(--Label-large-font-size);      /* 16px */
+  line-height: var(--Label-large-line-height);  /* 24px */
+  font-weight: var(--Label-weight-regular);     /* 400 Regular */
+}
+
+.label-medium {
+  font-family: var(--Label-family);
+  font-size: var(--Label-medium-font-size);      /* 14px */
+  line-height: var(--Label-medium-line-height);  /* 20px */
+  font-weight: var(--Label-weight-regular);      /* 400 Regular */
+}
+
+.label-small {
+  font-family: var(--Label-family);
+  font-size: var(--Label-small-font-size);      /* 12px */
+  line-height: var(--Label-small-line-height);  /* 16px */
+  font-weight: var(--Label-weight-regular);     /* 400 Regular */
+}
+
+.label-x-small {
+  font-family: var(--Label-family);
+  font-size: var(--Label-x-small-font-size);      /* 10px */
+  line-height: var(--Label-x-small-line-height);  /* 12px */
+  font-weight: var(--Label-weight-regular);       /* 400 Regular */
+}
+
+/* Label bold variants */
+.label-large-bold {
+  font-family: var(--Label-family);
+  font-size: var(--Label-large-font-size);
+  line-height: var(--Label-large-line-height);
+  font-weight: var(--Label-weight-bold);  /* 700 Bold */
+}
+
+.label-medium-bold {
+  font-family: var(--Label-family);
+  font-size: var(--Label-medium-font-size);
+  line-height: var(--Label-medium-line-height);
+  font-weight: var(--Label-weight-bold);  /* 700 Bold */
+}
+
+.label-small-bold {
+  font-family: var(--Label-family);
+  font-size: var(--Label-small-font-size);
+  line-height: var(--Label-small-line-height);
+  font-weight: var(--Label-weight-bold);  /* 700 Bold */
+}

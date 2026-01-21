@@ -1,0 +1,212 @@
+/**
+ * overlay components
+ */
+
+  .p-dialog {
+    border-radius: var(--radius-md);
+    box-shadow: var(--elevation-elevated);
+    border: 0 none;
+  }
+  .p-dialog .p-dialog-header {
+    border-bottom: 0 none;
+    background: var(--surface-neutral-primary);
+    color: var(--text-neutral-loud);
+    padding: 1.5rem;
+    border-top-right-radius: var(--radius-md);
+    border-top-left-radius: var(--radius-md);
+  }
+  .p-dialog .p-dialog-header .p-dialog-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  .p-dialog .p-dialog-header .p-dialog-header-icon {
+    width: 2rem;
+    height: 2rem;
+    color: var(--text-neutral-subdued);
+    border: 0 none;
+    background: transparent;
+    border-radius: var(--radius-full);
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+  .p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
+    color: var(--text-neutral-loud);
+    border-color: transparent;
+    background: var(--surface-neutral-secondary);
+  }
+  .p-dialog .p-dialog-header .p-dialog-header-icon:focus-visible {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: var(--focus-ring);
+  }
+  .p-dialog .p-dialog-header .p-dialog-header-icon {
+    margin-right: 0.5rem;
+  }
+  .p-dialog .p-dialog-header .p-dialog-header-icon:last-child {
+    margin-right: 0;
+  }
+  .p-dialog .p-dialog-content {
+    background: var(--surface-neutral-primary);
+    color: var(--text-neutral-default);
+    padding: 0 1.5rem 2rem 1.5rem;
+  }
+  .p-dialog .p-dialog-content:last-of-type {
+    border-bottom-right-radius: var(--radius-md);
+    border-bottom-left-radius: var(--radius-md);
+  }
+  .p-dialog .p-dialog-footer {
+    border-top: 0 none;
+    background: var(--surface-neutral-primary);
+    color: var(--text-neutral-default);
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    text-align: right;
+    border-bottom-right-radius: var(--radius-md);
+    border-bottom-left-radius: var(--radius-md);
+  }
+  .p-dialog .p-dialog-footer button {
+    margin: 0 0.5rem 0 0;
+    width: auto;
+  }
+  .p-dialog.p-dialog-maximized .p-dialog-header, .p-dialog.p-dialog-maximized .p-dialog-content:last-of-type {
+    border-radius: 0;
+  }
+  .p-dialog.p-confirm-dialog .p-confirm-dialog-icon {
+    font-size: 2rem;
+  }
+  .p-dialog.p-confirm-dialog .p-confirm-dialog-icon.p-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+  .p-dialog.p-confirm-dialog .p-confirm-dialog-message {
+    margin-left: 1rem;
+  }
+  .p-overlaypanel {
+    background: var(--surface-neutral-primary);
+    color: var(--text-neutral-subdued);
+    border: 0 none;
+    border-radius: var(--radius-md);
+    box-shadow: var(--elevation-elevated);
+  }
+  .p-overlaypanel .p-overlaypanel-content {
+    padding: 1.25rem;
+  }
+  .p-overlaypanel .p-overlaypanel-close {
+    background: var(--surface-brand-primary);
+    color: var(--surface-neutral-primary);
+    width: 2rem;
+    height: 2rem;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    border-radius: var(--radius-full);
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+  }
+  .p-overlaypanel .p-overlaypanel-close:enabled:hover {
+    background: var(--surface-brand-secondary);
+    color: var(--surface-neutral-primary);
+  }
+  .p-overlaypanel:after {
+    border: solid transparent;
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: var(--surface-neutral-primary);
+  }
+  .p-overlaypanel:before {
+    border: solid transparent;
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #f2f2f2;
+  }
+  .p-overlaypanel.p-overlaypanel-flipped:after {
+    border-top-color: var(--surface-neutral-primary);
+  }
+  .p-overlaypanel.p-overlaypanel-flipped:before {
+    border-top-color: var(--surface-neutral-primary);
+  }
+  .p-sidebar {
+    background: var(--surface-neutral-primary);
+    color: var(--text-neutral-subdued);
+    border: 0 none;
+    box-shadow: var(--elevation-elevated);
+  }
+  .p-sidebar .p-sidebar-header {
+    padding: 1.25rem;
+  }
+  .p-sidebar .p-sidebar-header .p-sidebar-close,
+  .p-sidebar .p-sidebar-header .p-sidebar-icon {
+    width: 2rem;
+    height: 2rem;
+    color: var(--icon-neutral-subdued);
+    border: 0 none;
+    background: transparent;
+    border-radius: var(--radius-full);
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+  .p-sidebar .p-sidebar-header .p-sidebar-close:enabled:hover,
+  .p-sidebar .p-sidebar-header .p-sidebar-icon:enabled:hover {
+    color: var(--text-neutral-default);
+    border-color: transparent;
+    background: var(--surface-state-hover);
+  }
+  .p-sidebar .p-sidebar-header .p-sidebar-close:focus-visible,
+  .p-sidebar .p-sidebar-header .p-sidebar-icon:focus-visible {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: var(--focus-ring);
+  }
+  .p-sidebar .p-sidebar-header + .p-sidebar-content {
+    padding-top: 0;
+  }
+  .p-sidebar .p-sidebar-content {
+    padding: 1.25rem;
+  }
+  .p-tooltip .p-tooltip-text {
+    background: var(--text-neutral-subdued);
+    color: var(--surface-neutral-primary);
+    padding: 0.75rem 0.75rem;
+    box-shadow: var(--elevation-moderate);
+    border-radius: var(--radius-md);
+  }
+  .p-tooltip.p-tooltip-right .p-tooltip-arrow {
+    border-right-color: var(--text-neutral-subdued);
+  }
+  .p-tooltip.p-tooltip-left .p-tooltip-arrow {
+    border-left-color: var(--text-neutral-subdued);
+  }
+  .p-tooltip.p-tooltip-top .p-tooltip-arrow {
+    border-top-color: var(--text-neutral-subdued);
+  }
+  .p-tooltip.p-tooltip-bottom .p-tooltip-arrow {
+    border-bottom-color: var(--text-neutral-subdued);
+  }
+
+  /* Component Overlay Transitions */
+  .p-component-overlay {
+    background-color: rgb(0 0 0 / 40%);
+    transition-duration: 0.2s;
+  }
+
+  .p-component-overlay-enter {
+    animation: p-component-overlay-enter-animation 150ms forwards;
+  }
+
+  .p-component-overlay-leave {
+    animation: p-component-overlay-leave-animation 150ms forwards;
+  }
+
+  @keyframes p-component-overlay-enter-animation {
+    from {
+      background-color: transparent;
+    }
+
+    to {
+      background-color: rgb(0 0 0 / 40%);
+    }
+  }
+
+  @keyframes p-component-overlay-leave-animation {
+    from {
+      background-color: rgb(0 0 0 / 40%);
+    }
+
+    to {
+      background-color: transparent;
+    }
+  }

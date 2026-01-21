@@ -1,0 +1,67 @@
+{
+  "name": "@lifeonlars/prime-yggdrasil-charts",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Highcharts-based charts, widgets, and dashboard composition for Prime Yggdrasil design system",
+  "keywords": [
+    "primereact",
+    "design-system",
+    "highcharts",
+    "charts",
+    "dashboards",
+    "widgets",
+    "react",
+    "data-visualization"
+  ],
+  "homepage": "https://github.com/lifeonlars/prime-yggdrasil#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lifeonlars/prime-yggdrasil.git",
+    "directory": "packages/prime-yggdrasil-charts"
+  },
+  "bugs": {
+    "url": "https://github.com/lifeonlars/prime-yggdrasil/issues"
+  },
+  "license": "MIT",
+  "author": "Lars Farstad <lars.farstad@gmail.com>",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./docs/*": "./docs/*"
+  },
+  "files": [
+    "dist",
+    "docs",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.lib.json && vite build --config vite.config.lib.ts",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "@lifeonlars/prime-yggdrasil": "^0.8.0",
+    "highcharts": "^11.0.0",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.9.7",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "peerDependenciesMeta": {
+    "primeicons": {
+      "optional": true
+    },
+    "highcharts": {
+      "optional": false
+    }
+  },
+  "devDependencies": {}
+}

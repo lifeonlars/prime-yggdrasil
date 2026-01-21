@@ -1,0 +1,29 @@
+/**
+ * Yggdrasil Blocks - Supplementary Styles
+ *
+ * These styles ensure blocks work with both light and dark themes.
+ * They supplement PrimeFlex utilities with proper theme variable support.
+ */
+
+/* Ensure surface-card works in both themes */
+.surface-card {
+  background-color: var(--surface-card) !important;
+}
+
+/* Ensure proper border colors */
+.border-round {
+  border-color: var(--surface-border);
+}
+
+/* Shadow adjustments for dark theme */
+[data-theme="dark"] .shadow-1,
+[data-theme="dark"] .shadow-2,
+[data-theme="dark"] .shadow-3,
+[data-theme="dark"] .shadow-4,
+[data-theme="dark"] .shadow-5 {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .shadow-2 {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6) !important;
+}

@@ -1,0 +1,154 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+
+<Meta title="Design System/Colors" />
+
+# Color Palette
+
+The Yggdrasil theme uses a carefully curated color palette mapped from the Yggdrasil design system to PrimeReact's semantic colors.
+
+## Primary Colors
+
+Primary colors are based on the Sky palette from Yggdrasil.
+
+<ColorPalette>
+  <ColorItem
+    title="Primary"
+    subtitle="Sky 700 - Brand color"
+    colors={{
+      'Primary': '#001F4A',
+      'Primary Light': '#BCCEE2',
+      'Primary Dark': '#183B60',
+      'Primary Darker': '#001129',
+    }}
+  />
+</ColorPalette>
+
+## Semantic Colors
+
+Semantic colors map Yggdrasil context colors to PrimeReact button and component states.
+
+<ColorPalette>
+  <ColorItem
+    title="Success"
+    subtitle="Forest palette - positive actions"
+    colors={{
+      'Success 700': '#485E1D',
+      'Success 500': '#7A9652',
+      'Success 300': '#5D7235',
+      'Success 200': '#C7D3B2',
+    }}
+  />
+  <ColorItem
+    title="Info / Signal"
+    subtitle="Sea palette - informational content"
+    colors={{
+      'Info 800': '#244655',
+      'Info 600': '#477E92',
+      'Info 500': '#649EB3',
+      'Info 400': '#336174',
+      'Info 200': '#BEDCDD',
+    }}
+  />
+  <ColorItem
+    title="Warning"
+    subtitle="Sand palette - cautionary actions"
+    colors={{
+      'Warning 800': '#7B4E0F',
+      'Warning 500': '#D39327',
+      'Warning 400': '#C17B16',
+      'Warning 300': '#AA6509',
+      'Warning 200': '#F4DAB8',
+    }}
+  />
+  <ColorItem
+    title="Danger"
+    subtitle="Berries palette - destructive actions"
+    colors={{
+      'Danger 700': '#BC3939',
+      'Danger 500': '#EA5E68',
+      'Danger 400': '#D64949',
+      'Danger 200': '#F9BBC3',
+    }}
+  />
+</ColorPalette>
+
+## Neutral Colors
+
+Neutral colors from the Rock palette are used for surfaces, borders, and text.
+
+<ColorPalette>
+  <ColorItem
+    title="Grays"
+    subtitle="Rock palette - UI surfaces"
+    colors={{
+      '050': '#FCFCFC',
+      '100': '#F1F0F1',
+      '200': '#E4E3E5',
+      '300': '#C8C6C9',
+      '400': '#A8A6AA',
+      '500': '#8A858E',
+      '600': '#6E6872',
+      '700': '#524D56',
+      '800': '#38343C',
+      '900': '#221F24',
+    }}
+  />
+</ColorPalette>
+
+## Additional Palette Colors
+
+Additional colors from the Yggdrasil foundation palette available for custom use.
+
+<ColorPalette>
+  <ColorItem
+    title="Extended Colors"
+    subtitle="Additional Yggdrasil colors"
+    colors={{
+      'Sky 400': '#648CC3',
+      'Sky 300': '#9DB7D6',
+      'Berries 400': '#FF8186',
+      'Sand 400': '#E2AC5D',
+      'Sea 600': '#477E92',
+    }}
+  />
+</ColorPalette>
+
+## Usage
+
+### Buttons
+
+```tsx
+<Button label="Primary" />
+<Button label="Success" severity="success" />
+<Button label="Info" severity="info" />
+<Button label="Warning" severity="warning" />
+<Button label="Danger" severity="danger" />
+```
+
+### Tags
+
+```tsx
+<Tag value="Primary" />
+<Tag value="Success" severity="success" />
+<Tag value="Info" severity="info" />
+<Tag value="Warning" severity="warning" />
+<Tag value="Danger" severity="danger" />
+```
+
+### Messages
+
+```tsx
+<Message severity="success" text="Success Message" />
+<Message severity="info" text="Info Message" />
+<Message severity="warn" text="Warning Message" />
+<Message severity="error" text="Error Message" />
+```
+
+## Design Principles
+
+The color system follows these principles from the Yggdrasil design system:
+
+- **Accessibility**: All color combinations meet WCAG AA standards for contrast
+- **Consistency**: Semantic colors are applied consistently across all components
+- **Context**: Colors convey meaning (success, warning, danger, info)
+- **Hierarchy**: Primary colors establish visual hierarchy and brand identity
