@@ -21,53 +21,72 @@ const meta: Meta = {
 
 export default meta;
 
-// Sample data for time series
-const timeSeriesData = [
-  { date: '2026-01-01', value: 120 },
-  { date: '2026-01-02', value: 150 },
-  { date: '2026-01-03', value: 180 },
-  { date: '2026-01-04', value: 140 },
-  { date: '2026-01-05', value: 200 },
-  { date: '2026-01-06', value: 190 },
-  { date: '2026-01-07', value: 210 },
-];
+// Generate 30 days of media monitoring data
+function generate30DayData(baseValue: number, variance: number) {
+  const data = [];
+  const today = new Date('2026-01-30');
 
-// Sample data for multi-series time series
-const multiSeriesData = [
-  { date: '2026-01-01', current: 120, previous: 100 },
-  { date: '2026-01-02', current: 150, previous: 110 },
-  { date: '2026-01-03', current: 180, previous: 140 },
-  { date: '2026-01-04', current: 140, previous: 130 },
-  { date: '2026-01-05', current: 200, previous: 170 },
-  { date: '2026-01-06', current: 190, previous: 160 },
-  { date: '2026-01-07', current: 210, previous: 180 },
-];
+  for (let i = 29; i >= 0; i--) {
+    const date = new Date(today);
+    date.setDate(date.getDate() - i);
+    const value = Math.max(0, Math.round(baseValue + (Math.random() - 0.5) * variance));
+    data.push({
+      date: date.toISOString().split('T')[0],
+      value,
+    });
+  }
 
-// Sample data for categories
+  return data;
+}
+
+// Sample data for time series (30 days of media mentions)
+const timeSeriesData = generate30DayData(450, 300);
+
+// Sample data for multi-series time series (30 days)
+const multiSeriesData = (() => {
+  const data = [];
+  const today = new Date('2026-01-30');
+
+  for (let i = 29; i >= 0; i--) {
+    const date = new Date(today);
+    date.setDate(date.getDate() - i);
+    const online = Math.max(0, Math.round(320 + (Math.random() - 0.5) * 200));
+    const print = Math.max(0, Math.round(180 + (Math.random() - 0.5) * 120));
+    const broadcast = Math.max(0, Math.round(95 + (Math.random() - 0.5) * 80));
+
+    data.push({
+      date: date.toISOString().split('T')[0],
+      online,
+      print,
+      broadcast,
+    });
+  }
+
+  return data;
+})();
+
+// Sample data for categories (media sources)
 const categoryData = [
-  { category: 'Product A', sales: 450 },
-  { category: 'Product B', sales: 380 },
-  { category: 'Product C', sales: 520 },
-  { category: 'Product D', sales: 290 },
-  { category: 'Product E', sales: 410 },
+  { source: 'Online News', mentions: 1250 },
+  { source: 'Print Media', mentions: 780 },
+  { source: 'Broadcast', mentions: 520 },
+  { source: 'Social Media', mentions: 2100 },
+  { source: 'Blogs', mentions: 410 },
 ];
 
-// Sample data for stacked columns
+// Sample data for stacked columns (content types by week)
 const stackedData = [
-  { month: 'Jan', online: 150, retail: 200, wholesale: 100 },
-  { month: 'Feb', online: 180, retail: 220, wholesale: 120 },
-  { month: 'Mar', online: 200, retail: 190, wholesale: 110 },
-  { month: 'Apr', online: 220, retail: 210, wholesale: 130 },
-  { month: 'May', online: 250, retail: 230, wholesale: 140 },
+  { week: 'Week 1', articles: 320, posts: 850, videos: 45 },
+  { week: 'Week 2', articles: 380, posts: 920, videos: 52 },
+  { week: 'Week 3', articles: 410, posts: 1050, videos: 61 },
+  { week: 'Week 4', articles: 350, posts: 890, videos: 48 },
 ];
 
-// Sample data for donut
+// Sample data for donut (sentiment distribution)
 const donutData = [
-  { segment: 'Email', value: 350 },
-  { segment: 'Social Media', value: 280 },
-  { segment: 'Direct', value: 190 },
-  { segment: 'Search', value: 240 },
-  { segment: 'Referral', value: 140 },
+  { sentiment: 'Positive', mentions: 1240 },
+  { sentiment: 'Neutral', mentions: 1850 },
+  { sentiment: 'Negative', mentions: 620 },
 ];
 
 /**
@@ -78,8 +97,9 @@ export const TimeSeriesLineDefault: StoryObj = {
     <TimeSeriesLine
       data={timeSeriesData}
       encoding={{ x: 'date', y: 'value' }}
-      title="Website Traffic"
-      subtitle="Daily unique visitors"
+      title="Media Mentions Over Time"
+      subtitle="Last 30 days"
+      format={{ units: 'mentions', compact: true }}
     />
   ),
 };
@@ -88,10 +108,10 @@ export const TimeSeriesLineMultiSeries: StoryObj = {
   render: () => (
     <TimeSeriesLine
       data={multiSeriesData}
-      encoding={{ x: 'date', y: ['current', 'previous'] }}
-      title="Sales Comparison"
-      subtitle="Current period vs previous period"
-      format={{ units: 'kr', decimals: 0 }}
+      encoding={{ x: 'date', y: ['online', 'print', 'broadcast'] }}
+      title="Mentions by Media Type"
+      subtitle="Last 30 days - Online vs Print vs Broadcast"
+      format={{ units: 'mentions', compact: true }}
     />
   ),
 };
@@ -101,9 +121,9 @@ export const TimeSeriesLineFormatted: StoryObj = {
     <TimeSeriesLine
       data={timeSeriesData}
       encoding={{ x: 'date', y: 'value' }}
-      title="Revenue"
-      subtitle="Daily revenue in thousands"
-      format={{ units: 'kr', decimals: 2, compact: true }}
+      title="Daily Media Coverage"
+      subtitle="Total mentions across all channels"
+      format={{ units: 'mentions', decimals: 0, compact: true }}
     />
   ),
 };
@@ -115,9 +135,10 @@ export const ColumnDefault: StoryObj = {
   render: () => (
     <Column
       data={categoryData}
-      encoding={{ x: 'category', y: 'sales' }}
-      title="Product Sales"
-      subtitle="Units sold by product"
+      encoding={{ x: 'source', y: 'mentions' }}
+      title="Mentions by Source"
+      subtitle="Last 30 days"
+      format={{ units: 'mentions', compact: true }}
     />
   ),
 };
@@ -126,10 +147,10 @@ export const ColumnFormatted: StoryObj = {
   render: () => (
     <Column
       data={categoryData}
-      encoding={{ x: 'category', y: 'sales' }}
-      title="Product Revenue"
-      subtitle="Revenue by product (in thousands)"
-      format={{ units: 'kr', decimals: 0, compact: true }}
+      encoding={{ x: 'source', y: 'mentions' }}
+      title="Media Coverage by Channel"
+      subtitle="Total mentions per source type"
+      format={{ units: 'mentions', decimals: 0, compact: true }}
     />
   ),
 };
@@ -141,9 +162,10 @@ export const BarDefault: StoryObj = {
   render: () => (
     <Bar
       data={categoryData}
-      encoding={{ x: 'category', y: 'sales' }}
-      title="Product Sales"
-      subtitle="Units sold by product (horizontal)"
+      encoding={{ x: 'source', y: 'mentions' }}
+      title="Source Comparison"
+      subtitle="Horizontal view of mentions by source"
+      format={{ units: 'mentions', compact: true }}
     />
   ),
 };
@@ -152,11 +174,11 @@ export const BarFormatted: StoryObj = {
   render: () => (
     <Bar
       data={categoryData}
-      encoding={{ x: 'category', y: 'sales' }}
-      title="Product Performance"
-      subtitle="Sales performance metrics"
-      format={{ units: 'units', decimals: 0 }}
-      height={500}
+      encoding={{ x: 'source', y: 'mentions' }}
+      title="Top Media Sources"
+      subtitle="Ranked by total mentions"
+      format={{ units: 'mentions', decimals: 0 }}
+      height={400}
     />
   ),
 };
@@ -168,9 +190,10 @@ export const StackedColumnDefault: StoryObj = {
   render: () => (
     <StackedColumn
       data={stackedData}
-      encoding={{ x: 'month', y: ['online', 'retail', 'wholesale'] }}
-      title="Sales Channels"
-      subtitle="Revenue by channel over time"
+      encoding={{ x: 'week', y: ['articles', 'posts', 'videos'] }}
+      title="Content Types by Week"
+      subtitle="Distribution of content formats"
+      format={{ units: 'items', compact: true }}
     />
   ),
 };
@@ -179,10 +202,10 @@ export const StackedColumnFormatted: StoryObj = {
   render: () => (
     <StackedColumn
       data={stackedData}
-      encoding={{ x: 'month', y: ['online', 'retail', 'wholesale'] }}
-      title="Channel Revenue"
-      subtitle="Revenue breakdown by sales channel"
-      format={{ units: 'kr', decimals: 0, compact: true }}
+      encoding={{ x: 'week', y: ['articles', 'posts', 'videos'] }}
+      title="Weekly Content Breakdown"
+      subtitle="Articles, posts, and videos published per week"
+      format={{ units: 'items', decimals: 0, compact: true }}
     />
   ),
 };
@@ -194,9 +217,9 @@ export const DonutDefault: StoryObj = {
   render: () => (
     <Donut
       data={donutData}
-      encoding={{ x: 'segment', y: 'value' }}
-      title="Traffic Sources"
-      subtitle="Visitor distribution by source"
+      encoding={{ x: 'sentiment', y: 'mentions' }}
+      title="Sentiment Distribution"
+      subtitle="Overall sentiment across all mentions"
     />
   ),
 };
@@ -205,10 +228,10 @@ export const DonutFormatted: StoryObj = {
   render: () => (
     <Donut
       data={donutData}
-      encoding={{ x: 'segment', y: 'value' }}
-      title="Traffic Distribution"
-      subtitle="Total visitors: 1,200"
-      format={{ units: 'visitors', decimals: 0 }}
+      encoding={{ x: 'sentiment', y: 'mentions' }}
+      title="Sentiment Analysis"
+      subtitle="Total: 3,710 mentions"
+      format={{ units: 'mentions', decimals: 0 }}
     />
   ),
 };
@@ -268,9 +291,11 @@ export const ChartAlignmentHarness: StoryObj = {
             TimeSeriesLine
           </h3>
           <TimeSeriesLine
-            data={timeSeriesData}
+            data={timeSeriesData.slice(0, 14)}
             encoding={{ x: 'date', y: 'value' }}
-            title="Website Traffic"
+            title="Media Mentions"
+            subtitle="Last 14 days"
+            format={{ units: 'mentions', compact: true }}
             height={300}
           />
         </div>
@@ -281,8 +306,9 @@ export const ChartAlignmentHarness: StoryObj = {
           </h3>
           <Column
             data={categoryData}
-            encoding={{ x: 'category', y: 'sales' }}
-            title="Product Sales"
+            encoding={{ x: 'source', y: 'mentions' }}
+            title="Mentions by Source"
+            format={{ units: 'mentions', compact: true }}
             height={300}
           />
         </div>
@@ -293,8 +319,9 @@ export const ChartAlignmentHarness: StoryObj = {
           </h3>
           <Bar
             data={categoryData}
-            encoding={{ x: 'category', y: 'sales' }}
-            title="Product Sales"
+            encoding={{ x: 'source', y: 'mentions' }}
+            title="Source Ranking"
+            format={{ units: 'mentions', compact: true }}
             height={300}
           />
         </div>
@@ -305,8 +332,9 @@ export const ChartAlignmentHarness: StoryObj = {
           </h3>
           <StackedColumn
             data={stackedData}
-            encoding={{ x: 'month', y: ['online', 'retail', 'wholesale'] }}
-            title="Sales Channels"
+            encoding={{ x: 'week', y: ['articles', 'posts', 'videos'] }}
+            title="Content Types"
+            format={{ units: 'items', compact: true }}
             height={300}
           />
         </div>
@@ -317,8 +345,8 @@ export const ChartAlignmentHarness: StoryObj = {
           </h3>
           <Donut
             data={donutData}
-            encoding={{ x: 'segment', y: 'value' }}
-            title="Traffic Sources"
+            encoding={{ x: 'sentiment', y: 'mentions' }}
+            title="Sentiment"
             height={300}
           />
         </div>

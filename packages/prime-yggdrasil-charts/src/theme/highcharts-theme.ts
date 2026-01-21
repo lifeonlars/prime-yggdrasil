@@ -147,8 +147,6 @@ export function getYggdrasilHighchartsTheme(): Highcharts.Options {
           fontSize: '12px',
           fontFamily: 'Roboto, arial, sans-serif',
         },
-        // Auto-rotation disabled for cleaner look
-        rotation: 0,
       },
       title: {
         style: {
