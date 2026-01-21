@@ -29,61 +29,67 @@ function getCSSVariable(name: string): string {
 
 /**
  * Get category palette colors (Chart-1 through Chart-12)
+ * Hardcoded hex values for reliable JavaScript usage
+ * Matches Yggdrasil chart-category tokens in light theme
  */
 export function getCategoryPalette(): string[] {
   return [
-    getCSSVariable('--chart-category-1'),
-    getCSSVariable('--chart-category-2'),
-    getCSSVariable('--chart-category-3'),
-    getCSSVariable('--chart-category-4'),
-    getCSSVariable('--chart-category-5'),
-    getCSSVariable('--chart-category-6'),
-    getCSSVariable('--chart-category-7'),
-    getCSSVariable('--chart-category-8'),
-    getCSSVariable('--chart-category-9'),
-    getCSSVariable('--chart-category-10'),
-    getCSSVariable('--chart-category-11'),
-    getCSSVariable('--chart-category-12'),
+    '#33A2DF', // charts-sapphire-500 (blue)
+    '#C9335B', // charts-garnet-600 (red/pink)
+    '#F39C12', // charts-amber-500 (orange/yellow)
+    '#9B59B6', // charts-charoite-600 (purple)
+    '#27AE60', // charts-emerald-500 (green)
+    '#16A085', // charts-aquamarine-600 (teal)
+    '#E74C3C', // charts-ruby-600 (red)
+    '#F1C40F', // charts-topaz-400 (yellow)
+    '#8E44AD', // charts-amethyst-600 (violet)
+    '#92CDEE', // charts-sapphire-300 (light blue)
+    '#E89AAC', // charts-garnet-400 (light red/pink)
+    '#F8C471', // charts-amber-300 (light orange)
   ];
 }
 
 /**
  * Get sentiment palette colors
+ * Hardcoded hex values for reliable JavaScript usage
  */
 export function getSentimentPalette() {
   return {
-    positive: getCSSVariable('--chart-sentiment-positive'),
-    neutral: getCSSVariable('--chart-sentiment-neutral'),
-    negative: getCSSVariable('--chart-sentiment-negative'),
-    undefined: getCSSVariable('--chart-sentiment-undefined'),
+    positive: '#27AE60', // charts-emerald-500 (green)
+    neutral: '#95A5A6', // charts-steel-500 (gray)
+    negative: '#E74C3C', // charts-ruby-600 (red)
+    undefined: '#BDC3C7', // charts-steel-300 (light gray)
   };
 }
 
 /**
  * Get boolean palette colors
+ * Hardcoded hex values for reliable JavaScript usage
  */
 export function getBooleanPalette() {
   return {
-    primary: getCSSVariable('--chart-boolean-primary'),
-    primaryEmphasis: getCSSVariable('--chart-boolean-primary-emphasis'),
-    secondary: getCSSVariable('--chart-boolean-secondary'),
-    secondaryEmphasis: getCSSVariable('--chart-boolean-secondary-emphasis'),
-    diminish: getCSSVariable('--chart-boolean-diminish'),
-    subdued: getCSSVariable('--chart-boolean-subdued'),
+    primary: '#33A2DF', // charts-sapphire-500 (blue)
+    primaryEmphasis: '#208ECA', // charts-sapphire-600 (darker blue)
+    secondary: '#95A5A6', // charts-steel-500 (gray)
+    secondaryEmphasis: '#7F8C8D', // charts-steel-600 (darker gray)
+    diminish: '#BDC3C7', // charts-steel-300 (light gray)
+    subdued: '#ECF0F1', // charts-steel-100 (very light gray)
   };
 }
 
 /**
  * Get sequential/scale palette colors (Scale-0 through Scale-5)
+ * Hardcoded hex values for reliable JavaScript usage
+ * Light to dark progression for heatmaps and continuous data
  */
 export function getSequentialPalette(): string[] {
   return [
-    getCSSVariable('--chart-scale-0'),
-    getCSSVariable('--chart-scale-1'),
-    getCSSVariable('--chart-scale-2'),
-    getCSSVariable('--chart-scale-3'),
-    getCSSVariable('--chart-scale-4'),
-    getCSSVariable('--chart-scale-5'),
+    '#D2EBF8', // charts-sapphire-050 (lightest)
+    '#A9D8F1', // charts-sapphire-100
+    '#92CDEE', // charts-sapphire-200
+    '#77C1E9', // charts-sapphire-300
+    '#58B3E4', // charts-sapphire-400
+    '#33A2DF', // charts-sapphire-500 (darkest in light theme)
   ];
 }
 
