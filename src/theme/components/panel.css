@@ -30,7 +30,7 @@
   .p-panel .p-panel-header .p-panel-header-icon:focus-visible {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-panel.p-panel-toggleable .p-panel-header {
     padding: 0.75rem 1.25rem;
@@ -70,7 +70,7 @@
   .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus-visible {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
     background: var(--surface-state-hover);
@@ -136,7 +136,7 @@
   .p-fieldset.p-fieldset-toggleable .p-fieldset-legend a:focus-visible {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-fieldset.p-fieldset-toggleable .p-fieldset-legend:hover {
     background: var(--surface-state-hover);
@@ -210,7 +210,7 @@
   .p-splitter .p-splitter-gutter .p-splitter-gutter-handle:focus-visible {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-splitter .p-splitter-gutter-resizing {
     background: var(--border-neutral-default);
@@ -222,7 +222,7 @@
   .p-scrollpanel .p-scrollpanel-bar:focus-visible {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-tabview .p-tabview-nav {
     background: var(--surface-neutral-primary);

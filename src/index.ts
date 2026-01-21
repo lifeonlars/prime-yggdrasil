@@ -59,14 +59,14 @@ export type { Theme } from './blocks/ThemeToggle';
 /**
  * Package version
  */
-export const version = '0.7.0';
+export const version = '0.8.1';
 
 /**
  * Theme information
  */
 export const theme = {
   name: 'Yggdrasil',
-  version: '0.7.0',
+  version: '0.8.1',
   tokens: 336,
   coverage: '100%',
   modes: ['light', 'dark'] as const,

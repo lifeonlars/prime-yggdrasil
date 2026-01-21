@@ -47,7 +47,7 @@
   .p-datepicker .p-datepicker-header .p-datepicker-next:focus-visible {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-datepicker .p-datepicker-header .p-datepicker-title {
     line-height: 2rem;
@@ -94,7 +94,7 @@
   .p-datepicker table td > span:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-datepicker table td.p-datepicker-today > span {
     background: var(--border-neutral-subdued);
@@ -133,7 +133,7 @@
   .p-datepicker .p-timepicker button:focus-visible {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-datepicker .p-timepicker button:last-child {
     margin-top: 0.2em;
@@ -191,7 +191,7 @@
   .p-datepicker:not(.p-disabled) table td span:not(.p-highlight):not(.p-disabled):focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-datepicker:not(.p-disabled) .p-monthpicker .p-monthpicker-month:not(.p-disabled):not(.p-highlight):hover {
     background: var(--surface-state-hover);
@@ -199,7 +199,7 @@
   .p-datepicker:not(.p-disabled) .p-monthpicker .p-monthpicker-month:not(.p-disabled):focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-datepicker:not(.p-disabled) .p-yearpicker .p-yearpicker-year:not(.p-disabled):not(.p-highlight):hover {
     background: var(--surface-state-hover);
@@ -207,7 +207,7 @@
   .p-datepicker:not(.p-disabled) .p-yearpicker .p-yearpicker-year:not(.p-disabled):focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   @media screen and (max-width: 769px) {
     .p-datepicker table th,
@@ -221,6 +221,6 @@
   .p-calendar:not(.p-calendar-disabled).p-focus > .p-inputtext {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
     border-color: var(--border-state-interactive);
   }

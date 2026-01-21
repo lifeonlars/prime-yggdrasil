@@ -119,6 +119,7 @@ export const AllFilterTypes: Story = {
         options: themeOptions,
         value: [],
         display: 'chip',
+        maxSelectedLabels: 3,
       },
       {
         id: 'publishDate',
@@ -228,6 +229,7 @@ export const MultiSelectWithFilter: Story = {
         options: mediaTypeOptions,
         value: [],
         display: 'chip',
+        maxSelectedLabels: 3,
       },
     ])
 

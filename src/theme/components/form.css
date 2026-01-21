@@ -22,7 +22,7 @@
   .p-inputtext:enabled:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
     border-color: var(--border-state-interactive);
   }
   .p-inputtext.p-invalid.p-component {
@@ -191,7 +191,7 @@
   .p-inputswitch:not(.p-disabled):has(.p-inputswitch-input:focus-visible) .p-inputswitch-slider {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-inputswitch.p-invalid > .p-inputswitch-slider {
     border-color: var(--severity-danger-text);
@@ -260,7 +260,7 @@
   .p-checkbox:not(.p-disabled):has(.p-checkbox-input:focus-visible) .p-checkbox-box {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
     border-color: var(--border-state-interactive);
   }
   .p-checkbox.p-invalid > .p-checkbox-box {
@@ -340,7 +340,7 @@
   .p-radiobutton:not(.p-disabled):has(.p-radiobutton-input:focus-visible) .p-radiobutton-box {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
     border-color: var(--border-state-interactive);
   }
   .p-radiobutton.p-invalid > .p-radiobutton-box {
@@ -423,7 +423,7 @@
   .p-togglebutton:not(.p-disabled):has(.p-togglebutton-input:focus-visible) .p-button {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
     border-color: var(--border-state-interactive);
   }
   .p-togglebutton.p-invalid > .p-button {
@@ -511,7 +511,7 @@
   .p-dropdown:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
     border-color: var(--border-state-interactive);
   }
   .p-dropdown.p-variant-filled {
@@ -646,7 +646,7 @@
   .p-autocomplete .p-autocomplete-multiple-container:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
     border-color: var(--border-state-interactive);
   }
   .p-autocomplete .p-autocomplete-multiple-container .p-autocomplete-input-token {
@@ -727,7 +727,7 @@
   .p-multiselect:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
     border-color: var(--border-state-interactive);
   }
   .p-multiselect.p-variant-filled {
@@ -751,15 +751,32 @@
   .p-multiselect .p-multiselect-label.p-placeholder {
     color: var(--text-neutral-subdued);
   }
+
+  /* Multiselect with chips: adjust padding to fit 30px chips in 36px container */
+  .p-multiselect.p-multiselect-chip .p-multiselect-label {
+    padding: 2px 12px;  /* 2px + content + 2px + (2px border on parent) = 36px total */
+    min-height: 30px;  /* Match chip height to ensure 36px total when empty */
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-sizing: content-box;  /* Ensure padding is added to min-height */
+  }
+
   .p-multiselect.p-multiselect-chip .p-multiselect-token {
-    padding: 0.375rem 0.75rem;
-    margin-right: 0.5rem;
-    background: var(--surface-neutral-secondary);
+    padding: 0 12px;  /* Horizontal padding only */
+    margin-right: 4px;  /* Tight spacing between chips */
+    background: var(--surface-neutral-overlay);
     color: var(--text-neutral-default);
-    border-radius: 16px;
+    border-radius: 15px;  /* Fully rounded (30px / 2) */
+    height: 30px;  /* Fixed height matching standalone chips */
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    line-height: 16px;
   }
   .p-multiselect.p-multiselect-chip .p-multiselect-token .p-multiselect-token-icon {
-    margin-left: 0.5rem;
+    margin-left: 8px;
+    font-size: 12px;
   }
   .p-multiselect .p-multiselect-trigger {
     background: transparent;
@@ -824,7 +841,7 @@
   .p-multiselect-panel .p-multiselect-header .p-multiselect-close:focus-visible {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
 
   .p-multiselect-panel .p-multiselect-items {
@@ -893,7 +910,7 @@
   .p-treeselect:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
     border-color: var(--border-state-interactive);
   }
   .p-treeselect.p-treeselect-clearable .p-treeselect-label {
@@ -987,7 +1004,7 @@
   .p-treeselect-panel .p-treeselect-header .p-treeselect-close:focus-visible {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-treeselect-panel .p-treeselect-header .p-treeselect-close:enabled:hover {
     color: var(--text-neutral-loud);
@@ -1016,7 +1033,7 @@
   .p-cascadeselect:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
     border-color: var(--border-state-interactive);
   }
   .p-cascadeselect.p-variant-filled {
@@ -1172,7 +1189,7 @@
   .p-listbox.p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
     border-color: var(--border-state-interactive);
   }
   .p-listbox.p-invalid {
@@ -1187,36 +1204,52 @@
   .p-chips:not(.p-disabled).p-focus .p-chips-multiple-container {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
     border-color: var(--border-state-interactive);
   }
   .p-chips .p-chips-multiple-container {
-    padding: 0.375rem 0.75rem;
+    padding: 2px 12px;  /* 2px + content + 2px + (2px border on parent) = 36px total */
     outline-color: transparent;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    min-height: 30px;  /* Match chip height to ensure 36px total when empty */
+    box-sizing: content-box;  /* Ensure padding is added to min-height */
   }
   .p-chips .p-chips-multiple-container .p-chips-token {
-    padding: 0.375rem 0.75rem;
-    margin-right: 0.5rem;
-    background: var(--surface-neutral-secondary);
+    padding: 0 12px;  /* Horizontal padding only */
+    margin-right: 0;  /* Use gap instead */
+    background: var(--surface-neutral-overlay);
     color: var(--text-neutral-default);
     border-radius: 16px;
+    height: 30px;  /* Fixed height matching standalone chips */
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    line-height: 16px;
   }
   .p-chips .p-chips-multiple-container .p-chips-token.p-focus {
     background: var(--surface-neutral-secondary);
     color: var(--text-neutral-default);
   }
   .p-chips .p-chips-multiple-container .p-chips-token .p-chips-token-icon {
-    margin-left: 0.5rem;
+    margin-left: 8px;
+    font-size: 12px;
   }
   .p-chips .p-chips-multiple-container .p-chips-input-token {
-    padding: 0.375rem 0;
+    padding: 0;  /* Remove vertical padding */
+    flex: 1;  /* Allow input to grow */
+    min-width: 50px;  /* Minimum width for typing */
   }
   .p-chips .p-chips-multiple-container .p-chips-input-token input {
     font-family: var(--font-family);
-    font-size: 1rem;
+    font-size: var(--control-md-font-size);  /* 14px to match other inputs */
+    line-height: var(--control-md-line-height);  /* 20px */
     color: var(--text-neutral-default);
-    padding: 0;
+    padding: 5px 0;  /* Vertical padding to center text */
     margin: 0;
+    height: 30px;  /* Match chip height */
   }
   .p-chips.p-invalid.p-component > .p-inputtext {
     border-color: var(--severity-danger-text);
@@ -1251,7 +1284,7 @@
   .p-rating .p-rating-item.p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-rating .p-rating-item.p-rating-item-active .p-rating-icon {
     color: var(--text-state-interactive);
@@ -1292,7 +1325,7 @@
   .p-slider .p-slider-handle:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-slider .p-slider-range {
     background: var(--surface-brand-primary);

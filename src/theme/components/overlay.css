@@ -36,7 +36,7 @@
   .p-dialog .p-dialog-header .p-dialog-header-icon:focus-visible {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-dialog .p-dialog-header .p-dialog-header-icon {
     margin-right: 0.5rem;
@@ -149,7 +149,7 @@
   .p-sidebar .p-sidebar-header .p-sidebar-icon:focus-visible {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-sidebar .p-sidebar-header + .p-sidebar-content {
     padding-top: 0;

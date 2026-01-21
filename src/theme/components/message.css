@@ -22,7 +22,7 @@
   .p-message .p-message-close:focus-visible {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-message.p-message-info {
     background: var(--severity-info-surface-tint);
@@ -185,7 +185,7 @@
   .p-toast .p-toast-message .p-toast-icon-close:focus-visible {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-toast .p-toast-message.p-toast-message-info {
     background: var(--severity-info-surface-tint);
@@ -230,10 +230,15 @@
   .p-tag {
     background: var(--surface-brand-primary);
     color: var(--surface-neutral-primary);
-    font-size: 0.75rem;
+    font-size: 12px;  /* Small text */
+    line-height: 16px;  /* Match control-sm line-height */
     font-weight: 700;
-    padding: 0.25rem 0.4rem;
-    border-radius: var(--radius-md);
+    padding: 4px 8px;  /* 4px + 16px + 4px = 24px total height */
+    border-radius: 4px;  /* Square corners to distinguish from labels */
+    height: 24px;  /* Fixed height for grid alignment */
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;  /* Space between icon and text */
   }
   .p-tag.p-tag-success {
     background-color: var(--severity-success-surface);
@@ -252,36 +257,11 @@
     color: var(--severity-danger-text);
   }
   .p-tag .p-tag-icon {
-    margin-right: 0.25rem;
-    font-size: 0.75rem;
+    font-size: 12px;
   }
   .p-tag .p-tag-icon.p-icon {
-    width: 0.75rem;
-    height: 0.75rem;
-  }
-  .p-tag {
-    background: var(--surface-brand-primary);
-    color: var(--surface-neutral-primary);
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.25rem 0.4rem;
-    border-radius: var(--radius-md);
-  }
-  .p-tag.p-tag-success {
-    background-color: var(--severity-success-surface);
-    color: var(--severity-success-text);
-  }
-  .p-tag.p-tag-info {
-    background-color: var(--severity-info-surface);
-    color: var(--severity-info-text);
-  }
-  .p-tag.p-tag-warning {
-    background-color: var(--severity-warn-surface);
-    color: var(--severity-warn-text);
-  }
-  .p-tag.p-tag-danger {
-    background-color: var(--severity-danger-surface);
-    color: var(--severity-danger-text);
+    width: 12px;
+    height: 12px;
   }
 
 @layer primereact {

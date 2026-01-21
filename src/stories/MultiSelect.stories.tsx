@@ -92,6 +92,7 @@ export const MaxSelectedLabels: Story = {
           optionLabel="name"
           placeholder="Select Cities"
           className="w-full"
+          display="chip"
           maxSelectedLabels={2}
         />
       </div>

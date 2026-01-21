@@ -79,7 +79,7 @@
   .p-button:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
   }
   .p-button .p-button-label {
     transition-duration: 0.2s;
@@ -166,7 +166,7 @@
     border-color: var(--severity-info-border);
   }
   .p-button.p-button-info:not(:disabled):focus, .p-button-group.p-button-info > .p-button:not(:disabled):focus, .p-splitbutton.p-button-info > .p-button:not(:disabled):focus, .p-fileupload-choose.p-button-info:not(:disabled):focus {
-    box-shadow: 0 0 0 0.2rem var(--severity-info-border);
+    box-shadow: var(--focus-ring);
   }
   .p-button.p-button-info:not(:disabled):active, .p-button-group.p-button-info > .p-button:not(:disabled):active, .p-splitbutton.p-button-info > .p-button:not(:disabled):active, .p-fileupload-choose.p-button-info:not(:disabled):active {
     background: var(--severity-info-surface);
@@ -214,7 +214,7 @@
     border-color: var(--severity-success-border);
   }
   .p-button.p-button-success:not(:disabled):focus, .p-button-group.p-button-success > .p-button:not(:disabled):focus, .p-splitbutton.p-button-success > .p-button:not(:disabled):focus, .p-fileupload-choose.p-button-success:not(:disabled):focus {
-    box-shadow: 0 0 0 0.2rem var(--severity-success-border);
+    box-shadow: var(--focus-ring);
   }
   .p-button.p-button-success:not(:disabled):active, .p-button-group.p-button-success > .p-button:not(:disabled):active, .p-splitbutton.p-button-success > .p-button:not(:disabled):active, .p-fileupload-choose.p-button-success:not(:disabled):active {
     background: var(--severity-success-surface);
@@ -262,7 +262,7 @@
     border-color: var(--severity-warn-border);
   }
   .p-button.p-button-warning:not(:disabled):focus, .p-button-group.p-button-warning > .p-button:not(:disabled):focus, .p-splitbutton.p-button-warning > .p-button:not(:disabled):focus, .p-fileupload-choose.p-button-warning:not(:disabled):focus {
-    box-shadow: 0 0 0 0.2rem var(--severity-warn-border);
+    box-shadow: var(--focus-ring);
   }
   .p-button.p-button-warning:not(:disabled):active, .p-button-group.p-button-warning > .p-button:not(:disabled):active, .p-splitbutton.p-button-warning > .p-button:not(:disabled):active, .p-fileupload-choose.p-button-warning:not(:disabled):active {
     background: var(--severity-warn-surface);
@@ -310,7 +310,7 @@
     border-color: var(--surface-context-dangeractive);
   }
   .p-button.p-button-danger:not(:disabled):focus, .p-button-group.p-button-danger > .p-button:not(:disabled):focus, .p-splitbutton.p-button-danger > .p-button:not(:disabled):focus, .p-fileupload-choose.p-button-danger:not(:disabled):focus {
-    box-shadow: 0 0 0 0.2rem var(--severity-danger-border);
+    box-shadow: var(--focus-ring);
   }
   .p-button.p-button-danger:not(:disabled):active, .p-button-group.p-button-danger > .p-button:not(:disabled):active, .p-splitbutton.p-button-danger > .p-button:not(:disabled):active, .p-fileupload-choose.p-button-danger:not(:disabled):active {
     background: var(--surface-context-dangeractive);
@@ -319,7 +319,7 @@
   }
   .p-button.p-button-danger.p-button-outlined, .p-button-group.p-button-danger > .p-button.p-button-outlined, .p-splitbutton.p-button-danger > .p-button.p-button-outlined, .p-fileupload-choose.p-button-danger.p-button-outlined {
     background-color: transparent;
-    color: var(--severity-danger-text);
+    color: var(--text-context-danger);
     border: 1px solid var(--severity-danger-border);
   }
   .p-button.p-button-danger.p-button-outlined:not(:disabled):hover, .p-button-group.p-button-danger > .p-button.p-button-outlined:not(:disabled):hover, .p-splitbutton.p-button-danger > .p-button.p-button-outlined:not(:disabled):hover, .p-fileupload-choose.p-button-danger.p-button-outlined:not(:disabled):hover {
@@ -362,7 +362,7 @@
   }
   .p-button.p-button-link:not(:disabled):focus {
     background: transparent;
-    box-shadow: 0 0 0 0.2rem var(--surface-brand-overlay);
+    box-shadow: var(--focus-ring);
     border-color: transparent;
   }
   .p-button.p-button-link:not(:disabled):active {
@@ -371,25 +371,25 @@
     border-color: transparent;
   }
   .p-button:focus {
-    box-shadow: 0 0 0 2px var(--surface-neutral-primary), 0 0 0 4px var(--surface-context-info), 0 1px 2px 0 black;
+    box-shadow: var(--focus-ring);
   }
   .p-button.p-button-secondary:enabled:focus {
-    box-shadow: 0 0 0 2px var(--surface-neutral-primary), 0 0 0 4px #b0b9c6, 0 1px 2px 0 black;
+    box-shadow: var(--focus-ring);
   }
   .p-button.p-button-success:enabled:focus {
-    box-shadow: 0 0 0 2px var(--surface-neutral-primary), 0 0 0 4px var(--severity-success-border), 0 1px 2px 0 black;
+    box-shadow: var(--focus-ring);
   }
   .p-button.p-button-info:enabled:focus {
-    box-shadow: 0 0 0 2px var(--surface-neutral-primary), 0 0 0 4px var(--severity-info-border), 0 1px 2px 0 black;
+    box-shadow: var(--focus-ring);
   }
   .p-button.p-button-warning:enabled:focus {
-    box-shadow: 0 0 0 2px var(--surface-neutral-primary), 0 0 0 4px var(--severity-warn-border), 0 1px 2px 0 black;
+    box-shadow: var(--focus-ring);
   }
   .p-button.p-button-help:enabled:focus {
-    box-shadow: 0 0 0 2px var(--surface-neutral-primary), 0 0 0 4px #d4aafb, 0 1px 2px 0 black;
+    box-shadow: var(--focus-ring);
   }
   .p-button.p-button-danger:enabled:focus {
-    box-shadow: 0 0 0 2px var(--surface-neutral-primary), 0 0 0 4px var(--severity-danger-border), 0 1px 2px 0 black;
+    box-shadow: var(--focus-ring);
   }
   .p-splitbutton {
     border-radius: var(--radius-md);
@@ -611,7 +611,7 @@
   }
   .p-splitbutton.p-button-danger.p-button-outlined > .p-button {
     background-color: transparent;
-    color: var(--severity-danger-text);
+    color: var(--text-context-danger);
     border: 1px solid var(--severity-danger-border);
   }
   .p-splitbutton.p-button-danger.p-button-outlined > .p-button:not(:disabled):hover {
