@@ -100,6 +100,21 @@ export function TimeSeriesLine({
         title: {
           text: encoding.x,
         },
+        // Intelligent label reduction: show every other day for 15-60 day periods
+        // For 7-14 days: show all labels
+        // For 60+ days: show every 7 days or use tickAmount
+        labels:
+          data.length > 15 && data.length <= 60
+            ? {
+                // Show every other label for 15-60 data points
+                step: 2,
+              }
+            : data.length > 60
+              ? {
+                  // Show ~8-10 labels for very long series
+                  step: Math.ceil(data.length / 10),
+                }
+              : undefined, // Show all labels for short series (< 15 points) or let Highcharts auto-handle datetime
       },
       yAxis: {
         title: {

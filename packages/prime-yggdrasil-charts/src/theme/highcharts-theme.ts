@@ -109,6 +109,8 @@ export function getYggdrasilHighchartsTheme(): Highcharts.Options {
       },
       // Spacing: [top, right, bottom, left]
       spacing: [16, 16, 16, 16],
+      // Plot area border radius: 4px for softer, modern look
+      borderRadius: 4,
     },
 
     title: {
@@ -135,12 +137,18 @@ export function getYggdrasilHighchartsTheme(): Highcharts.Options {
       gridLineColor: scaffoldingBorder,
       lineColor: scaffoldingBorder,
       tickColor: scaffoldingBorder,
+      // No gridlines on X-axis (purposeful simplicity - gridlines only on one axis)
+      gridLineWidth: 0,
+      // Reduce number of tick marks (max ~4 ticks)
+      tickInterval: undefined, // Auto-calculated, but charts will override for intelligent reduction
       labels: {
         style: {
           color: textSubdued,
           fontSize: '12px',
           fontFamily: 'Roboto, arial, sans-serif',
         },
+        // Auto-rotation disabled for cleaner look
+        rotation: 0,
       },
       title: {
         style: {
@@ -156,6 +164,10 @@ export function getYggdrasilHighchartsTheme(): Highcharts.Options {
       gridLineColor: scaffoldingBorder,
       lineColor: scaffoldingBorder,
       tickColor: scaffoldingBorder,
+      // Show gridlines on Y-axis only (purposeful simplicity)
+      gridLineWidth: 1,
+      // Max ~4 gridlines (Highcharts will auto-calculate nice intervals)
+      tickAmount: 5, // 5 ticks = 4 gridlines between them
       labels: {
         style: {
           color: textSubdued,
