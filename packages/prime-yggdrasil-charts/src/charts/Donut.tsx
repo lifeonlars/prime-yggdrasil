@@ -9,7 +9,7 @@ import Highcharts from 'highcharts';
 import type { BaseChartProps, ChartState } from '../types/chart';
 import { BaseChart } from './BaseChart';
 import { parseNumber } from '../utils/formatters';
-import { formatNumber } from '../utils/formatters';
+import { createPercentageTooltipFormatter } from '../theme/tooltipFormatters';
 
 export interface DonutProps extends BaseChartProps {}
 
@@ -79,25 +79,17 @@ export function Donut({
             layout: 'vertical',
           };
 
-    // Configure tooltip
+    // Configure tooltip with percentage formatter
     const tooltipConfig: Highcharts.TooltipOptions =
       typeof tooltip === 'boolean'
-        ? { enabled: tooltip }
+        ? {
+            enabled: tooltip,
+            formatter: tooltip ? createPercentageTooltipFormatter(false, format) : undefined,
+          }
         : {
             enabled: tooltip.enabled ?? true,
+            formatter: tooltip.enabled !== false ? createPercentageTooltipFormatter(false, format) : undefined,
           };
-
-    // Add value formatting to tooltip
-    if (tooltipConfig.enabled) {
-      tooltipConfig.pointFormatter = function () {
-        const point = this as any;
-        const formattedValue = format
-          ? formatNumber(point.y, format)
-          : point.y.toLocaleString();
-        const percentage = point.percentage.toFixed(1);
-        return `<span style="color:${point.color}">\u25CF</span> ${point.name}: <b>${formattedValue}</b> (${percentage}%)<br/>`;
-      };
-    }
 
     return {
       chart: {

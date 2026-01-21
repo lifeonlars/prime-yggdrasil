@@ -1,6 +1,6 @@
 {
   "name": "@lifeonlars/prime-yggdrasil-charts",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "description": "Highcharts-based charts, widgets, and dashboard composition for Prime Yggdrasil design system",
   "keywords": [

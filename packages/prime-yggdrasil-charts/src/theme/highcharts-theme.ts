@@ -202,6 +202,29 @@ export function getYggdrasilHighchartsTheme(): Highcharts.Options {
       },
     },
 
+    // Tooltip configuration
+    tooltip: {
+      backgroundColor: getCSSVariable('--surface-neutral-secondary'),
+      borderColor: getCSSVariable('--border-neutral-default'),
+      borderRadius: 12,
+      borderWidth: 1,
+      padding: 12,
+      shadow: {
+        color: 'rgba(0, 0, 0, 0.1)',
+        offsetX: 0,
+        offsetY: 2,
+        opacity: 0.1,
+        width: 4,
+      },
+      style: {
+        color: textDefault,
+        fontSize: '12px',
+        fontWeight: '400',
+        fontFamily: 'Roboto, arial, sans-serif',
+      },
+      useHTML: true,
+    },
+
     // Accessibility defaults
     accessibility: {
       enabled: true,

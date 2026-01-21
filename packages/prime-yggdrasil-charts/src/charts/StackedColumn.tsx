@@ -10,6 +10,7 @@ import type { BaseChartProps, ChartState } from '../types/chart';
 import { BaseChart } from './BaseChart';
 import { transformToSeries, extractCategories } from '../utils/dataTransform';
 import { formatNumber } from '../utils/formatters';
+import { createMultiSeriesTooltipFormatter } from '../theme/tooltipFormatters';
 
 export interface StackedColumnProps extends BaseChartProps {}
 
@@ -69,23 +70,19 @@ export function StackedColumn({
                   : 'bottom',
           };
 
-    // Configure tooltip
+    // Configure tooltip with custom formatter
     const tooltipConfig: Highcharts.TooltipOptions =
       typeof tooltip === 'boolean'
-        ? { enabled: tooltip }
+        ? {
+            enabled: tooltip,
+            shared: true,
+            formatter: tooltip ? createMultiSeriesTooltipFormatter(format) : undefined,
+          }
         : {
             enabled: tooltip.enabled ?? true,
             shared: tooltip.shared ?? true,
+            formatter: tooltip.enabled !== false ? createMultiSeriesTooltipFormatter(format) : undefined,
           };
-
-    // Add value formatting to tooltip
-    if (tooltipConfig.enabled && format) {
-      tooltipConfig.pointFormatter = function () {
-        const point = this as any;
-        const formattedValue = formatNumber(point.y, format);
-        return `<span style="color:${point.color}">\u25CF</span> ${point.series.name}: <b>${formattedValue}</b><br/>`;
-      };
-    }
 
     return {
       chart: {

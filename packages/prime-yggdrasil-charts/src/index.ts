@@ -33,14 +33,14 @@
 /**
  * Package version
  */
-export const version = '0.2.0';
+export const version = '0.3.0';
 
 /**
  * Package information
  */
 export const packageInfo = {
   name: '@lifeonlars/prime-yggdrasil-charts',
-  version: '0.2.0',
+  version: '0.3.0',
   description: 'Charts, widgets, and dashboards for Prime Yggdrasil',
 };
 
@@ -64,6 +64,16 @@ export {
 } from './theme/palettes';
 
 export type { PaletteType, PaletteInfo } from './theme/palettes';
+
+// Tooltip formatters (Phase 1C)
+export {
+  createDefaultTooltipFormatter,
+  createMultiSeriesTooltipFormatter,
+  createPercentageTooltipFormatter,
+  createTimeBreakdownTooltipFormatter,
+  createSentimentTooltipFormatter,
+  createPeriodComparisonTooltipFormatter,
+} from './theme/tooltipFormatters';
 
 // Charts (Phase 1B)
 export { TimeSeriesLine } from './charts/TimeSeriesLine';
