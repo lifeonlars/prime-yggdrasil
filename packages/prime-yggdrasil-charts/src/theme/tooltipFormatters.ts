@@ -4,8 +4,18 @@
  * These formatters create HTML tooltips that match the Yggdrasil design system.
  */
 
+import type Highcharts from 'highcharts';
 import type { ChartFormatOptions } from '../types/chart';
 import { formatNumber, formatDate } from '../utils/formatters';
+
+// Extended point type for tooltip formatters with additional properties
+interface TooltipPoint extends Highcharts.Point {
+  y: number;
+  percentage?: number;
+  total?: number;
+  color: string;
+  series: Highcharts.Series;
+}
 
 /**
  * Get CSS variable value from DOM
@@ -30,7 +40,7 @@ export function createDefaultTooltipFormatter(
   format?: ChartFormatOptions
 ): Highcharts.TooltipFormatterCallbackFunction {
   return function (this: Highcharts.TooltipFormatterContextObject) {
-    const point = this.point as any;
+    const point = this.point as TooltipPoint;
     const formattedValue = formatNumber(point.y, format);
 
     return `
@@ -78,7 +88,7 @@ export function createMultiSeriesTooltipFormatter(
         <div style="display: flex; flex-direction: column; gap: 4px;">
     `;
 
-    points.forEach((point: any) => {
+    (points as TooltipPoint[]).forEach((point) => {
       const formattedValue = formatNumber(point.y, format);
       html += `
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
@@ -113,7 +123,7 @@ export function createPercentageTooltipFormatter(
   format?: ChartFormatOptions
 ): Highcharts.TooltipFormatterCallbackFunction {
   return function (this: Highcharts.TooltipFormatterContextObject) {
-    const point = this.point as any;
+    const point = this.point as TooltipPoint;
     const formattedValue = formatNumber(point.y, format);
     const percentage = point.percentage ? point.percentage.toFixed(1) : '0.0';
 
@@ -176,10 +186,11 @@ export function createTimeBreakdownTooltipFormatter(
         case 'MONTH':
           periodLabel = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
           break;
-        case 'QUARTER':
+        case 'QUARTER': {
           const quarter = Math.floor(date.getMonth() / 3) + 1;
           periodLabel = `Q${quarter} ${date.getFullYear()}`;
           break;
+        }
         case 'YEAR':
           periodLabel = date.getFullYear().toString();
           break;
@@ -199,7 +210,7 @@ export function createTimeBreakdownTooltipFormatter(
         <div style="display: flex; flex-direction: column; gap: 4px;">
     `;
 
-    points.forEach((point: any) => {
+    (points as TooltipPoint[]).forEach((point) => {
       const formattedValue = formatNumber(point.y, format);
       html += `
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
@@ -234,7 +245,7 @@ export function createSentimentTooltipFormatter(
   format?: ChartFormatOptions
 ): Highcharts.TooltipFormatterCallbackFunction {
   return function (this: Highcharts.TooltipFormatterContextObject) {
-    const point = this.point as any;
+    const point = this.point as TooltipPoint;
     const formattedValue = formatNumber(point.y, format);
 
     // Get sentiment color from CSS variables
@@ -280,8 +291,8 @@ export function createPeriodComparisonTooltipFormatter(
     const xValue = this.x;
 
     // Find current and previous points
-    const currentPoint = points.find((p: any) => p.series.name === currentField);
-    const previousPoint = points.find((p: any) => p.series.name === previousField);
+    const currentPoint = (points as unknown as TooltipPoint[]).find((p) => p.series.name === currentField);
+    const previousPoint = (points as unknown as TooltipPoint[]).find((p) => p.series.name === previousField);
 
     if (!currentPoint) {
       return '';

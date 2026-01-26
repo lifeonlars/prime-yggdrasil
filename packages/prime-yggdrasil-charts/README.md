@@ -2,7 +2,7 @@
 
 Highcharts-based charts, widgets, and dashboard composition for the Prime Yggdrasil design system.
 
-**Status:** 🚧 Under active development - Phase 0 (Monorepo setup) complete
+**Status:** Phase 1C (Custom Tooltips) complete
 
 ## Installation
 
@@ -18,31 +18,146 @@ npm install @lifeonlars/prime-yggdrasil-charts highcharts
 - `react-dom` ^19.2.0
 - `primereact` ^10.9.7
 
+## Available Charts
+
+### Core Charts
+
+```tsx
+import { TimeSeriesLine, Column, Bar, StackedColumn, Donut } from '@lifeonlars/prime-yggdrasil-charts';
+```
+
+| Chart | Use Case |
+|-------|----------|
+| `TimeSeriesLine` | Time series data with date X-axis |
+| `Column` | Vertical bars for categorical comparisons |
+| `Bar` | Horizontal bars (ranked data, comparisons) |
+| `StackedColumn` | Composition/parts of a whole |
+| `Donut` | Proportions with center hole |
+
+### Color Palettes
+
+```tsx
+import {
+  getCategoryPalette,
+  getSentimentPalette,
+  getBooleanPalette,
+  getSequentialPalette
+} from '@lifeonlars/prime-yggdrasil-charts';
+
+// Category: Distinct colors for categorical data (5 colors)
+const categoryColors = getCategoryPalette();
+
+// Sentiment: positive (#AAECBC), neutral (#F2DE6E), negative (#F4B6B6)
+const sentiment = getSentimentPalette();
+
+// Boolean: primary/secondary with emphasis and diminish variants
+const boolean = getBooleanPalette();
+
+// Sequential: For heatmaps and gradients
+const sequential = getSequentialPalette();
+```
+
+## Basic Usage
+
+```tsx
+import { TimeSeriesLine } from '@lifeonlars/prime-yggdrasil-charts';
+
+const data = [
+  { date: '2025-01-01', mentions: 1200 },
+  { date: '2025-01-02', mentions: 1450 },
+  { date: '2025-01-03', mentions: 1100 },
+];
+
+<TimeSeriesLine
+  data={data}
+  encoding={{ x: 'date', y: 'mentions' }}
+  title="Daily Mentions"
+  format={{ compact: true }}
+/>
+```
+
+## Props API
+
+All charts share a common props interface:
+
+```typescript
+interface BaseChartProps {
+  // Data
+  data: ChartRow[];
+  encoding: {
+    x: string;
+    y: string | string[];
+    series?: string;
+    colors?: string[];  // Custom colors per point/series
+  };
+
+  // Formatting
+  format?: {
+    units?: string;      // "kr", "%", "mentions"
+    decimals?: number;
+    compact?: boolean;   // 1.5M instead of 1,500,000
+    percent?: boolean;
+  };
+
+  // Features
+  title?: string;
+  subtitle?: string;
+  legend?: boolean | LegendConfig;
+  tooltip?: boolean | TooltipConfig;
+
+  // States
+  loading?: boolean;
+  empty?: ReactNode;
+  error?: string | ReactNode;
+
+  // Accessibility
+  ariaLabel?: string;
+  ariaDescription?: string;
+}
+```
+
 ## Roadmap
 
-This package is being developed in phases:
-
 - ✅ **Phase 0**: Monorepo infrastructure setup
-- ⏳ **Phase 1A**: Highcharts theme foundation
-- ⏳ **Phase 1B**: 5 core chart types (Line, Column, Bar, Stacked, Donut)
-- ⏳ **Phase 1C**: Custom tooltips
+- ✅ **Phase 1A**: Highcharts theme foundation
+- ✅ **Phase 1B**: 5 core chart types
+- ✅ **Phase 1C**: Custom tooltips
 - ⏳ **Phase 1D**: Custom legends
 - ⏳ **Phase 2A**: Combined charts (PeriodCompare, DualAxisCombo)
 - ⏳ **Phase 2B**: Performance & robustness
 - ⏳ **Phase 3**: Specialty charts (Treemap, WordCloud, Map)
-- ⏳ **Phase 4A**: WidgetFrame foundation
-- ⏳ **Phase 4B**: Widget types (Chart, Table, KPI, Insight)
-- ⏳ **Phase 5A**: Dashboard layout
-- ⏳ **Phase 5B**: Widget configuration
-- ⏳ **Phase 6A**: Widget sync contract
-- ⏳ **Phase 6B**: Highcharts Dashboards evaluation
-- ⏳ **Phase 7**: Dashboard edit modal
+- ⏳ **Phase 4+**: Widgets and dashboards
 
-## Documentation
+## Development
 
-Full documentation will be available once Phase 1 is complete.
+### Claude Code Skills
 
-For now, see the [main roadmap](../../prime_yggdrasil_charts_dashboards_roadmap_highcharts_first.md) for implementation details.
+This project uses Claude Code skills to enforce quality standards:
+
+```bash
+# Install skills for your project
+npx skills add verification-before-completion
+npx skills add frontend-design
+npx skills add vercel-react-best-practices
+```
+
+The `verification-before-completion` skill enforces:
+- Running verification commands before claiming completion
+- Evidence-based completion claims (no "should work" statements)
+- Fresh test/build/lint output before commits
+
+### Verification Commands
+
+```bash
+# Type check
+npm run build -w @lifeonlars/prime-yggdrasil-charts
+
+# Lint
+npm run lint -w @lifeonlars/prime-yggdrasil-charts
+
+# Storybook
+npm run storybook
+```
 
 ## License
 

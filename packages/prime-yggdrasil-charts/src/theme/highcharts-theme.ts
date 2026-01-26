@@ -30,50 +30,53 @@ function getCSSVariable(name: string): string {
 /**
  * Get category palette colors (Chart-1 through Chart-12)
  * Hardcoded hex values for reliable JavaScript usage
- * Matches Yggdrasil chart-category tokens in light theme
+ * Primary chart palette - use for multi-series categorical data
+ * Values from Yggdrasil design system chart colors documentation
  */
 export function getCategoryPalette(): string[] {
   return [
-    '#33A2DF', // charts-sapphire-500 (blue)
-    '#C9335B', // charts-garnet-600 (red/pink)
-    '#F39C12', // charts-amber-500 (orange/yellow)
-    '#9B59B6', // charts-charoite-600 (purple)
-    '#27AE60', // charts-emerald-500 (green)
-    '#16A085', // charts-aquamarine-600 (teal)
-    '#E74C3C', // charts-ruby-600 (red)
-    '#F1C40F', // charts-topaz-400 (yellow)
-    '#8E44AD', // charts-amethyst-600 (violet)
-    '#92CDEE', // charts-sapphire-300 (light blue)
-    '#E89AAC', // charts-garnet-400 (light red/pink)
-    '#F8C471', // charts-amber-300 (light orange)
+    '#3EADC9', // Chart-1 (teal/cyan)
+    '#FFC876', // Chart-2 (peach/orange)
+    '#EB99BC', // Chart-3 (pink)
+    '#9B91CD', // Chart-4 (purple)
+    '#77C1E9', // Chart-5 (light blue)
+    '#D377DB', // Chart-6 (magenta/purple)
+    '#24B58F', // Chart-7 (teal/green)
+    '#C27388', // Chart-8 (brown/orange)
+    '#C7145B', // Chart-9 (deep pink/red)
+    '#7AB387', // Chart-10 (purple)
+    '#1E85AA', // Chart-11 (deep blue)
+    '#843398', // Chart-12 (purple)
   ];
 }
 
 /**
  * Get sentiment palette colors
  * Hardcoded hex values for reliable JavaScript usage
+ * Values from Yggdrasil design system chart colors documentation
  */
 export function getSentimentPalette() {
   return {
-    positive: '#27AE60', // charts-emerald-500 (green)
-    neutral: '#95A5A6', // charts-steel-500 (gray)
-    negative: '#E74C3C', // charts-ruby-600 (red)
-    undefined: '#BDC3C7', // charts-steel-300 (light gray)
+    positive: '#AAECBC', // Sentiment-Positive (mint green)
+    neutral: '#F2DE6E', // Sentiment-Neutral (yellow)
+    negative: '#F4B6B6', // Sentiment-Negative (pink/coral)
+    undefined: '#C4C2C5', // Sentiment-Undefined (gray)
   };
 }
 
 /**
  * Get boolean palette colors
  * Hardcoded hex values for reliable JavaScript usage
+ * Values from Yggdrasil design system chart colors documentation
  */
 export function getBooleanPalette() {
   return {
-    primary: '#33A2DF', // charts-sapphire-500 (blue)
-    primaryEmphasis: '#208ECA', // charts-sapphire-600 (darker blue)
-    secondary: '#95A5A6', // charts-steel-500 (gray)
-    secondaryEmphasis: '#7F8C8D', // charts-steel-600 (darker gray)
-    diminish: '#BDC3C7', // charts-steel-300 (light gray)
-    subdued: '#ECF0F1', // charts-steel-100 (very light gray)
+    primary: '#33A2DF', // Boolean-Primary (blue)
+    primaryEmphasis: '#208ECA', // Boolean-Primary-Emphasis (darker blue)
+    secondary: '#95A5A6', // Boolean-Secondary (gray)
+    secondaryEmphasis: '#7F8C8D', // Boolean-Secondary-Emphasis (darker gray)
+    diminish: '#BDC3C7', // Boolean-Diminish (light gray)
+    subdued: '#ECF0F1', // Boolean-Subdued (very light gray)
   };
 }
 
@@ -81,15 +84,16 @@ export function getBooleanPalette() {
  * Get sequential/scale palette colors (Scale-0 through Scale-5)
  * Hardcoded hex values for reliable JavaScript usage
  * Light to dark progression for heatmaps and continuous data
+ * Values from Yggdrasil design system chart colors documentation
  */
 export function getSequentialPalette(): string[] {
   return [
-    '#D2EBF8', // charts-sapphire-050 (lightest)
-    '#A9D8F1', // charts-sapphire-100
-    '#92CDEE', // charts-sapphire-200
-    '#77C1E9', // charts-sapphire-300
-    '#58B3E4', // charts-sapphire-400
-    '#33A2DF', // charts-sapphire-500 (darkest in light theme)
+    '#D2EBF8', // Scale-0 (lightest)
+    '#A9D8F1', // Scale-1
+    '#92CDEE', // Scale-2
+    '#77C1E9', // Scale-3
+    '#58B3E4', // Scale-4
+    '#33A2DF', // Scale-5 (darkest in light theme)
   ];
 }
 
@@ -215,6 +219,10 @@ export function getYggdrasilHighchartsTheme(): Highcharts.Options {
             textOutline: 'none',
           },
         },
+      },
+      column: {
+        pointPadding: 0.1,
+        groupPadding: 0.1,
       },
     },
 

@@ -6,10 +6,12 @@ import type { ChartFormatOptions } from '../types/chart';
 
 /**
  * Format a number according to chart formatting options
+ * @param includeUnits - Whether to append units (default true for tooltips, false for axis labels)
  */
 export function formatNumber(
   value: number | null | undefined,
-  options?: ChartFormatOptions
+  options?: ChartFormatOptions,
+  includeUnits: boolean = true
 ): string {
   if (value == null || isNaN(value)) {
     return '-';
@@ -38,12 +40,22 @@ export function formatNumber(
     });
   }
 
-  // Append units if provided
-  if (units && !percent) {
+  // Append units if provided and includeUnits is true
+  if (units && !percent && includeUnits) {
     formatted = `${formatted} ${units}`;
   }
 
   return formatted;
+}
+
+/**
+ * Format a number for axis labels (no units, just the number)
+ */
+export function formatAxisLabel(
+  value: number | null | undefined,
+  options?: ChartFormatOptions
+): string {
+  return formatNumber(value, options, false);
 }
 
 /**
@@ -134,12 +146,20 @@ export function formatDateTime(
 
 /**
  * Detect if a value is a date
+ * Only accepts ISO date strings (YYYY-MM-DD) or Date objects
+ * This prevents false positives for category strings like "Week 1"
  */
 export function isDateValue(value: unknown): value is Date | string {
   if (value instanceof Date) {
     return !isNaN(value.getTime());
   }
   if (typeof value === 'string') {
+    // Only accept ISO date format: YYYY-MM-DD or YYYY-MM-DDTHH:MM:SS
+    // This prevents false positives from JavaScript's permissive Date parsing
+    const isoDatePattern = /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d{3})?(Z|[+-]\d{2}:\d{2})?)?$/;
+    if (!isoDatePattern.test(value)) {
+      return false;
+    }
     const date = new Date(value);
     return !isNaN(date.getTime());
   }

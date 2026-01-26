@@ -9,10 +9,10 @@ import Highcharts from 'highcharts';
 import type { BaseChartProps, ChartState } from '../types/chart';
 import { BaseChart } from './BaseChart';
 import { transformToSeries, extractCategories } from '../utils/dataTransform';
-import { formatNumber } from '../utils/formatters';
+import { formatAxisLabel } from '../utils/formatters';
 import { createMultiSeriesTooltipFormatter } from '../theme/tooltipFormatters';
 
-export interface ColumnProps extends BaseChartProps {}
+export type ColumnProps = BaseChartProps;
 
 /**
  * Column chart component
@@ -89,6 +89,8 @@ export function Column({
         type: 'column',
         height,
       },
+      // Apply custom colors if provided in encoding
+      ...(encoding.colors && { colors: encoding.colors }),
       title: {
         text: title || undefined,
       },
@@ -98,17 +100,17 @@ export function Column({
       xAxis: {
         categories,
         title: {
-          text: encoding.x,
+          text: undefined, // Purposeful simplicity: axis titles are redundant
         },
       },
       yAxis: {
         title: {
-          text: typeof encoding.y === 'string' ? encoding.y : 'Value',
+          text: undefined, // Purposeful simplicity: axis titles are redundant
         },
         labels: format
           ? {
-              formatter: function () {
-                return formatNumber(this.value as number, format);
+              formatter: function (this: Highcharts.AxisLabelsFormatterContextObject) {
+                return formatAxisLabel(this.value as number, format);
               },
             }
           : undefined,
@@ -118,6 +120,8 @@ export function Column({
       plotOptions: {
         column: {
           borderRadius: 4,
+          maxPointWidth: 72, // Prevent overly wide columns on wide screens
+          colorByPoint: !!encoding.colors, // Enable per-column colors when custom colors provided
         },
       },
       series: series.map((s) => ({

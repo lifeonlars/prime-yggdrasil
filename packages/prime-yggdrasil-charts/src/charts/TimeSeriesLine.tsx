@@ -9,10 +9,13 @@ import Highcharts from 'highcharts';
 import type { BaseChartProps, ChartState } from '../types/chart';
 import { BaseChart } from './BaseChart';
 import { transformToSeries, isDateXAxis } from '../utils/dataTransform';
-import { formatNumber } from '../utils/formatters';
+import { formatAxisLabel } from '../utils/formatters';
 import { createMultiSeriesTooltipFormatter } from '../theme/tooltipFormatters';
 
-export interface TimeSeriesLineProps extends BaseChartProps {}
+export interface TimeSeriesLineProps extends BaseChartProps {
+  /** Enable smooth/curved lines (spline). Default: true */
+  smooth?: boolean;
+}
 
 /**
  * TimeSeriesLine chart component
@@ -34,6 +37,7 @@ export function TimeSeriesLine({
   ariaDescription,
   className,
   id,
+  smooth = true,
 }: TimeSeriesLineProps) {
   // Determine chart state
   const state: ChartState = useMemo(() => {
@@ -84,11 +88,16 @@ export function TimeSeriesLine({
             formatter: tooltip.enabled !== false ? createMultiSeriesTooltipFormatter(format) : undefined,
           };
 
+    // Use spline for smooth curves, line for angular
+    const chartType = smooth ? 'spline' : 'line';
+
     return {
       chart: {
-        type: 'line',
+        type: chartType,
         height,
       },
+      // Apply custom colors if provided in encoding
+      ...(encoding.colors && { colors: encoding.colors }),
       title: {
         text: title || undefined,
       },
@@ -98,7 +107,7 @@ export function TimeSeriesLine({
       xAxis: {
         type: isDatetime ? 'datetime' : 'category',
         title: {
-          text: encoding.x,
+          text: undefined, // Purposeful simplicity: axis titles are redundant
         },
         // Intelligent label reduction: show every other day for 15-60 day periods
         // For 7-14 days: show all labels
@@ -121,12 +130,12 @@ export function TimeSeriesLine({
       },
       yAxis: {
         title: {
-          text: typeof encoding.y === 'string' ? encoding.y : 'Value',
+          text: undefined, // Purposeful simplicity: axis titles are redundant
         },
         labels: format
           ? {
-              formatter: function () {
-                return formatNumber(this.value as number, format);
+              formatter: function (this: Highcharts.AxisLabelsFormatterContextObject) {
+                return formatAxisLabel(this.value as number, format);
               },
             }
           : undefined,
@@ -135,7 +144,7 @@ export function TimeSeriesLine({
       tooltip: tooltipConfig,
       series: series.map((s) => ({
         ...s,
-        type: 'line',
+        type: chartType,
       })) as Highcharts.SeriesOptionsType[],
       credits: {
         enabled: false,
@@ -156,6 +165,7 @@ export function TimeSeriesLine({
     height,
     state,
     ariaDescription,
+    smooth,
   ]);
 
   return (

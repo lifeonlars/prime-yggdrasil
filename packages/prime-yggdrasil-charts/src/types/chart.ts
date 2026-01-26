@@ -26,6 +26,8 @@ export interface ChartEncoding {
   series?: string;
   /** Optional stack grouping field */
   stack?: string;
+  /** Optional custom colors array (overrides default palette) */
+  colors?: string[];
 }
 
 /**

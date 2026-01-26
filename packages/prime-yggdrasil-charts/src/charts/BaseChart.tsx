@@ -8,10 +8,14 @@
  * - Accessibility
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import type Highcharts from 'highcharts';
+import { Skeleton } from 'primereact/skeleton';
 import type { BaseChartProps, ChartState } from '../types/chart';
 import { applyYggdrasilTheme } from '../theme/highcharts-theme';
+
+// Apply Yggdrasil theme at module load time (runs once when module is first imported)
+applyYggdrasilTheme();
 
 export interface BaseChartWrapperProps extends Omit<BaseChartProps, 'data' | 'encoding'> {
   /** Chart state */
@@ -43,15 +47,6 @@ export function BaseChart({
 }: BaseChartWrapperProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<Highcharts.Chart | null>(null);
-  const [isThemeApplied, setIsThemeApplied] = useState(false);
-
-  // Apply Yggdrasil theme once
-  useEffect(() => {
-    if (!isThemeApplied) {
-      applyYggdrasilTheme();
-      setIsThemeApplied(true);
-    }
-  }, [isThemeApplied]);
 
   // Determine effective state
   const effectiveState: ChartState = loading
@@ -62,7 +57,7 @@ export function BaseChart({
 
   // Create/update chart
   useEffect(() => {
-    if (!containerRef.current || effectiveState !== 'idle' || !isThemeApplied) {
+    if (!containerRef.current || effectiveState !== 'idle') {
       return;
     }
 
@@ -82,7 +77,7 @@ export function BaseChart({
         chartRef.current = null;
       }
     };
-  }, [options, highcharts, effectiveState, isThemeApplied]);
+  }, [options, highcharts, effectiveState]);
 
   // Handle window resize
   useEffect(() => {
@@ -112,11 +107,21 @@ export function BaseChart({
       aria-description={ariaDescription}
       id={id}
     >
-      {/* Loading state */}
+      {/* Loading state - uses skeleton for visual consistency */}
       {effectiveState === 'loading' && (
-        <div className="yggdrasil-chart-state yggdrasil-chart-loading">
-          <div className="yggdrasil-chart-spinner" />
-          <div className="yggdrasil-chart-state-text">Loading chart...</div>
+        <div className="yggdrasil-chart-state yggdrasil-chart-loading" style={{ padding: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', height: '100%' }}>
+            {/* Title skeleton */}
+            <Skeleton width="40%" height="1.5rem" />
+            {/* Chart area skeleton */}
+            <Skeleton width="100%" height="calc(100% - 60px)" borderRadius="4px" />
+            {/* Legend skeleton */}
+            <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
+              <Skeleton width="60px" height="1rem" />
+              <Skeleton width="60px" height="1rem" />
+              <Skeleton width="60px" height="1rem" />
+            </div>
+          </div>
         </div>
       )}
 

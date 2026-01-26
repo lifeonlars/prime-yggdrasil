@@ -32,12 +32,17 @@ export function transformToSeries(
 
 /**
  * Transform to single series
+ * For category charts, returns simple y-value arrays
+ * For datetime charts, returns [timestamp, y] arrays
  */
 function transformSingleSeries(
   data: ChartRow[],
   xField: string,
   yField: string
 ): Highcharts.SeriesOptionsType[] {
+  // Determine if x axis is datetime or category
+  const isDateTime = data.length > 0 && isDateValue(data[0][xField]);
+
   const points = data
     .map((row) => {
       const xValue = row[xField];
@@ -47,17 +52,15 @@ function transformSingleSeries(
         return null;
       }
 
-      // Handle date X values
-      if (isDateValue(xValue)) {
+      // Handle date X values - return [timestamp, y] pairs
+      if (isDateTime && isDateValue(xValue)) {
         const date = new Date(xValue);
         return [date.getTime(), yValue];
       }
 
-      // Handle category X values
-      return {
-        name: String(xValue),
-        y: yValue,
-      };
+      // Handle category X values - return just the y value
+      // Categories are matched by index order
+      return yValue;
     })
     .filter((point) => point !== null);
 
@@ -65,19 +68,24 @@ function transformSingleSeries(
     {
       type: 'line',
       name: yField,
-      data: points as any,
+      data: points as Highcharts.PointOptionsType[],
     },
   ];
 }
 
 /**
  * Transform to multiple series (multiple y fields)
+ * For category charts (like stacked column), returns simple y-value arrays
+ * For datetime charts, returns [timestamp, y] arrays
  */
 function transformMultiSeries(
   data: ChartRow[],
   xField: string,
   yFields: string[]
 ): Highcharts.SeriesOptionsType[] {
+  // Determine if x axis is datetime or category
+  const isDateTime = data.length > 0 && isDateValue(data[0][xField]);
+
   return yFields.map((yField) => {
     const points = data
       .map((row) => {
@@ -88,24 +96,22 @@ function transformMultiSeries(
           return null;
         }
 
-        // Handle date X values
-        if (isDateValue(xValue)) {
+        // Handle date X values - return [timestamp, y] pairs
+        if (isDateTime && isDateValue(xValue)) {
           const date = new Date(xValue);
           return [date.getTime(), yValue];
         }
 
-        // Handle category X values
-        return {
-          name: String(xValue),
-          y: yValue,
-        };
+        // Handle category X values - return just the y value
+        // Categories are matched by index order
+        return yValue;
       })
       .filter((point) => point !== null);
 
     return {
       type: 'line',
       name: yField,
-      data: points as any,
+      data: points as Highcharts.PointOptionsType[],
     };
   });
 }
@@ -158,7 +164,7 @@ function transformGroupedSeries(
     return {
       type: 'line',
       name: seriesName,
-      data: points as any,
+      data: points as Highcharts.PointOptionsType[],
     };
   });
 }

@@ -9,14 +9,6 @@ import { TimeSeriesLine } from '../charts/TimeSeriesLine';
 import { Column } from '../charts/Column';
 import { Donut } from '../charts/Donut';
 import type { ChartRow } from '../types/chart';
-import {
-  createDefaultTooltipFormatter,
-  createMultiSeriesTooltipFormatter,
-  createPercentageTooltipFormatter,
-  createTimeBreakdownTooltipFormatter,
-  createSentimentTooltipFormatter,
-  createPeriodComparisonTooltipFormatter,
-} from '../theme/tooltipFormatters';
 
 const meta: Meta = {
   title: 'Charts/Tooltips',
@@ -50,13 +42,6 @@ const pieData: ChartRow[] = [
   { category: 'Organic Search', value: 30 },
   { category: 'Social', value: 15 },
   { category: 'Referral', value: 10 },
-];
-
-const sentimentData: ChartRow[] = [
-  { month: 'Jan', positive: 120, neutral: 45, negative: 15 },
-  { month: 'Feb', positive: 135, neutral: 52, negative: 12 },
-  { month: 'Mar', positive: 150, neutral: 48, negative: 18 },
-  { month: 'Apr', positive: 145, neutral: 55, negative: 10 },
 ];
 
 const comparisonData: ChartRow[] = [

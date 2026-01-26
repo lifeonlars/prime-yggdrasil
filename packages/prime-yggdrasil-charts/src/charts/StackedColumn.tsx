@@ -9,10 +9,10 @@ import Highcharts from 'highcharts';
 import type { BaseChartProps, ChartState } from '../types/chart';
 import { BaseChart } from './BaseChart';
 import { transformToSeries, extractCategories } from '../utils/dataTransform';
-import { formatNumber } from '../utils/formatters';
+import { formatAxisLabel } from '../utils/formatters';
 import { createMultiSeriesTooltipFormatter } from '../theme/tooltipFormatters';
 
-export interface StackedColumnProps extends BaseChartProps {}
+export type StackedColumnProps = BaseChartProps;
 
 /**
  * StackedColumn chart component
@@ -89,6 +89,8 @@ export function StackedColumn({
         type: 'column',
         height,
       },
+      // Apply custom colors if provided in encoding
+      ...(encoding.colors && { colors: encoding.colors }),
       title: {
         text: title || undefined,
       },
@@ -98,22 +100,25 @@ export function StackedColumn({
       xAxis: {
         categories,
         title: {
-          text: encoding.x,
+          text: undefined, // Purposeful simplicity: axis titles are redundant
         },
       },
       yAxis: {
         title: {
-          text: typeof encoding.y === 'string' ? encoding.y : 'Value',
+          text: undefined, // Purposeful simplicity: axis titles are redundant
         },
         labels: format
           ? {
-              formatter: function () {
-                return formatNumber(this.value as number, format);
+              formatter: function (this: Highcharts.AxisLabelsFormatterContextObject) {
+                return formatAxisLabel(this.value as number, format);
               },
             }
           : undefined,
         stackLabels: {
-          enabled: false,
+          enabled: true,
+          formatter: function (this: Highcharts.StackItemObject) {
+            return format ? formatAxisLabel(this.total as number, format) : String(this.total);
+          },
         },
       },
       legend: legendConfig,
@@ -122,6 +127,7 @@ export function StackedColumn({
         column: {
           stacking: 'normal',
           borderRadius: 4,
+          maxPointWidth: 72, // Prevent overly wide columns on wide screens
         },
       },
       series: series.map((s) => ({

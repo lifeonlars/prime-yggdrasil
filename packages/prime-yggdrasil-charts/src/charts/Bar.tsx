@@ -9,10 +9,10 @@ import Highcharts from 'highcharts';
 import type { BaseChartProps, ChartState } from '../types/chart';
 import { BaseChart } from './BaseChart';
 import { transformToSeries, extractCategories } from '../utils/dataTransform';
-import { formatNumber } from '../utils/formatters';
+import { formatAxisLabel } from '../utils/formatters';
 import { createMultiSeriesTooltipFormatter } from '../theme/tooltipFormatters';
 
-export interface BarProps extends BaseChartProps {}
+export type BarProps = BaseChartProps;
 
 /**
  * Bar chart component
@@ -89,6 +89,8 @@ export function Bar({
         type: 'bar',
         height,
       },
+      // Apply custom colors if provided in encoding
+      ...(encoding.colors && { colors: encoding.colors }),
       title: {
         text: title || undefined,
       },
@@ -98,17 +100,17 @@ export function Bar({
       xAxis: {
         categories,
         title: {
-          text: encoding.x,
+          text: undefined, // Purposeful simplicity: axis titles are redundant
         },
       },
       yAxis: {
         title: {
-          text: typeof encoding.y === 'string' ? encoding.y : 'Value',
+          text: undefined, // Purposeful simplicity: axis titles are redundant
         },
         labels: format
           ? {
-              formatter: function () {
-                return formatNumber(this.value as number, format);
+              formatter: function (this: Highcharts.AxisLabelsFormatterContextObject) {
+                return formatAxisLabel(this.value as number, format);
               },
             }
           : undefined,
@@ -118,6 +120,18 @@ export function Bar({
       plotOptions: {
         bar: {
           borderRadius: 4,
+          maxPointWidth: 72, // Prevent overly wide bars on wide screens
+          colorByPoint: !!encoding.colors, // Enable per-bar colors when custom colors provided
+          dataLabels: {
+            enabled: true,
+            align: 'right',
+            formatter: function (this: Highcharts.PointLabelObject) {
+              return format ? formatAxisLabel(this.y as number, format) : String(this.y);
+            },
+            style: {
+              fontWeight: '400',
+            },
+          },
         },
       },
       series: series.map((s) => ({

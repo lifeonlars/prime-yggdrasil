@@ -11,7 +11,7 @@ import { BaseChart } from './BaseChart';
 import { parseNumber } from '../utils/formatters';
 import { createPercentageTooltipFormatter } from '../theme/tooltipFormatters';
 
-export interface DonutProps extends BaseChartProps {}
+export type DonutProps = BaseChartProps;
 
 /**
  * Donut chart component
@@ -96,6 +96,8 @@ export function Donut({
         type: 'pie',
         height,
       },
+      // Apply custom colors if provided in encoding
+      ...(encoding.colors && { colors: encoding.colors }),
       title: {
         text: title || undefined,
       },
@@ -124,7 +126,7 @@ export function Donut({
         {
           type: 'pie',
           name: yField,
-          data: pieData as any,
+          data: pieData as Highcharts.PointOptionsObject[],
         },
       ],
       credits: {
