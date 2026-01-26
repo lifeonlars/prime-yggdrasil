@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
 /**
- * Claude Code Skills Setup Script
+ * AI Development Skills Setup Script
  *
  * This script runs automatically after npm install to set up
- * Claude Code skills and configuration files.
+ * AI agent development skills and configuration files.
+ * Supports: Claude Code, Antigravity, Gemini CLI, and other platforms.
  */
 
 const fs = require('fs');
@@ -24,11 +25,11 @@ const claudeMdDest = path.join(projectRoot, 'CLAUDE.md');
 
 // Don't run in the package's own directory (during development)
 if (projectRoot === packageDir || projectRoot.includes('node_modules')) {
-  console.log('Skipping Claude Code setup (running in package directory)');
+  console.log('Skipping AI skills setup (running in package directory)');
   process.exit(0);
 }
 
-console.log('\n🔧 Setting up Claude Code skills...\n');
+console.log('\n🔧 Setting up AI development skills...\n');
 
 // Create .agents/skills directory if it doesn't exist
 if (!fs.existsSync(path.join(projectRoot, '.agents'))) {
@@ -68,9 +69,13 @@ if (fs.existsSync(claudeMdSource)) {
   console.log('⚠ CLAUDE.md source not found, skipping');
 }
 
-console.log('\n✨ Claude Code is configured with:');
+console.log('\n✨ AI development skills configured:');
 console.log('   - verification-before-completion skill');
 console.log('   - frontend-design skill');
 console.log('   - vercel-react-best-practices skill');
 console.log('   - agent-browser skill');
-console.log('\n💡 Press Ctrl+T to view tasks when using Claude Code.\n');
+console.log('\nPlatform-specific features:');
+console.log('  • Claude Code: Press Ctrl+T to view tasks');
+console.log('  • Antigravity: Skills available in .agents/skills/');
+console.log('  • Gemini CLI: Skills available in .agents/skills/');
+console.log('  • Other: See .agents/skills/ for available skills\n');

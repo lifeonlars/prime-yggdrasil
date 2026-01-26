@@ -1,14 +1,18 @@
 {
   "name": "@lifeonlars/prime-yggdrasil",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "type": "module",
-  "description": "AI-agent-friendly PrimeReact design system for component-driven development with semantic tokens and dark mode support",
+  "description": "AI-agent-friendly PrimeReact design system with multi-platform skill support (Claude Code, Antigravity, Gemini CLI)",
   "keywords": [
     "primereact",
     "design-system",
     "semantic-tokens",
     "dark-mode",
     "ai-agents",
+    "claude-code",
+    "antigravity",
+    "gemini-cli",
+    "skills",
     "component-driven",
     "react",
     "theme"
@@ -49,6 +53,7 @@
     ".claude",
     "scripts/setup-claude-skills.js",
     "CONTRIBUTING.md",
+    "AGENTS.md",
     "README.md",
     "LICENSE"
   ],

@@ -185,9 +185,16 @@ For detailed agent documentation, see [.ai/agents/](./.ai/agents/).
 
 ---
 
-## Claude Code Integration
+## AI Agent Integration
 
-This package includes **Claude Code skills** for enhanced development workflows with automatic verification.
+This package includes **AI development skills** for multiple coding platforms with automatic verification.
+
+### Supported Platforms
+
+- **Claude Code** - Automatic setup with task management (Ctrl+T)
+- **Antigravity CLI** - Skills installed to .agents/skills/
+- **Gemini CLI** - Skills installed to .agents/skills/
+- Any SKILL.md-compatible platform
 
 ### Automatic Setup
 
@@ -197,27 +204,33 @@ Skills are automatically installed when you run:
 npm install @lifeonlars/prime-yggdrasil
 ```
 
-This configures Claude Code with:
+This configures your project with:
 
-- **verification-before-completion** - Enforces evidence-based completion (build/lint output)
+- **verification-before-completion** - Enforces evidence-based completion
 - **frontend-design** - Design system consistency checks
 - **vercel-react-best-practices** - React performance best practices
-- **agent-browser** - Automated UI verification and screenshot capture
+- **agent-browser** - Automated UI verification
 
-### Task Management
+### Platform-Specific Usage
 
-Claude Code uses a task management system to enforce verification workflows.
+**Claude Code**:
+- Press Ctrl+T to view task list
+- See [CLAUDE.md](./CLAUDE.md) for Claude Code workflows
 
-Press **Ctrl+T** in Claude Code to view your task list and completion status.
+**Antigravity / Gemini CLI**:
+- Skills available in .agents/skills/
+- See [AGENTS.md](./AGENTS.md) for generic agent guide
 
 ### Development Workflow
 
-When working with Claude Code, all tasks follow a verification workflow:
+All platforms follow a verification workflow:
 
-1. Implementation task created
-2. Verification subtasks created (build, lint, visual)
-3. Verification tasks must pass BEFORE marking implementation complete
-4. Evidence required (command output, screenshots)
+1. Implement feature/fix
+2. Run build verification
+3. Run lint verification
+4. Run visual verification (for UI changes)
+5. Capture evidence (command output, screenshots)
+6. Mark task complete only after all verifications pass
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for the complete development workflow and definition of done.
 
