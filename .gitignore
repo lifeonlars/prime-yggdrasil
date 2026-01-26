@@ -34,6 +34,9 @@ packages/*/.turbo
 # Claude Code settings
 .claude/settings.local.json
 
+# BUT: Track .claude/ in main package for npm distribution
+!packages/prime-yggdrasil/.claude/
+
 *storybook.log
 storybook-static
 

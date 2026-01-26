@@ -46,6 +46,9 @@
     "docs",
     "cli",
     ".ai",
+    ".claude",
+    "scripts/setup-claude-skills.js",
+    "CONTRIBUTING.md",
     "README.md",
     "LICENSE"
   ],
@@ -65,7 +68,8 @@
     "audit:foundation": "node scripts/audit-foundation-usage.js",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_f57d218f413ed30"
+    "chromatic": "npx chromatic --project-token=chpt_f57d218f413ed30",
+    "postinstall": "node scripts/setup-claude-skills.js || true"
   },
   "peerDependencies": {
     "primeicons": "^7.0.0",

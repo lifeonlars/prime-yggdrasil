@@ -130,21 +130,26 @@ interface BaseChartProps {
 
 ## Development
 
-### Claude Code Skills
+### Claude Code Integration
 
-This project uses Claude Code skills to enforce quality standards:
+Skills are provided by the main `@lifeonlars/prime-yggdrasil` package.
+
+When you install both packages:
 
 ```bash
-# Install skills for your project
-npx skills add verification-before-completion
-npx skills add frontend-design
-npx skills add vercel-react-best-practices
+npm install @lifeonlars/prime-yggdrasil @lifeonlars/prime-yggdrasil-charts
 ```
 
-The `verification-before-completion` skill enforces:
-- Running verification commands before claiming completion
-- Evidence-based completion claims (no "should work" statements)
-- Fresh test/build/lint output before commits
+Claude Code is automatically configured with:
+
+- **verification-before-completion** - Enforces evidence-based completion
+- **frontend-design** - Design system consistency
+- **vercel-react-best-practices** - React best practices
+- **agent-browser** - Automated UI verification
+
+**Task Management**: Press **Ctrl+T** to view task list and completion status.
+
+**Visual Verification**: For chart changes, visual verification via `agent-browser` is MANDATORY. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the complete workflow
 
 ### Verification Commands
 

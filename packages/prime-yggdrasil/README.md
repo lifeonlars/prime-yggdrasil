@@ -181,7 +181,45 @@ npx @lifeonlars/prime-yggdrasil audit
 npx @lifeonlars/prime-yggdrasil audit --fix
 ```
 
-For detailed agent documentation, see [.ai/agents/](./ai/agents/).
+For detailed agent documentation, see [.ai/agents/](./.ai/agents/).
+
+---
+
+## Claude Code Integration
+
+This package includes **Claude Code skills** for enhanced development workflows with automatic verification.
+
+### Automatic Setup
+
+Skills are automatically installed when you run:
+
+```bash
+npm install @lifeonlars/prime-yggdrasil
+```
+
+This configures Claude Code with:
+
+- **verification-before-completion** - Enforces evidence-based completion (build/lint output)
+- **frontend-design** - Design system consistency checks
+- **vercel-react-best-practices** - React performance best practices
+- **agent-browser** - Automated UI verification and screenshot capture
+
+### Task Management
+
+Claude Code uses a task management system to enforce verification workflows.
+
+Press **Ctrl+T** in Claude Code to view your task list and completion status.
+
+### Development Workflow
+
+When working with Claude Code, all tasks follow a verification workflow:
+
+1. Implementation task created
+2. Verification subtasks created (build, lint, visual)
+3. Verification tasks must pass BEFORE marking implementation complete
+4. Evidence required (command output, screenshots)
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for the complete development workflow and definition of done.
 
 ---
 
