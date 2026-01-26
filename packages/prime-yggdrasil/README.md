@@ -97,6 +97,42 @@ For full icon documentation including sizing and colors, see [Consumption Guide 
 
 ---
 
+## Charts Package
+
+For data visualization, install the companion charts package:
+
+```bash
+npm install @lifeonlars/prime-yggdrasil-charts highcharts
+```
+
+The charts package provides Highcharts-based visualizations that automatically use Yggdrasil's design tokens:
+
+| Chart Type       | Description                              |
+| ---------------- | ---------------------------------------- |
+| **TimeSeriesLine** | Line/spline charts with date X-axis    |
+| **Column**         | Vertical bar charts                    |
+| **Bar**            | Horizontal bar charts                  |
+| **StackedColumn**  | Stacked vertical bars                  |
+| **Donut**          | Pie chart with center hole             |
+
+```tsx
+import { TimeSeriesLine, getSentimentPalette } from '@lifeonlars/prime-yggdrasil-charts';
+
+const sentiment = getSentimentPalette();
+// sentiment.positive = '#AAECBC', sentiment.neutral = '#F2DE6E', sentiment.negative = '#F4B6B6'
+
+<TimeSeriesLine
+  data={data}
+  encoding={{ x: 'date', y: 'mentions' }}
+  title="Media Mentions"
+  format={{ compact: true }}
+/>
+```
+
+See [@lifeonlars/prime-yggdrasil-charts](https://www.npmjs.com/package/@lifeonlars/prime-yggdrasil-charts) for full documentation.
+
+---
+
 ## Documentation
 
 ### For Developers
