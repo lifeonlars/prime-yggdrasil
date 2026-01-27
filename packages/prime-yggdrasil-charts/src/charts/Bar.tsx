@@ -4,7 +4,7 @@
  * Used for comparing values across categories (horizontal orientation).
  */
 
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import Highcharts from 'highcharts';
 import type { BaseChartProps, ChartState } from '../types/chart';
 import { BaseChart } from './BaseChart';
@@ -17,7 +17,7 @@ export type BarProps = BaseChartProps;
 /**
  * Bar chart component
  */
-export function Bar({
+function BarInner({
   data,
   encoding,
   title,
@@ -107,13 +107,13 @@ export function Bar({
         title: {
           text: undefined, // Purposeful simplicity: axis titles are redundant
         },
-        labels: format
-          ? {
-              formatter: function (this: Highcharts.AxisLabelsFormatterContextObject) {
-                return formatAxisLabel(this.value as number, format);
-              },
-            }
-          : undefined,
+        ...(format && {
+          labels: {
+            formatter: function (this: Highcharts.AxisLabelsFormatterContextObject) {
+              return formatAxisLabel(this.value as number, format);
+            },
+          },
+        }),
       },
       legend: legendConfig,
       tooltip: tooltipConfig,
@@ -176,3 +176,5 @@ export function Bar({
     />
   );
 }
+
+export const Bar = React.memo(BarInner);

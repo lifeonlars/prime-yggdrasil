@@ -216,35 +216,3 @@ export const BarStacked: StoryObj = {
   ),
 };
 
-// =============================================================================
-// COMBINATION CHART
-// =============================================================================
-
-/**
- * Combination chart with columns and line overlay.
- * Uses boolean palette: primary for columns, emphasis for line.
- * Note: This requires a custom implementation (not yet available)
- */
-export const CombinationColumnLine: StoryObj = {
-  name: 'Combination - Column + Line (Coming Soon)',
-  render: () => (
-    <div
-      style={{
-        padding: '48px',
-        textAlign: 'center',
-        backgroundColor: 'var(--surface-neutral-secondary)',
-        borderRadius: '8px',
-      }}
-    >
-      <div style={{ fontSize: '48px', marginBottom: '16px', opacity: 0.5 }}>📊</div>
-      <div style={{ fontSize: '16px', fontWeight: '500', marginBottom: '8px' }}>
-        Combination Chart
-      </div>
-      <div style={{ fontSize: '14px', color: 'var(--text-neutral-subdued)' }}>
-        Column + Line overlay chart coming in a future phase.
-        <br />
-        Will use boolean palette: primary for columns, emphasis for line.
-      </div>
-    </div>
-  ),
-};

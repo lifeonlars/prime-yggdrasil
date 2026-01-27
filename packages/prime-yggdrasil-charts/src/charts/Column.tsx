@@ -4,7 +4,7 @@
  * Used for comparing values across categories.
  */
 
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import Highcharts from 'highcharts';
 import type { BaseChartProps, ChartState } from '../types/chart';
 import { BaseChart } from './BaseChart';
@@ -17,7 +17,7 @@ export type ColumnProps = BaseChartProps;
 /**
  * Column chart component
  */
-export function Column({
+function ColumnInner({
   data,
   encoding,
   title,
@@ -107,13 +107,13 @@ export function Column({
         title: {
           text: undefined, // Purposeful simplicity: axis titles are redundant
         },
-        labels: format
-          ? {
-              formatter: function (this: Highcharts.AxisLabelsFormatterContextObject) {
-                return formatAxisLabel(this.value as number, format);
-              },
-            }
-          : undefined,
+        ...(format && {
+          labels: {
+            formatter: function (this: Highcharts.AxisLabelsFormatterContextObject) {
+              return formatAxisLabel(this.value as number, format);
+            },
+          },
+        }),
       },
       legend: legendConfig,
       tooltip: tooltipConfig,
@@ -166,3 +166,5 @@ export function Column({
     />
   );
 }
+
+export const Column = React.memo(ColumnInner);

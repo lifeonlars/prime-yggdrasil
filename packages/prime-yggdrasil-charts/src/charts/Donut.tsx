@@ -4,7 +4,7 @@
  * Used for showing composition/proportions (parts of a whole).
  */
 
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import Highcharts from 'highcharts';
 import type { BaseChartProps, ChartState } from '../types/chart';
 import { BaseChart } from './BaseChart';
@@ -16,7 +16,7 @@ export type DonutProps = BaseChartProps;
 /**
  * Donut chart component
  */
-export function Donut({
+function DonutInner({
   data,
   encoding,
   title,
@@ -167,3 +167,5 @@ export function Donut({
     />
   );
 }
+
+export const Donut = React.memo(DonutInner);

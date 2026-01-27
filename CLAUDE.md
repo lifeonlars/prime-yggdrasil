@@ -1,5 +1,38 @@
 # Claude Code Project Configuration
 
+## MANDATORY WORKFLOW (NEVER SKIP)
+
+These rules are NON-NEGOTIABLE. Violating any makes the work invalid.
+
+### W1: Create blocking verification subtasks BEFORE coding
+Every implementation task MUST start with TodoWrite creating these subtasks:
+- "Build verification" (pending)
+- "Lint verification" (pending)
+- "Visual verification" (pending) — for any UI changes
+The main task CANNOT be marked completed until ALL subtasks are completed with evidence.
+
+### W2: Run verification-before-completion BEFORE any completion claim
+Before saying "done", "fixed", "working", or "complete":
+1. Run the actual verification command (build, lint, storybook)
+2. Read the full output
+3. Confirm exit code 0 and no errors
+4. ONLY THEN make the claim
+Never say "should work" or "likely fixed" — run it and prove it.
+
+### W3: Use agent-browser for ALL UI changes
+Any change to a `.tsx` file that affects visible output requires:
+1. Ensure Storybook is running (`npm run storybook`)
+2. Use `npx agent-browser` to navigate to the relevant story
+3. Take a screenshot (`npx agent-browser screenshot <path>`)
+4. Read the screenshot and verify the visual result matches expectations
+Without screenshot evidence, UI work is NOT complete.
+
+### W4: Invoke frontend-design skill for new UI components
+Before creating any new visual component (`.tsx` that renders UI), invoke the
+`frontend-design` skill to ensure design quality and consistency.
+
+---
+
 ## Project Overview
 
 This is a monorepo containing:
@@ -165,6 +198,7 @@ A task is ONLY complete when:
 - Follow the semantic API pattern (data + encoding)
 - All charts must support loading/empty/error states
 - Use PrimeReact components for UI elements (Skeleton, etc.)
+- Never set Highcharts option values to `undefined` explicitly — omit the key instead (use conditional spread `...(condition && { key: value })`)
 
 ### Color Palettes
 - Category palette: For distinct categorical data
@@ -176,6 +210,30 @@ A task is ONLY complete when:
 - All charts must have ariaLabel
 - Keyboard navigation enabled by default
 - High contrast mode support
+
+## Charts Package: CSS Architecture
+
+The charts package (`@lifeonlars/prime-yggdrasil-charts`) is a **library** consumed by other applications. The core design system (`@lifeonlars/prime-yggdrasil`) is a **peer dependency** — it provides CSS variables via exported stylesheets that the consumer imports.
+
+### Inline styles with CSS variable fallbacks ARE correct
+```tsx
+// CORRECT for library components:
+style={{ color: 'var(--text-neutral-default, #1a2332)' }}
+```
+The consumer imports `@lifeonlars/prime-yggdrasil/theme.css` to provide the CSS variables. The fallback hex values ensure components render correctly even without the theme.
+
+### Rules for library component styles
+- Always use `var(--token-name, #fallback)` — never bare hex values without a var() wrapper
+- Fallback values MUST match the light theme defaults
+- Use CSS class names (`yggdrasil-*`) on root elements so consumers can override styles
+- Dynamic/conditional styles (e.g., positive/negative badge colors) use inline styles
+- Static layout styles use inline styles (this is a library, not a consumer app)
+
+### What's NOT allowed
+- Importing CSS files from the core package directly (breaks consumer flexibility)
+- CSS Modules (hashed class names prevent consumer overrides)
+- CSS-in-JS libraries (unnecessary dependency for a library)
+- Bare hex values without `var()` wrapper (e.g., `color: '#1a2332'` — use `var(--text-neutral-default, #1a2332)` instead)
 
 ## Git Workflow
 

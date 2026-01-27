@@ -186,6 +186,64 @@ export function extractCategories(data: ChartRow[], field: string): string[] {
 }
 
 /**
+ * Transform flat data into hierarchical treemap data
+ * Converts rows with group + label + value into Highcharts treemap point format
+ */
+export function transformToTreemapData(
+  data: ChartRow[],
+  groupField: string,
+  labelField: string,
+  valueField: string,
+  colorMap?: Record<string, string>
+): Highcharts.PointOptionsObject[] {
+  const defaultColors = [
+    '#3EADC9', '#FFC876', '#EB99BC', '#9B91CD', '#77C1E9',
+    '#D377DB', '#24B58F', '#C27388', '#C7145B', '#7AB387',
+    '#1E85AA', '#843398',
+  ];
+
+  // Collect unique groups
+  const groups = new Map<string, ChartRow[]>();
+  for (const row of data) {
+    const group = String(row[groupField] ?? 'Other');
+    if (!groups.has(group)) {
+      groups.set(group, []);
+    }
+    groups.get(group)!.push(row);
+  }
+
+  const points: Highcharts.PointOptionsObject[] = [];
+  let colorIndex = 0;
+
+  // Create parent nodes (level 1)
+  for (const [groupName, rows] of groups) {
+    const color = colorMap?.[groupName] ?? defaultColors[colorIndex % defaultColors.length];
+    colorIndex++;
+
+    points.push({
+      id: `group-${groupName}`,
+      name: groupName,
+      color,
+    });
+
+    // Create child nodes (level 2)
+    for (const row of rows) {
+      const label = String(row[labelField] ?? '');
+      const value = parseNumber(row[valueField]);
+      if (value !== null) {
+        points.push({
+          name: label,
+          parent: `group-${groupName}`,
+          value,
+        });
+      }
+    }
+  }
+
+  return points;
+}
+
+/**
  * Detect if X field contains date values
  */
 export function isDateXAxis(data: ChartRow[], xField: string): boolean {

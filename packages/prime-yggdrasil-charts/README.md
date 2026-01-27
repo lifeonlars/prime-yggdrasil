@@ -2,7 +2,7 @@
 
 Highcharts-based charts, widgets, and dashboard composition for the Prime Yggdrasil design system.
 
-**Status:** Phase 1C (Custom Tooltips) complete
+**Status:** Phase 4 (Widgets) complete, Phase 2B (Performance) complete
 
 ## Installation
 
@@ -23,7 +23,7 @@ npm install @lifeonlars/prime-yggdrasil-charts highcharts
 ### Core Charts
 
 ```tsx
-import { TimeSeriesLine, Column, Bar, StackedColumn, Donut } from '@lifeonlars/prime-yggdrasil-charts';
+import { TimeSeriesLine, Column, Bar, StackedColumn, Donut, ColumnLine, Treemap } from '@lifeonlars/prime-yggdrasil-charts';
 ```
 
 | Chart | Use Case |
@@ -33,6 +33,33 @@ import { TimeSeriesLine, Column, Bar, StackedColumn, Donut } from '@lifeonlars/p
 | `Bar` | Horizontal bars (ranked data, comparisons) |
 | `StackedColumn` | Composition/parts of a whole |
 | `Donut` | Proportions with center hole |
+| `ColumnLine` | Combined column + line (period comparison) |
+| `Treemap` | Hierarchical data with drill-down |
+
+### Widgets
+
+```tsx
+import { WidgetContainer, WidgetHeader, WidgetMenuBar, KeyFigure } from '@lifeonlars/prime-yggdrasil-charts';
+```
+
+| Widget | Use Case |
+|--------|----------|
+| `WidgetContainer` | Card wrapper with header, menu bar, and chart |
+| `WidgetHeader` | Title + subtitle for widgets |
+| `WidgetMenuBar` | Context labels + download dropdown |
+| `KeyFigure` | Large metric with change badge and previous period |
+
+### Utilities
+
+```tsx
+import { ChartErrorBoundary, ChartLegend, ScaleLegend } from '@lifeonlars/prime-yggdrasil-charts';
+```
+
+| Component | Use Case |
+|-----------|----------|
+| `ChartErrorBoundary` | Catches chart render errors with retry |
+| `ChartLegend` | Custom categorical legend |
+| `ScaleLegend` | Gradient/sequential scale legend |
 
 ### Color Palettes
 
@@ -122,11 +149,12 @@ interface BaseChartProps {
 - ✅ **Phase 1A**: Highcharts theme foundation
 - ✅ **Phase 1B**: 5 core chart types
 - ✅ **Phase 1C**: Custom tooltips
-- ⏳ **Phase 1D**: Custom legends
-- ⏳ **Phase 2A**: Combined charts (PeriodCompare, DualAxisCombo)
-- ⏳ **Phase 2B**: Performance & robustness
-- ⏳ **Phase 3**: Specialty charts (Treemap, WordCloud, Map)
-- ⏳ **Phase 4+**: Widgets and dashboards
+- ✅ **Phase 1D**: Custom legends (ChartLegend, ScaleLegend)
+- ✅ **Phase 2A**: Combined charts (ColumnLine)
+- ✅ **Phase 2B**: Performance & robustness (React.memo, error boundaries, lazy loading)
+- ✅ **Phase 3**: Specialty charts (Treemap with drill-down)
+- ✅ **Phase 4**: Widgets (WidgetContainer, WidgetHeader, WidgetMenuBar, KeyFigure)
+- ⏳ **Phase 5**: Dashboard composition
 
 ## Development
 

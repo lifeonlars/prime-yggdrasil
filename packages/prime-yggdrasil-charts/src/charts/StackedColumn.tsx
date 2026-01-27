@@ -4,7 +4,7 @@
  * Used for showing composition over categories (parts of a whole).
  */
 
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import Highcharts from 'highcharts';
 import type { BaseChartProps, ChartState } from '../types/chart';
 import { BaseChart } from './BaseChart';
@@ -17,7 +17,7 @@ export type StackedColumnProps = BaseChartProps;
 /**
  * StackedColumn chart component
  */
-export function StackedColumn({
+function StackedColumnInner({
   data,
   encoding,
   title,
@@ -107,13 +107,13 @@ export function StackedColumn({
         title: {
           text: undefined, // Purposeful simplicity: axis titles are redundant
         },
-        labels: format
-          ? {
-              formatter: function (this: Highcharts.AxisLabelsFormatterContextObject) {
-                return formatAxisLabel(this.value as number, format);
-              },
-            }
-          : undefined,
+        ...(format && {
+          labels: {
+            formatter: function (this: Highcharts.AxisLabelsFormatterContextObject) {
+              return formatAxisLabel(this.value as number, format);
+            },
+          },
+        }),
         stackLabels: {
           enabled: true,
           formatter: function (this: Highcharts.StackItemObject) {
@@ -173,3 +173,5 @@ export function StackedColumn({
     />
   );
 }
+
+export const StackedColumn = React.memo(StackedColumnInner);

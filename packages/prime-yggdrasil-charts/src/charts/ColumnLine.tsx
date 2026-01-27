@@ -1,26 +1,31 @@
 /**
- * TimeSeriesLine - Line chart with date/time X-axis
+ * ColumnLine - Combined column + line chart
  *
- * Used for visualizing data over time (dates, timestamps).
+ * Used for comparing two related metrics (e.g., current vs previous period).
+ * Columns represent the primary metric, lines represent the comparison metric.
  */
 
 import React, { useMemo } from 'react';
 import Highcharts from 'highcharts';
 import type { BaseChartProps, ChartState } from '../types/chart';
 import { BaseChart } from './BaseChart';
-import { transformToSeries, isDateXAxis } from '../utils/dataTransform';
-import { formatAxisLabel } from '../utils/formatters';
+import { extractCategories, isDateXAxis } from '../utils/dataTransform';
+import { formatAxisLabel, parseNumber, isDateValue } from '../utils/formatters';
 import { createMultiSeriesTooltipFormatter } from '../theme/tooltipFormatters';
 
-export interface TimeSeriesLineProps extends BaseChartProps {
+export interface ColumnLineProps extends BaseChartProps {
+  /** Fields to render as columns. Default: first y field */
+  columnFields?: string[];
+  /** Fields to render as lines. Default: remaining y fields */
+  lineFields?: string[];
   /** Enable smooth/curved lines (spline). Default: true */
   smooth?: boolean;
 }
 
 /**
- * TimeSeriesLine chart component
+ * ColumnLine chart component
  */
-function TimeSeriesLineInner({
+function ColumnLineInner({
   data,
   encoding,
   title,
@@ -37,8 +42,10 @@ function TimeSeriesLineInner({
   ariaDescription,
   className,
   id,
+  columnFields,
+  lineFields,
   smooth = true,
-}: TimeSeriesLineProps) {
+}: ColumnLineProps) {
   // Determine chart state
   const state: ChartState = useMemo(() => {
     if (loading) return 'loading';
@@ -53,11 +60,59 @@ function TimeSeriesLineInner({
       return {};
     }
 
-    // Transform data to series
-    const series = transformToSeries(data, encoding);
+    const yFields = Array.isArray(encoding.y) ? encoding.y : [encoding.y];
 
-    // Detect if X-axis is datetime
+    // Determine which fields are columns vs lines
+    const colFields = columnFields || [yFields[0]];
+    const lnFields = lineFields || yFields.slice(1);
+
+    // Detect datetime X axis
     const isDatetime = isDateXAxis(data, encoding.x);
+    const categories = isDatetime ? undefined : extractCategories(data, encoding.x);
+
+    const lineType = smooth ? 'spline' : 'line';
+
+    // Build series
+    const series: Highcharts.SeriesOptionsType[] = [];
+
+    for (const field of colFields) {
+      const points = data.map((row) => {
+        const yValue = parseNumber(row[field]);
+        const xVal = row[encoding.x];
+        if (isDatetime && xVal != null && isDateValue(xVal)) {
+          return [new Date(xVal as string | number).getTime(), yValue];
+        }
+        return yValue;
+      });
+
+      series.push({
+        type: 'column',
+        name: field,
+        data: points as Highcharts.PointOptionsType[],
+      });
+    }
+
+    for (const field of lnFields) {
+      const points = data.map((row) => {
+        const yValue = parseNumber(row[field]);
+        const xVal = row[encoding.x];
+        if (isDatetime && xVal != null && isDateValue(xVal)) {
+          return [new Date(xVal as string | number).getTime(), yValue];
+        }
+        return yValue;
+      });
+
+      series.push({
+        type: lineType as 'spline' | 'line',
+        name: field,
+        data: points as Highcharts.PointOptionsType[],
+        marker: {
+          enabled: true,
+          symbol: 'circle',
+          radius: 4,
+        },
+      });
+    }
 
     // Configure legend
     const legendConfig: Highcharts.LegendOptions =
@@ -74,7 +129,7 @@ function TimeSeriesLineInner({
                   : 'bottom',
           };
 
-    // Configure tooltip with custom formatter
+    // Configure tooltip
     const tooltipConfig: Highcharts.TooltipOptions =
       typeof tooltip === 'boolean'
         ? {
@@ -88,15 +143,11 @@ function TimeSeriesLineInner({
             formatter: tooltip.enabled !== false ? createMultiSeriesTooltipFormatter(format) : undefined,
           };
 
-    // Use spline for smooth curves, line for angular
-    const chartType = smooth ? 'spline' : 'line';
-
     return {
       chart: {
-        type: chartType,
+        type: 'column',
         height,
       },
-      // Apply custom colors if provided in encoding
       ...(encoding.colors && { colors: encoding.colors }),
       title: {
         text: title || undefined,
@@ -105,33 +156,14 @@ function TimeSeriesLineInner({
         text: subtitle || undefined,
       },
       xAxis: {
-        type: isDatetime ? 'datetime' : 'category',
-        title: {
-          text: undefined, // Purposeful simplicity: axis titles are redundant
+        ...(isDatetime ? { type: 'datetime' as const } : { categories }),
+        title: { text: undefined },
+        labels: {
+          rotation: 0,
         },
-        // Intelligent label reduction: show every other day for 15-60 day periods
-        // For 7-14 days: show all labels
-        // For 60+ days: show every 7 days or use tickAmount
-        ...(data.length > 15 && data.length <= 60
-          ? {
-              labels: {
-                // Show every other label for 15-60 data points
-                step: 2,
-              },
-            }
-          : data.length > 60
-            ? {
-                labels: {
-                  // Show ~8-10 labels for very long series
-                  step: Math.ceil(data.length / 10),
-                },
-              }
-            : {}), // Show all labels for short series (< 15 points) or use theme defaults
       },
       yAxis: {
-        title: {
-          text: undefined, // Purposeful simplicity: axis titles are redundant
-        },
+        title: { text: undefined },
         ...(format && {
           labels: {
             formatter: function (this: Highcharts.AxisLabelsFormatterContextObject) {
@@ -142,13 +174,14 @@ function TimeSeriesLineInner({
       },
       legend: legendConfig,
       tooltip: tooltipConfig,
-      series: series.map((s) => ({
-        ...s,
-        type: chartType,
-      })) as Highcharts.SeriesOptionsType[],
-      credits: {
-        enabled: false,
+      plotOptions: {
+        column: {
+          borderRadius: 4,
+          maxPointWidth: 72,
+        },
       },
+      series,
+      credits: { enabled: false },
       accessibility: {
         enabled: true,
         description: ariaDescription,
@@ -165,6 +198,8 @@ function TimeSeriesLineInner({
     height,
     state,
     ariaDescription,
+    columnFields,
+    lineFields,
     smooth,
   ]);
 
@@ -180,10 +215,10 @@ function TimeSeriesLineInner({
       height={height}
       className={className}
       id={id}
-      ariaLabel={ariaLabel || title || 'Time series line chart'}
+      ariaLabel={ariaLabel || title || 'Combined column and line chart'}
       ariaDescription={ariaDescription}
     />
   );
 }
 
-export const TimeSeriesLine = React.memo(TimeSeriesLineInner);
+export const ColumnLine = React.memo(ColumnLineInner);

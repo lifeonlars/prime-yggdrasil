@@ -45,6 +45,42 @@ export interface ChartFormatOptions {
 }
 
 /**
+ * Legend layout direction
+ */
+export type LegendLayout = 'horizontal' | 'vertical';
+
+/**
+ * Legend marker shape
+ */
+export type LegendMarker = 'circle' | 'line' | 'triangle' | 'diamond' | 'square';
+
+/**
+ * Legend item with value data (for vertical legends with numbers)
+ */
+export interface LegendItem {
+  /** Display label */
+  label: string;
+  /** Color swatch */
+  color: string;
+  /** Marker shape. Default: 'circle' */
+  marker?: LegendMarker;
+  /** Numeric value (e.g., 350) */
+  value?: number;
+  /** Percentage value (e.g., 35) */
+  percentage?: number;
+}
+
+/**
+ * Scale legend range entry
+ */
+export interface ScaleLegendRange {
+  /** Range label (e.g., "< 10", "10 - 20") */
+  label: string;
+  /** Color for this range */
+  color: string;
+}
+
+/**
  * Legend configuration
  */
 export interface LegendConfig {
@@ -54,6 +90,14 @@ export interface LegendConfig {
   position?: 'top' | 'bottom' | 'left' | 'right';
   /** Legend alignment */
   align?: 'left' | 'center' | 'right';
+  /** Legend layout direction. Default: 'horizontal' */
+  layout?: LegendLayout;
+  /** Show numeric values next to legend items */
+  showValues?: boolean;
+  /** Show percentage next to legend items */
+  showPercentages?: boolean;
+  /** Custom legend items (overrides chart-derived items) */
+  items?: LegendItem[];
 }
 
 /**
@@ -122,7 +166,7 @@ export interface BaseChartProps {
 /**
  * Chart type identifiers
  */
-export type ChartType = 'line' | 'column' | 'bar' | 'stackedColumn' | 'donut' | 'pie';
+export type ChartType = 'line' | 'column' | 'bar' | 'stackedColumn' | 'donut' | 'pie' | 'columnLine' | 'treemap';
 
 /**
  * Chart state

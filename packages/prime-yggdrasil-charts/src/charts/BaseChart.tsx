@@ -13,6 +13,7 @@ import type Highcharts from 'highcharts';
 import { Skeleton } from 'primereact/skeleton';
 import type { BaseChartProps, ChartState } from '../types/chart';
 import { applyYggdrasilTheme } from '../theme/highcharts-theme';
+import { ChartErrorBoundary } from './ChartErrorBoundary';
 
 // Apply Yggdrasil theme at module load time (runs once when module is first imported)
 applyYggdrasilTheme();
@@ -99,6 +100,7 @@ export function BaseChart({
   };
 
   return (
+    <ChartErrorBoundary>
     <div
       className={`yggdrasil-chart ${className}`.trim()}
       style={containerStyle}
@@ -156,6 +158,7 @@ export function BaseChart({
         <div ref={containerRef} className="yggdrasil-chart-container" />
       )}
     </div>
+    </ChartErrorBoundary>
   );
 }
 
