@@ -48,7 +48,7 @@
     "test:watch": "vitest"
   },
   "peerDependencies": {
-    "@lifeonlars/prime-yggdrasil": "^0.8.0",
+    "@lifeonlars/prime-yggdrasil": "^0.9.0",
     "highcharts": "^11.0.0",
     "primeicons": "^7.0.0",
     "primereact": "^10.9.7",
