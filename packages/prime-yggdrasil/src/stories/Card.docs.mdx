@@ -23,7 +23,7 @@ import { Card } from 'prime-yggdrasil';
 ## Rules
 
 - **Visual styling**: Managed by PrimeReact classes (`surface-card`, `shadow-2`, `border-round`)
-- **Layout composition**: Use PrimeFlex for internal layout (`flex`, `grid`, `gap-*`, etc.)
+- **Layout composition**: Use Yggdrasil utilities for internal layout (`flex`, `grid`, `gap-*`, etc.)
 - **No ad-hoc styling**: Avoid custom margins or padding beyond the card's default `p-4`
 
 ## States
@@ -41,6 +41,6 @@ import { Card } from 'prime-yggdrasil';
 
 When composing UI with Cards:
 1. Use Cards for distinct content sections
-2. Use PrimeFlex grid/flex for layout between cards (`grid`, `col-*`, `gap-*`)
+2. Use Yggdrasil utilities grid/flex for layout between cards (`grid`, `col-*`, `gap-*`)
 3. Keep card content semantic and simple
 4. For repeated patterns across multiple views, consider promoting to a new Block

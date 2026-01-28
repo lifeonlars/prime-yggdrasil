@@ -46,7 +46,7 @@ const AUTOFIXES = {
 
       return content;
     },
-    explanation: 'Removes PrimeFlex utility classes from PrimeReact components. The theme handles all component styling.'
+    explanation: 'Removes utility classes from PrimeReact components. The theme handles all component styling.'
   },
 
   'no-tailwind': {
@@ -74,7 +74,7 @@ const AUTOFIXES = {
 
       return content;
     },
-    explanation: 'Removes Tailwind CSS classes. Use PrimeFlex for layout or semantic tokens for design.'
+    explanation: 'Removes Tailwind CSS classes. Use semantic tokens for styling.'
   },
 
   'no-hardcoded-colors': {
@@ -124,7 +124,7 @@ const AUTOFIXES = {
         return lines.join('\n');
       }
 
-      // Handle invalid PrimeFlex classes
+      // Handle invalid utility classes
       const classMatch = violation.message.match(/([pm][trblxy]?-\d+)/);
       if (classMatch) {
         const invalidClass = classMatch[1];

@@ -375,7 +375,7 @@
 .shadow-high { box-shadow: var(--elevation-high); }
 .shadow-none { box-shadow: none; }
 
-/* Legacy PrimeFlex shadow mapping */
+/* Legacy shadow-N naming support */
 .shadow-1 { box-shadow: var(--elevation-subtle); }
 .shadow-2 { box-shadow: var(--elevation-moderate); }
 .shadow-3 { box-shadow: var(--elevation-elevated); }

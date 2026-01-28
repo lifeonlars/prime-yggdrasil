@@ -25,7 +25,7 @@ export const WithContent: Story = {
         <h3 className="text-color font-bold mb-2">Card Title</h3>
         <p className="text-color-secondary mb-0">
           This card demonstrates how visual styling is handled by PrimeReact classes
-          while layout composition uses PrimeFlex.
+          while layout composition uses Yggdrasil utilities.
         </p>
       </div>
     ),

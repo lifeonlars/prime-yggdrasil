@@ -9,7 +9,7 @@ import type { Meta, StoryObj } from '@storybook/react';
  * - **Predictable patterns**: Clear, agent-friendly class names
  * - **Self-contained**: No external dependencies
  *
- * ## Key Advantages Over PrimeFlex
+ * ## Key Advantages (Replaced PrimeFlex)
  * - **97.5% smaller**: 11KB vs 436KB
  * - **No bridging tokens**: Direct use of Yggdrasil design tokens
  * - **Full control**: Only utilities that enforce design system

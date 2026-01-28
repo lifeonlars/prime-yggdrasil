@@ -20,7 +20,7 @@ relatedDocs:
 
 **Mandatory References:**
 - [`docs/AESTHETICS.md`](../../docs/AESTHETICS.md) - All aesthetic principles and enforcement rules
-- [`docs/PRIMEFLEX-POLICY.md`](../../docs/PRIMEFLEX-POLICY.md) - Yggdrasil utilities allowlist
+- [`docs/UTILITIES-POLICY.md`](../../docs/UTILITIES-POLICY.md) - Yggdrasil utilities allowlist
 - [`eslint-plugin-yggdrasil/rules/`](../../eslint-plugin-yggdrasil/rules/) - ESLint rule implementations
 
 ---

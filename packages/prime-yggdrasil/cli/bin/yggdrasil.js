@@ -19,9 +19,12 @@ const __dirname = dirname(__filename);
 const args = process.argv.slice(2);
 const command = args[0];
 
-// Parse command-line arguments
-function parseArgs(args) {
+// Parse command-line arguments for validate/audit commands
+function parseArgs(args, command) {
   const options = {};
+  // Init command handles its own args
+  if (command === 'init') return options;
+
   for (let i = 1; i < args.length; i++) {
     const arg = args[i];
     if (arg === '--fix') {
@@ -39,12 +42,12 @@ function parseArgs(args) {
 }
 
 async function main() {
-  const options = parseArgs(args);
+  const options = parseArgs(args, command);
 
   switch (command) {
     case 'init':
       const { initCommand } = await import('../commands/init.js');
-      await initCommand();
+      await initCommand(args.slice(1));  // Pass remaining args to init
       break;
 
     case 'validate':

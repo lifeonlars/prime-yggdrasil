@@ -21,7 +21,7 @@ relatedDocs:
 
 **Mandatory References:**
 - [`docs/AESTHETICS.md`](../../docs/AESTHETICS.md) - Prime Yggdrasil aesthetic principles (purposeful simplicity, token-first, restraint)
-- [`docs/PRIMEFLEX-POLICY.md`](../../docs/PRIMEFLEX-POLICY.md) - Yggdrasil utilities allowlist (layout/spacing only)
+- [`docs/UTILITIES-POLICY.md`](../../docs/UTILITIES-POLICY.md) - Yggdrasil utilities allowlist (layout/spacing only)
 
 ---
 

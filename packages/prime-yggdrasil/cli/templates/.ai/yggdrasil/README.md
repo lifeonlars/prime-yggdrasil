@@ -2,11 +2,47 @@
 
 **Quick Start for AI-Assisted Development**
 
-This folder contains 4 specialized AI agents that guide design system usage and prevent drift.
+This folder contains specialized AI agents that guide design system usage and prevent drift.
 
 ---
 
-## The 4 Agents
+## MANDATORY WORKFLOW (NEVER SKIP)
+
+These rules are NON-NEGOTIABLE. Violating any makes the work invalid.
+
+### W1: Verify before claiming completion
+Before saying "done", "fixed", "working", or "complete":
+1. Run the build command and confirm it passes
+2. Run `npm run yggdrasil:validate` and fix any violations
+3. Visually verify UI changes render correctly
+4. ONLY THEN make the claim
+
+Never say "should work" or "likely fixed" — run it and prove it.
+
+### W2: Run validation before commits
+Before committing code that touches UI:
+```bash
+npm run yggdrasil:validate   # Check for design system violations
+npm run yggdrasil:audit      # Get detailed fix suggestions
+```
+
+### W3: Visual verification for UI changes
+Any change to a component that affects visible output requires:
+1. Run the app or Storybook
+2. Navigate to the affected component
+3. Verify the visual result matches expectations
+4. Check all states: default, loading, empty, error, disabled
+
+Without visual verification, UI work is NOT complete.
+
+### W4: Use agents BEFORE implementing
+1. **Planning UI** → Read `block-composer.md` first
+2. **Styling choices** → Read `semantic-token-intent.md` first
+3. **Before commit** → Run Drift Validator checks
+
+---
+
+## The Agents
 
 ### 1. Block Composer (`block-composer.md`)
 **When to use:** Before implementing ANY UI feature
@@ -27,30 +63,8 @@ What PrimeReact components should I use? What's the composition structure?
 
 ---
 
-### 2. PrimeFlex Guard (`primeflex-guard.md`)
-**When to use:** When using PrimeFlex utility classes for layout
-
-**Job:** Ensure PrimeFlex is used correctly (layout/spacing only, not design).
-
-**Critical Rule:** Never use PrimeFlex classes on PrimeReact components (except `w-full` on inputs).
-
-**Example prompt:**
-```
-Read .ai/yggdrasil/primeflex-guard.md
-
-Review this layout code and check for PrimeFlex violations:
-
-<div className="flex justify-content-between bg-blue-500 p-4">
-  <Button className="mr-2" label="Save" />
-</div>
-
-What's wrong and how should I fix it?
-```
-
----
-
-### 3. Semantic Token Intent (`semantic-token-intent.md`)
-**When to use:** When styling any UI element (colors, borders, shadows)
+### 2. Semantic Token Intent (`semantic-token-intent.md`)
+**When to use:** When styling any UI element (colors, borders, shadows, spacing)
 
 **Job:** Select the right semantic tokens for ALL states (default, hover, focus, disabled, error).
 
@@ -69,10 +83,10 @@ Include all states (default, hover, focus).
 
 ---
 
-### 4. Drift Validator (`drift-validator.md`)
+### 3. Drift Validator (`drift-validator.md`)
 **When to use:** Before committing code or during code review
 
-**Job:** Validate code against 7 design system policy rules.
+**Job:** Validate code against design system policy rules.
 
 **Example prompt:**
 ```
@@ -102,8 +116,7 @@ What violations exist and how should I fix them?
 | **I need to...** | **Use this agent** |
 |------------------|-------------------|
 | Plan a new UI feature | Block Composer |
-| Layout components with PrimeFlex | PrimeFlex Guard |
-| Choose colors/styling | Semantic Token Intent |
+| Choose colors/styling/spacing | Semantic Token Intent |
 | Review code for violations | Drift Validator |
 
 ---
@@ -125,15 +138,7 @@ I need a user list page with:
 What PrimeReact components and layout structure should I use?
 ```
 
-**Step 2: Layout with PrimeFlex (PrimeFlex Guard)**
-```
-Read .ai/yggdrasil/primeflex-guard.md
-
-I'm creating a filter bar with search input and dropdown.
-What PrimeFlex classes can I use for layout?
-```
-
-**Step 3: Style with Tokens (Semantic Token Intent)**
+**Step 2: Style with Tokens (Semantic Token Intent)**
 ```
 Read .ai/yggdrasil/semantic-token-intent.md
 
@@ -141,9 +146,10 @@ What semantic tokens should I use for:
 - Table header background
 - Row hover state
 - Delete button (danger action)
+- Layout spacing
 ```
 
-**Step 4: Validate (Drift Validator)**
+**Step 3: Validate (Drift Validator)**
 ```
 Read .ai/yggdrasil/drift-validator.md
 
@@ -155,40 +161,60 @@ Review my UserList component for design system violations.
 
 ## Key Rules to Remember
 
-### ✅ DO
+### DO
 
 - **Use PrimeReact components** - Don't create custom components
-- **Use PrimeFlex for layout only** - `flex`, `grid`, `p-*`, `m-*`, `gap-*`
-- **Use semantic tokens for design** - `var(--text-neutral-default)`, etc.
+- **Use semantic tokens for ALL styling** - colors, borders, shadows, spacing
+- **Use CSS flexbox/grid for layout** - with `style` prop or CSS classes
 - **Handle all 5 states** - default, loading, empty, error, disabled
 - **Check for existing Blocks** - Reuse before creating new
 
-### ❌ DON'T
+### DON'T
 
-- **Don't use PrimeFlex on PrimeReact components** (except `w-full` on inputs)
-- **Don't use PrimeFlex for colors/borders/shadows** - Use semantic tokens
-- **Don't use Tailwind classes** - This project uses PrimeFlex
 - **Don't hardcode colors** - `#333`, `rgb()`, etc. are forbidden
+- **Don't hardcode spacing** - Use `var(--spacing-*)` tokens
 - **Don't create custom buttons/inputs** - Use PrimeReact components
+- **Don't use Tailwind classes** - Use semantic tokens instead
 
 ---
 
-## PrimeFlex Allowlist (Quick Reference)
+## Layout Utilities
 
-**✅ Allowed (Layout & Spacing):**
-- `flex`, `flex-column`, `justify-*`, `align-*`
-- `grid`, `col-*`, `gap-*`
-- `p-*`, `m-*` (4px grid: 0, 1, 2, 3, 4, 5, 6, 7, 8)
-- `block`, `inline-block`, `hidden`
-- `relative`, `absolute`, `fixed`, `sticky`
-- `w-full`, `h-full`, `w-screen`, `h-screen`
+Use standard CSS flexbox and grid with semantic tokens for spacing:
 
-**❌ Forbidden (Design):**
-- `bg-*`, `text-[color]-*`, `border-[color]-*`
-- `rounded-*`, `shadow-*`, `font-*`
-- Any Tailwind-specific classes (`space-*`, `ring-*`, etc.)
+```tsx
+// Flexbox layout with semantic spacing
+<div style={{
+  display: 'flex',
+  gap: 'var(--spacing-4)',
+  padding: 'var(--spacing-4)',
+  alignItems: 'center'
+}}>
+  <Button label="Save" />
+  <Button label="Cancel" severity="secondary" />
+</div>
 
-Full policy: See `PRIMEFLEX-POLICY.md`
+// Grid layout
+<div style={{
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)',
+  gap: 'var(--spacing-4)'
+}}>
+  {items.map(item => <Card key={item.id} />)}
+</div>
+```
+
+### Spacing Scale (4px grid)
+
+| Token | Value |
+|-------|-------|
+| `--spacing-1` | 4px |
+| `--spacing-2` | 8px |
+| `--spacing-3` | 12px |
+| `--spacing-4` | 16px |
+| `--spacing-5` | 20px |
+| `--spacing-6` | 24px |
+| `--spacing-8` | 32px |
 
 ---
 
@@ -210,8 +236,8 @@ Full policy: See `PRIMEFLEX-POLICY.md`
 - `--border-state-focus` - Focus rings
 - `--border-context-danger/success` - Semantic borders
 
-**Spacing (4px grid):**
-- `0.5rem` (8px), `1rem` (16px), `1.5rem` (24px), `2rem` (32px)
+**Spacing:**
+- `--spacing-1` through `--spacing-8` (4px grid)
 
 Full token catalog: See `semantic-token-intent.md`
 
@@ -219,40 +245,42 @@ Full token catalog: See `semantic-token-intent.md`
 
 ## Common Violations
 
-### Violation 1: PrimeFlex on Components
+### Violation 1: Hardcoded Colors
 ```tsx
-❌ <Button className="bg-blue-500 p-4" label="Save" />
-✅ <Button label="Save" />  {/* Theme handles styling */}
+// Bad
+<div style={{ color: '#333', background: '#f0f0f0' }}>
+
+// Good
+<div style={{
+  color: 'var(--text-neutral-default)',
+  background: 'var(--surface-neutral-secondary)'
+}}>
 ```
 
-### Violation 2: Hardcoded Colors
+### Violation 2: Hardcoded Spacing
 ```tsx
-❌ <div style={{ color: '#333', background: '#f0f0f0' }}>
-✅ <div style={{
-     color: 'var(--text-neutral-default)',
-     background: 'var(--surface-neutral-secondary)'
-   }}>
+// Bad
+<div style={{ padding: '16px', gap: '8px' }}>
+
+// Good
+<div style={{
+  padding: 'var(--spacing-4)',
+  gap: 'var(--spacing-2)'
+}}>
 ```
 
 ### Violation 3: Custom Components
 ```tsx
-❌ const CustomButton = ({ label }) => (
-     <button style={{ background: 'blue', color: 'white' }}>
-       {label}
-     </button>
-   )
+// Bad
+const CustomButton = ({ label }) => (
+  <button style={{ background: 'blue', color: 'white' }}>
+    {label}
+  </button>
+)
 
-✅ import { Button } from 'primereact/button'
-   <Button label="Click me" />
-```
-
-### Violation 4: Tailwind Classes
-```tsx
-❌ <div className="space-x-4 ring-2 rounded-lg">
-✅ <div className="flex gap-3" style={{
-     borderRadius: 'var(--radius-md)',
-     outline: `2px solid var(--border-state-focus)`
-   }}>
+// Good
+import { Button } from 'primereact/button'
+<Button label="Click me" />
 ```
 
 ---
@@ -263,8 +291,8 @@ Full token catalog: See `semantic-token-intent.md`
 Add to your prompts:
 ```
 Read the Yggdrasil agents in .ai/yggdrasil/ before implementing UI.
-Use Block Composer for planning, PrimeFlex Guard for layout,
-Semantic Token Intent for styling, and Drift Validator for review.
+Use Block Composer for planning, Semantic Token Intent for styling,
+and Drift Validator for review.
 ```
 
 ### Cursor
@@ -274,25 +302,15 @@ Add `.ai/yggdrasil/` to composer context, then:
 Block Composer agent guidelines.
 ```
 
-### GitHub Copilot
-Reference in comments:
-```tsx
-// Following .ai/yggdrasil/block-composer.md
-// Using PrimeReact DataTable for user list
-```
-
 ---
 
 ## Enforcement
 
 This design system is enforced through:
 
-1. **Agents (Phase 1)** - Preventive guidance during development
-2. **ESLint Plugin (Phase 3)** - Code-time detection in IDE
-3. **CLI Validation (Phase 4)** - Pre-commit and CI/CD checks
-
-**Current Status:** Phase 1 complete (agents available)
-**Next:** Phase 3 (ESLint plugin) and Phase 4 (CLI validation)
+1. **Agents** - Preventive guidance during development
+2. **ESLint Plugin** - Code-time detection in IDE
+3. **CLI Validation** - Pre-commit and CI/CD checks
 
 ---
 
@@ -300,7 +318,6 @@ This design system is enforced through:
 
 - **Documentation:** [Prime Yggdrasil README](https://github.com/lifeonlars/prime-yggdrasil)
 - **PrimeReact Docs:** https://primereact.org/
-- **PrimeFlex Docs:** https://primeflex.org/
 - **Issues:** https://github.com/lifeonlars/prime-yggdrasil/issues
 
 ---

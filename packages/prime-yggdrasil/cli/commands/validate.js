@@ -62,7 +62,7 @@ const HSL_COLOR = /hsla?\(/;
  */
 const RULES = {
   'no-utility-on-components': {
-    name: 'No PrimeFlex on PrimeReact Components',
+    name: 'No Utility Classes on PrimeReact Components',
     severity: 'error',
     check: (content, filePath) => {
       const violations = [];
@@ -84,7 +84,7 @@ const RULES = {
               violations.push({
                 line: index + 1,
                 column: match.index,
-                message: `PrimeFlex utility classes "${utilityClasses.join(', ')}" on <${component}>`,
+                message: `Utility classes "${utilityClasses.join(', ')}" on <${component}>`,
                 suggestion: `Remove utility classes. The theme handles component styling.`
               });
             }
@@ -119,7 +119,7 @@ const RULES = {
               line: index + 1,
               column: match.index,
               message: `Tailwind classes "${tailwindClasses.join(', ')}" detected`,
-              suggestion: `Use PrimeFlex for layout or semantic tokens for design.`
+              suggestion: `Use semantic tokens for styling. Example: var(--spacing-4) for spacing.`
             });
           }
         }
@@ -231,14 +231,14 @@ const RULES = {
           }
         });
 
-        // Check for invalid PrimeFlex classes (p-9, p-10, etc.)
-        const invalidClasses = line.match(/[pm][trblxy]?-([9-9]\d+)/g);
-        if (invalidClasses) {
+        // Check for hardcoded px values in style props that should use tokens
+        const hardcodedSpacing = line.match(/(?:padding|margin|gap)\s*:\s*['"]?\d+px/g);
+        if (hardcodedSpacing) {
           violations.push({
             line: index + 1,
-            column: line.indexOf(invalidClasses[0]),
-            message: `Invalid PrimeFlex spacing: ${invalidClasses.join(', ')}`,
-            suggestion: `Use p-0 through p-8 (0-32px in 4px increments)`
+            column: line.indexOf(hardcodedSpacing[0]),
+            message: `Hardcoded spacing detected`,
+            suggestion: `Use semantic tokens: var(--spacing-1) through var(--spacing-8)`
           });
         }
       });

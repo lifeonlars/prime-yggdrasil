@@ -810,7 +810,7 @@ Violation Type: [Color/Border/Shadow/Component/Tailwind]
 
 📚 Related Rules:
 - [Relevant rule from allowlist/forbidden list]
-- [Link to PRIMEFLEX-POLICY.md if applicable]
+- [Link to UTILITIES-POLICY.md if applicable]
 ```
 
 ---

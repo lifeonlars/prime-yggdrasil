@@ -6,22 +6,39 @@ import readline from 'readline';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-function question(query) {
-  return new Promise((resolve) => rl.question(query, resolve));
+/**
+ * Parse command-line arguments for init command
+ */
+function parseInitArgs(args) {
+  return {
+    yes: args.includes('--yes') || args.includes('-y'),
+    skipScripts: args.includes('--skip-scripts'),
+    help: args.includes('--help') || args.includes('-h')
+  };
 }
 
-export async function initCommand() {
+/**
+ * Initialize Yggdrasil in a project
+ *
+ * Options:
+ *   --yes, -y       Non-interactive mode, accept all defaults
+ *   --skip-scripts  Don't add npm scripts to package.json
+ *   --help, -h      Show help
+ */
+export async function initCommand(args = []) {
+  const options = parseInitArgs(args);
+
+  if (options.help) {
+    printInitHelp();
+    return;
+  }
+
   console.log(`
-🌳 Yggdrasil Agent Infrastructure Setup
+🌳 Yggdrasil Design System Setup
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-This will set up AI agents in your project to guide design
-system usage and prevent drift.
+This will set up AI agent documentation in your project
+to guide design system usage and prevent drift.
 `);
 
   try {
@@ -30,60 +47,94 @@ system usage and prevent drift.
     console.log(`📦 Detected project type: ${projectType}`);
     console.log('');
 
-    // Ask user preferences
-    const copyAgents = await askYesNo('Copy agent documentation to .ai/yggdrasil/? (Recommended)', true);
-    const installESLint = await askYesNo('Add ESLint config reference? (Available in Phase 3)', false);
-    const addScripts = await askYesNo('Add npm scripts to package.json?', true);
+    let copyAgents = true;
+    let addScripts = !options.skipScripts;
 
-    console.log('');
-    console.log('📋 Installation Plan:');
-    console.log('');
-    if (copyAgents) console.log('  ✓ Copy 4 agent specifications to .ai/yggdrasil/');
-    if (installESLint) console.log('  ✓ Add ESLint configuration (placeholder for Phase 3)');
-    if (addScripts) console.log('  ✓ Add npm scripts for validation');
-    console.log('');
+    // Interactive mode - ask for confirmation
+    if (!options.yes) {
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+      });
 
-    const proceed = await askYesNo('Proceed with installation?', true);
-    if (!proceed) {
-      console.log('❌ Installation cancelled.');
+      copyAgents = await askYesNo(rl, 'Copy agent documentation to .ai/yggdrasil/?', true);
+      if (!options.skipScripts) {
+        addScripts = await askYesNo(rl, 'Add npm scripts to package.json?', true);
+      }
+
+      console.log('');
+      console.log('📋 Installation Plan:');
+      console.log('');
+      if (copyAgents) console.log('  ✓ Copy 3 agent specifications to .ai/yggdrasil/');
+      if (addScripts) console.log('  ✓ Add npm scripts for validation');
+      console.log('');
+
+      const proceed = await askYesNo(rl, 'Proceed with installation?', true);
       rl.close();
-      return;
+
+      if (!proceed) {
+        console.log('❌ Installation cancelled.');
+        return;
+      }
+    } else {
+      // Non-interactive mode - show what we're doing
+      console.log('📋 Installing (non-interactive mode):');
+      console.log('');
+      if (copyAgents) console.log('  ✓ Copy 3 agent specifications to .ai/yggdrasil/');
+      if (addScripts) console.log('  ✓ Add npm scripts for validation');
+      console.log('');
     }
 
-    console.log('');
     console.log('🚀 Installing...');
     console.log('');
 
     // Copy agents
     if (copyAgents) {
-      await copyAgentFiles();
-    }
-
-    // Add ESLint config
-    if (installESLint) {
-      await createESLintConfig();
+      copyAgentFiles();
     }
 
     // Add scripts
     if (addScripts) {
-      await addNpmScripts();
+      addNpmScripts();
     }
 
     // Print success message
-    printSuccessMessage(copyAgents, installESLint);
+    printSuccessMessage(copyAgents, addScripts);
 
-    rl.close();
   } catch (error) {
     console.error('❌ Error during installation:', error.message);
-    rl.close();
     process.exit(1);
   }
+}
+
+function printInitHelp() {
+  console.log(`
+🌳 Yggdrasil Init Command
+
+Usage:
+  npx @lifeonlars/prime-yggdrasil init [options]
+
+Options:
+  --yes, -y       Non-interactive mode, accept all defaults
+  --skip-scripts  Don't add npm scripts to package.json
+  --help, -h      Show this help message
+
+Examples:
+  # Interactive setup
+  npx @lifeonlars/prime-yggdrasil init
+
+  # Non-interactive (CI/automation)
+  npx @lifeonlars/prime-yggdrasil init --yes
+
+  # Only copy agents, no scripts
+  npx @lifeonlars/prime-yggdrasil init --yes --skip-scripts
+`);
 }
 
 function detectProjectType() {
   const cwd = process.cwd();
 
-  if (existsSync(join(cwd, 'next.config.js')) || existsSync(join(cwd, 'next.config.mjs'))) {
+  if (existsSync(join(cwd, 'next.config.js')) || existsSync(join(cwd, 'next.config.mjs')) || existsSync(join(cwd, 'next.config.ts'))) {
     return 'Next.js';
   }
   if (existsSync(join(cwd, 'vite.config.js')) || existsSync(join(cwd, 'vite.config.ts'))) {
@@ -95,20 +146,18 @@ function detectProjectType() {
   return 'Unknown';
 }
 
-async function askYesNo(question, defaultYes = true) {
+function askYesNo(rl, question, defaultYes = true) {
   const prompt = `${question} ${defaultYes ? '[Y/n]' : '[y/N]'}: `;
-  const answer = await questionPromise(prompt);
-  const normalized = answer.toLowerCase().trim();
-
-  if (normalized === '') return defaultYes;
-  return normalized === 'y' || normalized === 'yes';
+  return new Promise((resolve) => {
+    rl.question(prompt, (answer) => {
+      const normalized = answer.toLowerCase().trim();
+      if (normalized === '') resolve(defaultYes);
+      else resolve(normalized === 'y' || normalized === 'yes');
+    });
+  });
 }
 
-function questionPromise(query) {
-  return new Promise((resolve) => rl.question(query, resolve));
-}
-
-async function copyAgentFiles() {
+function copyAgentFiles() {
   const cwd = process.cwd();
   const targetDir = join(cwd, '.ai', 'yggdrasil');
   const sourceDir = join(__dirname, '../templates/.ai/yggdrasil');
@@ -122,7 +171,6 @@ async function copyAgentFiles() {
   const mainAgentsDir = join(__dirname, '../../.ai/agents');
   const agentFiles = [
     'block-composer.md',
-    'primeflex-guard.md',
     'semantic-token-intent.md',
     'drift-validator.md'
   ];
@@ -136,7 +184,7 @@ async function copyAgentFiles() {
       copyFileSync(source, target);
       console.log(`     ✓ ${file}`);
     } else {
-      console.log(`     ⚠️  ${file} not found (will be available after build)`);
+      console.log(`     ⚠️  ${file} not found`);
     }
   }
 
@@ -147,50 +195,12 @@ async function copyAgentFiles() {
     console.log('     ✓ README.md');
   }
 
-  // Copy PrimeFlex policy
-  const policySource = join(__dirname, '../../docs/PRIMEFLEX-POLICY.md');
-  if (existsSync(policySource)) {
-    copyFileSync(policySource, join(targetDir, 'PRIMEFLEX-POLICY.md'));
-    console.log('     ✓ PRIMEFLEX-POLICY.md');
-  }
-
   console.log('');
   console.log(`  ✅ Copied agents to ${targetDir}`);
   console.log('');
 }
 
-async function createESLintConfig() {
-  const cwd = process.cwd();
-  const configPath = join(cwd, '.eslintrc.yggdrasil.js');
-
-  const configContent = `// Yggdrasil ESLint Configuration
-// This will be functional in Phase 3 when the ESLint plugin is published
-
-module.exports = {
-  extends: [
-    // Uncomment when @lifeonlars/eslint-plugin-yggdrasil is available (Phase 3)
-    // 'plugin:@lifeonlars/yggdrasil/recommended'
-  ],
-  rules: {
-    // Phase 3: ESLint rules will enforce:
-    // - No hardcoded colors (use semantic tokens)
-    // - No PrimeFlex on PrimeReact components
-    // - PrimeFlex allowlist (layout/spacing only)
-    // - No Tailwind classes
-    // - Valid spacing (4px grid)
-    // - Semantic tokens only
-    // - Consistent PrimeReact imports
-  }
-};
-`;
-
-  writeFileSync(configPath, configContent);
-  console.log(`  ✅ Created ${configPath}`);
-  console.log('     ⚠️  ESLint plugin will be available in Phase 3');
-  console.log('');
-}
-
-async function addNpmScripts() {
+function addNpmScripts() {
   const cwd = process.cwd();
   const packageJsonPath = join(cwd, 'package.json');
 
@@ -205,10 +215,10 @@ async function addNpmScripts() {
     packageJson.scripts = {};
   }
 
-  // Add scripts (placeholders for Phase 4)
+  // Add working CLI scripts
   const scriptsToAdd = {
-    'yggdrasil:validate': 'echo "⚠️  Validation command available in Phase 4. Use ESLint for now."',
-    'yggdrasil:audit': 'echo "⚠️  Audit command available in Phase 4. Use ESLint for now."'
+    'yggdrasil:validate': 'npx @lifeonlars/prime-yggdrasil validate',
+    'yggdrasil:audit': 'npx @lifeonlars/prime-yggdrasil audit'
   };
 
   let added = false;
@@ -230,58 +240,47 @@ async function addNpmScripts() {
   console.log('');
 }
 
-function printSuccessMessage(copiedAgents, addedESLint) {
+function printSuccessMessage(copiedAgents, addedScripts) {
   console.log('');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  console.log('✅ Yggdrasil Agent Infrastructure Installed!');
+  console.log('✅ Yggdrasil Setup Complete!');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('');
 
   if (copiedAgents) {
     console.log('📚 Agent Documentation:');
-    console.log('   .ai/yggdrasil/block-composer.md        - Composition planning');
-    console.log('   .ai/yggdrasil/primeflex-guard.md       - Layout constraints');
-    console.log('   .ai/yggdrasil/semantic-token-intent.md - Token selection');
-    console.log('   .ai/yggdrasil/drift-validator.md       - Policy enforcement');
-    console.log('   .ai/yggdrasil/PRIMEFLEX-POLICY.md      - PrimeFlex usage rules');
+    console.log('   .ai/yggdrasil/block-composer.md        - UI composition planning');
+    console.log('   .ai/yggdrasil/semantic-token-intent.md - Token selection guidance');
+    console.log('   .ai/yggdrasil/drift-validator.md       - Policy enforcement rules');
     console.log('');
   }
 
-  console.log('🤖 Using Agents with AI Tools:');
+  console.log('🤖 Using with AI Assistants:');
   console.log('');
-  console.log('   Claude Code:');
-  console.log('   "Before implementing UI, read .ai/yggdrasil/block-composer.md');
-  console.log('    and suggest the appropriate PrimeReact components."');
-  console.log('');
-  console.log('   Cursor/Copilot:');
-  console.log('   Add .ai/yggdrasil/ to your AI context, then ask:');
-  console.log('   "Help me implement a user profile form following Yggdrasil agents."');
+  console.log('   Claude Code / Cursor / Copilot:');
+  console.log('   "Read .ai/yggdrasil/block-composer.md and help me');
+  console.log('    implement a user profile form using PrimeReact."');
   console.log('');
 
-  console.log('📖 Next Steps:');
-  console.log('');
-  console.log('   1. Read the agent documentation in .ai/yggdrasil/');
-  console.log('   2. Reference agents when implementing UI features');
-  console.log('   3. Phase 3: Install ESLint plugin for code-time validation');
-  console.log('      npm install --save-dev @lifeonlars/eslint-plugin-yggdrasil');
-  console.log('   4. Phase 4: Use validation commands');
-  console.log('      npm run yggdrasil:validate');
-  console.log('      npm run yggdrasil:audit');
-  console.log('');
+  if (addedScripts) {
+    console.log('🔍 Validation Commands:');
+    console.log('');
+    console.log('   npm run yggdrasil:validate   # Check for design system violations');
+    console.log('   npm run yggdrasil:audit      # Detailed audit with fix suggestions');
+    console.log('');
+  }
 
   console.log('📋 Agent Workflow:');
   console.log('');
-  console.log('   Planning UI:        Block Composer Agent');
-  console.log('   Choosing layout:    PrimeFlex Guard Agent');
-  console.log('   Selecting colors:   Semantic Token Intent Agent');
-  console.log('   Validating code:    Drift Validator Agent');
+  console.log('   1. Planning UI      → Block Composer Agent');
+  console.log('   2. Styling choices  → Semantic Token Intent Agent');
+  console.log('   3. Code review      → Drift Validator Agent');
   console.log('');
 
   console.log('🔗 Resources:');
   console.log('');
-  console.log('   Documentation: https://github.com/lifeonlars/prime-yggdrasil');
-  console.log('   PrimeReact:    https://primereact.org/');
-  console.log('   PrimeFlex:     https://primeflex.org/');
+  console.log('   Docs:      https://github.com/lifeonlars/prime-yggdrasil');
+  console.log('   PrimeReact: https://primereact.org/');
   console.log('');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('');
