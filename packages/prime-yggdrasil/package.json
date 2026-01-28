@@ -1,6 +1,6 @@
 {
   "name": "@lifeonlars/prime-yggdrasil",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "type": "module",
   "description": "AI-agent-friendly PrimeReact design system with multi-platform skill support (Claude Code, Antigravity, Gemini CLI)",
   "keywords": [
@@ -50,8 +50,7 @@
     "docs",
     "cli",
     ".ai",
-    ".claude",
-    "scripts/setup-claude-skills.js",
+    ".agents",
     "CONTRIBUTING.md",
     "AGENTS.md",
     "README.md",
@@ -73,8 +72,7 @@
     "audit:foundation": "node scripts/audit-foundation-usage.js",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_f57d218f413ed30",
-    "postinstall": "node scripts/setup-claude-skills.js || true"
+    "chromatic": "npx chromatic --project-token=chpt_f57d218f413ed30"
   },
   "peerDependencies": {
     "primeicons": "^7.0.0",
